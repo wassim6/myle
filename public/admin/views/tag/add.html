@@ -1,0 +1,62 @@
+<h3 class="page-title">
+	Add Tag
+</h3>
+<div class="page-bar">
+	<ul class="page-breadcrumb">
+		<li>
+			<i class="fa fa-home"></i>
+			<a href="#/dashboard.html">Home</a>
+			<i class="fa fa-angle-right"></i>
+		</li>
+		<li>
+			<a href="#/datatables/advanced.html">Datatables</a>
+            <i class="fa fa-angle-right"></i>
+		</li>
+		<li>
+			<a href="#/datatables/advanced.html">Advanced Datatables</a>
+		</li>
+	</ul>
+</div>
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-gift"></i>Add Tag
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="reload" data-original-title="" title=""></a>
+        </div>
+    </div>
+    
+    <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <form  class="form-horizontal form-row-seperated">
+            <div class="form-body">
+                <div class="alert alert-success alert-dismissable" ng-show="success">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                    Tag successfully added
+                </div>
+                <div class="alert alert-danger alert-dismissable" ng-show="error">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                    Error ! <strong>Tag Name is between 4 and 200 character</strong>
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label col-md-3">Name</label>
+                    <div class="col-md-9">
+                        <input type="text" placeholder="Name of the Tag" class="form-control" ng-model="name">
+                        <span class="help-block">Name of the Tag </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-9">
+                        <button type="submit" class="btn green" ng-click="add()" ng-disabled="disable"><i class="fa fa-pencil"></i> Add</button>
+                        <a href="#/tag/list" class="btn default">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- END FORM-->
+    </div>
+</div>

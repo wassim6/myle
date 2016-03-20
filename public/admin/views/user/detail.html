@@ -1,0 +1,128 @@
+<h3 class="page-title">
+	Detail User
+</h3>
+<div class="page-bar">
+	<ul class="page-breadcrumb">
+		<li>
+			<i class="fa fa-home"></i>
+			<a href="#/dashboard.html">Home</a>
+			<i class="fa fa-angle-right"></i>
+		</li>
+		<li>
+			<a href="#/datatables/advanced.html">Datatables</a>
+            <i class="fa fa-angle-right"></i>
+		</li>
+		<li>
+			<a href="#/datatables/advanced.html">Advanced Datatables</a>
+		</li>
+	</ul>
+</div>
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-gift"></i>Detail User
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="reload" data-original-title="" title=""></a>
+        </div>
+    </div>
+    
+    <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <form  class="form-horizontal form-row-seperated">
+            <div class="form-body">
+                <div class="form-group">
+                    <label class="control-label col-md-3">Id</label>
+                    <div class="col-md-9">
+                        <label class="control-label">{{user.Id}}</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">profile Img</label>
+                    <div class="col-md-9">
+                        <label class="control-label"><img ng-src="http://vynd-services.azurewebsites.net/{{user.profileImg}}" alt="{{user.firstName}}" /></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">First Name</label>
+                    <div class="col-md-9">
+                        <label class="control-label">{{user.firstName}}</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">Last Name</label>
+                    <div class="col-md-9">
+                        <label class="control-label">{{user.lastName}}</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">Birth Date</label>
+                    <div class="col-md-9">
+                        <label class="control-label">{{user.birthDate}}</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">score</label>
+                    <div class="col-md-9">
+                        <label class="control-label">{{user.score}}</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label col-md-3">active</label>
+                    <div class="col-md-9">
+                        <label class="control-label">
+                            <span ng-if="user.LoginCredential.active" ><span class="label label-success">active </span></span>
+                                <span ng-if="!user.LoginCredential.active" ><span class="label label-danger">not active </span></span>
+                            </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">blocked</label>
+                    <div class="col-md-9">
+                        <label class="control-label">
+                            <span ng-if="user.LoginCredential.blocked" ><span class="label label-success">blocked </span></span>
+                                <span ng-if="!user.LoginCredential.blocked" ><span class="label label-danger">not blocked </span></span>
+                            </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">login</label>
+                    <div class="col-md-9">
+                        <label class="control-label">{{user.LoginCredential.login}}</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">mail</label>
+                    <div class="col-md-9">
+                        <label class="control-label">{{user.LoginCredential.mail}}</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">images</label>
+                    <div class="col-md-9">
+                        <label class="control-label" ng-repeat="img in u.images" >
+                        <img ng-src="http://vynd-services.azurewebsites.net/{{img.uri}}" alt="{{img.id}}" /><br/>
+                        </label>
+                    </div>
+                </div>
+                
+
+                
+                
+                
+                
+            </div>
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-9">
+                        <a href="#/user/edit/{{user.Id}}" class="btn green"><i class="fa fa-pencil"></i> Edit</a> 
+                        <button type="submit" class="btn red" ng-click="delete(u)" ><i class="fa fa-trash"></i> Delete</button>
+                        <a href="#/user/list" class="btn default">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- END FORM-->
+    </div>
+</div>

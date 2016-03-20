@@ -1,0 +1,109 @@
+<h3 class="page-title">
+	Restaurant List
+</h3>
+<div class="page-bar">
+	<ul class="page-breadcrumb">
+		<li>
+			<i class="fa fa-home"></i>
+			<a href="#/dashboard.html">Home</a>
+			<i class="fa fa-angle-right"></i>
+		</li>
+		<li>
+			<a href="#/business/list">Restaurant List</a>
+		</li>
+	</ul>
+</div>
+
+<div class="row">
+        <div class="col-md-6">
+        <div class="btn-group">
+            <a  class="btn sbold green" href="#/business/add"> Add New Restaurant
+                <i class="fa fa-plus"></i>
+            </a>
+        </div>
+    </div>
+    <br/><br/><br/>
+	<div class="col-md-12">
+        <div style="margin-left:40%" ng-show="finish" >
+            <img src="assets/global/img/ring-alt.gif" alt="sdq"/>
+            Loading Data...
+        </div>
+		<div class="portlet box green-haze">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-globe"></i>Restaurant List
+				</div>
+				<div class="tools">
+					<a href="" class="reload"></a>
+				</div>
+			</div>
+			<div class="portlet-body">
+				<table class="table table-striped table-bordered table-hover" datatable="ng" dt-options="dtOptions">
+					<thead>
+						<tr>
+							<th>
+								name
+							</th>
+							<th>
+								category
+							</th>
+							<th>
+								city
+							</th>
+                            <th>
+								address
+							</th>
+                            <th>
+                                phone
+                            </th>
+                            <th>
+                                Action
+                            </th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="b in restaurants" >
+							<td>
+								{{b.titre}}
+							</td>
+							<td>
+								{{b.category}}
+							</td>
+							<td>
+								{{b.ville}}
+							</td>
+                            <td>
+								{{b.adresse}}
+							</td>
+                            <td>
+								{{b.telephone}}
+							</td>
+                            <td>
+<!--                                <a href="" class="btn default btn-xs blue">
+								<i class="fa fa-eye"></i> Preview </a> -->
+                                <a href="#/business/detail/{{b.id}}" class="btn default btn-xs green">
+								<i class="fa fa-search"></i> Detail </a>
+                                <a href="#/business/edit/{{b.id}}" class="btn default btn-xs purple" >
+								<i class="fa fa-edit"></i> Edit </a>
+                                
+                                <button class="btn default btn-xs red" confirm-button="delete(b.id);" message="Are you sure to delete ?" yes="Delete" no="Cancel"><i class="fa fa-trash"></i> Delete</button>
+                                
+<!--                                <a href="" class="btn default btn-xs red" confirm="Are you sure to delete ?"  >
+								<i class="fa fa-trash"></i> Delete </a>-->
+                                
+                                
+                            </td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+	</div>
+</div>
+<!-- END MAIN CONTENT -->
+<!-- BEGIN MAIN JS -->
+<script>
+	TableAdvanced.init();
+</script>
+<!-- END MAIN JS -->

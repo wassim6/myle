@@ -1,0 +1,706 @@
+<div class="main-inner">
+        <div class="content">
+
+            <div class="mt-80">
+                <div class="hero-image">
+                    <div class="hero-image-inner" style="background-image: url('img/tmp/slider-large-3.jpg');">
+                        <div class="hero-image-content">
+                            <div class="container">
+                                <!-- <h1>Rechercher n'importe quoi, n'importe ou en Tunisie</h1> -->
+                                <h2 style="color: white" >Myle est le meilleur moyen de trouver les meilleurs commerces locaux</h2>
+                                <form >
+                                    <div class="row">
+                                    <div class="col-sm-12 col-md-4">
+                                        <div class="form-group">
+                                            <div angucomplete-alt 
+  placeholder="Rechercher café, restaurant, boulangerie, coiffeur..."
+  pause="500"
+  selected-object="selectedTag"
+  remote-url="http://localhost:5000/api/tag/search"
+  remote-url-request-formatter="remoteUrlRequestFn"
+  title-field="name"
+  minlength="2"
+  input-class="form-control form-control-small"
+  match-class="highlight"
+                                          ></div>
+                                            <!--<input type="text" placeholder="Rechercher café, restaurant, boulangerie, coiffeur..." class="form-control" ng-model="tag" >-->
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4">
+                                        <div class="form-group">
+<div angucomplete-alt 
+  placeholder="A proximité de : Adresse, Ville, Département, Code postale"
+  pause="500"
+  selected-object="selectedAddress"
+  remote-url="http://localhost:5000/api/address/search"
+  remote-url-request-formatter="remoteUrlRequestFn"
+  title-field="name"
+  minlength="2"
+  input-class="form-control form-control-small"
+  match-class="highlight"
+                                          >
+                                            </div>                                            
+                      <!--                      <input type="text" placeholder="A proximité de : Adresse, Ville, Département, Code postale" class="form-control">
+                                            <span class="input-group-addon" style="background-color:white" data-toggle="tooltip" title="trouver ma position automatiquement"><i class="fa fa-map-marker"></i></span>-->
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4">
+                                        <div class="form-group">
+                                            <button class="btn btn-primary" type="submit" ng-click="search()" >Lancer la recherche</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="container">
+                <div class="page-header">
+                    <h1>Activité récente</h1>
+                </div>
+                <ul class="cbp_tmtimeline">
+                    <li>
+                        <time class="cbp_tmtime" datetime="09:30"><span>30 minutes</span> <span>09:30</span></time>
+                        <div class="cbp_tmicon"><i class="fa fa-edit"></i> </div>
+                        <div class="cbp_tmlabel">
+                            <div class="pull-right hidden-xs"><a href=""><strong>Wassim Boussetta</strong></a><img src="../../img/tmp/agent-4.jpg" alt="" class="img-circle speaker"></div>
+                            <h2><span>a écrit un avis pour <a href="">Mama Shelter</a></span>&nbsp;</h2>
+                            <p>Très bon petit restaurant indien de quartier, Vinobah est un bon plan assuré. Il propose des plats que l'on retrouve dans la plupart des restaurants indiens, mais c'est très bien cuisiné, les produits semblent frais, les plats fait maisons, et ont beaucoup de goût ! 
+Les naans au fromage sont à tomber ! Miam ! 
+Pour ce qui est des prix, ils sont corrects ! 
+Il est possible de prendre des commandes à emporter, comme il est possible de manger sur place. 
+Dans les indiens en général, les portions m'ont toujours semblé généreuse, ce restaurant n'échappe pas à la règle. 
+Pour 15euros/ personne hors boisson, vous serez largement satisfait. 
+Tickets restaurants acceptés.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <time class="cbp_tmtime" datetime="09:22"><span>35 minutes</span> <span>09:30</span></time>
+                        <div class="cbp_tmicon"><i class="fa fa-picture-o"></i> </div>
+                        <div class="cbp_tmlabel">
+                            <div class="pull-right hidden-xs"><a href=""><strong>Rim Aifa</strong></a><img src="../../img/tmp/agent-2.jpg" alt="" class="img-circle speaker"></div>
+                            <h2><span>a ajouté une photo à <a href="">La Brasa</a></span>&nbsp;</h2>
+                            <p>
+                                <img src="../../img/tmp/food/1.jpg" height="200" width="200" />
+                                <img src="../../img/tmp/food/2.jpg" height="200" width="200" />
+                                <img src="../../img/tmp/food/3.jpg" height="200" width="200" />
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <time class="cbp_tmtime" datetime="09:22"><span>40 minutes</span> <span>09:30</span></time>
+                        <div class="cbp_tmicon"><i class="fa fa-picture-o"></i> </div>
+                        <div class="cbp_tmlabel">
+                            <div class="pull-right hidden-xs"><a href=""><strong>Thouraya Loukil</strong></a><img src="../../img/tmp/agent-3.jpg" alt="" class="img-circle speaker"></div>
+                            <h2><span>a ajouté une photo à <a href="">Noir et Blanc</a></span>&nbsp;</h2>
+                            <p>
+                                Excellent fricassé chez le dépôt à la charguia : le plus de ce fricassé pour moi c’est qu’il y a dedans des frites coupées à la place de la batata masmouta excellente pâte aussi le prix je ne sais plus vue que j’ai pris d’autres choses avec :)
+
+                                <img src="../../img/tmp/food/4.jpg" height="200" width="200" />
+                                <img src="../../img/tmp/food/5.jpg" height="200" width="200" />
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+                <div class="center" >
+                    <button class="btn" >Voire l'actualité récente</button>
+                </div>
+                <br/><br/>
+
+
+                <div class="block background-white fullwidth">
+                    <div class="page-header">
+                        <h1>Nouveaux commerces à Tunis</h1>
+                    </div>
+                    <!-- /.page-header -->
+
+                    <div class="row">
+                        <div class="col-sm-6 col-md-3">
+                            <div class="card-simple" data-background-image="img/tmp/product-2.jpg">
+                                <div class="card-simple-background">
+                                    <div class="card-simple-content">
+                                        <h2><a href="#/business/info">Tasty Brazil Coffee</a></h2>
+                                        <div class="card-simple-rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <!-- /.card-rating -->
+
+                                        <div class="card-simple-actions">
+                                            <a href="#/business/info" class="fa fa-bookmark-o"></a>
+                                            <a href="#/business/info" class="fa fa-search"></a>
+                                            <a href="#" class="fa fa-heart-o"></a>
+                                        </div>
+                                        <!-- /.card-simple-actions -->
+                                    </div>
+                                    <!-- /.card-simple-content -->
+
+                                    <div class="card-simple-label">Coffee</div>
+
+                                </div>
+                                <!-- /.card-simple-background -->
+                            </div>
+                            <!-- /.card-simple -->
+                        </div>
+                        <!-- /.col-* -->
+
+
+
+                        <div class="col-sm-6 col-md-3">
+                            <div class="card-simple" data-background-image="img/tmp/product-3.jpg">
+                                <div class="card-simple-background">
+                                    <div class="card-simple-content">
+                                        <h2><a href="#/business/info">Healthy Breakfast</a></h2>
+                                        <div class="card-simple-rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <!-- /.card-rating -->
+
+                                        <div class="card-simple-actions">
+                                            <a href="#/business/info" class="fa fa-bookmark-o"></a>
+                                            <a href="#/business/info" class="fa fa-search"></a>
+                                            <a href="#" class="fa fa-heart-o"></a>
+                                        </div>
+                                        <!-- /.card-simple-actions -->
+                                    </div>
+                                    <!-- /.card-simple-content -->
+
+                                    <div class="card-simple-label">Food</div>
+
+                                    <div class="card-simple-price">$12 / person</div>
+
+                                </div>
+                                <!-- /.card-simple-background -->
+                            </div>
+                            <!-- /.card-simple -->
+                        </div>
+                        <!-- /.col-* -->
+
+
+
+                        <div class="col-sm-6 col-md-3">
+                            <div class="card-simple" data-background-image="img/tmp/product-4.jpg">
+                                <div class="card-simple-background">
+                                    <div class="card-simple-content">
+                                        <h2><a href="#/business/info">Coffee &amp; Newspaper</a></h2>
+                                        <div class="card-simple-rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <!-- /.card-rating -->
+
+                                        <div class="card-simple-actions">
+                                            <a href="#/business/info" class="fa fa-bookmark-o"></a>
+                                            <a href="#/business/info" class="fa fa-search"></a>
+                                            <a href="#" class="fa fa-heart-o"></a>
+                                        </div>
+                                        <!-- /.card-simple-actions -->
+                                    </div>
+                                    <!-- /.card-simple-content -->
+
+                                    <div class="card-simple-label">Restaurant</div>
+
+                                </div>
+                                <!-- /.card-simple-background -->
+                            </div>
+                            <!-- /.card-simple -->
+                        </div>
+                        <!-- /.col-* -->
+
+
+
+                        <div class="col-sm-6 col-md-3">
+                            <div class="card-simple" data-background-image="img/tmp/product-5.jpg">
+                                <div class="card-simple-background">
+                                    <div class="card-simple-content">
+                                        <h2><a href="#/business/info">Boat Trip</a></h2>
+                                        <div class="card-simple-rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <!-- /.card-rating -->
+
+                                        <div class="card-simple-actions">
+                                            <a href="#/business/info" class="fa fa-bookmark-o"></a>
+                                            <a href="#/business/info" class="fa fa-search"></a>
+                                            <a href="#" class="fa fa-heart-o"></a>
+                                        </div>
+                                        <!-- /.card-simple-actions -->
+                                    </div>
+                                    <!-- /.card-simple-content -->
+
+                                    <div class="card-simple-label">Vacation</div>
+
+                                </div>
+                                <!-- /.card-simple-background -->
+                            </div>
+                            <!-- /.card-simple -->
+                        </div>
+                        <!-- /.col-* -->
+
+
+
+                        <div class="col-sm-6 col-md-3">
+                            <div class="card-simple" data-background-image="img/tmp/product-6.jpg">
+                                <div class="card-simple-background">
+                                    <div class="card-simple-content">
+                                        <h2><a href="#/business/info">Italian Restaurant</a></h2>
+                                        <div class="card-simple-rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <!-- /.card-rating -->
+
+                                        <div class="card-simple-actions">
+                                            <a href="#/business/info" class="fa fa-bookmark-o"></a>
+                                            <a href="#/business/info" class="fa fa-search"></a>
+                                            <a href="#" class="fa fa-heart-o"></a>
+                                        </div>
+                                        <!-- /.card-simple-actions -->
+                                    </div>
+                                    <!-- /.card-simple-content -->
+
+                                    <div class="card-simple-label">Restaurant</div>
+
+                                    <div class="card-simple-price">$28 / person</div>
+
+                                </div>
+                                <!-- /.card-simple-background -->
+                            </div>
+                            <!-- /.card-simple -->
+                        </div>
+                        <!-- /.col-* -->
+
+
+
+                        <div class="col-sm-6 col-md-3">
+                            <div class="card-simple" data-background-image="img/tmp/product-7.jpg">
+                                <div class="card-simple-background">
+                                    <div class="card-simple-content">
+                                        <h2><a href="#/business/info">Best Brazil Coffee</a></h2>
+                                        <div class="card-simple-rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <!-- /.card-rating -->
+
+                                        <div class="card-simple-actions">
+                                            <a href="#/business/info" class="fa fa-bookmark-o"></a>
+                                            <a href="#/business/info" class="fa fa-search"></a>
+                                            <a href="#" class="fa fa-heart-o"></a>
+                                        </div>
+                                        <!-- /.card-simple-actions -->
+                                    </div>
+                                    <!-- /.card-simple-content -->
+
+                                    <div class="card-simple-label">Pub</div>
+
+                                </div>
+                                <!-- /.card-simple-background -->
+                            </div>
+                            <!-- /.card-simple -->
+                        </div>
+                        <!-- /.col-* -->
+
+
+
+                        <div class="col-sm-6 col-md-3">
+                            <div class="card-simple" data-background-image="img/tmp/product-8.jpg">
+                                <div class="card-simple-background">
+                                    <div class="card-simple-content">
+                                        <h2><a href="#/business/info">Retro Shop</a></h2>
+                                        <div class="card-simple-rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <!-- /.card-rating -->
+
+                                        <div class="card-simple-actions">
+                                            <a href="#/business/info" class="fa fa-bookmark-o"></a>
+                                            <a href="#/business/info" class="fa fa-search"></a>
+                                            <a href="#" class="fa fa-heart-o"></a>
+                                        </div>
+                                        <!-- /.card-simple-actions -->
+                                    </div>
+                                    <!-- /.card-simple-content -->
+
+                                    <div class="card-simple-label">Shop</div>
+
+                                    <div class="card-simple-price">$3 / cup</div>
+
+                                </div>
+                                <!-- /.card-simple-background -->
+                            </div>
+                            <!-- /.card-simple -->
+                        </div>
+                        <!-- /.col-* -->
+
+
+
+                        <div class="col-sm-6 col-md-3">
+                            <div class="card-simple" data-background-image="img/tmp/product-9.jpg">
+                                <div class="card-simple-background">
+                                    <div class="card-simple-content">
+                                        <h2><a href="#/business/info">Wine Tasting</a></h2>
+                                        <div class="card-simple-rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <!-- /.card-rating -->
+
+                                        <div class="card-simple-actions">
+                                            <a href="#" class="fa fa-bookmark-o"></a>
+                                            <a href="listing-detail.html" class="fa fa-search"></a>
+                                            <a href="#" class="fa fa-heart-o"></a>
+                                        </div>
+                                        <!-- /.card-simple-actions -->
+                                    </div>
+                                    <!-- /.card-simple-content -->
+
+                                    <div class="card-simple-label">Event</div>
+
+                                    <div class="card-simple-price">$13 / ticket</div>
+
+                                </div>
+                                <!-- /.card-simple-background -->
+                            </div>
+                            <!-- /.card-simple -->
+                        </div>
+                        <!-- /.col-* -->
+
+                    </div>
+                    <div class="block background-white fullwidth pt0 pb0">
+                        <div class="partners">
+                            <a href="#">
+                                <i class="fa fa-coffee fa-5x"></i>
+                                <br/>Cafée
+                            </a>
+                            <a href="#">
+                                <i class="fa fa-cutlery fa-5x"></i>
+                                <br/>Alimentation
+                            </a>
+                            <a href="#">
+                                <i class="fa fa-glass fa-5x"></i>
+                                <br/>Vie nocturne
+                            </a>
+                            <a href="#">
+                                <i class="fa fa-shopping-bag fa-5x"></i>
+                                <br/>Shopping
+                            </a>
+                            <a href="#">
+                                <i class="fa fa fa-scissors fa-5x"></i>
+                                <br/>Sallon de beauté & Spa
+                            </a>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+
+
+                <div class="block background-white background-transparent-image fullwidth">
+                    <div class="page-header">
+                        <h1>Deal en cours</h1>
+                    </div><!-- /.page-header -->
+
+                    <div class="cards-wrapper">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="card" data-background-image="../img/tmp/product-7.jpg" style="background-image: url('../img/tmp/product-7.jpg');">
+                                            <div class="card-label">
+                                                <a href="listing-detail.html">Coffe</a>
+                                            </div><!-- /.card-label -->
+
+                                            <div class="card-content">
+                                                <h2><a href="listing-detail.html">Brazilian Coffe Taste</a>
+                                                    <br/><span class="clock"></span>
+                                                </h2>
+
+                                                <div class="card-meta">
+                                                    <i class="fa fa-map-o"></i> 347/26 22th Avenue, NYC USA<br/>
+
+                                                </div><!-- /.card-meta -->
+
+                                                <div class="card-rating">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div><!-- /.card-rating -->
+
+                                                <div class="card-actions">
+                                                    <a href="#" class="fa fa-bookmark-o"></a>
+                                                    <a href="listing-detail.html" class="fa fa-search"></a>
+                                                    <a href="#" class="fa fa-heart-o"></a>
+                                                </div>
+
+                                            </div><!-- /.card-content -->
+                                        </div><!-- /.card -->
+                                    </div><!-- /.col-* -->
+                                </div><!-- /.row -->
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="card" data-background-image="../img/tmp/product-4.jpg" style="background-image: url('../img/tmp/product-4.jpg');">
+                                            <div class="card-label">
+                                                <a href="listing-detail.html">Restaurant</a>
+                                            </div><!-- /.card-label -->
+
+                                            <div class="card-content">
+                                                <h2><a href="listing-detail.html">Coffee &amp; Newspaper</a>
+                                                    <br/><span class="clock"></span></h2>
+
+                                                <div class="card-meta">
+                                                    <i class="fa fa-map-o"></i> 347/26 22th Avenue, NYC USA
+                                                </div><!-- /.card-meta -->
+
+                                                <div class="card-rating">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div><!-- /.card-rating -->
+
+                                                <div class="card-actions">
+                                                    <a href="#" class="fa fa-bookmark-o"></a>
+                                                    <a href="listing-detail.html" class="fa fa-search"></a>
+                                                    <a href="#" class="fa fa-heart-o"></a>
+                                                </div>
+                                            </div><!-- /.card-content -->
+                                        </div><!-- /.card -->
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="card" data-background-image="../img/tmp/product-2.jpg" style="background-image: url('../img/tmp/product-2.jpg');">
+                                            <div class="card-label">
+                                                <a href="listing-detail.html">Vacation</a>
+                                            </div><!-- /.card-label -->
+
+                                            <div class="card-content">
+                                                <h2><a href="listing-detail.html">Homemade Coffee</a>
+                                                    <br/><span class="clock"></span></h2>
+
+                                                <div class="card-meta">
+                                                    <i class="fa fa-map-o"></i> 347/26 22th Avenue, NYC USA
+                                                </div><!-- /.card-meta -->
+
+                                                <div class="card-rating">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div><!-- /.card-rating -->
+
+                                                <div class="card-actions">
+                                                    <a href="#" class="fa fa-bookmark-o marked"></a>
+                                                    <a href="listing-detail.html" class="fa fa-search"></a>
+                                                    <a href="#" class="fa fa-heart-o"></a>
+                                                </div>
+                                            </div><!-- /.card-content -->
+                                        </div><!-- /.card -->
+                                    </div><!-- /.col-* -->
+                                </div><!-- /.row -->
+                            </div><!-- /.col-* -->
+
+                            <div class="col-sm-4">
+                                <div class="card card-tall" data-background-image="../img/tmp/product-1.jpg" style="background-image: url('../img/tmp/product-1.jpg');">
+                                    <div class="card-label">
+                                        <a href="listing-detail.html">Vacation</a>
+                                    </div><!-- /.card-label -->
+
+                                    <div class="card-content">
+                                        <h2><a href="listing-detail.html">Trip to Paris, France</a>
+                                            <br/><span class="clock"></span></h2>
+
+                                        <div class="card-meta">
+                                            <i class="fa fa-map-o"></i> 347/26 22th Avenue, NYC USA
+                                        </div><!-- /.card-meta -->
+
+                                        <div class="card-rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div><!-- /.card-rating -->
+
+                                        <div class="card-actions">
+                                            <a href="#" class="fa fa-bookmark-o"></a>
+                                            <a href="listing-detail.html" class="fa fa-search"></a>
+                                            <a href="#" class="fa fa-heart-o marked"></a>
+                                        </div>
+                                    </div><!-- /.card-content -->
+                                </div><!-- /.card -->
+                            </div><!-- /.col-* -->
+                        </div><!-- /.row -->
+                    </div><!-- /.cards-wrapper -->
+
+                </div>
+
+                <div class="block background-white fullwidth mt80 mb-80">
+                    <div class="categories">
+                        <ul>
+                            <li>
+                                <a href="#" class="categories-action">Submit</a>
+                                <a href="#" class="categories-link"><i class="fa fa-bed"></i> Stay</a>
+                                <ul>
+                                    <li><a href="#">Homestay</a>,</li>
+                                    <li><a href="#">Hotel</a>,</li>
+                                    <li><a href="#">Camping</a>,</li>
+                                    <li><a href="#">Guesthouse,</a></li>
+                                    <li><a href="#">Hostel</a></li>
+                                    <li class="all"><a href="#">View All <i class="fa fa-chevron-right"></i></a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" class="categories-action">Submit</a>
+                                <a href="#" class="categories-link"><i class="fa fa-car"></i> Automotive</a>
+                                <ul>
+                                    <li><a href="#">Mechanics</a>,</li>
+                                    <li><a href="#">Gas Stations</a>,</li>
+                                    <li><a href="#">Parts</a>,</li>
+                                    <li><a href="#">Repair</a>,</li>
+                                    <li><a href="#">Tires</a></li>
+                                    <li class="all"><a href="#">View All <i class="fa fa-chevron-right"></i></a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#" class="categories-action">Submit</a>
+                                <a href="#" class="categories-link"><i class="fa fa-suitcase"></i> Jobs</a>
+                                <ul>
+                                    <li><a href="#">Cook</a>,</li>
+                                    <li><a href="#">Hairdrasser</a>,</li>
+                                    <li><a href="#">Management</a>,</li>
+                                    <li><a href="#">Waiter</a>,</li>
+                                    <li><a href="#">Worker</a></li>
+                                    <li class="all"><a href="#">View All <i class="fa fa-chevron-right"></i></a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#" class="categories-action">Submit</a>
+                                <a href="#" class="categories-link"><i class="fa fa-heart"></i> Medicine</a>
+                                <ul>
+                                    <li><a href="#">Dental</a>,</li>
+                                    <li><a href="#">Dermatology</a>,</li>
+                                    <li><a href="#">Neurology</a>,</li>
+                                    <li><a href="#">Pediatrics</a></li>
+                                    <li class="all"><a href="#">View All <i class="fa fa-chevron-right"></i></a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#" class="categories-action">Submit</a>
+                                <a href="#" class="categories-link"><i class="fa fa-glass"></i> Nightlife</a>
+                                <ul>
+                                    <li><a href="#">Bars &amp; Pubs</a>,</li>
+                                    <li><a href="#">Concert</a>,</li>
+                                    <li><a href="#">Cinemas</a>,</li>
+                                    <li><a href="#">Disco</a>,</li>
+                                    <li><a href="#">Theater</a></li>
+                                    <li class="all"><a href="#">View All <i class="fa fa-chevron-right"></i></a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#" class="categories-action">Submit</a>
+                                <a href="#" class="categories-link"><i class="fa fa-home"></i> Real Estate</a>
+                                <ul>
+                                    <li><a href="#">Apartmant</a>,</li>
+                                    <li><a href="#">Building Area</a>,</li>
+                                    <li><a href="#">Condo</a>,</li>
+                                    <li><a href="#">House</a>,</li>
+                                    <li><a href="#">Villa</a></li>
+                                    <li class="all"><a href="#">View All <i class="fa fa-chevron-right"></i></a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#" class="categories-action">Submit</a>
+                                <a href="#" class="categories-link"><i class="fa fa-cutlery"></i> Restaurant</a>
+                                <ul>
+                                    <li><a href="#">Bistro</a>,</li>
+                                    <li><a href="#">Brunch</a>,</li>
+                                    <li><a href="#">Caffee</a>,</li>
+                                    <li><a href="#">Dinning</a>,</li>
+                                    <li><a href="#">Fast Food</a></li>
+                                    <li class="all"><a href="#">View All <i class="fa fa-chevron-right"></i></a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#" class="categories-action">Submit</a>
+                                <a href="#" class="categories-link"><i class="fa fa-futbol-o"></i> Sports</a>
+                                <ul>
+                                    <li><a href="#">Bistro</a>,</li>
+                                    <li><a href="#">Brunch</a>,</li>
+                                    <li><a href="#">Caffee</a>,</li>
+                                    <li><a href="#">Dinning</a>,</li>
+                                    <li><a href="#">Fast Food</a></li>
+                                    <li class="all"><a href="#">View All <i class="fa fa-chevron-right"></i></a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#" class="categories-action">Submit</a>
+                                <a href="#" class="categories-link"><i class="fa fa-map-marker"></i> Travel</a>
+                                <ul>
+                                    <li><a href="#">Cruises</a>,</li>
+                                    <li><a href="#">Destinations</a>,</li>
+                                    <li><a href="#">Holidays</a>,</li>
+                                    <li><a href="#">Transportations</a></li>
+                                    <li class="all"><a href="#">View All <i class="fa fa-chevron-right"></i></a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.categories -->
+
+                </div>
+
+
+            </div>
+            <!-- /.container -->
+
+        </div>
+        <!-- /.content -->
+    </div>
+

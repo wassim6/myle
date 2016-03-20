@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html lang="fr" ng-app="myApp">
+
+<head>
+    <ng-include src="'/partials/common/head.html'"></ng-include>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" href="/public/favicon.png">
+
+</head>
+
+<body>
+    <div class="page-wrapper">
+
+        <header class="header">
+            <ng-include src="'/partials/common/header.html'"></ng-include>
+        </header>
+
+
+
+
+        <div class="main">
+            <ng-view></ng-view>
+        </div>
+
+
+
+        <footer class="footer">
+            <ng-include src="'/partials/common/footer.html'"></ng-include>
+        </footer>
+
+    </div>
+
+
+
+    <!-- JS Script -->
+    <script src="lib/jquery.js" type="text/javascript"></script>
+    <script src="lib/bootstrap-sass/javascripts/bootstrap/collapse.js" type="text/javascript"></script>
+    <script src="lib/bootstrap-sass/javascripts/bootstrap/carousel.js" type="text/javascript"></script>
+    <script src="lib/bootstrap-sass/javascripts/bootstrap/transition.js" type="text/javascript"></script>
+    <script src="lib/bootstrap-sass/javascripts/bootstrap/dropdown.js" type="text/javascript"></script>
+    <script src="lib/bootstrap-sass/javascripts/bootstrap/tooltip.js" type="text/javascript"></script>
+    <script src="lib/bootstrap-sass/javascripts/bootstrap/tab.js" type="text/javascript"></script>
+    <script src="lib/bootstrap-sass/javascripts/bootstrap/alert.js" type="text/javascript"></script>
+    <script src="lib/colorbox/jquery.colorbox-min.js" type="text/javascript"></script>
+    <script src="lib/flot/jquery.flot.min.js" type="text/javascript"></script>
+    <script src="lib/flot/jquery.flot.spline.js" type="text/javascript"></script>
+    <script src="lib/bootstrap-select/bootstrap-select.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="lib/owl-carousel/owl-carousel.js"></script>
+    <script type="text/javascript" src="lib/bootstrap-fileinput/fileinput.min.js"></script>
+    <script type="text/javascript" src="lib/jquery-countdown/jquery-countdown.min.js"></script>
+
+
+    <!-- AngularJS Script -->
+
+
+    <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/angular/angular-route.min.js"></script>
+    <script src="lib/angular/pretty-checkable/angular-pretty-checkable.min.js"></script>
+    <script src="lib/angular/angular-resource.min.js"></script>
+    <script src="lib/angular/angucomplete-alt.min.js"></script>
+    
+    
+
+    <script src="js/module.js"></script>
+    <script src="js/routes.js"></script>
+    
+    <script src="js/services/tag/tagService.js"></script>
+    <script src="js/services/business/businessService.js"></script>
+
+    <script src="js/controllers/header/HeaderCtrl.js"></script>
+    <script src="js/controllers/home/HomeCtrl.js"></script>
+
+    <script src="js/controllers/business/RequestAddCtrl.js"></script>
+    <script src="js/controllers/business/ListCtrl.js"></script>
+    <script src="js/controllers/business/InfoCtrl.js"></script>
+
+    <script src="js/controllers/user/ProfileCtrl.js"></script>
+    <script src="js/controllers/user/SetingCtrl.js"></script>
+
+    <script src="js/controllers/login/SignupCtrl.js"></script>
+    <script src="js/controllers/login/SigninCtrl.js"></script>
+    <script src="js/controllers/login/ForgotPasswordCtrl.js"></script>
+    
+
+
+</body>
+
+
+</html>

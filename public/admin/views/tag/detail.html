@@ -1,0 +1,71 @@
+<h3 class="page-title">
+	Detail Tag
+</h3>
+<div class="page-bar">
+	<ul class="page-breadcrumb">
+		<li>
+			<i class="fa fa-home"></i>
+			<a href="#/dashboard.html">Home</a>
+			<i class="fa fa-angle-right"></i>
+		</li>
+		<li>
+			<a href="#/datatables/advanced.html">Datatables</a>
+            <i class="fa fa-angle-right"></i>
+		</li>
+		<li>
+			<a href="#/datatables/advanced.html">Advanced Datatables</a>
+		</li>
+	</ul>
+</div>
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-gift"></i>Detail Tag
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="reload" data-original-title="" title=""></a>
+        </div>
+    </div>
+    
+    <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <form  class="form-horizontal form-row-seperated">
+            <div class="form-body">
+                <div class="form-group">
+                    <label class="control-label col-md-3">Id</label>
+                    <div class="col-md-9">
+                        <label class="control-label">{{tag.Id}}</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">Name</label>
+                    <div class="col-md-9">
+                        <label class="control-label">{{tag.name}}</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">valid</label>
+                    <div class="col-md-9">
+                        <label class="control-label">{{tag.valid}}</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">Business Id</label>
+                    <div class="col-md-9">
+                        <label class="control-label">{{tag.BusinessId}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-9">
+                        <a href="#/tag/edit/{{tag.Id}}" class="btn green"><i class="fa fa-pencil"></i> Edit</a> 
+                        <button type="submit" class="btn red" ng-click="delete(tag)" ><i class="fa fa-trash"></i> Delete</button>
+                        <a href="#/tag/list" class="btn default">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- END FORM-->
+    </div>
+</div>

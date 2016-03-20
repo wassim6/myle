@@ -1,0 +1,98 @@
+<style>.angular-google-map-container { height: 400px; }</style>
+<h3 class="page-title">
+Business Edit <small></small>
+</h3>
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="index.html">Home</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <a href="#/business/list">Business List</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <a href>Business Edit</a>
+        </li>
+    </ul>
+</div>
+
+
+<!-- END PAGE HEADER-->
+<div class="tab-pane active" id="tab_1_3">
+    <div class="row profile-account">
+        <div class="col-md-3">
+            <ul class="ver-inline-menu tabbable margin-bottom-10">
+                <li class="">
+                    <a  href="#/business/edit/{{b.id}}" >
+                    <i class="fa fa-cog"></i> Information </a>
+                    <span class="after">
+                    </span>
+                </li>
+                <li class="">
+                    <a  href="#/business/editcat/{{b.id}}" >
+                    <i class="fa fa-cog"></i> Categories </a>
+                </li>
+                <li class="">
+                    <a href="#/business/edittag/{{b.id}}" >
+                    <i class="fa fa-cog"></i> Tags </a>
+                </li>
+                <li class="active">
+                    <a href="#/business/editadresse/{{b.id}}" >
+                    <i class="fa fa-cog"></i> Adresse </a>
+                </li>
+                <li class="">
+                    <a href="#/business/editimage/{{b.id}}" >
+                    <i class="fa fa-picture-o"></i> Images </a>
+                </li>
+                <li class="">
+                    <a href="#/business/editinformation/{{b.id}}" >
+                    <i class="fa fa-cog"></i> Additional Information </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+                <div id="tab_1-1" class="tab-pane active">
+                    <form role="form" >
+                        <div class="form-group">
+                            <label class="control-label">Postal Code</label>
+                            <input type="text" placeholder="example: 7050" class="form-control" ng-model="postalCode" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Adresse</label>
+                            <input type="text" placeholder="Adresse" class="form-control" ng-model="address" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Region</label>
+                            <input type="text" placeholder="Region" class="form-control" ng-model="region" required>    
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Localisation</label>
+                                <div class="form-inline">
+                                    <input type="text" placeholder="latitude" class="form-control" ng-model="latitude" style="width:300px;"> 
+                                    <input type="text" placeholder="longitude" class="form-control" ng-model="longitude" style="width:300px;">
+                                </div>
+                                <button class="btn green" ng-click="refresh()" style="margin-top:10px;" type="button"><i class="fa fa-pencil"></i> Rafréchir la map</button>
+                                <button class="btn green" ng-click="getPosition()" style="margin-top:10px;" type="button" ><i class="fa fa-pencil"></i> Trouver ma position automatiquement</button><br/><br/>
+
+                                <div id="map_canvas" style="height:400px;" >
+                                    <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options">
+                                        <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
+                                        </ui-gmap-marker>
+                                    </ui-gmap-google-map>
+                                </div>
+                        </div>
+                        <div class="margiv-top-10">
+                            <a href class="btn green" ng-click="editAdresse(postalCode, address, region, latitude, longitude)" >
+                            Save Changes </a>
+                            <a href="#/business/list"  class="btn default">
+                            Cancel </a>
+                        </div>
+                    </form>
+                </div>
+        </div>
+        <!--end col-md-9-->
+    </div>
+</div>

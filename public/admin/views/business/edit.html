@@ -1,0 +1,82 @@
+<style>.angular-google-map-container { height: 400px; }</style>
+<h3 class="page-title">
+Business Edit <small></small>
+</h3>
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="index.html">Home</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <a href="#/business/list">Business List</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <a href>Business Edit</a>
+        </li>
+    </ul>
+</div>
+
+
+<!-- END PAGE HEADER-->
+<div class="tab-pane active" id="tab_1_3">
+    <div class="row profile-account">
+        <div class="col-md-3">
+            <ul class="ver-inline-menu tabbable margin-bottom-10">
+                <li class="active">
+                    <a  href="#/business/edit/{{b.id}}" >
+                    <i class="fa fa-cog"></i> Information </a>
+                    <span class="after">
+                    </span>
+                </li>
+                <li class="">
+                    <a  href="#/business/editcat/{{b.id}}" >
+                    <i class="fa fa-cog"></i> Categories </a>
+                </li>
+                <li class="">
+                    <a href="#/business/edittag/{{b.id}}" >
+                    <i class="fa fa-cog"></i> Tags </a>
+                </li>
+                <li class="">
+                    <a href="#/business/editadresse/{{b.id}}" >
+                    <i class="fa fa-cog"></i> Adresse </a>
+                </li>
+                <li class="">
+                    <a href="#/business/editimage/{{b.id}}" >
+                    <i class="fa fa-picture-o"></i> Images </a>
+                </li>
+                <li class="">
+                    <a href="#/business/editinformation/{{b.id}}" >
+                    <i class="fa fa-cog"></i> Additional Information </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+                <div id="tab_1-1" class="tab-pane active">
+                    <form role="form" >
+                        <div class="form-group">
+                            <label class="control-label">Name</label>
+                            <input type="text" class="form-control" placeholder="" ng-model="name" >
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Tel</label>
+                            <input type="text" class="form-control" placeholder="" ng-model="tel" >
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Description</label>
+                            <textarea class="form-control" rows="8" ng-model="description" ></textarea>
+                        </div>
+                        <div class="margiv-top-10">
+                            <a href class="btn green" ng-click="editInfo(name, tel, description)" >
+                            Save Changes </a>
+                            <a href="#/business/list"  class="btn default">
+                            Cancel </a>
+                        </div>
+                    </form>
+                </div>
+        </div>
+        <!--end col-md-9-->
+    </div>
+</div>

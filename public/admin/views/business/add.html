@@ -1,0 +1,154 @@
+
+
+
+<style>.angular-google-map-container { height: 400px; }</style>
+<h3 class="page-title">
+	Add Business
+</h3>
+<div class="page-bar">
+	<ul class="page-breadcrumb">
+		<li>
+			<i class="fa fa-home"></i>
+			<a href="#/dashboard.html">Home</a>
+			<i class="fa fa-angle-right"></i>
+		</li>
+		<li>
+			<a href="#/datatables/advanced.html">Datatables</a>
+            <i class="fa fa-angle-right"></i>
+		</li>
+		<li>
+			<a href="#/datatables/advanced.html">Advanced Datatables</a>
+		</li>
+	</ul>
+</div>
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-gift"></i>Add Business
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="reload" data-original-title="" title=""></a>
+        </div>
+    </div>
+    
+    <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <form  class="form-horizontal form-row-seperated">
+            <div class="form-body">
+                <div class="alert alert-success alert-dismissable" ng-show="success">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                    Business successfully added
+                </div>
+                <div class="alert alert-danger alert-dismissable" ng-show="error">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                    Error ! <strong>Business</strong>
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label col-md-3">Name</label>
+                    <div class="col-md-9">
+                        <input type="text" placeholder="Name of the business" class="form-control" ng-model="b.name" required>
+                        <span class="help-block">Name of the business </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">Postal Code</label>
+                    <div class="col-md-9">
+                        <input type="text" placeholder="example: 7050" class="form-control" ng-model="b.postalCode" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">Adresse</label>
+                    <div class="col-md-9">
+                        <input type="text" placeholder="Adresse" class="form-control" ng-model="b.address" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">Region</label>
+                    <div class="col-md-9">
+                        <input type="text" placeholder="Region" class="form-control" ng-model="b.region" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">Tel</label>
+                    <div class="col-md-9">
+                        <input type="text" placeholder="Tel" class="form-control" ng-model="b.tel" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">Image</label>
+                    <div class="col-md-9">
+                        <input type="file"  class="form-control" ng-model="imageSource" base-sixty-four-input accept="image/*" maxsize="4000" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3" >Description</label>
+                    <div class="col-md-9">
+                        <textarea class="form-control" rows="10" ng-model="b.description" required></textarea>
+                    </div>
+                </div>
+<!--                <div class="form-group">
+                    <label class="control-label col-md-3">Multiple Select</label>
+                    <div class="col-md-9">
+                        <select multiple="" class="form-control" style="height:200px;" ng-model="subCats">
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                            <option>Option 4</option>
+                            <option>Option 5</option>
+                        </select>
+                    </div>
+                </div>-->
+                
+                
+                
+                <div class="form-group">
+                    <label class="control-label col-md-3" >Localisation</label>
+                    <div class="col-md-9">
+                        <div class="form-inline">
+                            <input type="text" placeholder="latitude" class="form-control" ng-model="b.latitude" style="width:300px;"> 
+                            <input type="text" placeholder="longitude" class="form-control" ng-model="b.longitude" style="width:300px;margin-left:5px;">
+                        </div>
+                        <button type="button" class="btn green" ng-click="refresh()" style="margin-top:10px;"><i class="fa fa-pencil"></i> Rafréchir la map</button>
+                        
+                        <button type="button" class="btn green" ng-click="getPosition()" style="margin-top:10px;"><i class="fa fa-pencil"></i> Trouver ma position automatiquement</button>
+                        
+                        <div id="map_canvas" style="height:400px;" >
+                            <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options">
+                                <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
+                                </ui-gmap-marker>
+                            </ui-gmap-google-map>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                
+
+                
+                
+            </div>
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-9">
+                        <div class="alert alert-success alert-dismissable" ng-show="success" >
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                            Business successfully added
+                        </div>
+                        <div class="alert alert-danger alert-dismissable" ng-show="error">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                            Error ! <strong></strong>
+                        </div>
+                        
+                        <button type="submit" class="btn green" ng-click="add()" ng-disabled="disable"><i class="fa fa-pencil"></i> Add</button>
+                        <a href="#/business/list" class="btn default">Cancel</a>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+        </form>
+        <!-- END FORM-->
+    </div>
+</div>

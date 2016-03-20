@@ -1,0 +1,101 @@
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-gift"></i>Login
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="reload" data-original-title="" title=""></a>
+        </div>
+    </div>
+    
+    <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <form  class="form-horizontal form-row-seperated">
+            <div class="form-body">                
+                <div class="form-group">
+                    <label class="control-label col-md-3">Login</label>
+                    <div class="col-md-9">
+                        <input type="text" placeholder="Login" class="form-control" ng-model="l.mail" required>
+                    </div>
+                </div>  
+                <div class="form-group">
+                    <label class="control-label col-md-3">Password</label>
+                    <div class="col-md-9">
+                        <input type="password" placeholder="Password" class="form-control" ng-model="l.pass" required>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-9">                        
+                        <button type="submit" class="btn green" ng-click="loginGo(l)" ng-disabled="disable"><i class="fa fa-pencil"></i> Login</button>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+        </form>
+        <!-- END FORM-->
+    </div>
+    
+    
+        
+    
+</div>
+
+<!--
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-gift"></i>Create Admin
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="reload" data-original-title="" title=""></a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <form  class="form-horizontal form-row-seperated">
+            <div class="form-body">                
+                <div class="form-group">
+                    <label class="control-label col-md-3">mail</label>
+                    <div class="col-md-9">
+                        <input type="text" placeholder="mail" class="form-control" ng-model="a.mail" required>
+                    </div>
+                </div>  
+                <div class="form-group">
+                    <label class="control-label col-md-3">Password</label>
+                    <div class="col-md-9">
+                        <input type="password" placeholder="Password" class="form-control" ng-model="a.password" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">First Name</label>
+                    <div class="col-md-9">
+                        <input type="text" placeholder="First Name" class="form-control" ng-model="a.firstName" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">Last Name</label>
+                    <div class="col-md-9">
+                        <input type="text" placeholder="Last Name" class="form-control" ng-model="a.lastName" required>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-9">                        
+                        <button type="submit" class="btn green" ng-click="CreateAdmin(a)" ng-disabled="disable"><i class="fa fa-pencil"></i> Create Admin</button>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+        </form>
+    </div>
+    
+</div>
+-->
