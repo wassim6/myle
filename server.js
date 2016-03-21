@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
-var bodyParser = require('body-parser'); // express is an extremely minimalist framework so we need body-parser to help us handle req.body
+var bodyParser = require('body-parser'); 
 var apiRouter = require('./app/config/routes'); // bring in API routes
 
 // configure body-parser so we can work with request.body
