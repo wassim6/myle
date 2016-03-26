@@ -1,13 +1,29 @@
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 var bodyParser = require('body-parser'); 
 var apiRouter = require('./app/config/routes'); // bring in API routes
 
 // configure body-parser so we can work with request.body
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(require('express-session')({
 
+ secret: 'keyboard cat',
+
+ resave: false,
+
+ saveUninitialized: false
+
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+var Account = require('./app/models/Account');
+passport.use(new LocalStrategy(Account.authenticate()));
+passport.serializeUser(Account.serializeUser());
+passport.deserializeUser(Account.deserializeUser());
 // pull correct settings per environment
 var config = require('./app/config/config.js')
 var environmentSettings = config.config();

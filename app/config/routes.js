@@ -18,6 +18,8 @@ var BusinessController = require('../controllers/businessSearch-controller');
 
 var RestaurantController = require('../controllers/restaurant-controller');
 
+var PassportController = require('../controllers/passport-controller');
+
 //var User=require('../models/User');
 
 //apiRouter.param('article_id', articlesController.articleById);
@@ -45,9 +47,13 @@ apiRouter.get('/sante/', santeController.getAll);
 
 apiRouter.route('/admin')
   .post(LoginCredentialController.createAdmin);
+apiRouter.route('/user')
+  .post(PassportController.createUser);
 
 apiRouter.route('/admin/auth')
   .post(LoginCredentialController.authetificationAdmin);
+apiRouter.route('/user/auth')
+  .post(PassportController.authetificationUser);
 
 
 apiRouter.route('/tag')
