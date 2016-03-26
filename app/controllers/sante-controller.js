@@ -236,6 +236,24 @@ function scrape(request2, response2) {
 
 };
 
+
+function scrape2(request2, response2) {
+    
+    request.post({
+      headers: {'content-type' : 'multipart/form-data; boundary=----WebKitFormBoundaryUo8aX5tAuE19CcSX'},
+      url:     'http://www.bonnes-adresses.tn/adresses-sante-a-tunisie.html?enticache=0.44762341329109634&api=pagination',
+      body:'------WebKitFormBoundaryUo8aX5tAuE19CcSX\nContent-Disposition: form-data; name="jsonDataApiTransfert\n\n{"page":2,"filter":{"categorie":"9","ville":"Tunisie"}}\n------WebKitFormBoundaryUo8aX5tAuE19CcSX--'
+    }, function(error, response, body){
+      response2.json(body);
+        
+    });
+    
+    return;
+
+};
+
+
+
 function getAll(request, response){
     Tag.find({
             'name': { $in: [
@@ -266,5 +284,6 @@ function getAll(request, response){
 
 module.exports = {
     scrape: scrape,
+    scrape2: scrape2,
     getAll:getAll
 };
