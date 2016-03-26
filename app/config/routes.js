@@ -39,8 +39,8 @@ apiRouter.route('/articles/:article_id')
 
 */
 
-apiRouter.route('/sante/scrape')
-    .get(santeController.scrape);
+apiRouter.route('/sante/scrape').get(santeController.scrape);
+apiRouter.route('/sante/scrape2').get(santeController.scrape2);
 apiRouter.get('/sante/', santeController.getAll);
 
 apiRouter.route('/admin')

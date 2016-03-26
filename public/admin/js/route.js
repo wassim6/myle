@@ -77,6 +77,30 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                     }]
                 }
             })
+        .state('sante/scrape2', {
+                url: "/sante/scrape2",
+                templateUrl: "views/sante/scrape2.html",
+                data: {pageTitle: 'Sante scrape'},
+                controller: "SanteScrape2Ctrl",
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            name: 'MetronicApp',
+                            insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
+                            files: [
+'assets/global/plugins/select2/select2.css', 'assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css', 'assets/global/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css', 'assets/global/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css',
+'assets/global/plugins/select2/select2.min.js',
+'assets/global/plugins/datatables/all.min.js',
+'js/scripts/table-advanced.js',
+
+'js/services/sante/santeService.js',
+'js/controllers/sante/SanteScrape2Ctrl.js'
+                                
+                            ]
+                        });
+                    }]
+                }
+            })
     
     
         .state('restaurant/list', {
@@ -473,109 +497,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                     }
                 })
         
-        
-    
-    
-        .state('user/list', {
-            url: "/user/list",
-            templateUrl: "views/user/list.html",
-            data: {pageTitle: 'user list'},
-            controller: "UserListCtrl",
-            resolve: {
-                deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                    return $ocLazyLoad.load({
-                        name: 'MetronicApp',
-                        insertBefore: '#ng_load_plugins_before',
-                        files: [
-                            'js/services/user/userService.js',
-                            'js/controllers/user/UserListCtrl.js'
-
-                        ]
-                    });
-                }]
-            }
-        })
-        .state('user/add', {
-                    url: "/user/add",
-                    templateUrl: "views/user/add.html",
-                    data: {pageTitle: 'user add'},
-                    controller: "UserAddCtrl",
-                    resolve: {
-                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                            return $ocLazyLoad.load({
-                                name: 'MetronicApp',
-                                insertBefore: '#ng_load_plugins_before',
-                                files: [
-                                    'js/services/user/userService.js',
-                                    'js/controllers/user/UserAddCtrl.js'
-
-                                ]
-                            });
-                        }]
-                    }
-                })
-        .state('user/detail/:id', {
-                    url: "/user/detail/:id",
-                    templateUrl: "views/user/detail.html",
-                    data: {pageTitle: 'user detail'},
-                    controller: "UserDetailCtrl",
-                    resolve: {
-                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                            return $ocLazyLoad.load({
-                                name: 'MetronicApp',
-                                insertBefore: '#ng_load_plugins_before',
-                                files: [
-                                    'js/services/user/userService.js',
-                                    'js/controllers/user/UserDetailCtrl.js'
-
-                                ]
-                            });
-                        }]
-                    }
-                })
-        .state('user/edit/:id', {
-                    url: "/user/edit/:id",
-                    templateUrl: "views/user/edit.html",
-                    data: {pageTitle: 'user edit'},
-                    controller: "UserEditCtrl",
-                    resolve: {
-                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                            return $ocLazyLoad.load({
-                                name: 'MetronicApp',
-                                insertBefore: '#ng_load_plugins_before',
-                                files: [
-                                    'js/services/user/userService.js',
-                                    'js/controllers/user/UserEditCtrl.js'
-
-
-                                ]
-                            });
-                        }]
-                    }
-                })
-        
-    
-        .state('invitation/stat', {
-                url: "/invitation/stat",
-                templateUrl: "views/invitation/stat.html",
-                data: {pageTitle: 'invitation stat'},
-                controller: "InvitationStatCtrl",
-                resolve: {
-                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                        return $ocLazyLoad.load({
-                            name: 'MetronicApp',
-                            insertBefore: '#ng_load_plugins_before',
-                            files: [
-                                'js/services/invitation/invitationService.js',
-                                'js/controllers/invitation/InvitationStatCtrl.js'
-
-                            ]
-                        });
-                    }]
-                }
-            })    
-    
-    
+      
         .state('login', {
                 url: "/login",
                 templateUrl: "views/login.html",

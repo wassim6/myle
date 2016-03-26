@@ -22,6 +22,10 @@ MetronicApp.factory('SanteService',function($resource){
         return $resource('http://localhost\\:5000/api/sante/scrape');
     }
     
+    function Scrape2(){
+        return $resource('http://localhost\\:5000/api/sante/scrape2');
+    }
+    
 
     
     
