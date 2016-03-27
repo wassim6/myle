@@ -42,25 +42,10 @@
 					<thead>
 						<tr>
 							<th>
-								aded date
-							</th>
-							<th>
 								name
 							</th>
-							<th>
-								tel
-							</th>
-							<th>
-								creation date
-							</th>
                             <th>
-								rate
-							</th>
-                            <th>
-                                Gouvernera
-                            </th>
-                            <th>
-                                Delegation
+                                sub-Category
                             </th>
                             <th>
                                 Action
@@ -70,25 +55,10 @@
 					<tbody>
 						<tr ng-repeat="b in list" >
 							<td>
-								{{b.created_at}}
-							</td>
-							<td>
 								{{b.name}}
 							</td>
-							<td>
-								{{b.tel}}
-							</td>
-							<td>
-								{{b.dateCreation}}
-							</td>
                             <td>
-								{{b.rate}}/5
-							</td>
-                            <td>
-								{{b.gouvernera.name}}
-							</td>
-                            <td>
-								{{b.delegation.name}}
+								{{b.sousCategory}}
 							</td>
                             <td>
 <!--                                <a href="" class="btn default btn-xs blue">

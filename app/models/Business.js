@@ -9,11 +9,18 @@ var BusinessSchema = new Schema({
   name: String,
   description: String,
   tel:String,
+  fax:String,
   dateCreation:String,
-  rate:Number,
+  rate:{type:Number, default:0},
+  nbr_avis:{type:Number, default:0},
   longitude:String,
   latitude:String,
   adress:String,
+  email:String,
+  site:String,
+  urlScrape:String,
+  
+      
   gouvernera:{type: mongoose.Schema.Types.ObjectId, ref: 'Gouvernera'},
   delegation:{type: mongoose.Schema.Types.ObjectId, ref: 'Delegation'},
   tag:[{type: mongoose.Schema.Types.ObjectId, ref: 'Tag'}],
@@ -43,13 +50,18 @@ var BusinessSchema = new Schema({
     fumeur:Boolean,
     espaceNonFumeur:Boolean,
     
-  facebookPage:String,
+    serviceADomicile:Boolean,
+    
+  facebook:String,
+  googleplus:String,    
   profileImage:String,
   coverImage:String,
     
-    claimed:Boolean,
+    claimed:{type:Boolean, default:false},
     
-    openingTime:[ { dayNumber:Number, openingHour:String, closingHour:String } ],
+    
+    
+    openingTime:[ { dayNumber:Number, openingHour:Number, closingHour:Number, open:Number } ],
     businessImage:[ { uri:String, created_at:{ type:Date, daufault:new Date() } } ],
     appointments:[ { userId:{type: mongoose.Schema.Types.ObjectId, ref: 'User'}, date:Date, created_at:{ type:Date, daufault:new Date() }} ],
     reservations:[ { userId:{type: mongoose.Schema.Types.ObjectId, ref: 'User'}, personNumber:Number,  date:Date, created_at:{ type:Date, daufault:new Date() }} ],
