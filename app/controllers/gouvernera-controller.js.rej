@@ -1,0 +1,9 @@
+diff a/app/controllers/gouvernera-controller.js b/app/controllers/gouvernera-controller.js	(rejected hunks)
+@@ -23,6 +23,7 @@
+ 
+ function searchGouverneraAndDelegation(request, response){
+     var res = request.query.q.replace(" ", "|");
++    var xx=new RegExp(request.query.q, 'i');
+     var re = new RegExp(res, 'i');
+     Gouvernera.find({'name':{'$regex': re} },function(error, gouverneras) {
+             if (error) console.error('Could not retrieve gouverneras b/c:', error);
