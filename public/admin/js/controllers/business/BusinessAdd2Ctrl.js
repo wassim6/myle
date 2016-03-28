@@ -109,8 +109,12 @@ MetronicApp.controller('BusinessAdd2Ctrl', function($rootScope, $scope, $http, $
     $scope.tickets=false;
     $scope.wifi=false;
     
-    $scope.add = function(){
-        
+    $scope.add = function(valid){
+        if(!valid){
+            toaster.error("error", "Please complete all field !");
+            return;
+        }
+        $scope.disable=true;
         //console.log($scope.cnam);
         
         //console.log($scope.imageSource);
@@ -125,7 +129,6 @@ MetronicApp.controller('BusinessAdd2Ctrl', function($rootScope, $scope, $http, $
             "postalCode":$scope.b.postalCode,
             "region":$scope.b.region,
             "tel":$scope.b.tel,
-            "imgURI":$scope.imageSource.base64,
             "informations":{
                 "CNAM":$scope.cnam,
                 "appointment":$scope.appointment,

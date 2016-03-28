@@ -28,135 +28,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
             }
         })
     
-    
-        .state('sante/list', {
-                url: "/sante/list",
-                templateUrl: "views/sante/list.html",
-                data: {pageTitle: 'Sante List'},
-                controller: "SanteListCtrl",
-                resolve: {
-                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                        return $ocLazyLoad.load({
-                            name: 'MetronicApp',
-                            insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
-                            files: [
-'assets/global/plugins/select2/select2.css', 'assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css', 'assets/global/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css', 'assets/global/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css',
-'assets/global/plugins/select2/select2.min.js',
-'assets/global/plugins/datatables/all.min.js',
-'js/scripts/table-advanced.js',
-
-'js/services/sante/santeService.js',
-'js/controllers/sante/SanteListCtrl.js'
-                                
-                            ]
-                        });
-                    }]
-                }
-            })
-        .state('sante/scrape', {
-                url: "/sante/scrape",
-                templateUrl: "views/sante/scrape.html",
-                data: {pageTitle: 'Sante scrape'},
-                controller: "SanteScrapeCtrl",
-                resolve: {
-                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                        return $ocLazyLoad.load({
-                            name: 'MetronicApp',
-                            insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
-                            files: [
-'assets/global/plugins/select2/select2.css', 'assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css', 'assets/global/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css', 'assets/global/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css',
-'assets/global/plugins/select2/select2.min.js',
-'assets/global/plugins/datatables/all.min.js',
-'js/scripts/table-advanced.js',
-
-'js/services/sante/santeService.js',
-'js/controllers/sante/SanteScrapeCtrl.js'
-                                
-                            ]
-                        });
-                    }]
-                }
-            })
-        .state('sante/scrape2', {
-                url: "/sante/scrape2",
-                templateUrl: "views/sante/scrape2.html",
-                data: {pageTitle: 'Sante scrape'},
-                controller: "SanteScrape2Ctrl",
-                resolve: {
-                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                        return $ocLazyLoad.load({
-                            name: 'MetronicApp',
-                            insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
-                            files: [
-'assets/global/plugins/select2/select2.css', 'assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css', 'assets/global/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css', 'assets/global/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css',
-'assets/global/plugins/select2/select2.min.js',
-'assets/global/plugins/datatables/all.min.js',
-'js/scripts/table-advanced.js',
-
-'js/services/sante/santeService.js',
-'js/controllers/sante/SanteScrape2Ctrl.js'
-                                
-                            ]
-                        });
-                    }]
-                }
-            })
-    
-    
-        .state('restaurant/list', {
-                url: "/restaurant/list",
-                templateUrl: "views/restaurant/list.html",
-                data: {pageTitle: 'restaurant List'},
-                controller: "RestaurantListCtrl",
-                resolve: {
-                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                        return $ocLazyLoad.load({
-                            name: 'MetronicApp',
-                            insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
-                            files: [
-'assets/global/plugins/select2/select2.css', 'assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css', 'assets/global/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css', 'assets/global/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css',
-'assets/global/plugins/select2/select2.min.js',
-'assets/global/plugins/datatables/all.min.js',
-'js/scripts/table-advanced.js',
-
-'js/services/restaurant/restaurantService.js',
-'js/controllers/restaurant/RestaurantListCtrl.js'
-                                
-                            ]
-                        });
-                    }]
-                }
-            })
-        .state('restaurant/scrape', {
-                url: "/restaurant/scrape",
-                templateUrl: "views/restaurant/scrape.html",
-                data: {pageTitle: 'restaurant scrape'},
-                controller: "RestaurantScrapeCtrl",
-                resolve: {
-                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                        return $ocLazyLoad.load({
-                            name: 'MetronicApp',
-                            insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
-                            files: [
-'assets/global/plugins/select2/select2.css', 'assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css', 'assets/global/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css', 'assets/global/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css',
-'assets/global/plugins/select2/select2.min.js',
-'assets/global/plugins/datatables/all.min.js',
-'js/scripts/table-advanced.js',
-
-'js/services/restaurant/restaurantService.js',
-'js/controllers/restaurant/RestaurantScrapeCtrl.js'
-                                
-                            ]
-                        });
-                    }]
-                }
-            })
-    
-    
-    
-    
-    
-    
+        
         .state('business/list', {
                 url: "/business/list",
                 templateUrl: "views/business/list.html",
@@ -415,6 +287,137 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                     }]
                 }
             })
+    
+    
+    
+        .state('sante/list', {
+                url: "/sante/list",
+                templateUrl: "views/sante/list.html",
+                data: {pageTitle: 'Sante List'},
+                controller: "SanteListCtrl",
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            name: 'MetronicApp',
+                            insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
+                            files: [
+'assets/global/plugins/select2/select2.css', 'assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css', 'assets/global/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css', 'assets/global/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css',
+'assets/global/plugins/select2/select2.min.js',
+'assets/global/plugins/datatables/all.min.js',
+'js/scripts/table-advanced.js',
+
+'js/services/sante/santeService.js',
+'js/controllers/sante/SanteListCtrl.js'
+                                
+                            ]
+                        });
+                    }]
+                }
+            })
+        .state('sante/scrape', {
+                url: "/sante/scrape",
+                templateUrl: "views/sante/scrape.html",
+                data: {pageTitle: 'Sante scrape'},
+                controller: "SanteScrapeCtrl",
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            name: 'MetronicApp',
+                            insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
+                            files: [
+'assets/global/plugins/select2/select2.css', 'assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css', 'assets/global/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css', 'assets/global/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css',
+'assets/global/plugins/select2/select2.min.js',
+'assets/global/plugins/datatables/all.min.js',
+'js/scripts/table-advanced.js',
+
+'js/services/sante/santeService.js',
+'js/controllers/sante/SanteScrapeCtrl.js'
+                                
+                            ]
+                        });
+                    }]
+                }
+            })
+        .state('sante/scrape2', {
+                url: "/sante/scrape2",
+                templateUrl: "views/sante/scrape2.html",
+                data: {pageTitle: 'Sante scrape'},
+                controller: "SanteScrape2Ctrl",
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            name: 'MetronicApp',
+                            insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
+                            files: [
+'assets/global/plugins/select2/select2.css', 'assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css', 'assets/global/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css', 'assets/global/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css',
+'assets/global/plugins/select2/select2.min.js',
+'assets/global/plugins/datatables/all.min.js',
+'js/scripts/table-advanced.js',
+
+'js/services/sante/santeService.js',
+'js/controllers/sante/SanteScrape2Ctrl.js'
+                                
+                            ]
+                        });
+                    }]
+                }
+            })
+    
+    
+        .state('restaurant/list', {
+                url: "/restaurant/list",
+                templateUrl: "views/restaurant/list.html",
+                data: {pageTitle: 'restaurant List'},
+                controller: "RestaurantListCtrl",
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            name: 'MetronicApp',
+                            insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
+                            files: [
+'assets/global/plugins/select2/select2.css', 'assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css', 'assets/global/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css', 'assets/global/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css',
+'assets/global/plugins/select2/select2.min.js',
+'assets/global/plugins/datatables/all.min.js',
+'js/scripts/table-advanced.js',
+
+'js/services/restaurant/restaurantService.js',
+'js/controllers/restaurant/RestaurantListCtrl.js'
+                                
+                            ]
+                        });
+                    }]
+                }
+            })
+        .state('restaurant/scrape', {
+                url: "/restaurant/scrape",
+                templateUrl: "views/restaurant/scrape.html",
+                data: {pageTitle: 'restaurant scrape'},
+                controller: "RestaurantScrapeCtrl",
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            name: 'MetronicApp',
+                            insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
+                            files: [
+'assets/global/plugins/select2/select2.css', 'assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css', 'assets/global/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css', 'assets/global/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css',
+'assets/global/plugins/select2/select2.min.js',
+'assets/global/plugins/datatables/all.min.js',
+'js/scripts/table-advanced.js',
+
+'js/services/restaurant/restaurantService.js',
+'js/controllers/restaurant/RestaurantScrapeCtrl.js'
+                                
+                            ]
+                        });
+                    }]
+                }
+            })
+    
+    
+    
+    
+    
+    
     
     
     

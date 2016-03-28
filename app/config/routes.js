@@ -99,6 +99,7 @@ apiRouter.get('/scrape/highTech', ScrapeController.scrapeHighTech);
 apiRouter.get('/scrape/enfantEducation', ScrapeController.scrapeEnfantEducation);
 apiRouter.get('/scrape/modeHabillement', ScrapeController.scrapeModeHabillement);
 apiRouter.get('/scrape/fournitureAdministratif', ScrapeController.scrapeFournitureAdministratif);
+apiRouter.get('/scrape/maisonDeco', ScrapeController.scrapeMaisonDeco);
 apiRouter.get('/scrape/sortie', ScrapeController.scrapeSortie);
 apiRouter.get('/scrape/service', ScrapeController.scrapeService);
 

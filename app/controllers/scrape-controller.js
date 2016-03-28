@@ -2543,11 +2543,14 @@ function scrapeHighTech(request2, response2) {
                 var site=current.site;
                 var facebook=current.facebook;
                 var googleplus=current.googleplus;
-                var longitude=current.marker[0];
-                if(longitude!=0)
-                    var latitude=current.marker[1];
-                else
-                    var latitude=0;
+                
+                if (current.marker && current.marker[0] )
+                {   var longitude=current.marker[0];
+                    if(longitude!=0)
+                        var latitude=current.marker[1];
+                    else
+                        var latitude=0;
+                }
 
                 var sousCategory=current.categorie;
                 var category='High Tech';

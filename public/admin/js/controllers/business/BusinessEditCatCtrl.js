@@ -7,6 +7,7 @@ MetronicApp.controller('BusinessEditCatCtrl', function($rootScope, $scope, $http
     
     //Get Busines info
     var businesId = $stateParams.id;
+    $scope.businesId=businesId;
     
     $scope.b=BusinessService.GetBusiness().get({ ID:businesId}, function() {        
     });
@@ -26,7 +27,6 @@ MetronicApp.controller('BusinessEditCatCtrl', function($rootScope, $scope, $http
                    "businessId":businesId,
 	               "subCategoryId":subcat.selected.Id
                }, function(){
-//                   alert('sub-category added');
                    toaster.success("success", "Sub-Category added");
                    $scope.b=BusinessService.GetBusiness().get({ ID:businesId}, function() {
                     });
@@ -39,5 +39,18 @@ MetronicApp.controller('BusinessEditCatCtrl', function($rootScope, $scope, $http
         }
     };
 
+    
+    $scope.remove = function(subCat){
+          BusinessService.RemoveSubCatFromBusiness().save({
+                   "businessId":businesId,
+	               "subCategoryId":subCat.Id
+               }, function(){
+                   toaster.success("success", "Sub-category removed from business");
+                   $scope.b=BusinessService.GetBusiness().get({ ID:businesId}, function() {
+                    });
+               }, function(e){
+                     toaster.error("error", e);
+               });
+    };
     
 });

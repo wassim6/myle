@@ -5,6 +5,8 @@ MetronicApp.controller('BusinessEditAdresseCtrl', function($rootScope, $scope, $
     
     //Get Busines info
     var businesId = $stateParams.id;
+    $scope.businesId=businesId;
+    
     var bInitial=$scope.b=BusinessService.GetBusiness().get({ ID:businesId});
     $scope.b=BusinessService.GetBusiness().get({ ID:businesId}, function() {
 
