@@ -1,0 +1,9 @@
+diff a/app/controllers/scrape-controller.js b/app/controllers/scrape-controller.js	(rejected hunks)
+@@ -45,7 +45,6 @@
+                 var site=current.site;
+                 var facebook=current.facebook;
+                 var googleplus=current.googleplus;
+-                var longitude=current.marker[0];
+                 if(typeof(current.marker!='undefined'))
+                 {   var longitude=current.marker[0];
+                     if(longitude!=0)

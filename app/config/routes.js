@@ -77,11 +77,30 @@ apiRouter.get('/restaurant/list', RestaurantController.getAll);
 apiRouter.get('/alimentation/list', ScrapeController.getAllAlimentation);
 apiRouter.get('/animaux/list', ScrapeController.getAllAnimaux);
 apiRouter.get('/automotos/list', ScrapeController.getAllAutoMoto);
-
+apiRouter.get('/artisans/list', ScrapeController.getAllArtisans);
+apiRouter.get('/sport/list', ScrapeController.getAllSport);
+apiRouter.get('/beaute/list', ScrapeController.getAllBeaute);
+apiRouter.get('/voyageLoisirs/list', ScrapeController.getAllVoyageLoisirs);
+apiRouter.get('/highTech/list', ScrapeController.getAllHighTech);
+apiRouter.get('/enfantEducation/list', ScrapeController.getAllEnfantEducation);
+apiRouter.get('/modeHabillement/list', ScrapeController.getAllModeHabillement);
+apiRouter.get('/fournitureAdministratif/list', ScrapeController.getAllFournitureAdministratif);
+apiRouter.get('/maisonDeco/list', ScrapeController.getAllMaisonDeco);
+apiRouter.get('/sortie/list', ScrapeController.getAllSortie);
+apiRouter.get('/service/list', ScrapeController.getAllService);
 
 apiRouter.get('/scrape/alimentation', ScrapeController.scrapeAlimentation);
 apiRouter.get('/scrape/animaux', ScrapeController.scrapeAnimaux);
 apiRouter.get('/scrape/automotos', ScrapeController.scrapeAutoMoto);
+apiRouter.get('/scrape/artisans', ScrapeController.scrapeArtisans);
+apiRouter.get('/scrape/sport', ScrapeController.scrapeSport);
+apiRouter.get('/scrape/beaute', ScrapeController.scrapeBeaute);
+apiRouter.get('/scrape/highTech', ScrapeController.scrapeHighTech);
+apiRouter.get('/scrape/enfantEducation', ScrapeController.scrapeEnfantEducation);
+apiRouter.get('/scrape/modeHabillement', ScrapeController.scrapeModeHabillement);
+apiRouter.get('/scrape/fournitureAdministratif', ScrapeController.scrapeFournitureAdministratif);
+apiRouter.get('/scrape/sortie', ScrapeController.scrapeSortie);
+apiRouter.get('/scrape/service', ScrapeController.scrapeService);
 
 
 
