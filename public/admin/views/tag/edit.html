@@ -48,7 +48,7 @@
                 <div class="row">
                     <div class="col-md-offset-3 col-md-9">
                         <button type="submit" ng-click="edit()" class="btn green" ng-disabled="disable"><i class="fa fa-pencil"></i> Edit</button> 
-                        <button type="submit" class="btn red" ng-click="delete(tag)" ><i class="fa fa-trash"></i> Delete</button>
+                        <button class="btn default red" confirm-button="delete(tag);" message="Are you sure to delete ?" yes="Delete" no="Cancel"><i class="fa fa-trash"></i> Delete</button>
                         <a href="#/tag/list" class="btn default">Cancel</a>
                     </div>
                 </div>

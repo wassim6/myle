@@ -20,6 +20,7 @@ var BusinessSchema = new Schema({
   site:String,
   urlScrape:String,
   
+  score:{type:Number, default:0},    
       
   gouvernera:{type: mongoose.Schema.Types.ObjectId, ref: 'Gouvernera'},
   delegation:{type: mongoose.Schema.Types.ObjectId, ref: 'Delegation'},

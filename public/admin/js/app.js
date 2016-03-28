@@ -15,7 +15,8 @@ var MetronicApp = angular.module("MetronicApp", [
     "naif.base64",
     "ui.select",
     "ngAnimate",
-    "toaster"
+    "toaster",
+    "angularUtils.directives.dirPagination"
 ]); 
 
 MetronicApp.directive("confirmButton", function($document, $parse) {
@@ -207,6 +208,13 @@ MetronicApp.controller('FooterController', ['$scope', function($scope) {
     });
 }]);
 
+MetronicApp.controller('ExportCtrl', ['$scope', function($scope) {
+    $scope.export = function(type, ignoreColumn){
+        $('#myTable').tableExport({type:type,escape:'false', ignoreColumn:'['+ignoreColumn+']', pdfFontSize:8
+});
+    };
+
+}]);
 
 
 /* Init global settings and run the app */

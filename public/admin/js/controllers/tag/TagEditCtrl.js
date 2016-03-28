@@ -4,9 +4,15 @@ MetronicApp.controller('TagEditCtrl', function($rootScope, $scope, $http, $timeo
     
     $scope.disable=false;
     var id=$stateParams.id;
-    $scope.tag=TagService.GetById().query({id:id}, function() {
-        $scope.tag=$scope.tag[0];
-     });
+    $scope.tag=TagService.GetById().get({id:id}, function(){
+        //console.log($scope.tag.name);
+        if(typeof($scope.tag.name)=='undefined')
+            $location.path("/tag/list"); 
+        //console.log($scope.tag);   
+    }, function(){
+            $state.go('tag/list');
+            $location.path("/tag/list");      
+    });
     
     
     $scope.edit = function(){
@@ -14,14 +20,13 @@ MetronicApp.controller('TagEditCtrl', function($rootScope, $scope, $http, $timeo
             $scope.disable=true;
             TagService.EditTag().save({
                 "_id":$scope.tag._id,
-                "Id":$scope.tag.Id,
-                "name":$scope.name
+                "name":$scope.tag.name
             }, function(){
                     $scope.disable=false;
                     toaster.success("success", "tag name edited");
                    }, function(){
                    $scope.disable=false;
-                    toaster.error("error", "tag name must be betwenn 3 and 200 caracters");
+                    toaster.error("error", "tag name duplicated !");
            });
         }
         else{
@@ -32,11 +37,15 @@ MetronicApp.controller('TagEditCtrl', function($rootScope, $scope, $http, $timeo
     
     
     $scope.delete= function(c){
-        TagService.DeleteTag().save({
-            "Id":c.Id
+        TagService.RemoveTag().get({
+            "_id":c._id
         }, function(){
-            $location.path("/tag/list");
-        })
+            toaster.success("success", "Tag succesfuly removed");
+                $location.path("/tag/list");
+        }, function(){
+               toaster.error("error", "Tag not found !");
+                $location.path("/tag/list");
+        });
     };
     
     

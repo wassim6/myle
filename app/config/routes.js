@@ -56,10 +56,13 @@ apiRouter.route('/user/auth')
   .post(PassportController.authetificationUser);
 
 
-apiRouter.route('/tag')
-    .get(TagController.getAll);
+apiRouter.route('/tag').get(TagController.getAll);
 apiRouter.get('/tag/search', TagController.search);
 apiRouter.get('/tag/:id', TagController.show);
+apiRouter.post('/tag/add', TagController.add);
+apiRouter.post('/tag/edit', TagController.edit);
+apiRouter.get('/tag/remove/:_id', TagController.remove);
+
 
 apiRouter.get('/address/search', GouverneraController.searchGouverneraAndDelegation);
 

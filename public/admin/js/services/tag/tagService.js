@@ -8,6 +8,10 @@ MetronicApp.factory('TagService',function($resource){
     service.GetAll=GetAll;
     service.GetById=GetById;
     
+    service.AddTag=AddTag;
+    service.EditTag=EditTag;
+    service.RemoveTag=RemoveTag;
+    
    
     return service;
     
@@ -17,6 +21,16 @@ MetronicApp.factory('TagService',function($resource){
     
     function GetById(){
         return $resource('http://localhost\\:5000/api/tag/:id', {id:'@id'});
+    }
+    
+    function AddTag(){
+        return $resource('http://localhost\\:5000/api/tag/add');
+    }
+    function EditTag(){
+        return $resource('http://localhost\\:5000/api/tag/edit');
+    }
+    function RemoveTag(){
+        return $resource('http://localhost\\:5000/api/tag/remove/:_id', {_id:'@_id'});
     }
     
     

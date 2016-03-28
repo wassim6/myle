@@ -1,6 +1,6 @@
 'use strict';
 
-MetronicApp.controller('TagAddCtrl', function($rootScope, $scope, $http, $timeout, $stateParams, TagService, DTOptionsBuilder, DTColumnBuilder) {
+MetronicApp.controller('TagAddCtrl', function($rootScope, $scope, $http, $timeout, $stateParams, TagService, DTOptionsBuilder, DTColumnBuilder, toaster) {
     
     
      $scope.success=false;
@@ -16,15 +16,14 @@ MetronicApp.controller('TagAddCtrl', function($rootScope, $scope, $http, $timeou
                $scope.disable=true;
                TagService.AddTag().save({"name":$scope.name}, function(){
                     $scope.disable=false;
-                    $scope.success=true;
-                    $scope.error=false; 
-               }, function(){
+                    toaster.success("success", "Tag succesfuly added");
+               }, function(e){
+                   toaster.error("error", "Duplicate name tag");
                    $scope.disable=false;
                });
         }
         else{
-            $scope.success=false;
-            $scope.error=true;
+            toaster.error("error", "Enter Tag Name");
         }
     };
     

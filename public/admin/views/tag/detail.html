@@ -34,7 +34,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-3">Id</label>
                     <div class="col-md-9">
-                        <label class="control-label">{{tag.Id}}</label>
+                        <label class="control-label">{{tag._id}}</label>
                     </div>
                 </div>
                 <div class="form-group">
@@ -43,24 +43,13 @@
                         <label class="control-label">{{tag.name}}</label>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="control-label col-md-3">valid</label>
-                    <div class="col-md-9">
-                        <label class="control-label">{{tag.valid}}</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-3">Business Id</label>
-                    <div class="col-md-9">
-                        <label class="control-label">{{tag.BusinessId}}</label>
-                    </div>
-                </div>
             </div>
             <div class="form-actions">
                 <div class="row">
                     <div class="col-md-offset-3 col-md-9">
-                        <a href="#/tag/edit/{{tag.Id}}" class="btn green"><i class="fa fa-pencil"></i> Edit</a> 
-                        <button type="submit" class="btn red" ng-click="delete(tag)" ><i class="fa fa-trash"></i> Delete</button>
+                        <a href="#/tag/edit/{{tag._id}}" class="btn green"><i class="fa fa-pencil"></i> Edit</a> 
+                        <button class="btn default red" confirm-button="delete(tag);" message="Are you sure to delete ?" yes="Delete" no="Cancel"><i class="fa fa-trash"></i> Delete</button>
+                        
                         <a href="#/tag/list" class="btn default">Cancel</a>
                     </div>
                 </div>

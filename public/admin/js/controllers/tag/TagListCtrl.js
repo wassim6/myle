@@ -1,6 +1,6 @@
 'use strict';
 
-MetronicApp.controller('TagListCtrl', function($rootScope, $scope, $http, $timeout, $stateParams, TagService, DTOptionsBuilder, DTColumnBuilder) {
+MetronicApp.controller('TagListCtrl', function($rootScope, $scope, $http, $timeout, $stateParams, TagService, DTOptionsBuilder, DTColumnBuilder, toaster) {
     
     
      $scope.tags=TagService.GetAll().query({}, function() {
@@ -13,17 +13,22 @@ MetronicApp.controller('TagListCtrl', function($rootScope, $scope, $http, $timeo
     
     
     $scope.delete= function(c){
-        TagService.DeleteTag().save({
-            "Id":c.Id
+        TagService.RemoveTag().get({
+            "_id":c._id
         }, function(){
+            toaster.success("success", "Tag succesfuly removed");
             for(var i = 0; i < $scope.tags.length; i++) {
-                if($scope.tags[i].Id == c.Id) {
+                if($scope.tags[i]._id == c._id) {
                     $scope.tags.splice(i, 1);
                     break;
                 }
             }
-        })
+        }, function(){
+               toaster.error("error", "Tag not found !");
+        });
     };
+    
+    
     
     
 });
