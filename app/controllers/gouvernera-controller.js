@@ -23,6 +23,7 @@ function show(request, response){
 
 function searchGouverneraAndDelegation(request, response){
     var res = request.query.q.replace(" ", "|");
+    var xx=new RegExp(request.query.q, 'i');
     var re = new RegExp(res, 'i');
     Gouvernera.find({'name':{'$regex': re} },function(error, gouverneras) {
             if (error) console.error('Could not retrieve gouverneras b/c:', error);
@@ -32,7 +33,7 @@ function searchGouverneraAndDelegation(request, response){
             };
             //console.log(gs);
         
-            Delegation.find({'name':{'$regex': re} },function(error, delegations) {
+            Delegation.find({'name':{'$regex': xx} },function(error, delegations) {
             if (error) console.error('Could not retrieve delegations b/c:', error);
                 for(var i=0;i<delegations.length;i++){
                     gs.push({ _id:delegations[i]._id, name:delegations[i].name, type:2 });  
