@@ -1115,9 +1115,13 @@ function getAllAutoMoto(request, response){
 
 
 function myConvert(d){
-    var h=parseInt(d.split('h')[0]);
-    var m=parseInt(d.split('h')[1]);
-    return h*2+(m/30);
+    if(typeof(d)!='undefined'){
+        var h=parseInt(d.split('h')[0]);
+        var m=parseInt(d.split('h')[1]);
+        return h*2+(m/30);
+    }
+    else
+        return NaN;
     
 };
 
