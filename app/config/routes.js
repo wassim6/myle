@@ -20,6 +20,8 @@ var RestaurantController = require('../controllers/restaurant-controller');
 
 var PassportController = require('../controllers/passport-controller');
 
+var ScrapeController = require('../controllers/scrape-controller');
+
 //var User=require('../models/User');
 
 //apiRouter.param('article_id', articlesController.articleById);
@@ -70,6 +72,17 @@ apiRouter.post('/business/search', BusinessController.search);
 
 
 apiRouter.get('/restaurant/list', RestaurantController.getAll);
+
+
+apiRouter.get('/alimentation/list', ScrapeController.getAllAlimentation);
+apiRouter.get('/animaux/list', ScrapeController.getAllAnimaux);
+apiRouter.get('/automotos/list', ScrapeController.getAllAutoMoto);
+
+
+apiRouter.get('/scrape/alimentation', ScrapeController.scrapeAlimentation);
+apiRouter.get('/scrape/animaux', ScrapeController.scrapeAnimaux);
+apiRouter.get('/scrape/automotos', ScrapeController.scrapeAutoMoto);
+
 
 
 //  .patch(TagController.update)
