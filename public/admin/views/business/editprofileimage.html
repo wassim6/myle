@@ -43,11 +43,11 @@ Business Edit <small></small>
                     <a href="#/business/editadresse/{{businesId}}" >
                     <i class="fa fa-cog"></i> Adresse </a>
                 </li>
-                <li class="">
+                <li class="active">
                     <a href="#/business/editprofileimage/{{businesId}}" >
                     <i class="fa fa-picture-o"></i> Profile Image </a>
                 </li>
-                <li class="active">
+                <li class="">
                     <a href="#/business/editimage/{{businesId}}" >
                     <i class="fa fa-picture-o"></i> Images </a>
                 </li>
@@ -62,6 +62,8 @@ Business Edit <small></small>
             </ul>
         </div>
         <div class="col-md-9">
+                <h2>Edit Profile Image</h2>
+            <img class="img-responsive" ng-src="http://localhost:4853{{b.imgURI}}" alt=""><br/>
                 <div id="tab_1-1" class="tab-pane active">
                     <form  role="form">
                         <div class="form-group">
@@ -82,35 +84,8 @@ Business Edit <small></small>
                             <a  class="btn green" ng-click="addImage(img)" >Add</a>
                         </div>
                     </form>
-
+                
                     
-                    
-                    
-                    <table class="table table-bordered table-hover" style="margin-top:20px;" >
-                        <thead>
-                        <tr role="row" class="heading">
-                            <th width="8%">
-                                 Image
-                            </th>
-                            <th width="30%">
-                            </th>
-                        </tr>
-</thead>
-                        <tbody>
-                        <tr ng-repeat="im in b.images" >
-                            <td>
-                                <a href="http://localhost:4853{{im.uri}}" class="fancybox-button" data-rel="fancybox-button">
-                                <img class="img-responsive" ng-src="http://localhost:4853{{im.uri}}" alt="">
-                                </a>
-                            </td>
-                            <td>
-                                <button class="btn default btn-sm" ng-click="deleteImage(im)" >
-                                <i class="fa fa-times"></i> Remove </button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-
                 </div>
         </div>
         <!--end col-md-9-->

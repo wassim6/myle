@@ -62,7 +62,7 @@ Business Detail <small></small>
                     <form role="form" >
                         <div class="form-group">
                             <label class="control-label">Img profile</label>
-                            <img ng-src="http://vynd-services.azurewebsites.net/{{b.imgURI}}" alt="img"  height="256"  />
+                            <img ng-src="http://localhost:4853{{b.imgURI}}" alt="img"  height="256"  />
                         </div>
                         <div class="form-group">
                             <label class="control-label">Name</label>
@@ -190,8 +190,8 @@ Business Detail <small></small>
                         <tbody>
                         <tr ng-repeat="im in b.images" >
                             <td>
-                                <a href="http://vynd-services.azurewebsites.net/{{im.uri}}" class="fancybox-button" data-rel="fancybox-button">
-                                <img class="img-responsive" ng-src="http://vynd-services.azurewebsites.net/{{im.uri}}" alt="">
+                                <a href="http://localhost:4853{{im.uri}}" class="fancybox-button" data-rel="fancybox-button">
+                                <img class="img-responsive" ng-src="http://localhost:4853{{im.uri}}" alt="">
                                 </a>
                             </td>
                             <td>
@@ -317,13 +317,154 @@ Business Detail <small></small>
                     </form>
                 </div>
             </tab>
+            <tab heading="Comments">
+                <div class="row" style="margin-top:20px;" >
+                <div class="col-md-12">
+                    <div class="portlet box green-haze">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-globe"></i>Comments for {{b.name}}
+                            </div>
+                            <div class="tools">
+                                <a href="javascript:;" class="reload"></a>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <table class="table table-striped table-bordered table-hover" datatable="ng" dt-options="dtOptions">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            id
+                                        </th>
+                                        <th>
+                                            date
+                                        </th>
+                                        <th>
+                                            content
+                                        </th>
+                                        <th>
+                                            rate
+                                        </th>
+                                        <th>
+                                            user name
+                                        </th>
+                                        <th>
+                                            negative
+                                        </th>
+                                        <th>
+                                            positive
+                                        </th>
+                                        <th>
+                                            funny
+                                        </th>
+                                        <th>
+                                            Action
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="c in comments" >
+                                        <td>
+                                            {{c.id}}
+                                        </td>
+                                        <td>
+                                            {{c.date}}
+                                        </td>
+                                        <td>
+                                            {{c.content}}
+                                        </td>
+                                        <td>
+                                            {{c.rate}}
+                                        </td>
+                                        <td>
+                                            {{c.user.name}}
+                                        </td>
+                                        <td>
+                                            {{c.negative.number}}
+                                        </td>
+                                        <td>
+                                            {{c.positive.number}}
+                                        </td>
+                                        <td>
+                                            {{c.funny.number}}
+                                        </td>
+                                        <td>
+                                            
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+ 
+            </tab>
+            <tab heading="Opening Days">
+                <div class="row" style="margin-top:20px;" >
+                <div class="col-md-12">
+                    <div class="portlet box green-haze">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-globe"></i>Opening Days for {{b.name}}
+                            </div>
+                            <div class="tools">
+                                <a href="javascript:;" class="reload"></a>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <table class="table table-striped table-bordered table-hover" datatable="ng" dt-options="dtOptions">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            day
+                                        </th>
+                                        <th>
+                                            opening hour
+                                        </th>
+                                        <th>
+                                            closing hour
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="op in b.hours" >
+                                        <td ng-switch on="op.day" >
+                                            <div ng-switch-when="0" >Monday</div>
+                                            <div ng-switch-when="1" >Tuesday</div>
+                                            <div ng-switch-when="2" >Wednesday</div>
+                                            <div ng-switch-when="3" >Thursday</div>
+                                            <div ng-switch-when="4" >Friday</div>
+                                            <div ng-switch-when="5" >Saturday</div>
+                                            <div ng-switch-when="6" >Sunday</div>
+                                        </td>
+                                        <td >
+                                            {{op.openStr}}
+
+                                       
+                                        </td>
+                                        <td>
+                                            {{op.closeStr}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+ 
+            </div>
+ 
+            </tab>
         </tabset>
         
         <div class="form-actions">
                 <div class="row">
                     <div class="col-md-offset-3 col-md-9">
                         <a href="#/business/edit/{{b.id}}" class="btn green" ><i class="fa fa-pencil"></i> Edit</a>
-                        <a href="#/business/list" class="btn default">Cancel</a>
+                        <a href="#/business/list" class="btn default">Go back to list</a>
                     </div>
                 </div>
             </div>

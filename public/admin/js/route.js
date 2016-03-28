@@ -148,10 +148,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                             files: [           
                                 'js/services/tag/tagService.js',
                                 'js/services/business/businessService.js',
-                                'js/controllers/business/BusinessEditCtrl.js',
-                                'js/services/category/categoryService.js',
-                                'js/services/category/subCategoryService.js'
-                                
+                                'js/controllers/business/BusinessEditCtrl.js'
                             ]
                         });
                     }]
@@ -170,10 +167,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                             files: [           
                                 'js/services/tag/tagService.js',
                                 'js/services/business/businessService.js',
-                                'js/controllers/business/BusinessEditCatCtrl.js',
-                                'js/services/category/categoryService.js',
-                                'js/services/category/subCategoryService.js'
-                                
+                                'js/controllers/business/BusinessEditCatCtrl.js'
                             ]
                         });
                     }]
@@ -192,10 +186,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                                 files: [           
                                     'js/services/tag/tagService.js',
                                     'js/services/business/businessService.js',
-                                    'js/controllers/business/BusinessEditTagCtrl.js',
-                                    'js/services/category/categoryService.js',
-                                    'js/services/category/subCategoryService.js'
-
+                                    'js/controllers/business/BusinessEditTagCtrl.js'
                                 ]
                             });
                         }]
@@ -214,10 +205,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                                 files: [           
                                     'js/services/tag/tagService.js',
                                     'js/services/business/businessService.js',
-                                    'js/controllers/business/BusinessEditAdresseCtrl.js',
-                                    'js/services/category/categoryService.js',
-                                    'js/services/category/subCategoryService.js'
-
+                                    'js/controllers/business/BusinessEditAdresseCtrl.js'
                                 ]
                             });
                         }]
@@ -236,10 +224,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                                 files: [           
                                     'js/services/tag/tagService.js',
                                     'js/services/business/businessService.js',
-                                    'js/controllers/business/BusinessEditImageCtrl.js',
-                                    'js/services/category/categoryService.js',
-                                    'js/services/category/subCategoryService.js'
-
+                                    'js/controllers/business/BusinessEditImageCtrl.js'
                                 ]
                             });
                         }]
@@ -278,10 +263,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                             files: [           
                                 'js/services/tag/tagService.js',
                                 'js/services/business/businessService.js',
-                                'js/controllers/business/BusinessDetailCtrl.js',
-                                'js/services/category/categoryService.js',
-                                'js/services/category/subCategoryService.js'
-                                
+                                'js/controllers/business/BusinessDetailCtrl.js'
                             ]
                         });
                     }]
