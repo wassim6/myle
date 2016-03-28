@@ -2153,7 +2153,7 @@ function scrapeBeaute(request2, response2) {
 };
 function scrapeVoyageLoisirs(request2, response2) {
     //max:874
-    var debut=1;
+    var debut=0;
     var fin=186;
     
     go();
@@ -2509,7 +2509,7 @@ function scrapeVoyageLoisirs(request2, response2) {
 };
 function scrapeHighTech(request2, response2) {
     //max:874
-    var debut=1;
+    var debut=0;
     var fin=186;
     
     go();
@@ -2865,7 +2865,7 @@ function scrapeHighTech(request2, response2) {
 };
 function scrapeEnfantEducation(request2, response2) {
     //max:874
-    var debut=1;
+    var debut=0;
     var fin=72;
     
     go();
@@ -3577,7 +3577,7 @@ function scrapeModeHabillement(request2, response2) {
 };
 function scrapeFournitureAdministratif(request2, response2) {
     //max:874
-    var debut=1;
+    var debut=0;
     var fin=807;
     
     go();
@@ -3936,7 +3936,7 @@ function scrapeFournitureAdministratif(request2, response2) {
 };
 function scrapeMaisonDeco(request2, response2) {
     //max:874
-    var debut=1;
+    var debut=0;
     var fin=94;
     
     go();
@@ -4292,7 +4292,7 @@ function scrapeMaisonDeco(request2, response2) {
 };
 function scrapeSortie(request2, response2) {
     //max:874
-    var debut=1;
+    var debut=0;
     var fin=74;
     
     go();
@@ -4648,7 +4648,7 @@ function scrapeSortie(request2, response2) {
 };
 function scrapeService(request2, response2) {
     //max:874
-    var debut=1;
+    var debut=0;
     var fin=5;
     
     go();
