@@ -15,7 +15,7 @@ function createUser(req, res){
         codePostale : req.body.codePostale,   
     };
 	
-	 Account.register(new Account(newa),
+	 Account.register(new Account(newa),req.body.password,
 		function(err, account) {
 			if (err) {
 				return res.status(404).send("test!");

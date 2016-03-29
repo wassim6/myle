@@ -12,7 +12,7 @@ myApp.factory('loginService',function($resource, $http){
     return service;
     
     function createUser(){
-        //return $resource('http://localhost\\:5000/api/user');
+        return $resource('http://localhost\\:5000/api/user');
     }
     
     function authetificationUser(){
