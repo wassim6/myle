@@ -44,7 +44,7 @@ myApp.config(function($routeProvider, $locationProvider) {
         '/login/sign_up',
         {
             templateUrl: 'partials/login/signup.html',
-            controller: 'SignupCtrl',
+            controller: 'SigninCtrl',
             activetab: 'Home'
         }).when(
         '/login/sign_in',

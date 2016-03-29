@@ -5,50 +5,71 @@ MetronicApp.factory('BusinessService',function($resource){
     
     var service = {};
 		
-    service.GetBusiness=GetBusiness;
-    service.GetAllBusiness=GetAllBusiness;
+    service.GetById=GetById;
     service.AddBusiness=AddBusiness;
-    service.AddSubCatToBusiness=AddSubCatToBusiness;
-    service.EditBusiness=EditBusiness;
-    service.AddImage=AddImage;
+    service.EditBusinessBasicInfo=EditBusinessBasicInfo;
+    service.EditAdress=EditAdress;
+    service.RemoveBusiness=RemoveBusiness;
+    service.AddTagToBusiness=AddTagToBusiness;
+    service.RemoveTagFromBusiness=RemoveTagFromBusiness;
     
+//    service.AddImage=AddImage;
+//    service.GetValidBusiness=GetValidBusiness;
+//    service.GetUnValidBusiness=GetUnValidBusiness;
+//    service.DeletePhotoBusiness=DeletePhotoBusiness;
+//    service.GetPhotosBusiness=GetPhotosBusiness;
+    
+//    service.GetAllBusinessMinimalWithModerator=GetAllBusinessMinimalWithModerator;
+    
+/*    service.EditAditionalInfo=EditAditionalInfo;
+    service.RemoveSubCatFromBusiness=RemoveSubCatFromBusiness;
+    service.AddOpeningDay=AddOpeningDay;
+    service.RemoveOpeningDay=RemoveOpeningDay;
+    service.EditOpeningDay=EditOpeningDay;*/
+
     return service;
     
-    function GetBusiness(){
-        return $resource('http://vynd-services.azurewebsites.net/Implementations/BusinessService.svc/:ID',
-                         {ID: '@ID'}, 
+    function GetById(){
+        return $resource('http://localhost\\:5000/api/business/:id',
+                         {id: '@id'}, 
                          { query: { method: "GET", isArray: true } }
         );
     }
 
-    function GetAllBusiness(){
-        return $resource('http://vynd-services.azurewebsites.net/implementations/BusinessService.svc/list/:ID',
-                         {ID: '@ID'}, 
-                         { query: { method: "GET", isArray: true } }
-        );
-    }
-    
     function AddBusiness(){
-        return $resource('http://vynd-services.azurewebsites.net/Implementations/BusinessService.svc/admin/add'
+        return $resource('http://localhost\\:5000/api/business/add'
         );
     }
     
-    function AddSubCatToBusiness(){
-        return $resource('http://vynd-services.azurewebsites.net/Implementations/BusinessService.svc/addsubcategory'
+    function EditBusinessBasicInfo(){
+        return $resource('http://localhost\\:5000/api/business/editbasic/:id',
+                         {id: '@id'}
         );
     }
     
-    function EditBusiness(){
-        return $resource('http://vynd-services.azurewebsites.net/implementations/BusinessService.svc/admin/edit'
+    function RemoveBusiness(){
+        return $resource('http://localhost\\:5000/api/business/remove/:id',
+                         {id: '@id'}
         );
     }
     
-    function AddImage(){
-        return $resource('http://vynd-services.azurewebsites.net/Implementations/BusinessService.svc/:ID/addimage', {ID:'@ID'}
-        );
+    function AddTagToBusiness(){
+        return $resource('http://localhost\\:5000/api/business/addtag/:id',
+                         {id: '@id'}
+         );
     }
     
+    function RemoveTagFromBusiness(){
+        return $resource('http://localhost\\:5000/api/business/removetag/:id',
+                         {id: '@id'}
+         );
+    }
     
+    function EditAdress(){
+        return $resource('http://localhost\\:5000/api/business/editadress/:id',
+                         {id: '@id'}
+         );
+    }
     
 });
 

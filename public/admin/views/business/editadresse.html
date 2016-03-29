@@ -26,47 +26,65 @@ Business Edit <small></small>
         <div class="col-md-3">
             <ul class="ver-inline-menu tabbable margin-bottom-10">
                 <li class="">
-                    <a  href="#/business/edit/{{b.id}}" >
+                    <a  href="#/business/edit/{{businesId}}" >
                     <i class="fa fa-cog"></i> Information </a>
                     <span class="after">
                     </span>
                 </li>
                 <li class="">
-                    <a  href="#/business/editcat/{{b.id}}" >
-                    <i class="fa fa-cog"></i> Categories </a>
-                </li>
-                <li class="">
-                    <a href="#/business/edittag/{{b.id}}" >
+                    <a href="#/business/edittag/{{businesId}}" >
                     <i class="fa fa-cog"></i> Tags </a>
                 </li>
                 <li class="active">
-                    <a href="#/business/editadresse/{{b.id}}" >
+                    <a href="#/business/editadresse/{{businesId}}" >
                     <i class="fa fa-cog"></i> Adresse </a>
                 </li>
                 <li class="">
-                    <a href="#/business/editimage/{{b.id}}" >
+                    <a href="#/business/editprofileimage/{{businesId}}" >
+                    <i class="fa fa-picture-o"></i> Profile Image </a>
+                </li>
+                <li class="">
+                    <a href="#/business/editimage/{{businesId}}" >
                     <i class="fa fa-picture-o"></i> Images </a>
                 </li>
                 <li class="">
-                    <a href="#/business/editinformation/{{b.id}}" >
+                    <a href="#/business/editinformation/{{businesId}}" >
                     <i class="fa fa-cog"></i> Additional Information </a>
+                </li>
+                <li>
+                    <a  href="#/business/editopeninghour/{{businesId}}" >
+                    <i class="fa fa-cog"></i> Opening Hours </a>
                 </li>
             </ul>
         </div>
         <div class="col-md-9">
                 <div id="tab_1-1" class="tab-pane active">
-                    <form role="form" >
+                    <form name="form" role="form" >
                         <div class="form-group">
-                            <label class="control-label">Postal Code</label>
-                            <input type="text" placeholder="example: 7050" class="form-control" ng-model="postalCode" required>
-                        </div>
+                            <label class="control-label">Gouvernera</label>
+                            <div class="col-md-12">
+                            <ui-select ng-model="gouvernera.selected" theme="select2" style="min-width: 400px;" required>
+                            <ui-select-match placeholder="Select a Gouvernera">{{$select.selected.name}}</ui-select-match>
+                            <ui-select-choices repeat="c in gouverneras | propsFilter: {name: $select.search}">
+                              <div ng-bind-html="c.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                          </ui-select>
+                            </div>
+                        </div><br/><br/>
+                        <div class="form-group">
+                            <label class="control-label">Delegation</label>
+                            <div class="col-md-12">
+                            <ui-select ng-model="delegation.selected" theme="select2" style="min-width: 400px;" required>
+                            <ui-select-match placeholder="Select a Delegation">{{$select.selected.name}}</ui-select-match>
+                            <ui-select-choices repeat="d in delegations | propsFilter: {name: $select.search}">
+                              <div ng-bind-html="d.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                          </ui-select>
+                            </div>
+                        </div><br/><br/>
                         <div class="form-group">
                             <label class="control-label">Adresse</label>
-                            <input type="text" placeholder="Adresse" class="form-control" ng-model="address" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Region</label>
-                            <input type="text" placeholder="Region" class="form-control" ng-model="region" required>    
+                            <input type="text" placeholder="Region" class="form-control" ng-model="adress" required>    
                         </div>
                         <div class="form-group">
                             <label class="control-label">Localisation</label>
@@ -85,7 +103,7 @@ Business Edit <small></small>
                                 </div>
                         </div>
                         <div class="margiv-top-10">
-                            <a href class="btn green" ng-click="editAdresse(postalCode, address, region, latitude, longitude)" >
+                            <a href class="btn green" ng-click="editAdresse(form.$valid)" >
                             Save Changes </a>
                             <a href="#/business/list"  class="btn default">
                             Cancel </a>

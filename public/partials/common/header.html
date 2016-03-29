@@ -55,7 +55,7 @@
                             <a href class="dropdown-toggle" data-toggle="dropdown"><b>Se connecter</b> <span class="caret"></span></a>
                             <ul id="login-dp" class="dropdown-menu">
                                 <li>
-                                    <div class="row">
+                                    <div class="row" ng-controller="SigninCtrl">
                                         <div class="col-md-12">
                                             Se connecter avec
                                             <div class="social-buttons">
@@ -65,18 +65,18 @@
                                                 </a>
                                             </div>
                                             Ou
-                                            <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                                            <form class="form" role="form" accept-charset="UTF-8" id="login-nav" >
                                                 <div class="form-group">
-                                                    <label class="sr-only" for="exampleInputEmail2">Address E-mail</label>
-                                                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Address E-mail" required>
+                                                    <label class="sr-only" >Username</label>
+                                                    <input  class="form-control"  placeholder="username" required ng-model="l.username">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="sr-only" for="exampleInputPassword2">Mot de passe</label>
-                                                    <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Mot de passe" required>
+                                                    <label class="sr-only" >Mot de passe</label>
+                                                    <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Mot de passe" required ng-model="l.password">
                                                     <div class="help-block text-right"><a href="#/login/forgot_password">Mot de passe oublié ?</a></div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
+                                                    <button type="submit" class="btn btn-primary btn-block" ng-click="authetificationUser(l)">Se connecter</button>
                                                 </div>
                                             </form>
                                         </div>

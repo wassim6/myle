@@ -1,0 +1,277 @@
+<script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Edit</h3>
+        </div>
+        <div class="modal-body">
+            <form role="form" name="myForm" >
+                <div class="form-group">
+                    <label class="control-label">Opening Day</label><br/>
+                    <ui-select ng-model="openDay.selected" theme="select2" style="min-width: 400px;" required>
+                        <ui-select-match placeholder="Select Opening Day">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices repeat="d in listDays | propsFilter: {name: $select.search}">
+                          <div ng-bind-html="d.name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                        </ui-select>
+               </div> 
+                <div class="form-group">
+                    <label class="control-label">Openin Hour</label><br/>
+                        
+                        <ui-select ng-model="openingHour.selected" theme="select2" style="min-width: 400px;" required>
+                        <ui-select-match placeholder="Select opening hour">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices repeat="h in listHours | propsFilter: {name: $select.search}">
+                          <div ng-bind-html="h.name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                        </ui-select>
+               </div> 
+                 <div class="form-group">
+                    <label class="control-label">Closing Hour</label><br/>
+                     <ui-select ng-model="closingHour.selected" theme="select2" style="min-width: 400px;" required>
+                        <ui-select-match placeholder="Select closing hour">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices repeat="h in listHours | propsFilter: {name: $select.search}">
+                          <div ng-bind-html="h.name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                        </ui-select>
+
+               </div>
+                
+
+                <div class="margiv-top-10">
+                    <a href class="btn green btn-lg" ng-click="edit(myForm.$valid, openingHour, closingHour, openDay)" >
+                    Edit </a>
+                </div>
+            </form>
+
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+
+<h3 class="page-title">
+Business Edit <small></small>
+</h3>
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="index.html">Home</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <a href="#/business/list">Business List</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            Business Edit
+        </li>
+    </ul>
+</div>
+
+
+<!-- END PAGE HEADER-->
+<div class="tab-pane active" id="tab_1_3">
+    <div class="row profile-account">
+        <div class="col-md-3">
+            <ul class="ver-inline-menu tabbable margin-bottom-10">
+                <li class="">
+                    <a  href="#/business/edit/{{businesId}}" >
+                    <i class="fa fa-cog"></i> Information </a>
+                    <span class="after">
+                    </span>
+                </li>
+                <li>
+                    <a  href="#/business/editcat/{{businesId}}" >
+                    <i class="fa fa-cog"></i> Categories </a>
+                </li>
+                <li class="">
+                    <a href="#/business/edittag/{{businesId}}" >
+                    <i class="fa fa-cog"></i> Tags </a>
+                </li>
+                <li class="">
+                    <a href="#/business/editadresse/{{businesId}}" >
+                    <i class="fa fa-cog"></i> Adresse </a>
+                </li>
+                <li class="">
+                    <a href="#/business/editprofileimage/{{businesId}}" >
+                    <i class="fa fa-picture-o"></i> Profile Image </a>
+                </li>
+                <li class="">
+                    <a href="#/business/editimage/{{businesId}}" >
+                    <i class="fa fa-picture-o"></i> Images </a>
+                </li>
+                <li class="">
+                    <a href="#/business/editinformation/{{businesId}}" >
+                    <i class="fa fa-cog"></i> Additional Information </a>
+                </li>
+                <li class="active">
+                    <a  href="#/business/editopeninghour/{{businesId}}" >
+                    <i class="fa fa-cog"></i> Opening Hours </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <form role="form" name="myForm" >
+                <div class="form-group">
+                    <label class="control-label">Opening Day</label><br/>
+                    <ui-select ng-model="openDay.selected" theme="select2" style="min-width: 400px;" required>
+                        <ui-select-match placeholder="Select Opening Day">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices repeat="d in listDays | propsFilter: {name: $select.search}">
+                          <div ng-bind-html="d.name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                        </ui-select>
+                    <!--<select class="form-control" ng-model="dayOfOpening" required>
+                        <option value="0" >Monday</option>
+                        <option value="1" >Tuesday</option>
+                        <option value="2" >Wednesday</option>
+                        <option value="3" >Thursday</option>
+                        <option value="4" >Friday</option>
+                        <option value="5" >Saturday</option>
+                        <option value="6" >Sunday</option>
+                    </select>-->
+               </div> 
+                <div class="form-group">
+                    <label class="control-label">Openin Hour</label><br/>
+                        
+                        <ui-select ng-model="openingHour.selected" theme="select2" style="min-width: 400px;" required>
+                        <ui-select-match placeholder="Select opening hour">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices repeat="h in listHours | propsFilter: {name: $select.search}">
+                          <div ng-bind-html="h.name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                        </ui-select>
+                    <!--<select class="form-control" ng-model="openingHour"  required>
+                        <option value="0" >00h:00</option>
+                        <option value="1" >00h:30</option>
+                        <option value="2" >01h:00</option>
+                        <option value="3" >01h:30</option>
+                        <option value="4" >02h:00</option>
+                        <option value="5" >02h:30</option>
+                        <option value="6" >03h:00</option>
+                        <option value="7" >03h:30</option>
+                        <option value="8" >04h:00</option>
+                        <option value="9" >04h:30</option>
+                        <option value="10" >05h:00</option>
+                        <option value="11" >05h:30</option>
+                        <option value="12" >06h:00</option>
+                        <option value="13" >06h:30</option>
+                        <option value="14" >07h:00</option>
+                        <option value="15" >07h:30</option>
+                        <option value="16" >08h:00</option>
+                        <option value="17" >08h:30</option>
+                        <option value="18" >09h:00</option>
+                        <option value="19" >09h:30</option>
+                        <option value="20" >10h:00</option>
+                        <option value="21" >10h:30</option>
+                        <option value="22" >11h:00</option>
+                        <option value="23" >11h:30</option>
+                        <option value="24" >12h:00</option>
+                        <option value="25" >12h:30</option>
+                        <option value="26" >13h:00</option>
+                        <option value="27" >13h:30</option>
+                        <option value="28" >14h:00</option>
+                        <option value="29" >14h:30</option>
+                        <option value="30" >15h:00</option>
+                        <option value="31" >15h:30</option>
+                        <option value="32" >16h:00</option>
+                        <option value="33" >16h:30</option>
+                        <option value="34" >17h:00</option>
+                        <option value="35" >17h:30</option>
+                        <option value="36" >18h:00</option>
+                        <option value="37" >18h:30</option>
+                        <option value="38" >19h:00</option>
+                        <option value="39" >19h:30</option>
+                        <option value="40" >20h:00</option>
+                        <option value="41" >20h:30</option>
+                        <option value="42" >21h:00</option>
+                        <option value="43" >21h:30</option>
+                        <option value="44" >22h:00</option>
+                        <option value="45" >22h:30</option>
+                        <option value="46" >23h:00</option>
+                        <option value="47" >23h:30</option>
+                    </select>-->
+               </div> 
+                 <div class="form-group">
+                    <label class="control-label">Closing Hour</label><br/>
+                     <ui-select ng-model="closingHour.selected" theme="select2" style="min-width: 400px;" required>
+                        <ui-select-match placeholder="Select closing hour">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices repeat="h in listHours | propsFilter: {name: $select.search}">
+                          <div ng-bind-html="h.name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                        </ui-select>
+
+               </div>
+                
+
+                <div class="margiv-top-10">
+                    <a href class="btn green btn-lg" ng-click="addOpening(myForm.$valid, openingHour, closingHour, openDay)" >
+                    Add </a>
+                </div>
+            </form>
+
+            <div class="row" style="margin-top:20px;" >
+                <div class="col-md-12">
+                    <div class="portlet box green-haze">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-globe"></i>Opening Day for {{b.name}}
+                            </div>
+                            <div class="tools">
+                                <a href="javascript:;" class="reload"></a>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <table class="table table-striped table-bordered table-hover" datatable="ng" dt-options="dtOptions">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            day
+                                        </th>
+                                        <th>
+                                            opening hour
+                                        </th>
+                                        <th>
+                                            closing hour
+                                        </th>
+                                        <th>
+                                            Action
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="op in b.hours" >
+                                        <td ng-switch on="op.day" >
+                                            <div ng-switch-when="0" >Monday</div>
+                                            <div ng-switch-when="1" >Tuesday</div>
+                                            <div ng-switch-when="2" >Wednesday</div>
+                                            <div ng-switch-when="3" >Thursday</div>
+                                            <div ng-switch-when="4" >Friday</div>
+                                            <div ng-switch-when="5" >Saturday</div>
+                                            <div ng-switch-when="6" >Sunday</div>
+                                        </td>
+                                        <td >
+                                            {{op.openStr}}
+
+                                       
+                                        </td>
+                                        <td>
+                                            {{op.closeStr}}
+                                        </td>
+                                        <td>
+                                            <button class="btn default btn-xs blue" ng-click="open(op, 'md');" >
+                                            <i class="fa fa-pencil"></i> Edit
+                                            </button>
+                                            <button class="btn default btn-xs red" confirm-button="remove(op);" message="Are you sure to remove this opening day from this Business ?" yes="Remove" no="Cancel" >
+                                            <i class="fa fa-trash"></i> Remove </button>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--end col-md-9-->
+    </div>
+</div>

@@ -273,11 +273,11 @@ function scrape2(request2, response2) {
                 var site=current.site;
                 var facebook=current.facebook;
                 var googleplus=current.googleplus;
-                var longitude=current.marker[0];
-                if(longitude!=0)
-                    var latitude=current.marker[1];
+                var latitude=current.marker[0];
+                if(latitude!=0)
+                    var longitude=current.marker[1];
                 else
-                    var latitude=0;
+                    var longitude=0;
 
                 var sousCategory=current.categorie;
                 if(sousCategory[0]=='P' && sousCategory[1]=='h')

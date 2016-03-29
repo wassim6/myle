@@ -13,10 +13,8 @@ var santeController = require('../controllers/sante-controller');
 var LoginCredentialController = require('../controllers/login-controller'); 
 var TagController = require('../controllers/tag-controller'); 
 var GouverneraController = require('../controllers/gouvernera-controller');
-
-var BusinessController = require('../controllers/businessSearch-controller');
-
-var RestaurantController = require('../controllers/restaurant-controller');
+var BusinessSearchController = require('../controllers/businessSearch-controller');
+var BusinessController = require('../controllers/business-controller');
 
 var PassportController = require('../controllers/passport-controller');
 
@@ -67,21 +65,50 @@ apiRouter.post('/tag/edit', TagController.edit);
 apiRouter.get('/tag/remove/:_id', TagController.remove);
 
 apiRouter.get('/address/search', GouverneraController.searchGouverneraAndDelegation);
+apiRouter.get('/address/gouvernera/list', GouverneraController.getAllGouvernera);
+apiRouter.get('/address/delegation/list', GouverneraController.getAllDelegation);
+apiRouter.get('/address/delegationname/list', GouverneraController.getAllDelegationSansCodePostal);
 
-apiRouter.post('/business/search', BusinessController.search);
+apiRouter.post('/business/search', BusinessSearchController.search);
 
 
-apiRouter.get('/restaurant/list', RestaurantController.getAll);
+apiRouter.get('/business/:id', BusinessController.findById);
+apiRouter.post('/business/add', BusinessController.add);
+apiRouter.post('/business/editbasic/:id', BusinessController.editBasicInfo);
+apiRouter.post('/business/editadress/:id', BusinessController.editAdress);
+apiRouter.post('/business/addtag/:id', BusinessController.addTagToBusiness);
+apiRouter.post('/business/removetag/:id', BusinessController.removeTagToBusiness);
+apiRouter.get('/business/remove/:id', BusinessController.remove);
 
 
 apiRouter.get('/alimentation/list', ScrapeController.getAllAlimentation);
 apiRouter.get('/animaux/list', ScrapeController.getAllAnimaux);
 apiRouter.get('/automotos/list', ScrapeController.getAllAutoMoto);
-
+apiRouter.get('/artisans/list', ScrapeController.getAllArtisans);
+apiRouter.get('/sport/list', ScrapeController.getAllSport);
+apiRouter.get('/beaute/list', ScrapeController.getAllBeaute);
+apiRouter.get('/voyageLoisirs/list', ScrapeController.getAllVoyageLoisirs);
+apiRouter.get('/highTech/list', ScrapeController.getAllHighTech);
+apiRouter.get('/enfantEducation/list', ScrapeController.getAllEnfantEducation);
+apiRouter.get('/modeHabillement/list', ScrapeController.getAllModeHabillement);
+apiRouter.get('/fournitureAdministratif/list', ScrapeController.getAllFournitureAdministratif);
+apiRouter.get('/maisonDeco/list', ScrapeController.getAllMaisonDeco);
+apiRouter.get('/sortie/list', ScrapeController.getAllSortie);
+apiRouter.get('/service/list', ScrapeController.getAllService);
 
 apiRouter.get('/scrape/alimentation', ScrapeController.scrapeAlimentation);
 apiRouter.get('/scrape/animaux', ScrapeController.scrapeAnimaux);
 apiRouter.get('/scrape/automotos', ScrapeController.scrapeAutoMoto);
+apiRouter.get('/scrape/artisans', ScrapeController.scrapeArtisans);
+apiRouter.get('/scrape/sport', ScrapeController.scrapeSport);
+apiRouter.get('/scrape/beaute', ScrapeController.scrapeBeaute);
+apiRouter.get('/scrape/highTech', ScrapeController.scrapeHighTech);
+apiRouter.get('/scrape/enfantEducation', ScrapeController.scrapeEnfantEducation);
+apiRouter.get('/scrape/modeHabillement', ScrapeController.scrapeModeHabillement);
+apiRouter.get('/scrape/fournitureAdministratif', ScrapeController.scrapeFournitureAdministratif);
+apiRouter.get('/scrape/maisonDeco', ScrapeController.scrapeMaisonDeco);
+apiRouter.get('/scrape/sortie', ScrapeController.scrapeSortie);
+apiRouter.get('/scrape/service', ScrapeController.scrapeService);
 
 
 

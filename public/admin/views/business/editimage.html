@@ -26,30 +26,38 @@ Business Edit <small></small>
         <div class="col-md-3">
             <ul class="ver-inline-menu tabbable margin-bottom-10">
                 <li class="">
-                    <a  href="#/business/edit/{{b.id}}" >
+                    <a  href="#/business/edit/{{businesId}}" >
                     <i class="fa fa-cog"></i> Information </a>
                     <span class="after">
                     </span>
                 </li>
                 <li class="">
-                    <a  href="#/business/editcat/{{b.id}}" >
+                    <a  href="#/business/editcat/{{businesId}}" >
                     <i class="fa fa-cog"></i> Categories </a>
                 </li>
                 <li class="">
-                    <a href="#/business/edittag/{{b.id}}" >
+                    <a href="#/business/edittag/{{businesId}}" >
                     <i class="fa fa-cog"></i> Tags </a>
                 </li>
                 <li class="">
-                    <a href="#/business/editadresse/{{b.id}}" >
+                    <a href="#/business/editadresse/{{businesId}}" >
                     <i class="fa fa-cog"></i> Adresse </a>
                 </li>
+                <li class="">
+                    <a href="#/business/editprofileimage/{{businesId}}" >
+                    <i class="fa fa-picture-o"></i> Profile Image </a>
+                </li>
                 <li class="active">
-                    <a href="#/business/editimage/{{b.id}}" >
+                    <a href="#/business/editimage/{{businesId}}" >
                     <i class="fa fa-picture-o"></i> Images </a>
                 </li>
                 <li class="">
-                    <a href="#/business/editinformation/{{b.id}}" >
+                    <a href="#/business/editinformation/{{businesId}}" >
                     <i class="fa fa-cog"></i> Additional Information </a>
+                </li>
+                <li>
+                    <a  href="#/business/editopeninghour/{{businesId}}" >
+                    <i class="fa fa-cog"></i> Opening Hours </a>
                 </li>
             </ul>
         </div>
@@ -91,13 +99,13 @@ Business Edit <small></small>
                         <tbody>
                         <tr ng-repeat="im in b.images" >
                             <td>
-                                <a href="http://vynd-services.azurewebsites.net/{{im.uri}}" class="fancybox-button" data-rel="fancybox-button">
-                                <img class="img-responsive" ng-src="http://vynd-services.azurewebsites.net/{{im.uri}}" alt="">
+                                <a href="http://localhost:4853{{im.uri}}" class="fancybox-button" data-rel="fancybox-button">
+                                <img class="img-responsive" ng-src="http://localhost:4853{{im.uri}}" alt="">
                                 </a>
                             </td>
                             <td>
-                                <a href="javascript:;" class="btn default btn-sm">
-                                <i class="fa fa-times"></i> Remove </a>
+                                <button class="btn default btn-sm" ng-click="deleteImage(im)" >
+                                <i class="fa fa-times"></i> Remove </button>
                             </td>
                         </tr>
                         </tbody>

@@ -1,16 +1,24 @@
 'use strict';
 
-
-
-
-
-
-MetronicApp.controller('BusinessAddCtrl', function($rootScope, $scope, $http, $timeout,  BusinessService, uiGmapGoogleMapApi, $log) {
+MetronicApp.controller('BusinessAddCtrl', function($rootScope, $scope, $http, $timeout,  BusinessService, uiGmapGoogleMapApi, $log, toaster, TagService, AdressService) {
     
     $scope.success=false;
     $scope.error=false;
     $scope.disable=false;
     
+    
+    $scope.categories=[
+        {name:"Alimentation"},{name:"Animaux"},{name:"Auto-Motos"},{name:"Artisans"},{name:"Sport"},{name:"Beauté et bien être"},{name:"voyage et loisirs"},{name:"High Tech"},{name:"Enfant et Education"},
+        {name:"Mode et Habillement"},{name:"Fourniture Administratifs"},{name:"Maison et Deco"},{name:"Sortie"},{name:"Service"}
+    ];
+    $scope.subCategories=TagService.GetAll().query();
+    $scope.gouverneras=AdressService.GetAllGouvernera().query();
+    $scope.delegations=AdressService.GetAllDelegationName().query();
+    
+    $scope.category={};
+    $scope.subCategory={};
+    $scope.gouvernera={};
+    $scope.delegation={};
     $scope.b={};
     $scope.b.latitude=36.86176800815239;
     $scope.b.longitude=10.1643705368042;
@@ -99,42 +107,35 @@ MetronicApp.controller('BusinessAddCtrl', function($rootScope, $scope, $http, $t
     
     
     
-    
-    
-    $scope.add = function(){
-        
-        //console.log($scope.imageSource);
-        
-        BusinessService.AddBusiness().save({            
-            "address": $scope.b.address,
-            "country": "Tunisie",
+    $scope.add = function(valid){
+        if(!valid){
+            toaster.error("error", "Please complete all field !");
+            return;
+        }
+        $scope.disable=true;
+       BusinessService.AddBusiness().save({            
+            "adress": $scope.b.address,
             "description":$scope.b.description,
             "latitude":$scope.b.latitude,
             "longitude":$scope.b.longitude,
             "name":$scope.b.name,
-            "postalCode":$scope.b.postalCode,
-            "region":$scope.b.region,
+            "fax":$scope.b.fax,
             "tel":$scope.b.tel,
-            "imgURI":$scope.imageSource.base64
+            "gouvernera":$scope.gouvernera.selected._id,
+            "delegation":$scope.delegation.selected._id,
+            "category":$scope.category.selected._id,
+            "sousCategory":$scope.subCategory.selected._id
+
         }, function(e){
             $scope.disable=false;
-            $scope.success=true;
-            $scope.error=false; 
-               
-        }, function(){
-            $scope.success=false;
-            $scope.error=true;
+            toaster.success("success", "Business added");
+           
+        }, function(e){
+            toaster.error("error", e);
             $scope.disable=false;
-        });  
+        }); 
         
     };
-    
-    
-    
-    
-    
-    
-    
 
     
     
