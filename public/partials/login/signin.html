@@ -18,19 +18,19 @@
                     </div>
 
                     <hr/>
-                    <form method="post" action="http://preview.byaviators.com/template/superlist/login.html?">
+                    <form>
                         <div class="form-group">
-                            <label for="login-form-email">Adresse e-mail</label>
-                            <input type="email" class="form-control" name="email" id="login-form-email">
+                            <label for="login-form-email">Username</label>
+                            <input  class="form-control" name="username" ng-model="l.username">
                         </div><!-- /.form-group -->
 
                         <div class="form-group">
                             <label for="login-form-password">Mot de passe</label>
-                            <input type="password" class="form-control" name="password" id="login-form-password">
+                            <input type="password" class="form-control" name="password" id="login-form-password" ng-model="l.password">
                             <div class="help-block text-right"><a href="#/login/forgot_password">Vous avez oublié votre mot de passe ?</a></div>
                         </div><!-- /.form-group -->
 
-                        <button type="submit" class="btn btn-primary" style="width: 50%;">Connexion</button>
+                        <button type="submit" class="btn btn-primary" style="width: 50%;" ng-click="authetificationUser(l)">Connexion</button>
                     </form>
                     <hr/>
                     <p style=" color: slategray; margin-top: 7px;">Nouveau sur Myle ? <a href="#/login/sign_up"> S’inscrire</a></p>

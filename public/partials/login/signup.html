@@ -19,37 +19,35 @@
                             <p style="font-size: 10px;">Ne vous inquiétez pas, nous ne publions rien sans votre autorisation.</p>
                             <p>Ou</p>
                         </h3>
+                        <form>
                         <div class="row">
                             <div class="form-group col-sm-6">
-                                <label>Prénom</label>
-                                <input type="text" class="form-control" value="Prénom">
+                                <label>Username</label>
+                                <input type="text" class="form-control" value="username" ng-model="a.username">
                             </div><!-- /.form-group -->
 
-                            <div class="form-group col-sm-6">
-                                <label>Nom</label>
-                                <input type="text" class="form-control" value="Nom">
-                            </div><!-- /.form-group -->
 
                             <div class="form-group col-sm-12">
                                 <label>E-mail</label>
-                                <input type="text" class="form-control" value="sample@example.com">
+                                <input type="text" class="form-control" value="sample@example.com" ng-model="a.email">
                             </div><!-- /.form-group -->
 
                             <div class="form-group col-sm-6">
-                                <label>Mot de passe</label>
-                                <input type="password" class="form-control" placeholder="Mot de passe">
+                                <label>Password</label>
+                                <input type="password" class="form-control" placeholder="Mot de passe" ng-model="a.password">
                             </div>
                             <div class="clearfix"></div>
 
                             <div class="form-group col-sm-6">
                                 <label>Code postal</label>
-                                <input type="text" class="form-control" placeholder="exemple: 7000">
+                                <input type="text" class="form-control" placeholder="exemple: 7000"  ng-model="a.codePostale">
                             </div>
                         </div>
+                            </form>
 
                         <p>En vous inscrivant, vous acceptez les <a href=""> conditions d'utilisation</a> ainsi que la <a href=""> Vie privée</a> de Myle.</p>
                         <div class="center">
-                            <button type="submit" class="btn btn-primary" style="width: 50%;">S'inscrire</button>
+                            <button type="submit" class="btn btn-primary" style="width: 50%;" ng-click="createUser(a)">S'inscrire</button>
                         </div>
 
                         <p style="float: right; color: slategray; margin-top: 7px;">Déjà membre Myle ? <a href="#/login/sign_in">Connexion</a></p>
