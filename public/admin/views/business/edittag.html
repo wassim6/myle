@@ -31,10 +31,6 @@ Business Edit <small></small>
                     <span class="after">
                     </span>
                 </li>
-                <li class="">
-                    <a  href="#/business/editcat/{{businesId}}" >
-                    <i class="fa fa-cog"></i> Categories </a>
-                </li>
                 <li class="active">
                     <a href="#/business/edittag/{{businesId}}" >
                     <i class="fa fa-cog"></i> Tags </a>
@@ -101,23 +97,17 @@ Business Edit <small></small>
                                             name
                                         </th>
                                         <th>
-                                            valid
-                                        </th>
-                                        <th>
                                             delete
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="t in b.tags" >
+                                    <tr ng-repeat="t in b.tag" >
                                         <td>
-                                            {{t.Id}}
+                                            {{t._id}}
                                         </td>
                                         <td>
                                             {{t.name}}
-                                        </td>
-                                        <td>
-                                            {{t.valid}}
                                         </td>
                                         <td>
                                             <button class="btn default btn-xs red" confirm-button="remove(t);" message="Are you sure to remove this Tag from this Business ?" yes="Remove" no="Cancel" >

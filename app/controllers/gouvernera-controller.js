@@ -6,11 +6,26 @@ var Delegation = require('../models/Delegation');
 var Schema = mongoose.Schema; // allows us to create a constructor for our model
 
 
-function getAll(request, response){
+
+function getAllGouvernera(request, response){
     Gouvernera.find({},function(error, gouverneras) {
             if (error) console.error('Could not retrieve gouverneras b/c:', error);
             response.json(gouverneras);
         });
+};
+
+function getAllDelegation(request, response){
+    Delegation.find({},function(error, delegations) {
+            if (error) console.error('Could not retrieve Delegation b/c:', error);
+            response.json(delegations); 
+    });
+};
+
+function getAllDelegationSansCodePostal(request, response){
+    Delegation.find({},'_id name',function(error, delegations) {
+            if (error) console.error('Could not retrieve Delegation b/c:', error);
+            response.json(delegations); 
+    }).limit(500);
 };
 
 function show(request, response){
@@ -49,7 +64,9 @@ function searchGouverneraAndDelegation(request, response){
 };
 
 module.exports = {
-    getAll:getAll,
+    getAllGouvernera:getAllGouvernera,
     show:show,
-    searchGouverneraAndDelegation:searchGouverneraAndDelegation
+    searchGouverneraAndDelegation:searchGouverneraAndDelegation,
+    getAllDelegation:getAllDelegation,
+    getAllDelegationSansCodePostal:getAllDelegationSansCodePostal
 };
