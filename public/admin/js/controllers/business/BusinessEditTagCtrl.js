@@ -7,30 +7,27 @@ MetronicApp.controller('BusinessEditTagCtrl', function($rootScope, $scope, $http
     var businesId = $stateParams.id;
     $scope.businesId=businesId;
     
-    $scope.b=BusinessService.GetBusiness().get({ ID:businesId}, function() {
-    });
+    $scope.b=BusinessService.GetById().get({ id:businesId}, function() {});
     //finish get business info
     
     $scope.tag = {};
     
-    var tags = TagService.GetAllTag().get({}, function(){
-        $scope.tags=tags.tags; 
-    });
+    $scope.tags = TagService.GetAll().query();
 
     
     $scope.addTag = function(tag){
         
         if(typeof(tag.selected)!='undefined'){
                BusinessService.AddTagToBusiness().save({
-                   "businessId":businesId,
-	               "tagId":tag.selected.Id
+                   "id":businesId,
+	               "tag":{_id:tag.selected._id, name:tag.selected.name}
                }, function(){
-//                   alert('sub-category added');
                    toaster.success("success", "Tag added to business");
-                   $scope.b=BusinessService.GetBusiness().get({ ID:businesId}, function() {
+                   var b=BusinessService.GetById().get({ id:businesId}, function() {
+                       $scope.b.tag=b.tag;
                     });
                }, function(e){
-                     toaster.error("error", e);
+                     toaster.error("error", "duplicate tag or tag not found");
                });
         }
         else{
@@ -40,12 +37,12 @@ MetronicApp.controller('BusinessEditTagCtrl', function($rootScope, $scope, $http
     
     $scope.remove = function(tag){
           BusinessService.RemoveTagFromBusiness().save({
-                   "businessId":businesId,
-	               "tagId":tag.Id
+                   "id":businesId,
+	               "tag":tag
                }, function(){
-//                   alert('sub-category added');
                    toaster.success("success", "Tag removed from business");
-                   $scope.b=BusinessService.GetBusiness().get({ ID:businesId}, function() {
+                   var tags=BusinessService.GetById().get({ id:businesId}, function() {
+                       $scope.b.tag=tags.tag;
                     });
                }, function(e){
                      toaster.error("error", e);

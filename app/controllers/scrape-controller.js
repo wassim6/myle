@@ -45,12 +45,13 @@ function scrapeAlimentation(request2, response2) {
                 var site=current.site;
                 var facebook=current.facebook;
                 var googleplus=current.googleplus;
+                var longitude=0,latitude=0;
                 if(typeof(current.marker!='undefined'))
-                {   var longitude=current.marker[0];
-                    if(longitude!=0)
-                        var latitude=current.marker[1];
+                {   latitude=current.marker[0];
+                    if(latitude!=0)
+                        longitude=current.marker[1];
                     else
-                        var latitude=0;
+                        longitude=0;
                 }
                 var sousCategory=current.categorie;
                 var category='Alimentation';
@@ -402,11 +403,14 @@ function scrapeAnimaux(request2, response2) {
                 var site=current.site;
                 var facebook=current.facebook;
                 var googleplus=current.googleplus;
-                var longitude=current.marker[0];
-                if(longitude!=0)
-                    var latitude=current.marker[1];
-                else
-                    var latitude=0;
+                var longitude=0,latitude=0;
+                if(typeof(current.marker!='undefined'))
+                {   latitude=current.marker[0];
+                    if(latitude!=0)
+                        longitude=current.marker[1];
+                    else
+                        longitude=0;
+                }
 
                 var sousCategory=current.categorie;
                 var category='Animaux';
@@ -758,12 +762,14 @@ function scrapeAutoMoto(request2, response2) {
                 var site=current.site;
                 var facebook=current.facebook;
                 var googleplus=current.googleplus;
-                var longitude=current.marker[0];
-                if(longitude!=0)
-                    var latitude=current.marker[1];
-                else
-                    var latitude=0;
-
+                var longitude=0,latitude=0;
+                if(typeof(current.marker!='undefined'))
+                {   latitude=current.marker[0];
+                    if(latitude!=0)
+                        longitude=current.marker[1];
+                    else
+                        longitude=0;
+                }
                 var sousCategory=current.categorie;
                 var category='Auto-Motos';
 
@@ -1114,11 +1120,14 @@ function scrapeArtisans(request2, response2) {
                 var site=current.site;
                 var facebook=current.facebook;
                 var googleplus=current.googleplus;
-                var longitude=current.marker[0];
-                if(longitude!=0)
-                    var latitude=current.marker[1];
-                else
-                    var latitude=0;
+                var longitude=0,latitude=0;
+                if(typeof(current.marker!='undefined'))
+                {   latitude=current.marker[0];
+                    if(latitude!=0)
+                        longitude=current.marker[1];
+                    else
+                        longitude=0;
+                }
 
                 var sousCategory=current.categorie;
                 var category='Artisans';
@@ -1470,12 +1479,13 @@ function scrapeSport(request2, response2) {
                 var site=current.site;
                 var facebook=current.facebook;
                 var googleplus=current.googleplus;
-                if (current.marker && current.marker[0] )
-                {   var longitude=current.marker[0];
-                    if(longitude!=0)
-                        var latitude=current.marker[1];
+                var longitude=0,latitude=0;
+                if(typeof(current.marker!='undefined'))
+                {   latitude=current.marker[0];
+                    if(latitude!=0)
+                        longitude=current.marker[1];
                     else
-                        var latitude=0;
+                        longitude=0;
                 }
 
                 var sousCategory=current.categorie;
@@ -1828,13 +1838,13 @@ function scrapeBeaute(request2, response2) {
                 var site=current.site;
                 var facebook=current.facebook;
                 var googleplus=current.googleplus;
-               if (current.marker && current.marker[0] )
-                { 
-                    var longitude=current.marker[0];
-                    if(longitude!=0)
-                        var latitude=current.marker[1];
+                var longitude=0,latitude=0;
+                if(typeof(current.marker!='undefined'))
+                {   latitude=current.marker[0];
+                    if(latitude!=0)
+                        longitude=current.marker[1];
                     else
-                        var latitude=0;
+                        longitude=0;
                 }
 
                 var sousCategory=current.categorie;
@@ -2187,11 +2197,14 @@ function scrapeVoyageLoisirs(request2, response2) {
                 var site=current.site;
                 var facebook=current.facebook;
                 var googleplus=current.googleplus;
-                var longitude=current.marker[0];
-                if(longitude!=0)
-                    var latitude=current.marker[1];
-                else
-                    var latitude=0;
+                var longitude=0,latitude=0;
+                if(typeof(current.marker!='undefined'))
+                {   latitude=current.marker[0];
+                    if(latitude!=0)
+                        longitude=current.marker[1];
+                    else
+                        longitude=0;
+                }
 
                 var sousCategory=current.categorie;
                 var category='voyages et loisirs';
@@ -2543,13 +2556,13 @@ function scrapeHighTech(request2, response2) {
                 var site=current.site;
                 var facebook=current.facebook;
                 var googleplus=current.googleplus;
-                
-                if (current.marker && current.marker[0] )
-                {   var longitude=current.marker[0];
-                    if(longitude!=0)
-                        var latitude=current.marker[1];
+                var longitude=0,latitude=0;
+                if(typeof(current.marker!='undefined'))
+                {   latitude=current.marker[0];
+                    if(latitude!=0)
+                        longitude=current.marker[1];
                     else
-                        var latitude=0;
+                        longitude=0;
                 }
 
                 var sousCategory=current.categorie;
@@ -2902,11 +2915,14 @@ function scrapeEnfantEducation(request2, response2) {
                 var site=current.site;
                 var facebook=current.facebook;
                 var googleplus=current.googleplus;
-                var longitude=current.marker[0];
-                if(longitude!=0)
-                    var latitude=current.marker[1];
-                else
-                    var latitude=0;
+                var longitude=0,latitude=0;
+                if(typeof(current.marker!='undefined'))
+                {   latitude=current.marker[0];
+                    if(latitude!=0)
+                        longitude=current.marker[1];
+                    else
+                        longitude=0;
+                }
 
                 var sousCategory=current.categorie;
                 var category='Enfant et Education';
@@ -3258,11 +3274,14 @@ function scrapeModeHabillement(request2, response2) {
                 var site=current.site;
                 var facebook=current.facebook;
                 var googleplus=current.googleplus;
-                var longitude=current.marker[0];
-                if(longitude!=0)
-                    var latitude=current.marker[1];
-                else
-                    var latitude=0;
+                var longitude=0,latitude=0;
+                if(typeof(current.marker!='undefined'))
+                {   latitude=current.marker[0];
+                    if(latitude!=0)
+                        longitude=current.marker[1];
+                    else
+                        longitude=0;
+                }
 
                 var sousCategory=current.categorie;
                 var category='Mode et Habillement';
@@ -3614,13 +3633,13 @@ function scrapeFournitureAdministratif(request2, response2) {
                 var site=current.site;
                 var facebook=current.facebook;
                 var googleplus=current.googleplus;
-                var longitude=current.marker[0];
-                if (current.marker && current.marker[0] )
-                {   var longitude=current.marker[0];
-                    if(longitude!=0)
-                        var latitude=current.marker[1];
+                var longitude=0,latitude=0;
+                if(typeof(current.marker!='undefined'))
+                {   latitude=current.marker[0];
+                    if(latitude!=0)
+                        longitude=current.marker[1];
                     else
-                        var latitude=0;
+                        longitude=0;
                 }
 
                 var sousCategory=current.categorie;
@@ -3973,11 +3992,14 @@ function scrapeMaisonDeco(request2, response2) {
                 var site=current.site;
                 var facebook=current.facebook;
                 var googleplus=current.googleplus;
-                var longitude=current.marker[0];
-                if(longitude!=0)
-                    var latitude=current.marker[1];
-                else
-                    var latitude=0;
+                var longitude=0,latitude=0;
+                if(typeof(current.marker!='undefined'))
+                {   latitude=current.marker[0];
+                    if(latitude!=0)
+                        longitude=current.marker[1];
+                    else
+                        longitude=0;
+                }
 
                 var sousCategory=current.categorie;
                 var category='Maison et Deco';
@@ -4329,11 +4351,14 @@ function scrapeSortie(request2, response2) {
                 var site=current.site;
                 var facebook=current.facebook;
                 var googleplus=current.googleplus;
-                var longitude=current.marker[0];
-                if(longitude!=0)
-                    var latitude=current.marker[1];
-                else
-                    var latitude=0;
+                var longitude=0,latitude=0;
+                if(typeof(current.marker!='undefined'))
+                {   latitude=current.marker[0];
+                    if(latitude!=0)
+                        longitude=current.marker[1];
+                    else
+                        longitude=0;
+                }
 
                 var sousCategory=current.categorie;
                 var category='Sortie';
@@ -4685,11 +4710,14 @@ function scrapeService(request2, response2) {
                 var site=current.site;
                 var facebook=current.facebook;
                 var googleplus=current.googleplus;
-                var longitude=current.marker[0];
-                if(longitude!=0)
-                    var latitude=current.marker[1];
-                else
-                    var latitude=0;
+                var longitude=0,latitude=0;
+                if(typeof(current.marker!='undefined'))
+                {   latitude=current.marker[0];
+                    if(latitude!=0)
+                        longitude=current.marker[1];
+                    else
+                        longitude=0;
+                }
 
                 var sousCategory=current.categorie;
                 var category='Service';

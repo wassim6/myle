@@ -1,20 +1,27 @@
 'use strict';
 
 
-MetronicApp.controller('BusinessEditAdresseCtrl', function($rootScope, $scope, $http, $timeout, $stateParams,  BusinessService, uiGmapGoogleMapApi, toaster) {
+MetronicApp.controller('BusinessEditAdresseCtrl', function($rootScope, $scope, $http, $timeout, $stateParams,  BusinessService, uiGmapGoogleMapApi, toaster, AdressService) {
     
     //Get Busines info
     var businesId = $stateParams.id;
     $scope.businesId=businesId;
     
-    var bInitial=$scope.b=BusinessService.GetBusiness().get({ ID:businesId});
-    $scope.b=BusinessService.GetBusiness().get({ ID:businesId}, function() {
+    $scope.gouverneras=AdressService.GetAllGouvernera().query();
+    $scope.delegations=AdressService.GetAllDelegationName().query();
+    
+
+    $scope.gouvernera={};
+    $scope.delegation={};
+    
+    var bInitial=$scope.b=BusinessService.GetById().get({ id:businesId});
+    $scope.b=BusinessService.GetById().get({ id:businesId}, function() {
 
          $scope.latitude=$scope.b.latitude;
          $scope.longitude=$scope.b.longitude;
-         $scope.address=$scope.b.address;
-         $scope.postalCode=$scope.b.postalCode;
-         $scope.region=$scope.b.region;
+         $scope.adress=$scope.b.adress;
+         $scope.delegation.selected=$scope.b.delegation;
+         $scope.gouvernera.selected=$scope.b.gouvernera;
         
         $scope.map= {center: {latitude: $scope.latitude, longitude: $scope.longitude }, zoom: 7 };
         $scope.options = {scrollwheel: true};
@@ -44,7 +51,6 @@ MetronicApp.controller('BusinessEditAdresseCtrl', function($rootScope, $scope, $
             }
           }
         };
-        //console.log($scope.map);
         
     });
     //finish get business info
@@ -106,26 +112,30 @@ MetronicApp.controller('BusinessEditAdresseCtrl', function($rootScope, $scope, $
     
     
     
-    $scope.editAdresse = function(postalCode, address, region, latitude, longitude){
+    $scope.editAdresse = function(valid){
         
-        BusinessService.EditBusiness().save({
-                "address":address,
-                "country":bInitial.country,
-                "description":bInitial.description,
-                "id":bInitial.id,
-                "latitude":latitude,
-                "longitude":longitude,
-                "name":bInitial.name,
-                "postalCode":postalCode,
-                "region":region,
-                "tel":bInitial.tel    
-            }, function(){
-                //console.log("ok");
-                toaster.success("success", "Adress edited");
-                
-            }, function(e){
-                toaster.error("error", e);
-            });
+        if(!valid){
+            toaster.error("error", "Please complete all field !");
+            return;
+        }
+        $scope.disable=true;
+        BusinessService.EditAdress().save({
+            "id":businesId,
+            "adress": $scope.adress,
+            "latitude":$scope.latitude,
+            "longitude":$scope.longitude,
+            "gouvernera":$scope.gouvernera.selected._id,
+            "delegation":$scope.delegation.selected._id
+        }, function(e){
+            $scope.disable=false;
+            toaster.success("success", "Business edited");
+           
+        }, function(e){
+            toaster.error("error", e);
+            $scope.disable=false;
+        }); 
+        
+        
         
     };
     

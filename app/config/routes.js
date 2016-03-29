@@ -13,10 +13,8 @@ var santeController = require('../controllers/sante-controller');
 var LoginCredentialController = require('../controllers/login-controller'); 
 var TagController = require('../controllers/tag-controller'); 
 var GouverneraController = require('../controllers/gouvernera-controller');
-
-var BusinessController = require('../controllers/businessSearch-controller');
-
-var RestaurantController = require('../controllers/restaurant-controller');
+var BusinessSearchController = require('../controllers/businessSearch-controller');
+var BusinessController = require('../controllers/business-controller');
 
 var PassportController = require('../controllers/passport-controller');
 
@@ -67,11 +65,20 @@ apiRouter.post('/tag/edit', TagController.edit);
 apiRouter.get('/tag/remove/:_id', TagController.remove);
 
 apiRouter.get('/address/search', GouverneraController.searchGouverneraAndDelegation);
+apiRouter.get('/address/gouvernera/list', GouverneraController.getAllGouvernera);
+apiRouter.get('/address/delegation/list', GouverneraController.getAllDelegation);
+apiRouter.get('/address/delegationname/list', GouverneraController.getAllDelegationSansCodePostal);
 
-apiRouter.post('/business/search', BusinessController.search);
+apiRouter.post('/business/search', BusinessSearchController.search);
 
 
-apiRouter.get('/restaurant/list', RestaurantController.getAll);
+apiRouter.get('/business/:id', BusinessController.findById);
+apiRouter.post('/business/add', BusinessController.add);
+apiRouter.post('/business/editbasic/:id', BusinessController.editBasicInfo);
+apiRouter.post('/business/editadress/:id', BusinessController.editAdress);
+apiRouter.post('/business/addtag/:id', BusinessController.addTagToBusiness);
+apiRouter.post('/business/removetag/:id', BusinessController.removeTagToBusiness);
+apiRouter.get('/business/remove/:id', BusinessController.remove);
 
 
 apiRouter.get('/alimentation/list', ScrapeController.getAllAlimentation);
