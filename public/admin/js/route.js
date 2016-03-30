@@ -165,6 +165,25 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                         }]
                     }
                 })
+        .state('business/editprofileimage/:id', {
+                    url: "/business/editprofileimage/:id",
+                    templateUrl: "views/business/editprofileimage.html",
+                    data: {pageTitle: 'Business edit Image'},
+                    controller: "BusinessEditProfileImageCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load({
+                                name: 'MetronicApp',
+                                insertBefore: '#ng_load_plugins_before',
+                                files: [           
+                                    'js/services/tag/tagService.js',
+                                    'js/services/business/businessService.js',
+                                    'js/controllers/business/BusinessEditProfileImageCtrl.js'
+                                ]
+                            });
+                        }]
+                    }
+                })
         .state('business/editimage/:id', {
                     url: "/business/editimage/:id",
                     templateUrl: "views/business/editimage.html",
@@ -224,6 +243,24 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                     }]
                 }
             })
+        .state('business/editopeninghour/:id', {
+                    url: "/business/editopeninghour/:id",
+                    templateUrl: "views/business/editopeninghour.html",
+                    data: {pageTitle: 'Business edit opening hour'},
+                    controller: "BusinessEditOpeningHourCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load({
+                                name: 'MetronicApp',
+                                insertBefore: '#ng_load_plugins_before',
+                                files: [           
+                                    'js/services/business/businessService.js',
+                                    'js/controllers/business/BusinessEditOpeningHourCtrl.js'
+                                ]
+                            });
+                        }]
+                    }
+                })
     
     
     
@@ -243,6 +280,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
 'assets/global/plugins/datatables/all.min.js',
 'js/scripts/table-advanced.js',
 
+'js/services/business/businessService.js',                                
 'js/services/sante/santeService.js',
 'js/controllers/sante/SanteListCtrl.js'
                                 

@@ -7,40 +7,44 @@ MetronicApp.controller('BusinessEditImageCtrl', function($rootScope, $scope, $ht
     var businesId = $stateParams.id;
     $scope.businesId=businesId;
     
-    $scope.b=BusinessService.GetBusiness().get({ ID:businesId}, function() {
+    $scope.b=BusinessService.GetById().get({ id:businesId}, function() {
     });
     //finish get business info
     
     $scope.img={};
     
-    $scope.addImage = function(img){
-        //console.log(img);
+    $scope.addImage = function(img, valid){
+        if(!valid){
+            toaster.error("error", "Please insert a valid image !");
+            return;
+        }
         BusinessService.AddImage().save({
-            "ID":$scope.b.id,
-            "data":img.base64,
-            "profileImage":false
+            "id":businesId,
+            "img":img.base64,
+            "extention":img.filetype.split('/')[1]
         }, function(){
-            toaster.success("success", "Img added");
-            $scope.b=BusinessService.GetBusiness().get({ ID:businesId});
+            toaster.success("success", "Image added");
+            $scope.b=BusinessService.GetById().get({ id:businesId});
         }, function(e){
              toaster.error("error", e);
-        });
+        });    
     };
     
     $scope.deleteImage = function(img){
-       //console.log(img);
-        BusinessService.DeletePhotoBusiness().get({
-            ID:img.id
+       BusinessService.RemoveImage().save({
+            "id":businesId,
+            "uri":img.uri
         }, function(){
-             $scope.b=BusinessService.GetBusiness().get({ ID:businesId}, function() {
-            });
-            toaster.success("success", "Img deleted");
-            
+            toaster.success("success", "Image removed");
+            $scope.b=BusinessService.GetById().get({ id:businesId});
         }, function(e){
-            toaster.error("error", e);
-        });
-          
+             toaster.error("error", e);
+        });      
     };
-    
-    
+
+
+    $scope.reset = function(img){
+        $scope.img={};
+    };
+
 });

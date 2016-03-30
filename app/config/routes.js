@@ -79,6 +79,20 @@ apiRouter.post('/business/editadress/:id', BusinessController.editAdress);
 apiRouter.post('/business/addtag/:id', BusinessController.addTagToBusiness);
 apiRouter.post('/business/removetag/:id', BusinessController.removeTagToBusiness);
 apiRouter.get('/business/remove/:id', BusinessController.remove);
+apiRouter.post('/business/editprofileimage/:id', BusinessController.editProfileImage);
+apiRouter.post('/business/editcoverimage/:id', BusinessController.editCoverImage);
+apiRouter.post('/business/addImage/:id', BusinessController.addImage);
+apiRouter.post('/business/removeImage/:id', BusinessController.removeImage);
+apiRouter.post('/business/editInfoview1/:id', BusinessController.editInfoView1);
+apiRouter.post('/business/editInfoview2/:id', BusinessController.editInfoView2);
+apiRouter.post('/business/editInfoView3/:id', BusinessController.editInfoView3);
+apiRouter.post('/business/addOpeningHourToBusiness/:id', BusinessController.addOpeningHourToBusiness);
+apiRouter.post('/business/removeOpeningHourBusiness/:id', BusinessController.removeOpeningHourBusiness);
+apiRouter.post('/business/editOpeningHourToBusiness/:id', BusinessController.editOpeningHourToBusiness);
+apiRouter.post('/business/findAllByCat', BusinessController.findAllByCat);
+
+
+
 
 
 apiRouter.get('/alimentation/list', ScrapeController.getAllAlimentation);

@@ -33,6 +33,19 @@
                         </ui-select>
 
                </div>
+                <div class="form-group">
+                    <div class="form-group form-md-checkboxes">
+                        <div class="md-checkbox-list">
+                            <div class="md-checkbox">
+                                <select ng-model="open">
+                                    <option value="0" >Close</option>
+                                    <option value="1" >Open</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+                
                 
 
                 <div class="margiv-top-10">
@@ -110,8 +123,15 @@ Business Edit <small></small>
             </ul>
         </div>
         <div class="col-md-9">
+            <!--
+                X-editable
+              <a href="#" editable-text="user.name">{{ user.name || "empty" }}</a>
+            -->
             <form role="form" name="myForm" >
                 <div class="form-group">
+                    
+
+                    
                     <label class="control-label">Opening Day</label><br/>
                     <ui-select ng-model="openDay.selected" theme="select2" style="min-width: 400px;" required>
                         <ui-select-match placeholder="Select Opening Day">{{$select.selected.name}}</ui-select-match>
@@ -199,6 +219,22 @@ Business Edit <small></small>
                         </ui-select>
 
                </div>
+                <div class="form-group">
+                    <div class="form-group form-md-checkboxes">
+                        <div class="md-checkbox-list">
+                            <div class="md-checkbox">
+                                <input type="checkbox" ng-model="open" ng-value="true" value="true" id="checkbox1" class="md-check" checked>
+                                <label for="checkbox1">
+                                <span></span>
+                                <span class="check"></span>
+                                <span class="box"></span>
+                                Open ? </label>
+                            </div>
+                        </div>
+                    </div>
+
+               </div>
+                
                 
 
                 <div class="margiv-top-10">
@@ -232,13 +268,16 @@ Business Edit <small></small>
                                             closing hour
                                         </th>
                                         <th>
+                                            Open/Close
+                                        </th>
+                                        <th>
                                             Action
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="op in b.hours" >
-                                        <td ng-switch on="op.day" >
+                                    <tr ng-repeat="op in b.openingTime" >
+                                        <td ng-switch on="op.dayNumber" >
                                             <div ng-switch-when="0" >Monday</div>
                                             <div ng-switch-when="1" >Tuesday</div>
                                             <div ng-switch-when="2" >Wednesday</div>
@@ -254,6 +293,10 @@ Business Edit <small></small>
                                         </td>
                                         <td>
                                             {{op.closeStr}}
+                                        </td>
+                                        <td ng-switch on="op.open" >
+                                            <div ng-switch-when="1" >Open</div>
+                                            <div ng-switch-when="0" >Close</div>
                                         </td>
                                         <td>
                                             <button class="btn default btn-xs blue" ng-click="open(op, 'md');" >

@@ -7,49 +7,80 @@ MetronicApp.controller('BusinessEditInformationCtrl', function($rootScope, $scop
     var businesId = $stateParams.id;
     $scope.businesId=businesId;
     
-    $scope.b=BusinessService.GetBusiness().get({ ID:businesId}, function() {
-        
-
-        
-    });
+    $scope.b=BusinessService.GetById().get({ id:businesId}, function() {});
 
     
-    $scope.editInfo = function(){
-
-        
-        BusinessService.EditAditionalInfo().save({
-                "ID":$scope.b.id,
-                
-                "CNAM":$scope.b.informations.CNAM,
-                "appointment":$scope.b.informations.appointment,
-                "budget":$scope.b.informations.budget,
-                "check":$scope.b.informations.check,
-                "clim":$scope.b.informations.clim,
-                "creditCard":$scope.b.informations.creditCard,
-                "delivery":$scope.b.informations.delivery,
-                "mixte":$scope.b.informations.mixte,
-                "nonSmoking":$scope.b.informations.nonSmoking,
-                "reservation":$scope.b.informations.reservation,
-                "takeAway":$scope.b.informations.takeAway,
-                "tele":$scope.b.informations.tele,
-                "terrace":$scope.b.informations.terrace,
-                "tickets":$scope.b.informations.tickets,
-                "wifi":$scope.b.informations.wifi
-                
+    $scope.editInfoView1 = function(valid){
+        if(!valid){
+            toaster.error("error", "Please complete all field !");
+            return;
+        }
+        $scope.disable=true;
+        BusinessService.EditInfoView1().save({
+                "id":businesId,
+                "tel":$scope.b.tel,
+                "fax":$scope.b.fax,
+                "email":$scope.b.email,
+                "site":$scope.b.site,
+                "facebook":$scope.b.facebook,
+                "googleplus":$scope.b.googleplus,
             }, function(){
-                //console.log("ok");
                 toaster.success("success", "Information edited");
-                
+                $scope.disable=false;
             }, function(e){
                 toaster.error("error", e);
+                $scope.disable=false;
             });
-        
     };
-     
     
     
+    $scope.editInfoView2 = function(){
+        $scope.disable=true;
+        BusinessService.EditInfoView2().save({
+                "id":businesId,
+                "cnam":$scope.b.cnam,
+                "appointment":$scope.b.appointment,
+                "clim":$scope.b.clim,
+                "creditCard":$scope.b.creditCard,
+                "delivery":$scope.b.delivery,
+                "reservation":$scope.b.reservation,
+                "takeAway":$scope.b.takeAway,
+                "terrace":$scope.b.terrace,
+                "ticketsRestau":$scope.b.ticketsRestau,
+                "fauteuilRoulant":$scope.b.fauteuilRoulant,
+                "adapteEnfants":$scope.b.adapteEnfants,
+                "adapteGroupe":$scope.b.adapteGroupe,
+                "television":$scope.b.television,
+                "chiensAutorises":$scope.b.chiensAutorises,
+                "wifi":$scope.b.wifi,
+                "alcool":$scope.b.alcool,
+                "happyHour":$scope.b.happyHour,
+                "fumeur":$scope.b.fumeur,
+                "espaceNonFumeur":$scope.b.espaceNonFumeur,
+                "serviceADomicile":$scope.b.serviceADomicile
+            }, function(){
+                toaster.success("success", "Information edited");
+                $scope.disable=false;
+            }, function(e){
+                toaster.error("error", e);
+                $scope.disable=false;
+            });
+    };
     
-
+    $scope.editInfoView3 = function(){
+        $scope.disable=true;
+        BusinessService.editInfoView3().save({
+                "id":businesId,
+                "budget":$scope.b.budget,
+                "budgetRange":$scope.b.budgetRange
+            }, function(){
+                toaster.success("success", "Information edited");
+                $scope.disable=false;
+            }, function(e){
+                toaster.error("error", e);
+                $scope.disable=false;
+            });
+    };
     
     
     

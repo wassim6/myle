@@ -1,5 +1,5 @@
 <h3 class="page-title">
-	Business List <small> List of all business</small>
+	Business List
 </h3>
 <div class="page-bar">
 	<ul class="page-breadcrumb">
@@ -15,13 +15,36 @@
 </div>
 
 <div class="row">
-        <div class="col-md-6">
+        <form name="form"  class="form-horizontal form-row-seperated" novalidate>
+            <div class="form-body">
+                <div class="col-md-6">            
+                <div class="form-group">
+                    <label class="control-label col-md-3">Category</label>
+                    <div class="col-md-9">
+                        <ui-select ng-model="category.selected" theme="select2" style="min-width: 400px;" required>
+                            <ui-select-match placeholder="Select a Category">{{$select.selected.name}}</ui-select-match>
+                            <ui-select-choices repeat="c in categories | propsFilter: {name: $select.search}">
+                              <div ng-bind-html="c.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                          </ui-select>
+                    </div>
+                </div>                
+                </div>
+                <div class="col-md-6">            
+                <button  class="btn sbold green" ng-click="filterCat(form.$valid)" > Search
+                    <i class="fa fa-search"></i>
+                </button>
+                </div>  
+            </div>
+        </form>   
+    
+<!--    <div class="row">
         <div class="btn-group">
-            <a  class="btn sbold green" href="#/business/add2"> Add New Business
+            <a  class="btn sbold green" href="#/business/add"> Add New Business
                 <i class="fa fa-plus"></i>
             </a>
         </div>
-    </div>
+    </div>-->
     <br/><br/><br/>
 	<div class="col-md-12">
         <div style="margin-left:40%" ng-show="finish" >
@@ -36,63 +59,106 @@
 				<div class="tools">
 					<a href="" class="reload"></a>
 				</div>
+                <div class="actions" ng-controller="ExportCtrl">
+                    <div class="btn-group">
+                        <a class="btn btn-default btn-sm dropdown-toggle" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" style="color:white; font-size:14px;">
+                        Export <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li>
+                                <a href="javascript:;" ng-click="export('pdf', 3)"><i class="fa fa-file-pdf-o"></i> PDF</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" ng-click="export('json', 3)" ><i class="fa fa-file-text"></i> JSON</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" ng-click="export('xml', 3)"><i class="fa fa-file-code-o"></i> XML</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" ng-click="export('csv', 3)"><i class="fa fa-file-text-o"></i> CSV</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" ng-click="export('sql', 3)"><i class="fa fa-database"></i> SQL</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" ng-click="export('txt', 3)"><i class="fa fa-file-o"></i> Text</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" ng-click="export('excel', 3)"><i class="fa fa-file-excel-o"></i> Excel</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" ng-click="export('png', 3)"><i class="fa fa-file-image-o"></i> PNG</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
 			</div>
 			<div class="portlet-body">
-				<table class="table table-striped table-bordered table-hover" datatable="ng" dt-options="dtOptions">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="dataTables_length">
+                            <label>
+                                <select ng-model="itemsPerPage" class="form-control input-xsmall input-inline">
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                    <option value="150">150</option>
+                                    <option value="200">200</option>
+                                </select>
+                                records 
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="dataTables_filter">
+                            <label>Search:<input type="search" class="form-control input-small input-inline" placeholder="" ng-model="search" >
+                            </label>
+                        </div>
+                    </div>
+                </div>
+				<table id="myTable" class="table table-striped table-bordered table-hover" >
 					<thead>
 						<tr>
 							<th>
 								name
 							</th>
-							<th>
-								tel
-							</th>
-							<th>
-								region
-							</th>
-							<th>
-								postal code
-							</th>
-							<th>
-								average
-							</th>
                             <th>
-								nbr comments
-							</th>
+                                phone
+                            </th>
+                            <th>
+                                sub-Category
+                            </th>
+                            <th>
+                                Gouvernera
+                            </th>
                             <th>
                                 Action
                             </th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr ng-repeat="b in ::business.business" >
+					<tbody>                        
+						<tr dir-paginate="b in list | itemsPerPage: itemsPerPage | filter:search " >
 							<td>
 								{{b.name}}
 							</td>
-							<td>
-								{{b.tel}}
-							</td>
-							<td>
-								{{b.region}}
-							</td>
-							<td>
-								{{b.postalCode}}
-							</td>
-							<td>
-								{{b.average}}/5
+                            <td>
+                                {{b.tel}}
+                            </td>
+                            <td>
+								{{b.sousCategory}}
 							</td>
                             <td>
-								{{b.numberComments}}
+								{{b.gouvernera.name}}
 							</td>
                             <td>
 <!--                                <a href="" class="btn default btn-xs blue">
 								<i class="fa fa-eye"></i> Preview </a> -->
-                                <a href="#/business/detail/{{b.id}}" class="btn default btn-xs green">
+                                <a href="#/business/detail/{{b._id}}" class="btn default btn-xs green">
 								<i class="fa fa-search"></i> Detail </a>
-                                <a href="#/business/edit/{{b.id}}" class="btn default btn-xs purple" >
+                                <a href="#/business/edit/{{b._id}}" class="btn default btn-xs purple" >
 								<i class="fa fa-edit"></i> Edit </a>
                                 
-                                <button class="btn default btn-xs red" confirm-button="delete(b.id);" message="Are you sure to delete ?" yes="Delete" no="Cancel"><i class="fa fa-trash"></i> Delete</button>
+                                <button class="btn default btn-xs red" confirm-button="delete(b._id, $index);" message="Are you sure to delete ?" yes="Delete" no="Cancel"><i class="fa fa-trash"></i> Delete</button>
                                 
 <!--                                <a href="" class="btn default btn-xs red" confirm="Are you sure to delete ?"  >
 								<i class="fa fa-trash"></i> Delete </a>-->
@@ -102,8 +168,17 @@
 						</tr>
 					</tbody>
 				</table>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite"> {{total}} entries</div>
+                    </div>
+                    <div class="col-md-7 col-sm-12">
+                        <dir-pagination-controls></dir-pagination-controls>
+                    </div>
+                </div>
 			</div>
 		</div>
+
 		
 	</div>
 </div>

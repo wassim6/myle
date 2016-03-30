@@ -16,7 +16,8 @@ var MetronicApp = angular.module("MetronicApp", [
     "ui.select",
     "ngAnimate",
     "toaster",
-    "angularUtils.directives.dirPagination"
+    "angularUtils.directives.dirPagination",
+    "xeditable"
 ]); 
 
 MetronicApp.directive("confirmButton", function($document, $parse) {
@@ -131,6 +132,11 @@ MetronicApp.run(function ($rootScope, $state, $location, $resource) {
       
   });
 })
+
+
+MetronicApp.run(function(editableOptions) {
+  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+});
 
 /* Configure ocLazyLoader(refer: https://github.com/ocombe/ocLazyLoad) */
 MetronicApp.config(['$ocLazyLoadProvider', function($ocLazyLoadProvider) {

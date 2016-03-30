@@ -7,8 +7,9 @@ var bodyParser = require('body-parser');
 var apiRouter = require('./app/config/routes'); // bring in API routes
 
 // configure body-parser so we can work with request.body
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true, limit:'50mb' }));
+app.use(bodyParser.json({limit: '50mb'}));
+
 app.use(require('express-session')({
 
  secret: 'keyboard cat',
@@ -38,6 +39,7 @@ app.use('/api', apiRouter);
 // serve static files
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/admin'));
+
 
 // this is the entry way into the client-side
 app.get('/', function(request, response) {

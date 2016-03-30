@@ -10,10 +10,9 @@ MetronicApp.controller('BusinessEditCtrl', function($rootScope, $scope, $http, $
     
     $scope.categories=[
         {name:"Alimentation"},{name:"Animaux"},{name:"Auto-Motos"},{name:"Artisans"},{name:"Sport"},{name:"Beauté et bien être"},{name:"voyage et loisirs"},{name:"High Tech"},{name:"Enfant et Education"},
-        {name:"Mode et Habillement"},{name:"Fourniture Administratifs"},{name:"Maison et Deco"},{name:"Sortie"},{name:"Service"}
+        {name:"Mode et Habillement"},{name:"Fourniture Administratifs"},{name:"Maison et Deco"},{name:"Sortie"},{name:"Service"},{name:"Medecin"},{name:"Pharmacie"}
     ];
     $scope.subCategories=TagService.GetAll().query();
-    
     $scope.b=BusinessService.GetById().get({ id:businesId}, function() {
          //console.log($scope.b);
          $scope.name=$scope.b.name;

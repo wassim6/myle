@@ -32,10 +32,6 @@ Business Edit <small></small>
                     </span>
                 </li>
                 <li class="">
-                    <a  href="#/business/editcat/{{businesId}}" >
-                    <i class="fa fa-cog"></i> Categories </a>
-                </li>
-                <li class="">
                     <a href="#/business/edittag/{{businesId}}" >
                     <i class="fa fa-cog"></i> Tags </a>
                 </li>
@@ -45,7 +41,7 @@ Business Edit <small></small>
                 </li>
                 <li class="active">
                     <a href="#/business/editprofileimage/{{businesId}}" >
-                    <i class="fa fa-picture-o"></i> Profile Image </a>
+                    <i class="fa fa-picture-o"></i> Profile & Cover Image </a>
                 </li>
                 <li class="">
                     <a href="#/business/editimage/{{businesId}}" >
@@ -63,31 +59,64 @@ Business Edit <small></small>
         </div>
         <div class="col-md-9">
                 <h2>Edit Profile Image</h2>
-            <img class="img-responsive" ng-src="http://localhost:4853{{b.imgURI}}" alt=""><br/>
                 <div id="tab_1-1" class="tab-pane active">
-                    <form  role="form">
+                    <form name="form"  role="form">
                         <div class="form-group">
-                            <div class="fileinput fileinput-new" data-provides="fileinput">
-                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px; min-height:150px;">
+                            <div class="col-md-3">
+                                 <img class="img-responsive" ng-src="http://localhost:5000/img/bimg/{{b.profileImage}}" alt="" width="256" >
+                            </div>
+                            <div class="col-md-9">
+                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px; min-height:150px;">
+                                    </div>
+                                    <div>
+                                        <span class="btn default btn-file">
+                                            <span class="fileinput-new">Select image </span>
+                                            <input type="file" ng-model="img" base-sixty-four-input accept="image/*" maxsize="4000" required >
+                                        </span>
+                                        <a href="javascript:;" class="btn btn-danger fileinput-exists" data-dismiss="fileinput" ng-click="reset(img)" >
+                                        Remove </a>
+                                    </div>
                                 </div>
-                                <div>
-                                    <span class="btn default btn-file">
-                                        <span class="fileinput-new">Select image </span>
-                                        <input type="file" ng-model="img" base-sixty-four-input accept="image/*" maxsize="4000" >
-                                    </span>
-                                    <a href="javascript:;" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">
-                                    Remove </a>
+                                <div class="margin-top-10">
+                                    <a  class="btn green" ng-click="editProfileImage(img, form.$valid)" >Change</a>
+                                </div><br/><br/>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+                <h2 >Edit Cover Image</h2>
+                <div id="tab_1-1" class="tab-pane active">
+                    <form name="form" role="form">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                 <img class="img-responsive" ng-src="http://localhost:5000/img/bimg/{{b.coverImage}}" alt="" width="800" height="300" >
+                            </div> 
+                            <div class="col-md-12">
+                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 800px; max-height: 300px; min-height:300px;">
+                                    </div><br/><br/><br/>
+                                    <div>
+                                        <span class="btn default btn-file">
+                                            <span class="fileinput-new">Select image </span>
+                                            <input type="file" ng-model="img2" base-sixty-four-input accept="image/*" maxsize="4000" required >
+                                        </span>
+                                        <a href="javascript:;" class="btn btn-danger fileinput-exists" data-dismiss="fileinput" ng-click="reset2(img2)">
+                                        Remove </a>
+                                    </div>
+                                </div>
+                                <div class="margin-top-10">
+                                    <a  class="btn green" ng-click="editCoverImage(img2, form.$valid)" >Change</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="margin-top-10">
-                            <a  class="btn green" ng-click="addImage(img)" >Add</a>
-                        </div>
+                        
                     </form>
-                
-                    
                 </div>
         </div>
+
         <!--end col-md-9-->
     </div>
 </div>
