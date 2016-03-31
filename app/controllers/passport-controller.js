@@ -8,7 +8,6 @@ var router = express.Router();
 function createUser(req, res){
     
     var newa = {
-        
         username : req.body.username,
         password : req.body.password,
         email : req.body.email,
@@ -25,23 +24,44 @@ function createUser(req, res){
 				res.json(account);
 			 });
 		});
-	
 };
 
 
 function authetificationUser(req, res){
 	
-	 
-		
 			 passport.authenticate('local')(req, res, function () {
-                 res.send("good!!");
-				
+                 res.send("good!!");	
 			 });
-            
-		
-	
 };
+
+function showInfo(req, res){
+  
+    Account.findOne({'id':req.params.id},function(error, account) {
+            if (error){
+                console.error('Could not retrieve account b/c:', error);
+                res.status(400).send('error');
+            }
+            res.json(account);
+        });
+
+};
+
+function editInfo(req, res){
+    Account.update({
+            "_id": req.body._id
+        }, function(err, model) {
+            if (err) response.status(400).send('error');
+            else
+                response.json({message: 'accout successfully edited', code:0});
+        });
+};
+
+
+
 module.exports = {
     createUser:createUser,
-    authetificationUser:authetificationUser
+    authetificationUser:authetificationUser,
+    showInfo:showInfo,
+    editInfo:editInfo
+    
 };
