@@ -23,21 +23,8 @@ MetronicApp.factory('BusinessService',function($resource){
     service.RemoveOpeningHourBusiness=RemoveOpeningHourBusiness;
     service.EditOpeningHourToBusiness=EditOpeningHourToBusiness;
     service.findAllByCat=findAllByCat;
+    service.AddCoupon=AddCoupon;
     
-
-
-//    service.GetValidBusiness=GetValidBusiness;
-//    service.GetUnValidBusiness=GetUnValidBusiness;
-//    service.DeletePhotoBusiness=DeletePhotoBusiness;
-//    service.GetPhotosBusiness=GetPhotosBusiness;
-    
-//    service.GetAllBusinessMinimalWithModerator=GetAllBusinessMinimalWithModerator;
-    
-/*    service.EditAditionalInfo=EditAditionalInfo;
-    service.RemoveSubCatFromBusiness=RemoveSubCatFromBusiness;
-    service.AddOpeningDay=AddOpeningDay;
-    service.RemoveOpeningDay=RemoveOpeningDay;
-    service.EditOpeningDay=EditOpeningDay;*/
 
     return service;
     
@@ -142,6 +129,11 @@ MetronicApp.factory('BusinessService',function($resource){
     
     function findAllByCat(){
         return $resource('http://localhost\\:5000/api/business/findAllByCat'
+         );
+    }
+
+    function AddCoupon(){
+        return $resource('http://localhost\\:5000/api/coupon/add'
          );
     }
 

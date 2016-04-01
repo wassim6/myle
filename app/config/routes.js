@@ -15,6 +15,7 @@ var TagController = require('../controllers/tag-controller');
 var GouverneraController = require('../controllers/gouvernera-controller');
 var BusinessSearchController = require('../controllers/businessSearch-controller');
 var BusinessController = require('../controllers/business-controller');
+var CouponController = require('../controllers/coupon-controller');
 
 var PassportController = require('../controllers/passport-controller');
 
@@ -97,7 +98,7 @@ apiRouter.post('/business/editOpeningHourToBusiness/:id', BusinessController.edi
 apiRouter.post('/business/findAllByCat', BusinessController.findAllByCat);
 
 
-
+apiRouter.post('/coupon/add', CouponController.add);
 
 
 apiRouter.get('/alimentation/list', ScrapeController.getAllAlimentation);

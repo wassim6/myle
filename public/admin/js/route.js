@@ -261,6 +261,44 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                         }]
                     }
                 })
+        .state('business/coupon/:id', {
+                    url: "/business/coupon/:id",
+                    templateUrl: "views/coupon/add.html",
+                    data: {pageTitle: 'Business add coupon'},
+                    controller: "CouponAddCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load({
+                                name: 'MetronicApp',
+                                insertBefore: '#ng_load_plugins_before',
+                                files: [           
+                                    'js/services/business/businessService.js',
+                                    'js/controllers/coupon/CouponAddCtrl.js'
+                                ]
+                            });
+                        }]
+                    }
+                })
+        .state('business/coupon/list/:id', {
+                    url: "/business/coupon/list/:id",
+                    templateUrl: "views/coupon/list.html",
+                    data: {pageTitle: 'Business list coupon'},
+                    controller: "CouponListCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load({
+                                name: 'MetronicApp',
+                                insertBefore: '#ng_load_plugins_before',
+                                files: [           
+                                    'js/services/business/businessService.js',
+                                    'js/controllers/coupon/CouponListCtrl.js'
+                                ]
+                            });
+                        }]
+                    }
+                })
+
+
     
     
     

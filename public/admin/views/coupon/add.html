@@ -1,0 +1,132 @@
+<h3 class="page-title">
+Business Edit <small></small>
+</h3>
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="index.html">Home</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <a href="#/business/list">Business List</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <a href>Business Edit</a>
+        </li>
+    </ul>
+</div>
+
+
+<!-- END PAGE HEADER-->
+<div class="tab-pane active" id="tab_1_3">
+    <div class="row profile-account">
+        <div class="col-md-3">
+            <ul class="ver-inline-menu tabbable margin-bottom-10">
+                <li class="">
+                    <a  href="#/business/edit/{{businesId}}" >
+                    <i class="fa fa-cog"></i> Information </a>
+                    <span class="after">
+                    </span>
+                </li>
+                <li class="">
+                    <a href="#/business/edittag/{{businesId}}" >
+                    <i class="fa fa-cog"></i> Tags </a>
+                </li>
+                <li>
+                    <a href="#/business/editadresse/{{businesId}}" >
+                    <i class="fa fa-cog"></i> Adresse </a>
+                </li>
+                <li class="">
+                    <a href="#/business/editprofileimage/{{businesId}}" >
+                    <i class="fa fa-picture-o"></i> Profile & Cover Image </a>
+                </li>
+                <li class="">
+                    <a href="#/business/editimage/{{businesId}}" >
+                    <i class="fa fa-picture-o"></i> Images </a>
+                </li>
+                <li class="">
+                    <a href="#/business/editinformation/{{businesId}}" >
+                    <i class="fa fa-cog"></i> Additional Information </a>
+                </li>
+                <li>
+                    <a  href="#/business/editopeninghour/{{businesId}}" >
+                    <i class="fa fa-cog"></i> Opening Hours </a>
+                </li>
+                <li class="active" >
+                    <a  href="#/business/coupon/{{businesId}}" >
+                    <i class="fa fa-cog"></i>Add Coupon </a>
+                </li>
+                <li class="" >
+                    <a  href="#/business/coupon/list/{{businesId}}" >
+                    <i class="fa fa-cog"></i>List Coupon </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+                <div id="tab_1-1" class="tab-pane active">
+                    <form name="form" role="form" >
+                        <label class="control-label">Start Date</label>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <p class="input-group">
+                                  <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dtStart" is-open="opened"  max-min="dt" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                                  <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                  </span>
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <label class="control-label">End Date</label>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <p class="input-group">
+                                  <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dtEnd" is-open="opened2"  min-date="dt" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                                  <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="open2($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                  </span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Title</label>
+                            <input type="text" placeholder="Title" class="form-control" ng-model="tilte" required>  
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Price</label>
+                                <div class="form-inline">
+                                    <input type="number" placeholder="Initial price" class="form-control" ng-model="initialPrice" style="width:300px;" required> 
+                                    <input type="number" placeholder="New price" class="form-control" ng-model="newPrice" style="width:300px;" required>
+                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Description</label>
+                            <textarea class="form-control" rows="8" ng-model="description" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Condition</label>
+                            <textarea class="form-control" rows="8" ng-model="condition" required ></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Principal Image</label>
+                            <input type="file" ng-model="img" base-sixty-four-input accept="image/*" maxsize="4000" required >
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Images</label>
+                            <input type="file" ng-model="imgs" base-sixty-four-input accept="image/*" maxsize="4000" multiple >
+                        </div>                    
+                                        
+                        <div class="margiv-top-10">
+                            <a href class="btn green" ng-click="add(form.$valid)" ng-disabled="disable" >
+                            Add Coupon </a>
+                            <a href="#/business/list"  class="btn default">
+                            Cancel </a>
+                        </div>
+                    </form>
+                </div>
+        </div>
+        <!--end col-md-9-->
+    </div>
+</div>
