@@ -36,7 +36,7 @@ function authetificationUser(req, res){
 
 function showInfo(req, res){
   
-    Account.findOne({'id':req.params.id},function(error, account) {
+    Account.findById(req.params.id,function(error, account) {
             if (error){
                 console.error('Could not retrieve account b/c:', error);
                 res.status(400).send('error');

@@ -60,9 +60,9 @@ apiRouter.route('/user/edit')
 
 
 apiRouter.get('/user/show/:id', PassportController.showInfo);
+apiRouter.post('/user/edit', PassportController.editInfo);
 
-apiRouter.route('/tag')
-    .get(TagController.getAll);
+apiRouter.route('/tag').get(TagController.getAll);
 apiRouter.get('/tag/search', TagController.search);
 apiRouter.get('/tag/:id', TagController.show);
 apiRouter.post('/tag/add', TagController.add);
