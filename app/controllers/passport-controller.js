@@ -47,12 +47,12 @@ function showInfo(req, res){
 };
 
 function editInfo(req, res){
-    Account.update({
-            "_id": req.body._id
-        }, function(err, model) {
-            if (err) response.status(400).send('error');
+    Account.update({"_id": req.body._id},{"username": req.body.username},{"email": req.body.email}
+        , function(err, model) {
+            if (err) res.status(400).send('error');
             else
-                response.json({message: 'accout successfully edited', code:0});
+                res.json({message: 'account successfully edited', code:0});
+                
         });
 };
 
