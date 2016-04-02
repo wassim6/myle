@@ -54,7 +54,7 @@ Business Edit <small></small>
                     <a  href="#/business/editopeninghour/{{businesId}}" >
                     <i class="fa fa-cog"></i> Opening Hours </a>
                 </li>
-                <li class="active" >
+                <li class="" >
                     <a  href="#/business/coupon/{{businesId}}" >
                     <i class="fa fa-cog"></i>Add Coupon </a>
                 </li>
@@ -65,67 +65,100 @@ Business Edit <small></small>
             </ul>
         </div>
         <div class="col-md-9">
-                <div id="tab_1-1" class="tab-pane active">
-                    <form name="form" role="form" >
-                        <label class="control-label">Start Date</label>
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <p class="input-group">
-                                  <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dtStart" is-open="opened"  max-min="dt" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-                                  <span class="input-group-btn">
-                                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                                  </span>
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <label class="control-label">End Date</label>
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <p class="input-group">
-                                  <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dtEnd" is-open="opened2"  min-date="dt" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-                                  <span class="input-group-btn">
-                                    <button type="button" class="btn btn-default" ng-click="open2($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                                  </span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Title</label>
-                            <input type="text" placeholder="Title" class="form-control" ng-model="tilte" required>  
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Price</label>
-                                <div class="form-inline">
-                                    <input type="number" placeholder="Initial price" class="form-control" ng-model="initialPrice" style="width:300px;" required> 
-                                    <input type="number" placeholder="New price" class="form-control" ng-model="newPrice" style="width:300px;" required>
-                                </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Description</label>
-                            <textarea class="form-control" rows="8" ng-model="description" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Condition</label>
-                            <textarea class="form-control" rows="8" ng-model="condition" required ></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Principal Image</label>
-                            <input type="file" ng-model="img" base-sixty-four-input accept="image/*" maxsize="4000" required >
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Images</label>
-                            <input type="file" ng-model="imgs" base-sixty-four-input accept="image/*" maxsize="4000" multiple >
-                        </div>                    
-                                        
-                        <div class="margiv-top-10">
-                            <a href class="btn green" ng-click="add(form.$valid)" ng-disabled="disable" >
-                            Add Coupon </a>
-                            <a href="#/business/list"  class="btn default">
-                            Cancel </a>
-                        </div>
-                    </form>
+            <div class="portlet box green-haze">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-globe"></i>Coupon List
                 </div>
+                <div class="tools">
+                    <a href="javascript:;" class="reload"></a>
+                </div>
+                <div class="actions" ng-controller="ExportCtrl">
+                    <div class="btn-group">
+                        <a class="btn btn-default btn-sm dropdown-toggle" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" style="color:white; font-size:14px;">
+                        Export <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li>
+                                <a href="javascript:;" ng-click="export('pdf' , 2)"><i class="fa fa-file-pdf-o"></i> PDF</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" ng-click="export('json' , 2)" ><i class="fa fa-file-text"></i> JSON</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" ng-click="export('xml' , 2)"><i class="fa fa-file-code-o"></i> XML</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" ng-click="export('csv' , 2)"><i class="fa fa-file-text-o"></i> CSV</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" ng-click="export('sql' , 2)"><i class="fa fa-database"></i> SQL</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" ng-click="export('txt' , 2)"><i class="fa fa-file-o"></i> Text</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" ng-click="export('excel' , 2)"><i class="fa fa-file-excel-o"></i> Excel</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;" ng-click="export('png' , 2)"><i class="fa fa-file-image-o"></i> PNG</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="portlet-body">
+                <table id="myTable" class="table table-striped table-bordered table-hover" datatable="ng" dt-options="dtOptions">
+                    <thead>
+                        <tr>
+                            <th>
+                                start date
+                            </th>
+                            <th>
+                                end date
+                            </th>
+                            <th>
+                                title
+                            </th>
+                            <th>
+                                remise
+                            </th>
+                            <th>
+                                actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="c in coupons" >
+                            <td>
+                                {{c.startDate | date}}
+                            </td>
+                            <td>
+                                {{c.endDate | date}}
+                            </td>
+                            <td>
+                                {{c.title}}
+                            </td>
+                            <td>
+                                {{c.remise}}
+                            </td>
+                            <td>
+                                <a href="#/coupon/detail/{{c._id}}" class="btn default btn-xs green">
+                                <i class="fa fa-search"></i> Detail </a>
+                                
+                                <a href="#/coupon/edit/{{c._id}}" class="btn default btn-xs purple" >
+                                <i class="fa fa-edit"></i> Edit </a>
+                                
+                                <button class="btn default btn-xs red" confirm-button="delete(c);" message="Are you sure to delete ?" yes="Delete" no="Cancel"><i class="fa fa-trash"></i> Delete</button>
+                                
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
         </div>
         <!--end col-md-9-->
     </div>

@@ -99,6 +99,9 @@ apiRouter.post('/business/findAllByCat', BusinessController.findAllByCat);
 
 
 apiRouter.post('/coupon/add', CouponController.add);
+apiRouter.get('/coupon/listbybusiness/:id', CouponController.findByBusinessId);
+apiRouter.get('/coupon/remove/:id', CouponController.remove);
+apiRouter.get('/coupon/get/:id', CouponController.getById);
 
 
 apiRouter.get('/alimentation/list', ScrapeController.getAllAlimentation);

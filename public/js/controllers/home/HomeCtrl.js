@@ -1,6 +1,7 @@
 'use strict';
 
-myApp.controller("HomeCtrl" ,function ($scope, TagService, $http, BusinessService) {    
+myApp.controller("HomeCtrl" ,function ($scope, TagService, $http, $location, BusinessService, SearchParam, SearchResult
+) {    
     
     $scope.remoteUrlRequestFn = function(str) {
         return {q: str};
@@ -43,7 +44,15 @@ myApp.controller("HomeCtrl" ,function ($scope, TagService, $http, BusinessServic
             t:tag,
             a:address
         }).success(function(m){
-            console.log(m); 
+            if(m.length>0){
+                SearchParam.setData({address:address, tag:tag});
+                SearchResult.setData(m);
+                $location.path("/business/list");
+                //console.log(m); 
+
+            }
+
+
         });
         
 

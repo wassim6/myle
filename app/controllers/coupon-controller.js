@@ -5,15 +5,15 @@ var Coupon = require('../models/Coupon');
 var Schema = mongoose.Schema;
 
 
-/*function find(request, response){
-    Business.findById(request.params.id, function(error, business) {
+function findByBusinessId(request, response){
+    Coupon.find({'businessId':request.params.id}, function(error, coupon) {
             if (error){
-                console.error('Could not retrieve business b/c:', business);
+                console.error('Could not retrieve coupon b/c:', coupon);
                 response.status(400).send('error');
             }
-            response.json(business);
-        }).populate("delegation").populate("gouvernera").populate('tag');
-};*/
+            response.json(coupon);
+        });//.populate("businessId");
+};
 
 function add(request, response){
     var body=request.body;
@@ -67,7 +67,21 @@ function add(request, response){
   });
 };
 
+function getById(request, response){
+    Coupon.findById(request.params.id, function(error, coupon){
+        if (error) response.status(400).send('error 11');
+        else
+            response.json(coupon);
+    }).populate('businessId');
+}
 
+function remove(request, response){
+    Coupon.remove({ _id: request.params.id }, function(error) {
+    if (error) response.status(400).send('erro 12');
+    else
+        response.json({message: 'Coupon successfully removed', code:0});
+    });
+}
 
 // function to create file from base64 encoded string
 function base64_decode(base64str, file) {
@@ -84,5 +98,8 @@ function isEmpty( o ) {
 }
 
 module.exports = {
-    add:add
+    add:add,
+    findByBusinessId:findByBusinessId,
+    remove:remove,
+    getById:getById
 };

@@ -24,6 +24,9 @@ MetronicApp.factory('BusinessService',function($resource){
     service.EditOpeningHourToBusiness=EditOpeningHourToBusiness;
     service.findAllByCat=findAllByCat;
     service.AddCoupon=AddCoupon;
+    service.ListCouponByBusiness=ListCouponByBusiness;
+    service.RemoveCoupon=RemoveCoupon;
+    service.GetCoupon=GetCoupon;
     
 
     return service;
@@ -136,6 +139,22 @@ MetronicApp.factory('BusinessService',function($resource){
         return $resource('http://localhost\\:5000/api/coupon/add'
          );
     }
+    function ListCouponByBusiness(){
+        return $resource('http://localhost\\:5000/api/coupon/listbybusiness/:id',
+                        {id:'@id'}
+         );
+    }
+    function RemoveCoupon(){
+        return $resource('http://localhost\\:5000/api/coupon/remove/:id',
+                        {id:'@id'}
+         ); 
+    }
+    function GetCoupon(){
+        return $resource('http://localhost\\:5000/api/coupon/get/:id',
+                        {id:'@id'}
+         ); 
+    }
+
 
 });
 

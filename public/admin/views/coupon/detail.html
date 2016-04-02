@@ -54,11 +54,11 @@ Business Edit <small></small>
                     <a  href="#/business/editopeninghour/{{businesId}}" >
                     <i class="fa fa-cog"></i> Opening Hours </a>
                 </li>
-                <li class="active" >
+                <li class="" >
                     <a  href="#/business/coupon/{{businesId}}" >
                     <i class="fa fa-cog"></i>Add Coupon </a>
                 </li>
-                <li class="" >
+                <li class="active" >
                     <a  href="#/business/coupon/list/{{businesId}}" >
                     <i class="fa fa-cog"></i>List Coupon </a>
                 </li>
@@ -70,11 +70,8 @@ Business Edit <small></small>
                         <label class="control-label">Start Date</label>
                         <div class="form-group">
                             <div class="col-md-12">
-                                <p class="input-group">
-                                  <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dtStart" is-open="opened"  max-min="dt" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-                                  <span class="input-group-btn">
-                                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                                  </span>
+                                <p class="input-group" style="font-size:18px;">
+                                  {{c.startDate | date}}
                                 </p>
                             </div>
                         </div>
@@ -82,45 +79,33 @@ Business Edit <small></small>
                         <label class="control-label">End Date</label>
                         <div class="form-group">
                             <div class="col-md-12">
-                                <p class="input-group">
-                                  <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dtEnd" is-open="opened2"  min-date="dt" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-                                  <span class="input-group-btn">
-                                    <button type="button" class="btn btn-default" ng-click="open2($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                                  </span>
+                                <p class="input-group" style="font-size:18px;">
+                                  {{c.endDate | date}}
                                 </p>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Title</label>
-                            <input type="text" placeholder="Title" class="form-control" ng-model="title" required>  
+                            <label class="control-label">Title: <samp style="font-size:18px;" >{{c.title}}</samp></label>
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Price</label>
-                                <div class="form-inline">
-                                    <input type="number" placeholder="Initial price" class="form-control" ng-model="initialPrice" style="width:300px;" required> 
-                                    <input type="number" placeholder="New price" class="form-control" ng-model="newPrice" style="width:300px;" required>
-                                </div>
+                            <label class="control-label">Initial Price : <samp style="font-size:18px;" >{{c.prixInitial}}</samp> </label>
+                               
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">New Price : <samp style="font-size:18px;" >{{c.prix}}</samp> </label>
+                               
                         </div>
                         <div class="form-group">
                             <label class="control-label">Description</label>
-                            <textarea class="form-control" rows="8" ng-model="description" required></textarea>
+                            <textarea class="form-control" rows="8" ng-model="c.description" readonly></textarea>
                         </div>
                         <div class="form-group">
                             <label class="control-label">Condition</label>
-                            <textarea class="form-control" rows="8" ng-model="condition" required ></textarea>
+                            <textarea class="form-control" rows="8" ng-model="c.condition" readonly ></textarea>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label">Principal Image</label>
-                            <input type="file" ng-model="img" base-sixty-four-input accept="image/*" maxsize="4000" required >
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Images</label>
-                            <input type="file" ng-model="imgs" base-sixty-four-input accept="image/*" maxsize="4000" multiple >
-                        </div>                    
+
                                         
                         <div class="margiv-top-10">
-                            <a href class="btn green" ng-click="add(form.$valid)" ng-disabled="disable" >
-                            Add Coupon </a>
                             <a href="#/business/list"  class="btn default">
                             Cancel </a>
                         </div>
