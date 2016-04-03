@@ -2,8 +2,10 @@
 
 myApp.controller('SigninCtrl', function($rootScope, $scope, loginService, $location) {
 
-
+ 
     $scope.authetificationUser= function(l){
+        
+        $scope.cc=true;
         
         loginService.authetificationUser().save({
             "username":l.username,
@@ -11,6 +13,8 @@ myApp.controller('SigninCtrl', function($rootScope, $scope, loginService, $locat
             
         }, function(response){
             console.log("success", "");
+            $scope.show=true;
+            
             
             $rootScope.AuthenticatedUser = {
                 
@@ -20,9 +24,10 @@ myApp.controller('SigninCtrl', function($rootScope, $scope, loginService, $locat
                 email:response.email,
                 codePostale:response.codePostale
             };
-              console.log(response.email);
-           console.log(response.codePostale);
-            $location.path("/home");   
+              
+            $location.path("/user/profile");
+            $scope.cc=false;
+            
             
             
         }, function(e){

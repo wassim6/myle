@@ -13,6 +13,7 @@ myApp.controller("HomeCtrl" ,function ($scope, TagService, $http, $location, Bus
         $(this).html(event.strftime('%D days %H:%M:%S'));
     });
     
+    
     $scope.selectedTag={};
     $scope.selectedAddress={};
 
@@ -71,7 +72,7 @@ myApp.controller("HomeCtrl" ,function ($scope, TagService, $http, $location, Bus
 
 function init(){
 
-
+    
     $(document).ready(function() {
         'use strict';
 
