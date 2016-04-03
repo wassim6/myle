@@ -13,15 +13,10 @@ myApp.controller('SigninCtrl', function($rootScope, $scope, loginService, $locat
             console.log("success", "");
             
             $rootScope.AuthenticatedUser = {
-                
-              
                 username:response.username,
-                password:response.password,
-                email:response.email,
-                codePostale:response.codePostale
+                password:response.password
             };
-              console.log(response.email);
-           console.log(response.codePostale);
+            
             $location.path("/home");   
             
             

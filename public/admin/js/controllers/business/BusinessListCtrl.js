@@ -9,8 +9,11 @@ MetronicApp.controller('BusinessListCtrl', function($rootScope, $scope, $http, $
     $scope.currentPage = 1;
     $scope.itemsPerPage = 50;
     $scope.categories=[
-        {name:"Alimentation"},{name:"Animaux"},{name:"Auto-Motos"},{name:"Artisans"},{name:"Sport"},{name:"Beauté et bien être"},{name:"voyage et loisirs"},{name:"High Tech"},{name:"Enfant et Education"},
-        {name:"Mode et Habillement"},{name:"Fourniture Administratifs"},{name:"Maison et Deco"},{name:"Sortie"},{name:"Service"},{name:"Medecin"},{name:"Pharmacie"}
+        {name:"Alimentation"},{name:"Animaux"},{name:"Auto-Motos"},
+        {name:"Artisans"},{name:"Sport"},{name:"Beauté et bien être"},
+        {name:"voyage et loisirs"},{name:"High Tech"},{name:"Enfant et Education"},
+        {name:"Mode et Habillement"},{name:"Fourniture Administratifs"},{name:"Maison et Deco"},
+        {name:"Sortie"},{name:"Service"},{name:"Medecin"},{name:"Pharmacie"}
     ];
     $scope.category={};
 

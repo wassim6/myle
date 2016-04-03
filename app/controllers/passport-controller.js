@@ -29,8 +29,8 @@ function createUser(req, res){
 
 function authetificationUser(req, res){
 	
-			 passport.authenticate('local')(req, res, function () {
-                 res.send("good!!");	
+			 passport.authenticate('local')(req, res, function (u) {
+                 res.json(u);	
 			 });
 };
 

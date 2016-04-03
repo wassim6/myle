@@ -45,18 +45,16 @@
 
             <div class="col-sm-8 col-lg-9">
                 <div class="content">
-
-<li  >s</li>
                     <div class="cards-row">
 
-                        <div class="card-row" ng-repeat="b in business" >
+                        <div class="card-row" dir-paginate="b in business | itemsPerPage: 10">
                             <div class="card-row-inner">
                                 <div class="card-row-image" ng-style="{'background-image':'url(../../img/bimg/{{b.profileImage}})'}">
-                                    <div class="card-row-label"><a href="listing-detail.html">{{b.category}}</a></div>
+                                    <div class="card-row-label"><a href="#/business/info/{{b._id}}">{{b.category}}</a></div>
                                     <div class="card-row-price">{{b.sousCategory}}</div><!-- -->
                                 </div>
                                 <div class="card-row-body">
-                                    <h2 class="card-row-title"><a href="listing-detail.html">{{b.name}}</a></h2>
+                                    <h2 class="card-row-title"><a href="#/business/info/{{b._id}}">{{b.name}}</a></h2>
                                     <div class="card-row-content"><p>{{b.description}}</p></div>
                                 </div>
                                 <div class="card-row-properties">
@@ -78,16 +76,9 @@
 
                     </div><!-- /.cards-row -->
 
-
-                    <div class="pager">
-                        <ul>
-                            <li><a href="#">Prev</a></li>
-                            <li><a href="#">5</a></li>
-                            <li class="active"><a>6</a></li>
-                            <li><a href="#">7</a></li>
-                            <li><a href="#">Next</a></li>
-                        </ul>
-                    </div><!-- /.pagination -->
+                    <div style="margin-left:30%;">
+                        <dir-pagination-controls></dir-pagination-controls>
+                    </div>
 
 
                 </div><!-- /.content -->

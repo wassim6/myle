@@ -1,6 +1,6 @@
 'use strict';
 
-myApp.controller("HomeCtrl" ,function ($scope, TagService, $http, $location, BusinessService, SearchParam, SearchResult
+myApp.controller("HomeCtrl" ,function ($rootScope, $scope, TagService, $http, $location, BusinessService, SearchParam, SearchResult
 ) {    
     
     $scope.remoteUrlRequestFn = function(str) {
@@ -15,13 +15,21 @@ myApp.controller("HomeCtrl" ,function ($scope, TagService, $http, $location, Bus
     
     $scope.selectedTag={};
     $scope.selectedAddress={};
+    $scope.defaultAdress={};
+    var adressName=getCookie('adressName');
+    if(typeof adressName != 'undefined' &&  adressName != null &&  adressName != '')
+        $scope.defaultAdress.name=adressName;
+    $scope.defaultTag={};
+    if($rootScope.TagSearch!=null)
+        $scope.defaultTag.name=$rootScope.TagSearch.name;
 
     
     $scope.search = function(){
 //        console.log($scope.selectedTag);
 //        console.log($scope.selectedAddress);
         var address={}, tag={};
-        if($scope.selectedAddress==null || Object.getOwnPropertyNames($scope.selectedAddress).length <= 0){
+        if($scope.selectedAddress==null || Object.getOwnPropertyNames($scope.selectedAddress).length <= 0 || 
+           typeof($scope.selectedAddress.description)=='undefined'){
             address={name:'Tunis', type:1, _id:"56e54c183ba5bc24265767ec"};
         }
         else{
@@ -31,21 +39,42 @@ myApp.controller("HomeCtrl" ,function ($scope, TagService, $http, $location, Bus
                 _id:$scope.selectedAddress.description._id
             };
         }
+        tag='';
         if($scope.selectedTag==null || Object.getOwnPropertyNames($scope.selectedTag).length <= 0){
             tag='';
         }
         else{
-            tag={
-                name:$scope.selectedTag.title,
-                _id:$scope.selectedTag.description._id
+            if(typeof($scope.selectedTag.description)!='undefined'){
+                tag={
+                    name:$scope.selectedTag.title,
+                    _id:$scope.selectedTag.description._id
+                }
             }
         }
+        if(tag==''){
+            
+            tag={
+                name:getCookie('tagName'),
+                _id:getCookie('tagId')
+            }
+        }
+        setCookie('adressId', address._id ,7 );
+        setCookie('adressName',address.name,7 );
+        setCookie('adressType',address.type,7 );
+        $rootScope.AdressSearch={id:address._id, name:address.name, type:address.type};
+        if(tag!=''){
+            setCookie('tagId', tag._id, 7);
+            setCookie('tagName', tag.name, 7);
+            $rootScope.TagSearch={id:tag._id, name:tag.name};
+        }
+
         $http.post('http://localhost:5000/api/business/search',{
             t:tag,
             a:address
         }).success(function(m){
+            //console.log(tag);
             if(m.length>0){
-                SearchParam.setData({address:address, tag:tag});
+                SearchParam.setData({adress:address, tag:tag});
                 SearchResult.setData(m);
                 $location.path("/business/list");
                 //console.log(m); 

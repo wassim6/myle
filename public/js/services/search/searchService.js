@@ -1,6 +1,6 @@
 'use strict';
 
-myApp.factory('SearchParam', function () {
+myApp.factory('SearchParam', function ($rootScope) {
 
     var data = {
         tag:{},
@@ -21,7 +21,7 @@ myApp.factory('SearchParam', function () {
     };
 });
 
-myApp.factory('SearchResult', function () {
+myApp.factory('SearchResult', function ($rootScope) {
 
     var data = [];
     
