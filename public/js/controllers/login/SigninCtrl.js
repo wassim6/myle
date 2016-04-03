@@ -17,17 +17,18 @@ myApp.controller('SigninCtrl', function($rootScope, $scope, loginService, $locat
             
             
             $rootScope.AuthenticatedUser = {
-                
-              
                 username:response.username,
-                password:response.password,
-                email:response.email,
-                codePostale:response.codePostale
+                password:response.password
             };
+<<<<<<< HEAD
               
             $location.path("/user/profile");
             $scope.cc=false;
             
+=======
+            
+            $location.path("/home");   
+>>>>>>> d165b2cca6843dd3751ba2e646583399fd16134e
             
             
         }, function(e){

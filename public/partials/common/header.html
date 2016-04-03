@@ -23,26 +23,53 @@
                     </div>
                     <!-- /.header-action -->
 
-                    <ul class="header-nav-primary nav nav-pills collapse navbar-collapse">
-                        <li>
+                    <ul class="header-nav-primary nav nav-pills collapse navbar-collapse" ng-controller="HeaderCtrl" >
+                        <li  >
                             <div class="input-group" style="margin-top: 10px; width: 280px;">
-                                <input type="text" placeholder="Trouver : café, restaurant, boulangerie, coiffeur..." class="form-control">
+                                <div angucomplete-alt 
+  placeholder="Rechercher café, restaurant, boulangerie, coiffeur..."
+  pause="500"
+  selected-object="selectedTag"
+  remote-url="http://localhost:5000/api/tag/search"
+  remote-url-request-formatter="remoteUrlRequestFn"
+  title-field="name"
+  minlength="2"
+  input-class="form-control form-control-small"
+  match-class="highlight"
+  auto-match="true"
+  initial-value="defaultTag"
+
+                                          ></div>
                             </div>
                         </li>
 
-                        <li>
+                        <li >
                             <div class="input-group" style="margin-top: 10px; width: 280px; margin-left: 10px;">
-                                <span class="input-group-addon" data-toggle="tooltip" title="trouver ma position automatiquement" data-placement="bottom" >
+                                <div angucomplete-alt 
+  placeholder="A proximité de : Adresse, Ville, Département, Code postale"
+  pause="500"
+  selected-object="selectedAddress"
+  remote-url="http://localhost:5000/api/address/search"
+  remote-url-request-formatter="remoteUrlRequestFn"
+  title-field="name"
+  minlength="2"
+  input-class="form-control form-control-small"
+  match-class="highlight"
+  auto-match="true"
+  initial-value="defaultAdress"
+                                          >
+                                            </div>
+<!--                                <span class="input-group-addon" data-toggle="tooltip" title="trouver ma position automatiquement" data-placement="bottom" >
                                     <i class="fa fa-map-marker" style="font-size:16px; padding: 0px; margin: 0px;"></i>
                                 </span>
-                                <input type="text" placeholder="A proximité de : Adresse, Ville, Département, Code postale" class="form-control">
+                                <input type="text" placeholder="A proximité de : Adresse, Ville, Département, Code postale" class="form-control">-->
                             </div>
                         </li>
 
-                        <li>
+                        <li  >
                             <div class="header-nav-user" style="float: none; margin-top:10px; margin-left: 20px;">
                                 <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button"  aria-haspopup="true" aria-expanded="false" style="border: 0px;" onclick="location.href='#/business/list';">
+                                    <button class="btn btn-default dropdown-toggle" type="button"  aria-haspopup="true" aria-expanded="false" style="border: 0px;" ng-click="search()" >
                                         <div class="user-image">
                                             <img src="../../img/tmp/search.png">
                                         </div><!-- /.user-image -->

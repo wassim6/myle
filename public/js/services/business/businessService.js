@@ -7,7 +7,7 @@ myApp.factory('BusinessService',function($resource, $http){
 		
     service.GetAll=GetAll;
     service.SearchByTagAndAddress=SearchByTagAndAddress;
-    
+    service.getById=getById;
    
     return service;
     
@@ -24,6 +24,12 @@ myApp.factory('BusinessService',function($resource, $http){
             isArray: true
         }});
     }
+
+    function getById(){
+        return $resource('http://localhost\\:5000/api/business/:id', 
+                {id:'@id'});
+    }
+
     
     
 });

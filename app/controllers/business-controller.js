@@ -66,7 +66,7 @@ function editBasicInfo(request, response){
 function editAdress(request, response){
     var body=request.body;
     Business.update({
-            "id": request.params.id
+            "_id": request.params.id
         }, {    
             "longitude":body.longitude,
             "latitude":body.latitude,
@@ -76,7 +76,7 @@ function editAdress(request, response){
         }, function(err, model) {
             if (err) response.status(400).send('error 66');
             else
-                response.json({message: 'Business successfully edited', code:0});
+                response.json({message: 'Business successfully edited', code:model});
         });
 };
 

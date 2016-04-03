@@ -62,6 +62,7 @@ MetronicApp.controller('BusinessEditOpeningHourCtrl', function($rootScope, $scop
                     toaster.error("error", "Please complete all field");
                     return;
                 }
+
                 BusinessService.AddOpeningHourToBusiness().save({
                     "id":businesId,                    
                     "dayNumber":openDay.selected.val,
