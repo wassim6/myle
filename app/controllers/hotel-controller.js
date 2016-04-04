@@ -2,10 +2,8 @@ var express = require('express');
 
 var fs      = require('fs');
 var request = require('request');
-var cheerio = require('cheerio');
-var parseString = require('xml2js').parseString;
+
 var router = express.Router();
-var models = require('../models');
 var hotel = require('../models/hotel');
 
 var app     = express();
@@ -20,7 +18,7 @@ var app     = express();
 router.get('/', function(req, res, next) {
 
 
-    models.hotel.find({}).sort({'_id': -1}).exec(function(err, list){
+    hotel.find({}).sort({'_id': -1}).exec(function(err, list){
         if(err) res.send('Erreur!');
        //res.render('list.twig', { title: 'Hotel List', list: list });
        res.json(list);

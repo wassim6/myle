@@ -23,6 +23,7 @@ var ScrapeController = require('../controllers/scrape-controller');
 
 
 var HotelController = require('../controllers/hotel-controller');
+var ChallengeController = require('../controllers/challenge-controller');
 
 
 //var User=require('../models/User');
@@ -47,6 +48,7 @@ apiRouter.route('/articles/:article_id')
 */
 
 apiRouter.use('/hotel', require('../controllers/hotel-controller'));
+apiRouter.use('/challenge', require('../controllers/challenge-controller'));
 
 apiRouter.route('/sante/scrape').get(santeController.scrape);
 apiRouter.route('/sante/scrape2').get(santeController.scrape2);
