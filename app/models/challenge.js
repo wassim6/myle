@@ -2,6 +2,7 @@
 
 var mongoose = require('mongoose');
 
+
 var ChallengeSchema = mongoose.Schema({
     title: String,
     decription: String,
