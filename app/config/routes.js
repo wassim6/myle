@@ -21,6 +21,10 @@ var PassportController = require('../controllers/passport-controller');
 
 var ScrapeController = require('../controllers/scrape-controller');
 
+
+var HotelController = require('../controllers/hotel-controller');
+
+
 //var User=require('../models/User');
 
 //apiRouter.param('article_id', articlesController.articleById);
@@ -41,6 +45,8 @@ apiRouter.route('/articles/:article_id')
   .delete(articlesController.destroy);
 
 */
+
+apiRouter.use('/hotel', require('../controllers/hotel-controller'));
 
 apiRouter.route('/sante/scrape').get(santeController.scrape);
 apiRouter.route('/sante/scrape2').get(santeController.scrape2);
