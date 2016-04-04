@@ -2,8 +2,11 @@
 
 var myApp = angular.module('myApp', ['ngRoute', 'pretty-checkable', 'ngResource', 'angucomplete-alt',
 	'angularUtils.directives.dirPagination',
-    'uiGmapgoogle-maps'
-	]);
+    'uiGmapgoogle-maps',
+    'angular-media-preview',
+    'naif.base64'                                 
+                                     
+]);
 
 myApp.value('AdressSearch',{});
 myApp.value('TagSearch',{});
@@ -42,38 +45,55 @@ myApp.run(function ($rootScope, $location, loginService) {
           //$location.path("/login");
       }
       else{
-        if(next.templateUrl =="partials/user/profile.html" || 
-          next.templateUrl =="partials/user/seting.html"){
-            var user=getCookie('user');
-            var userp=getCookie('userp');
-            if(typeof user == 'undefined' ||  user == null ||  user == '' ||
-               typeof userp == 'undefined' ||  userp == null ||  userp == ''){
-                $rootScope.AuthenticatedUser=null;     
+        var user=getCookie('user');
+        var userp=getCookie('userp');
+        if(typeof user == 'undefined' ||  user == null ||  user == '' ||
+           typeof userp == 'undefined' ||  userp == null ||  userp == ''){
+            $rootScope.AuthenticatedUser=null;     
+            if(next.templateUrl =="partials/user/profile.html" || 
+              next.templateUrl =="partials/user/seting.html"){
                 $location.path("/login/sign_in");
             }
             else{
-                loginService.authetificationUser().save({
-                    "username":user,
-                    "password":userp
-                }, function(response){
+            }
+        }
+        else{
+            loginService.authetificationUser().save({
+                "username":user,
+                "password":userp
+            }, function(response){
+                loginService.getbyusername().get({
+                    username:response.username 
+                }, function(m){                
                     $rootScope.AuthenticatedUser = {
-                    username:response.username,
-                    password:response.password
+                        username:response.username,
+                        password:response.password,
+                        id:m._id    
                     };
                     var today = new Date();
                     var expired = new Date(today);
                     expired.setDate(today.getHours() + 2); //Set expired date to tomorrow
                     setCookie('user',user,expired);
+                    setCookie('useri',m._id,expired);
                     setCookie('userp',userp,expired);
                 }, function(e){
+                    console.log(e);
+                });
+                
+            }, function(e){
+                setCookie('user',null, null);
+                setCookie('userp',null, null);
+                if(next.templateUrl =="partials/user/profile.html" || 
+                  next.templateUrl =="partials/user/seting.html"){
                     $location.path("/login/sign_in");
                 }
-                );
-            }               
+                else{
+                }
+                //$location.path("/login/sign_in");
+            }
+            );
         }
-        else{
-            
-        }
+
       }
       
   });

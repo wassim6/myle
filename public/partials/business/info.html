@@ -89,29 +89,50 @@
 
                                     <div class="rating-title">Choisissez une note.</div>
 
-                                    <input type="radio" value="1" name="food" id="rating-food-1">
+                                    <input type="radio" value="1" ng-model="rate" name="food" id="rating-food-1">
                                     <label for="rating-food-1"></label>
-                                    <input type="radio" value="2" name="food" id="rating-food-2">
+                                    <input type="radio" value="2" ng-model="rate" name="food" id="rating-food-2">
                                     <label for="rating-food-2"></label>
-                                    <input type="radio" value="3" name="food" id="rating-food-3">
+                                    <input type="radio" value="3" ng-model="rate" name="food" id="rating-food-3">
                                     <label for="rating-food-3"></label>
-                                    <input type="radio" value="4" name="food" id="rating-food-4">
+                                    <input type="radio" value="4" ng-model="rate" name="food" id="rating-food-4">
                                     <label for="rating-food-4"></label>
-                                    <input type="radio" value="5" name="food" id="rating-food-5">
+                                    <input type="radio" value="5" ng-model="rate" name="food" id="rating-food-5">
                                     <label for="rating-food-5"></label>
 
                                 </div>
                             </div>
 
-                            <div class="row" >
+                            <div class="row"  >
+                                
+                                
+                                
                                 <div class="form-group">
-                                    <textarea class="form-control" rows="6"
+                                    <textarea class="form-control" rows="6" ng-mode="content"
                                               placeholder="Votre avis permet à d'autres personnes de s'informer sur les meilleurs commerces locaux.
 
 Merci de ne pas donner d'avis sur ce commerce si vous avez bénéficié de quelconques avantages en échange de cet avis, ou si vous êtes connecté d'une façon ou d'une autre aux gérants ou aux employés du commerce en question."></textarea>
+                                    
                                 </div>
+                                
+              <div class="row">
+                <div id="mediaHere" class="custom-preview" style="width:100%; margin-left:20px;" ></div>
+              </div>
+              <span class="btn btn-lg">
+                <span>browse files</span>
+                <input type="file" multiple
+                  ng-model="myModel"
+                  preview-class="myImage"
+                  preview-container="mediaHere"
+                  media-preview 
+                  base-sixty-four-input 
+                  accept="image/*" 
+                  maxsize="4000"       
+                       />
+              </span>
+                                
                                 <div class="">
-                                    <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-star"></i>Publier avis</button>
+                                    <button class="btn btn-primary btn-block" type="submit" ng-click="addReview(myModel)" ><i class="fa fa-star"></i>Publier avis</button>
                                 </div><!-- /.col-sm-4 -->
                             </div><!-- /.row -->
                         </form>

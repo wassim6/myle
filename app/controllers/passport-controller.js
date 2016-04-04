@@ -28,7 +28,6 @@ function createUser(req, res){
 
 
 function authetificationUser(req, res){
-	
 			 passport.authenticate('local')(req, res, function (u) {
                  res.json(u);	
 			 });
@@ -43,7 +42,16 @@ function showInfo(req, res){
             }
             res.json(account);
         });
+};
 
+function getUserByUsername(req, res){
+    Account.findOne({'username':req.params.username}, function(error, username) {
+            if (error){
+                console.error('Could not retrieve user b/c:', username);
+                res.status(400).send('error');
+            }
+            res.json(username);
+        });
 };
 
 function editInfo(req, res){
@@ -62,6 +70,6 @@ module.exports = {
     createUser:createUser,
     authetificationUser:authetificationUser,
     showInfo:showInfo,
-    editInfo:editInfo
-    
+    editInfo:editInfo,
+    getUserByUsername:getUserByUsername
 };
