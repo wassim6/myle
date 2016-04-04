@@ -42,32 +42,38 @@ myApp.run(function ($rootScope, $location, loginService) {
           //$location.path("/login");
       }
       else{
-        var user=getCookie('user');
-        var userp=getCookie('userp');
-        if(typeof user == 'undefined' ||  user == null ||  user == '' ||
-           typeof userp == 'undefined' ||  userp == null ||  userp == ''){
-            $rootScope.AuthenticatedUser=null;     
-            $location.path("/login/sign_in");
-        }
-        else{
-            loginService.authetificationUser().save({
-                "username":user,
-                "password":userp
-            }, function(response){
-                $rootScope.AuthenticatedUser = {
-                username:response.username,
-                password:response.password
-                };
-                var today = new Date();
-                var expired = new Date(today);
-                expired.setDate(today.getHours() + 2); //Set expired date to tomorrow
-                setCookie('user',user,expired);
-                setCookie('userp',userp,expired);
-            }, function(e){
+        if(next.templateUrl =="partials/user/profile.html" || 
+          next.templateUrl =="partials/user/seting.html"){
+            var user=getCookie('user');
+            var userp=getCookie('userp');
+            if(typeof user == 'undefined' ||  user == null ||  user == '' ||
+               typeof userp == 'undefined' ||  userp == null ||  userp == ''){
+                $rootScope.AuthenticatedUser=null;     
                 $location.path("/login/sign_in");
             }
-            );
-        }   
+            else{
+                loginService.authetificationUser().save({
+                    "username":user,
+                    "password":userp
+                }, function(response){
+                    $rootScope.AuthenticatedUser = {
+                    username:response.username,
+                    password:response.password
+                    };
+                    var today = new Date();
+                    var expired = new Date(today);
+                    expired.setDate(today.getHours() + 2); //Set expired date to tomorrow
+                    setCookie('user',user,expired);
+                    setCookie('userp',userp,expired);
+                }, function(e){
+                    $location.path("/login/sign_in");
+                }
+                );
+            }               
+        }
+        else{
+            
+        }
       }
       
   });
