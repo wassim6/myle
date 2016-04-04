@@ -13,7 +13,6 @@ var app     = express();
 
 
 
-
 /* GET lister tous les hotel */
 router.get('/', function(req, res, next) {
 
