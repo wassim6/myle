@@ -100,5 +100,15 @@ myApp.controller("HeaderCtrl" ,function ($rootScope, $scope, $window,  TagServic
     };    
     
     
+    
+    
+    $scope.logOut = function(){
+      $rootScope.AuthenticatedUser =null;
+      setCookie('user',null,null);
+      setCookie('userp',null,null);
+      $location.path("/home");     
+    };
+    
+    
 });
 

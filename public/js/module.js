@@ -36,7 +36,7 @@ myApp.run(function($rootScope) {
 });
 
 myApp.run(function ($rootScope, $location, loginService) {
-  $rootScope.$on('$stateChangeSuccess', function (event, next) {
+  $rootScope.$on('$routeChangeStart', function (event, next) {
       if ($rootScope.AuthenticatedUser!= null) {
           //$state.go('login');
           //$location.path("/login");
@@ -67,7 +67,6 @@ myApp.run(function ($rootScope, $location, loginService) {
                 $location.path("/login/sign_in");
             }
             );
-        
         }   
       }
       

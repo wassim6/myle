@@ -2,34 +2,24 @@
 
 myApp.controller('SigninCtrl', function($rootScope, $scope, loginService, $location) {
 
- 
     $scope.authetificationUser= function(l){
         
-        $scope.cc=true;
         
         loginService.authetificationUser().save({
             "username":l.username,
             "password":l.password
-            
         }, function(response){
-            console.log("success", "");
-            $scope.show=true;
-            
-            
             $rootScope.AuthenticatedUser = {
                 username:response.username,
                 password:response.password
             };
-<<<<<<< HEAD
-              
-            $location.path("/user/profile");
-            $scope.cc=false;
-            
-=======
-            
-            $location.path("/home");   
->>>>>>> d165b2cca6843dd3751ba2e646583399fd16134e
-            
+
+            var today = new Date();
+            var expired = new Date(today);
+            expired.setDate(today.getHours() + 2);            
+            setCookie('user',response.username,expired);
+            setCookie('userp',response.password,expired);
+            $location.path("/home");
             
         }, function(e){
             console.log("error", "login or password incorrect");
