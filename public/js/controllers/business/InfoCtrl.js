@@ -3,15 +3,12 @@
 myApp.controller("InfoCtrl" ,function ($rootScope, $scope, $routeParams, $location, $anchorScroll, $timeout, 
     BusinessService, uiGmapGoogleMapApi) {
 
-
-
     var businessId=$routeParams.id;
-
+    $scope.myModel={};
 
     var b=BusinessService.getById().get({
     	id:businessId
     }, function(){
-
         for(var i=0;i<b.openingTime.length;i++){
             if(b.openingTime[i].tested!=1){
                 if(b.openingTime[i].dayNumber==0){
@@ -75,12 +72,8 @@ myApp.controller("InfoCtrl" ,function ($rootScope, $scope, $routeParams, $locati
                 }
             }else{}
         }
-
-
         $scope.b=b;
     	console.log($scope.b);
-
-
         $timeout(function() {
             $(".group3").colorbox({rel:"imgs", transition:"elastic"});
 
@@ -99,7 +92,6 @@ myApp.controller("InfoCtrl" ,function ($rootScope, $scope, $routeParams, $locati
             $('.detail-gallery-preview a').attr('href', link);
         });
         }, 100);
-
         $scope.map= {center: {latitude: $scope.b.latitude, longitude: $scope.b.longitude }, zoom: 10 };
         $scope.options = {scrollwheel: true};
         $scope.coordsUpdates = 0;
@@ -112,8 +104,6 @@ myApp.controller("InfoCtrl" ,function ($rootScope, $scope, $routeParams, $locati
           }
           
         };
-
-
     }, function(){
 
     });
@@ -127,6 +117,25 @@ myApp.controller("InfoCtrl" ,function ($rootScope, $scope, $routeParams, $locati
         $location.hash('viewReview');
         $anchorScroll();        
     }
+    
+    
+    $scope.addReview = function(img){
+        if(typeof $scope.rate=='undefined')
+            return;
+        if(typeof img.length=='undefined')
+            img=[];
+        BusinessService.addComment().save({
+          content:$scope.content,
+          rate:$scope.rate,
+          businessId:businessId,
+          userId:$rootScope.AuthenticatedUser.id,
+          imgs:img
+        }, function(){
+            console.log("ok");
+        }, function(e){
+            console.log(e);
+        });
+    };
 
 
 }).directive("owlCarousel", function() {

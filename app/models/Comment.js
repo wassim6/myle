@@ -6,9 +6,9 @@ var Schema = mongoose.Schema; // allows us to create a constructor for our model
 var CommentSchema = new Schema({
   content:String,
   rate:Number,
-  utile:Number,
-  drole:Number,
-  cool:Number,
+  utile:{type:Number, default:0},
+  drole:{type:Number, default:0},
+  cool:{type:Number, default:0},
   businessId:{type: mongoose.Schema.Types.ObjectId, ref: 'Business'},
   userId:{type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     

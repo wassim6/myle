@@ -7,7 +7,8 @@ myApp.factory('loginService',function($resource, $http){
 		
     service.createUser=createUser;
     service.authetificationUser=authetificationUser;
-    
+    service.showInfo=showInfo;
+    service.getbyusername=getbyusername;
    
     return service;
     
@@ -19,5 +20,11 @@ myApp.factory('loginService',function($resource, $http){
         return $resource('http://localhost\\:5000/api/user/auth');
     }
     
+    function showInfo(){
+        return $resource('http://localhost\\:5000/api/user/show/:id',{id:'@id'});
+    }
     
+    function getbyusername(){
+        return $resource('http://localhost\\:5000/api/user/getbyusername/:username',{username:'@username'});
+    }
 });

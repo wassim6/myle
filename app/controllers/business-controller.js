@@ -4,6 +4,7 @@ var Business = require('../models/Business');
 var Delegation = require('../models/Delegation');
 var Gouvernera = require('../models/Gouvernera');
 var Tag = require('../models/Tag');
+var Comment = require('../models/Comment');
 var Schema = mongoose.Schema;
 
 
@@ -451,6 +452,56 @@ function findAllByCat(request, response){
       }).populate("delegation").populate("gouvernera"); 
 };
 
+function addComment(request, response){
+    var commentImage=[];
+    var body=request.body;
+    for(var i=0;i<body.imgs.length;i++){
+        var img=body.imgs[i];
+        var bitmap = new Buffer(img.base64, 'base64');
+        var uri = Math.round(+new Date()/1000);  
+        var imgName=uri+'-'+i+'.'+img.filetype.split('/')[1];
+        fs.writeFileSync('public/img/bimg/'+imgName, bitmap);
+        commentImage.push({uri:imgName});
+        
+    }
+
+    Business.findById(body.businessId, function(error, business) {
+        if (error){
+            console.error('Could not retrieve business b/c:', business);
+        }
+        else{
+            for(var j=0;j<commentImage.length;j++){
+                business.businessImage.push({uri:commentImage[j].uri});
+            }
+            business.save(function(error) {
+                if (error) { 
+                    console.error('Not able to create comment b/c:', error);
+                }
+                else{  
+                }
+          });  
+        }
+    });
+    
+    var comment = new Comment({
+      content:body.content,
+      rate:body.rate,
+      businessId:body.businessId,
+      userId:body.userId,
+      commentImage:commentImage      
+  });
+  comment.save(function(error) {
+    if (error) { 
+        console.error('Not able to create comment b/c:', error);
+        response.status(400).json('error');
+    }
+    else{  
+        response.json({message: 'comment successfully created', code:comment});
+    }
+  });
+    
+};
+
 
 //###### Tools #####################
 function decodeBase64Image(dataString) {
@@ -494,5 +545,6 @@ module.exports = {
     addOpeningHourToBusiness:addOpeningHourToBusiness,
     removeOpeningHourBusiness:removeOpeningHourBusiness,
     editOpeningHourToBusiness:editOpeningHourToBusiness,
-    findAllByCat:findAllByCat
+    findAllByCat:findAllByCat,
+    addComment:addComment
 };

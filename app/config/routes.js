@@ -61,6 +61,7 @@ apiRouter.route('/user/edit')
 
 
 apiRouter.get('/user/show/:id', PassportController.showInfo);
+apiRouter.get('/user/getbyusername/:username', PassportController.getUserByUsername);
 apiRouter.post('/user/edit', PassportController.editInfo);
 
 apiRouter.route('/tag').get(TagController.getAll);
@@ -96,12 +97,15 @@ apiRouter.post('/business/addOpeningHourToBusiness/:id', BusinessController.addO
 apiRouter.post('/business/removeOpeningHourBusiness/:id', BusinessController.removeOpeningHourBusiness);
 apiRouter.post('/business/editOpeningHourToBusiness/:id', BusinessController.editOpeningHourToBusiness);
 apiRouter.post('/business/findAllByCat', BusinessController.findAllByCat);
+apiRouter.post('/business/addComment', BusinessController.addComment);
+
 
 
 apiRouter.post('/coupon/add', CouponController.add);
 apiRouter.get('/coupon/listbybusiness/:id', CouponController.findByBusinessId);
 apiRouter.get('/coupon/remove/:id', CouponController.remove);
 apiRouter.get('/coupon/get/:id', CouponController.getById);
+
 
 
 apiRouter.get('/alimentation/list', ScrapeController.getAllAlimentation);
