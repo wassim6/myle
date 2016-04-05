@@ -3,7 +3,7 @@ module.exports = function(app, passport) {
 // normal routes ===============================================================
 
     // show the home page (will also have our login links)
-    app.get('/social/login', function(req, res) {
+    app.get('/login/social', function(req, res) {
         res.render('index.ejs');
     });
 

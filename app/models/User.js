@@ -21,7 +21,30 @@ var UserSchema = new Schema({
   historyReservation:[ { businessId:{type: mongoose.Schema.Types.ObjectId, ref: 'Business'} } ],    
   historyAppointment:[ { businessId:{type: mongoose.Schema.Types.ObjectId, ref: 'Business'} } ],          
     
-  created_at: Date
+  created_at: Date,
+    
+    local            : {
+        email        : String,
+        password     : String
+    },
+    facebook         : {
+        id           : String,
+        token        : String,
+        email        : String,
+        name         : String
+    },
+    twitter          : {
+        id           : String,
+        token        : String,
+        displayName  : String,
+        username     : String
+    },
+    google           : {
+        id           : String,
+        token        : String,
+        email        : String,
+        name         : String
+    }
 });
 
 
