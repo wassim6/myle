@@ -5,6 +5,7 @@ myApp.controller("InfoCtrl" ,function ($rootScope, $scope, $routeParams, $locati
 
     var businessId=$routeParams.id;
     $scope.myModel={};
+    $scope.Math=Math;
 
     var b=BusinessService.getById().get({
     	id:businessId
@@ -108,6 +109,12 @@ myApp.controller("InfoCtrl" ,function ($rootScope, $scope, $routeParams, $locati
 
     });
 
+    $scope.comments = BusinessService.findCommentsByBusiness().query({
+        bid:businessId
+    }, function(){
+        console.log($scope.comments);
+    })
+
     $scope.writeReview = function(){
     	$location.hash('writeReview');
     	$anchorScroll();    	
@@ -132,6 +139,9 @@ myApp.controller("InfoCtrl" ,function ($rootScope, $scope, $routeParams, $locati
           imgs:img
         }, function(){
             console.log("ok");
+            $scope.comments = BusinessService.findCommentsByBusiness().query({
+                bid:businessId
+            });
         }, function(e){
             console.log(e);
         });

@@ -17,8 +17,7 @@
                             <i class="fa fa-map-o"></i> {{b.adress}}
                         </div>
                         <div class="detail-banner-rating">
-                            <i class="fa fa-star" ng-repeat="s in [] | range:b.rate" ></i>
-                            <i class="fa fa-star-o" ng-repeat="s in [] | range:(5-(b.rate))" >&nbsp</i>
+                            <i class="fa fa-star" ng-repeat="s in [] | range:b.rate" ></i><i class="fa fa-star-o" ng-repeat="s in [] | range:(Math.round(5-(b.rate)))" ></i>
                         </div>
                         <div class="detail-banner-btn" ng-click="writeReview()" >
                             <i class="fa fa-edit"></i>Écrire un avis
@@ -108,7 +107,7 @@
                                 
                                 
                                 <div class="form-group">
-                                    <textarea class="form-control" rows="6" ng-mode="content"
+                                    <textarea class="form-control" rows="6" ng-model="content"
                                               placeholder="Votre avis permet à d'autres personnes de s'informer sur les meilleurs commerces locaux.
 
 Merci de ne pas donner d'avis sur ce commerce si vous avez bénéficié de quelconques avantages en échange de cet avis, ou si vous êtes connecté d'une façon ou d'une autre aux gérants ou aux employés du commerce en question."></textarea>
@@ -140,30 +139,53 @@ Merci de ne pas donner d'avis sur ce commerce si vous avez bénéficié de quelc
 
                     <h2 id="reviews">Avis</h2>
                     <div class="reviews" id="viewReview">
-                        <div class="testimonial">
+                        <div class="testimonial" ng-repeat="c in comments" >
                             <div class="testimonial-image">
-                                <img src="../../img/tmp/agent-1.jpg" alt="">
+                                <img ng-src="../../img/user/{{c.userId.profileImage}}" alt="">
                             </div>
-
                             <div class="testimonial-inner">
                                 <div class="testimonial-title">
-                                    <h2>Exactly What I Need</h2>
-
+                                    <h2>{{c.userId.firstName}} {{c.userId.lastName}}</h2>
                                     <div class="testimonial-rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div><!-- /.testimonial-rating -->
-                                </div><!-- /.testimonial-title -->
+                                        <i class="fa fa-star" ng-repeat="s in [] | range:c.rate" ></i><i class="fa fa-star-o" ng-repeat="s in [] | range:(5-(c.rate))" ></i>
+                                    </div>
+                                </div>
+                                {{c.content}}
+                                <div class="row">
+                                    <div class="custom-preview" style="width:100%; margin-left:20px;"  >
+                                        <a ng-repeat="im in c.commentImage" colorbox="{}"   href="../../img/bimg/{{im.uri}}">
+                                            <img  ng-src="../../img/bimg/{{im.uri}}" style="width:128px" class="myImage" />
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="testimonial-sign"> 
 
-                                Quisque aliquet ornare nunc in viverra. Nullam ornare molestie ligula in luctus. Suspendisse ac cursus elit. Donec vel enim sit amet lorem vulputate condimentum.
-
-                                <div class="testimonial-sign">- Fiona Wilson</div><!-- /.testimonial-sign -->
-                            </div><!-- /.testimonial-inner -->
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                            <a href ng-click="voteComment(c,1,$index)" >
+                                                <i class="fa fa-thumbs-o-up box-icon box-icon-left animate-icon-border-rise round" 
+   ng-class="{'box-icon-gray': c.positive.voted == true , 'box-icon-info': c.positive.voted == false}" > {{c.positive.number}} </i>
+                                            </a>
+                                            <p class="mt5 mb0">Utile</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <a href ng-click="voteComment(c,2,$index)">
+                                                <i class="fa fa-thumbs-o-down box-icon box-icon-left animate-icon-border-rise round" ng-class="{'box-icon-gray': c.negative.voted == true , 'box-icon-info': c.negative.voted == false}" > {{c.negative.number}} </i>   
+                                            </a>
+                                            <p class="mt5 mb0">Inutile</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <a href ng-click="voteComment(c,3,$index)">
+                                                <i class="fa fa-smile-o box-icon box-icon-left animate-icon-border-rise round"
+    ng-class="{'box-icon-gray': c.funny.voted == true, 'box-icon-info': c.funny.voted == false }"> {{c.funny.number}} </i>
+                                            </a>
+                                            <p class="mt5 mb0">Drôle</p>
+                                        </div>
+                                </div>
+                            </div>
                         </div>
-                    </div><!-- /.reviews -->
+                    </div>
 
                 </div><!-- /.col-sm-7 -->
 
@@ -174,7 +196,7 @@ Merci de ne pas donner d'avis sur ce commerce si vous avez bénéficié de quelc
                             <i class="fa fa-heart"></i> <strong>213 </strong>personnes aiment ça
                         </div>
                         <div class="detail-overview-rating">
-                            <i class="fa fa-star"></i> <strong>{{b.rate}} / 5 </strong>basé sur <a href ng-click="viewReview()">{{b.nbrRate}} votes</a>
+                            <i class="fa fa-star"></i> <strong>{{b.rate | number:1 }} / 5 </strong>basé sur <a href ng-click="viewReview()">{{b.nbrRate}} votes</a>
                         </div>
 
                         <div class="detail-actions row">
@@ -241,13 +263,13 @@ Merci de ne pas donner d'avis sur ce commerce si vous avez bénéficié de quelc
                             </div><!-- /.detail-logo -->
 
                             <div class="detail-contact">
-                                <div class="detail-contact-email">
+                                <div class="detail-contact-email" ng-show="b.email" >
                                     <i class="fa fa-envelope-o"></i> <a href="mailto:{{b.email}}">{{b.email}}</a>
                                 </div>
-                                <div class="detail-contact-phone">
-                                    <i class="fa fa-mobile-phone"></i> <a href="tel:{{b.email}}">{{b.tel}}</a>
+                                <div class="detail-contact-phone" ng-show="b.tel" >
+                                    <i class="fa fa-mobile-phone"></i> <a href="tel:{{b.tel}}">{{b.tel}}</a>
                                 </div>
-                                <div class="detail-contact-website">
+                                <div class="detail-contact-website" ng-show="b.site" >
                                     <i class="fa fa-globe"></i> <a href="{{b.site}}">&nbsp{{ b.site | limitTo: 25 }}{{b.site.length > 25 ? '...' : ''}}</a>
                                 </div>
                                 <div class="detail-contact-address">

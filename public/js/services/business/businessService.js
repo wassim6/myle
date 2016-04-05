@@ -9,6 +9,7 @@ myApp.factory('BusinessService',function($resource, $http){
     service.SearchByTagAndAddress=SearchByTagAndAddress;
     service.getById=getById;
     service.addComment=addComment;
+    service.findCommentsByBusiness=findCommentsByBusiness;
    
     return service;
     
@@ -33,6 +34,10 @@ myApp.factory('BusinessService',function($resource, $http){
     
     function addComment(){
         return $resource('http://localhost\\:5000/api/business/addComment');
+    }
+    function findCommentsByBusiness(){
+         return $resource('http://localhost\\:5000/api/business/findcommentsbybusiness/:bid',
+                    {bid:'@bid'});   
     }
     
     

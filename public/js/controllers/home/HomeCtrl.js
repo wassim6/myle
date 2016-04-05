@@ -1,6 +1,6 @@
 'use strict';
 
-myApp.controller("HomeCtrl" ,function ($rootScope, $scope, TagService, $http, $location, BusinessService, SearchParam, SearchResult
+myApp.controller("HomeCtrl" ,function ($rootScope, $scope, TagService, $http, $location, $controller, $route, BusinessService, SearchParam, SearchResult
 ) {    
     
     $scope.remoteUrlRequestFn = function(str) {
@@ -23,7 +23,7 @@ myApp.controller("HomeCtrl" ,function ($rootScope, $scope, TagService, $http, $l
     $scope.defaultTag={};
     if($rootScope.TagSearch!=null)
         $scope.defaultTag.name=$rootScope.TagSearch.name;
-
+    
     
     $scope.search = function(){
 //        console.log($scope.selectedTag);
@@ -77,6 +77,8 @@ myApp.controller("HomeCtrl" ,function ($rootScope, $scope, TagService, $http, $l
             if(m.length>0){
                 SearchParam.setData({adress:address, tag:tag});
                 SearchResult.setData(m);
+                $controller('HeaderCtrl', {$scope: $scope});
+                
                 $location.path("/business/list");
                 //console.log(m); 
 
