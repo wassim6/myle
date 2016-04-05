@@ -1,12 +1,11 @@
 'use strict';
 
-myApp.controller("HeaderCtrl" ,function ($rootScope, $scope, $window,  TagService, $http, $location, BusinessService, SearchParam, SearchResult
+myApp.controller("HeaderCtrl" ,function ($rootScope, $scope, $window,  TagService, $http, $location, $route, BusinessService, SearchParam, SearchResult
 ) {
     
     $scope.remoteUrlRequestFn = function(str) {
         return {q: str};
     };
-   
 
 
     $scope.selectedTag={};
@@ -15,13 +14,22 @@ myApp.controller("HeaderCtrl" ,function ($rootScope, $scope, $window,  TagServic
 
     $scope.defaultAdress={};
     var adressName=getCookie('adressName');
-    if(typeof adressName != 'undefined' &&  adressName != null &&  adressName != '')
+    if(typeof adressName != 'undefined' &&  adressName != null &&  adressName != ''){
         $scope.defaultAdress.name=adressName;
-    
+        if(!$scope.$$phase) {
+            $scope.$apply();
+        }
+    }
 
     $scope.defaultTag={};
+    var tagName=getCookie('tagName');
     if($rootScope.TagSearch!=null)
         $scope.defaultTag.name=$rootScope.TagSearch.name;
+    if(typeof tagName != 'undefined' &&  tagName != null &&  tagName != '')
+        $scope.defaultTag.name=tagName;
+
+
+
 
     /*$scope.service = SearchParam;
     $scope.$watch('service.getData()', function(newVal) {

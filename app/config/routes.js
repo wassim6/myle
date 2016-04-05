@@ -106,6 +106,7 @@ apiRouter.post('/business/removeOpeningHourBusiness/:id', BusinessController.rem
 apiRouter.post('/business/editOpeningHourToBusiness/:id', BusinessController.editOpeningHourToBusiness);
 apiRouter.post('/business/findAllByCat', BusinessController.findAllByCat);
 apiRouter.post('/business/addComment', BusinessController.addComment);
+apiRouter.get('/business/findcommentsbybusiness/:bid', BusinessController.findCommentsByBusiness);
 
 
 

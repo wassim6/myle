@@ -473,6 +473,9 @@ function addComment(request, response){
             for(var j=0;j<commentImage.length;j++){
                 business.businessImage.push({uri:commentImage[j].uri});
             }
+            business.nbrRate=business.nbrRate+1;
+            business.rate=((business.rate+parseInt(body.rate))/business.nbrRate);
+            
             business.save(function(error) {
                 if (error) { 
                     console.error('Not able to create comment b/c:', error);
@@ -498,9 +501,18 @@ function addComment(request, response){
     else{  
         response.json({message: 'comment successfully created', code:comment});
     }
-  });
-    
+  });    
 };
+
+function findCommentsByBusiness(request, response){
+    Comment.find({
+            'businessId': request.params.bid
+        }
+        ,function(error, comments) {
+        if (error) console.error('Could not retrieve comments b/c:', error);
+        response.json(comments);
+      }).populate('userId');
+}
 
 
 //###### Tools #####################
@@ -546,5 +558,6 @@ module.exports = {
     removeOpeningHourBusiness:removeOpeningHourBusiness,
     editOpeningHourToBusiness:editOpeningHourToBusiness,
     findAllByCat:findAllByCat,
-    addComment:addComment
+    addComment:addComment,
+    findCommentsByBusiness:findCommentsByBusiness
 };

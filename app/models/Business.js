@@ -13,7 +13,6 @@ var BusinessSchema = new Schema({
   dateCreation:String,
   rate:{type:Number, default:0},
   nbrRate:{type:Number, default:0},
-  nbr_avis:{type:Number, default:0},
   longitude:String,
   latitude:String,
   adress:String,
