@@ -4,14 +4,9 @@ var myApp = angular.module('myApp', ['ngRoute', 'pretty-checkable', 'ngResource'
 	'angularUtils.directives.dirPagination',
     'uiGmapgoogle-maps',
     'angular-media-preview',
-<<<<<<< HEAD
-    'naif.base64'
-=======
     'naif.base64',
     "ngAnimate",
-    "toaster"
->>>>>>> 8cb2bf8e6a1d47ef358c9b7cd52245f5f58784d5
-                                     
+    "toaster"                                     
 ]);
 
 myApp.value('AdressSearch',{});
