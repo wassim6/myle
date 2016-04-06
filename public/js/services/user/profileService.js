@@ -19,5 +19,8 @@ myApp.factory('profileService',function($resource, $http){
         return $resource('http://localhost\\:5000/api/user/auth');
     }
     
+    function showInfo(){
+        return $resource('http://localhost\\:5000/api/user/show/:id',{id:'@id'});
+    }
     
 });

@@ -66,7 +66,7 @@
                                         <dd>Étoile</dd>
                                         <dt>
                                         <div class="card-row-rating">
-                                            <i class="fa fa-star" ng-repeat="s in [] | range:b.rate+1" ></i>
+                                            <i class="fa fa-star" ng-repeat="s in [] | range:b.rate" ></i><i class="fa fa-star-o" ng-repeat="s in [] | range:(Math.round(5-(b.rate)))" ></i>
                                         </div><!-- /.card-row-rating -->
                                         </dt>
                                     </dl>

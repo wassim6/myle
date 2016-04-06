@@ -1,8 +1,8 @@
 'use strict';
 
 myApp.controller("ListCtrl" ,function ($scope, $http, SearchParam, SearchResult) {
-
-
+    
+    $scope.Math=Math;
     $(document).ready(function() {
         'use strict';
 
