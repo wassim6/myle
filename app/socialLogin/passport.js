@@ -97,7 +97,8 @@ module.exports = function(passport) {
 
                         newUser.local.email    = email;
                         newUser.local.password = newUser.generateHash(password);
-
+                        newUser.firstName=req.body.firstName;
+                        newUser.lastName=req.body.lastName;
                         newUser.save(function(err) {
                             if (err)
                                 return done(err);
@@ -170,6 +171,8 @@ module.exports = function(passport) {
                             user.facebook.token = token;
                             user.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
                             user.facebook.email = (profile.emails[0].value || '').toLowerCase();
+                            user.firstName=profile.name.givenName;
+                            user.lastName=profile.name.familyName;
                            // user.facebook.birthday = profile.birthday.age_range;
 							//user.facebook.age_range = profile.age_range;
                             user.save(function(err) {
@@ -189,6 +192,8 @@ module.exports = function(passport) {
                         newUser.facebook.token = token;
                         newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
                         newUser.facebook.email = (profile.emails[0].value || '').toLowerCase();
+                        newUser.firstName=profile.name.givenName;
+                        newUser.lastName=profile.name.familyName;
 						//newuser.facebook.birthday = profile.birthday.age_range;
 						//newuser.facebook.age_range = profile.age_range;
 						
@@ -210,8 +215,9 @@ module.exports = function(passport) {
                 user.facebook.token = token;
                 user.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
                 user.facebook.email = (profile.emails[0].value || '').toLowerCase();
-				user.facebook.birthday = profile.birthday.age_range;
-				user.facebook.age_range = profile.age_range;
+                
+				//user.facebo=ok.birthday = profile.birthday.age_range;
+				//user.facebook.age_range = profile.age_range;
 
                 user.save(function(err) {
                     if (err)

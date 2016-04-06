@@ -14,6 +14,12 @@ module.exports = function(app, passport) {
         });
     });
 
+    app.get('/isconnected', function(req, res) {
+        res.json({
+            status : req.isAuthenticated()
+        });
+    });
+
     // LOGOUT ==============================
     app.get('/logout', function(req, res) {
         req.logout();
