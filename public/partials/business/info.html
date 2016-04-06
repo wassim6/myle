@@ -153,7 +153,7 @@ Merci de ne pas donner d'avis sur ce commerce si vous avez bénéficié de quelc
                                 {{c.content}}
                                 <div class="row">
                                     <div class="custom-preview" style="width:100%; margin-left:20px;"  >
-                                        <a ng-repeat="im in c.commentImage" colorbox="{}"   href="../../img/bimg/{{im.uri}}">
+                                        <a ng-repeat="im in c.commentImage" colorbox="{scalePhotos: true, maxHeight: '50%'}"   href="../../img/bimg/{{im.uri}}">
                                             <img  ng-src="../../img/bimg/{{im.uri}}" style="width:128px" class="myImage" />
                                         </a>
                                     </div>
