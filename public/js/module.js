@@ -4,7 +4,9 @@ var myApp = angular.module('myApp', ['ngRoute', 'pretty-checkable', 'ngResource'
 	'angularUtils.directives.dirPagination',
     'uiGmapgoogle-maps',
     'angular-media-preview',
-    'naif.base64'                                 
+    'naif.base64',
+    "ngAnimate",
+    "toaster"
                                      
 ]);
 

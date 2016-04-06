@@ -25,8 +25,8 @@ require('./app/socialLogin/passport.js')(passport); // pass passport for configu
 // set up our express application
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
-app.use(bodyParser.json()); // get information from html forms
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true, limit:'50mb' }));
+app.use(bodyParser.json({limit: '50mb'}));
 
 app.set('view engine', 'ejs'); // set up ejs for templating
 
@@ -45,11 +45,6 @@ console.log('The magic happens on port ' + port);
 /* socialLogin */
 
 
-
-
-// configure body-parser so we can work with request.body
-app.use(bodyParser.urlencoded({ extended: true, limit:'50mb' }));
-app.use(bodyParser.json({limit: '50mb'}));
 
 app.use(require('express-session')({
 

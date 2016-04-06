@@ -1,7 +1,7 @@
 'use strict';
 
 myApp.controller("InfoCtrl" ,function ($rootScope, $scope, $routeParams, $location, $anchorScroll, $timeout, 
-    BusinessService, uiGmapGoogleMapApi) {
+    BusinessService, uiGmapGoogleMapApi, toaster) {
 
     var businessId=$routeParams.id;
     $scope.myModel={};
@@ -127,8 +127,18 @@ myApp.controller("InfoCtrl" ,function ($rootScope, $scope, $routeParams, $locati
     
     
     $scope.addReview = function(img){
-        if(typeof $scope.rate=='undefined')
+        if($rootScope.AuthenticatedUser==null){
+            toaster.warning("Erreur", "Vous devez vous connecter pour donner votre avis");
             return;
+        }
+        if(typeof $scope.rate=='undefined'){
+            toaster.error("Erreur", "Veuillez saisir une note");
+            return;
+        }
+        if(typeof $scope.content=='undefined' || $scope.content.length<3){
+            toaster.error("Erreur", "Veuillez donner votre avis");
+            return;
+        }
         if(typeof img.length=='undefined')
             img=[];
         BusinessService.addComment().save({
@@ -138,17 +148,20 @@ myApp.controller("InfoCtrl" ,function ($rootScope, $scope, $routeParams, $locati
           userId:$rootScope.AuthenticatedUser.id,
           imgs:img
         }, function(){
-            console.log("ok");
+            toaster.success("Succes", "Votre avis a été enregistré")
             $scope.comments = BusinessService.findCommentsByBusiness().query({
                 bid:businessId
             });
         }, function(e){
+            toaster.error("Erreur", "Une erreur est survenu, veillez resseyez ultérierement");
             console.log(e);
         });
     };
 
 
-}).directive("owlCarousel", function() {
+})
+
+.directive("owlCarousel", function() {
     return {
         restrict: 'E',
         transclude: false,

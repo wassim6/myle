@@ -1,7 +1,17 @@
 'use strict';
 
-myApp.controller("ProfileCtrl" ,function ($scope) {
+myApp.controller('ProfileCtrl', function($rootScope, $scope, $window, profileService, $location) {
 
-    init();
+    
+        
+        
+         var Id=$routeParams.id;
+         var b=profileService.showInfo().get({
+    	id:Id
+    }, function(){
 
-});
+    });
+        
+        
+        
+    });
