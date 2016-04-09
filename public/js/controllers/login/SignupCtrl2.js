@@ -5,14 +5,13 @@ myApp.controller('SigninCtrl2', function($rootScope, $scope, $window, loginServi
 	//var x = loginService.isLoged().get({}, function(){console.log(x)});
 
     $scope.createUser = function(){
-       console.log(a);  
         loginService.createUserLocal().save({
                	email:$scope.email,
                 password:$scope.password,
                 firstName:$scope.firstName,
                 lastName:$scope.lastName
         }, function(response){
-            console.log("success", "");
+            console.log("success");
             
             $rootScope.AuthenticatedUser = {
                 username:response.username,
@@ -48,8 +47,7 @@ myApp.controller('SigninCtrl2', function($rootScope, $scope, $window, loginServi
               //console.log(response);
            	  //console.log(response.codePostale);
 //            $location.path("/home");   
-            
-            
+                
         }, function(e){
             console.log("error", "login or password incorrect");
         });
