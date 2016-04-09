@@ -1,6 +1,6 @@
 var express = require('express');
 var passport = require('passport');
-var Account = require('../models/User');
+var Account = require('../models/Account');
 var router = express.Router();
 
 
@@ -55,8 +55,7 @@ function getUserByUsername(req, res){
 };
 
 function editInfo(req, res){
-    var data = req.body;
-    Account.update(new Account(data), req.body.password
+    Account.update({"_id": req.body._id},{"username": req.body.username},{"email": req.body.email}
         , function(err, model) {
             if (err) res.status(400).send('error');
             else
