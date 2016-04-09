@@ -7,7 +7,7 @@ myApp.factory('profileService',function($resource, $http){
 		
     service.createUser=createUser;
     service.authetificationUser=authetificationUser;
-    
+    service.showInfo=showInfo;
    
     return service;
     

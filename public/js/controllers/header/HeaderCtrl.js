@@ -1,6 +1,7 @@
 'use strict';
 
-myApp.controller("HeaderCtrl" ,function ($rootScope, $scope, $window,  TagService, $http, $location, $route, BusinessService, SearchParam, SearchResult
+myApp.controller("HeaderCtrl" ,function ($rootScope, $scope, $window,  TagService, $http, $location, 
+    $route, BusinessService, SearchParam, SearchResult, loginService
 ) {
     
     $scope.remoteUrlRequestFn = function(str) {
@@ -112,8 +113,7 @@ myApp.controller("HeaderCtrl" ,function ($rootScope, $scope, $window,  TagServic
     
     $scope.logOut = function(){
       $rootScope.AuthenticatedUser =null;
-      setCookie('user',null,null);
-      setCookie('userp',null,null);
+      loginService.logOut().get();
       $location.path("/home");     
     };
     
