@@ -10,7 +10,8 @@
 </head>
 <body>
 <div class="container">
-
+    <h1>Bienvenu</h1>
+    <!--
     <div class="page-header text-center">
         <h1><span class="fa fa-anchor"></span> Profile Page</h1>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
@@ -18,7 +19,7 @@
 
     <div class="row">
 
-        <!-- LOCAL INFORMATION -->
+
         <div class="col-sm-6">
             <div class="well">
                 <h3><span class="fa fa-user"></span> Local</h3>
@@ -38,20 +39,16 @@
             </div>
         </div>
 
-        <!-- FACEBOOK INFORMATION -->
+
         <div class="col-sm-6">
             <div class="well">
                 <h3 class="text-primary"><span class="fa fa-facebook"></span> Facebook</h3>
 
-                <!-- check if the user has this token (is the user authenticated with this social account) -->
                 <% if (user.facebook.token) { %>
                     <p>
                         <strong>id</strong>: <%= user.facebook.id %><br>
-                       <!--  <strong>token</strong>: <%= user.facebook.token %><br> -->
                         <strong>email</strong>: <%= user.facebook.email %><br>
                         <strong>name</strong>: <%= user.facebook.name %><br>
-			<!-- 			<strong>birthday</strong>: <%= user.facebook.birthday %><br>
-						<strong>age</strong>: <%= user.facebook.age_range %><br> -->
                     </p>
 
                     <a href="/unlink/facebook" class="btn btn-primary">Unlink</a>
@@ -64,7 +61,6 @@
     </div>
     <div class="row">
 
-        <!-- TWITTER INFORMATION -->
         <div class="col-sm-6">
             <div class="well">
                 <h3 class="text-info"><span class="fa fa-twitter"></span> Twitter</h3>
@@ -85,7 +81,6 @@
             </div>
         </div>
 
-        <!-- GOOGLE INFORMATION -->
         <div class="col-sm-6">
             <div class="well">
                 <h3 class="text-danger"><span class="fa fa-google-plus"></span> Google+</h3>
@@ -93,7 +88,6 @@
                 <% if (user.google.token) { %>
                     <p>
                         <strong>id</strong>: <%= user.google.id %><br>
-                      <!--   <strong>token</strong>: <%= user.google.token %><br> -->
                         <strong>email</strong>: <%= user.google.email %><br>
                         <strong>name</strong>: <%= user.google.name %>
                     </p>
@@ -105,7 +99,7 @@
 
             </div>
         </div>
-    </div>
+    </div>-->
 
 
 

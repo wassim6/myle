@@ -13,7 +13,10 @@ myApp.factory('loginService',function($resource, $http){
     service.isLoged=isLoged;
     service.createUserLocal=createUserLocal;
     service.createUserFacebook=createUserFacebook;
+<<<<<<< HEAD
 
+=======
+>>>>>>> a9844d4c756143fa30c98823636b113a7238455a
     service.logInLocal=logInLocal;
     service.logOut=logOut;
 
@@ -49,7 +52,10 @@ myApp.factory('loginService',function($resource, $http){
         return $resource('http://localhost\\:5000/isconnected');
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> a9844d4c756143fa30c98823636b113a7238455a
     function logInLocal(){
         return $resource('http://localhost\\:5000/login');
     }
