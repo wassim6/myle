@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Gouvernera = require('./Gouvernera');
 var Delegation = require('./Delegation');
 var Business = require('./Business');
+var bcrypt   = require('bcrypt-nodejs');
 var Schema = mongoose.Schema; // allows us to create a constructor for our model
 
 var UserSchema = new Schema({
@@ -52,6 +53,16 @@ UserSchema.pre('save', function(next){
   this.created_at = new Date();
   next();
 });
+
+// generating a hash
+UserSchema.methods.generateHash = function(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
+
+// checking if password is valid
+UserSchema.methods.validPassword = function(password) {
+    return bcrypt.compareSync(password, this.local.password);
+};
 
 module.exports = mongoose.model('User', UserSchema);
 

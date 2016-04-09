@@ -13,8 +13,12 @@ myApp.factory('loginService',function($resource, $http){
     service.isLoged=isLoged;
     service.createUserLocal=createUserLocal;
     service.createUserFacebook=createUserFacebook;
+<<<<<<< HEAD
     service.logInLocal=logInLocal;
     service.logOut=logOut;
+=======
+
+>>>>>>> aeba65d3feb4b71adbd8d428d1c7456ecfe4bc83
 
     return service;
     
@@ -48,6 +52,7 @@ myApp.factory('loginService',function($resource, $http){
         return $resource('http://localhost\\:5000/isconnected');
     }
 
+<<<<<<< HEAD
     function logInLocal(){
         return $resource('http://localhost\\:5000/login');
     }
@@ -55,4 +60,6 @@ myApp.factory('loginService',function($resource, $http){
         return $resource('http://localhost\\:5000/logout');
     }
 
+=======
+>>>>>>> aeba65d3feb4b71adbd8d428d1c7456ecfe4bc83
 });

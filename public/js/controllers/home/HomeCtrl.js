@@ -1,6 +1,7 @@
 'use strict';
 
-myApp.controller("HomeCtrl" ,function ($rootScope, $scope, TagService, $http, $location, $controller, $route, BusinessService, SearchParam, SearchResult
+myApp.controller("HomeCtrl" ,function ($rootScope, $scope, TagService, $http, $location, $controller, 
+    $route, BusinessService, SearchParam, SearchResult
 ) {    
     
     $scope.remoteUrlRequestFn = function(str) {
@@ -95,6 +96,8 @@ myApp.controller("HomeCtrl" ,function ($rootScope, $scope, TagService, $http, $l
         
     };
     
+
+   
     
 
 
