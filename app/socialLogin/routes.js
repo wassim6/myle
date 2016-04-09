@@ -16,7 +16,12 @@ module.exports = function(app, passport) {
 
     app.get('/isconnected', function(req, res) {
         res.json({
+<<<<<<< HEAD
+            status : req.isAuthenticated(),
+            user:req.user
+=======
             status : req.isAuthenticated()
+>>>>>>> aeba65d3feb4b71adbd8d428d1c7456ecfe4bc83
         });
     });
 

@@ -46,54 +46,24 @@ myApp.run(function ($rootScope, $location, loginService) {
           //$location.path("/login");
       }
       else{
-        var user=getCookie('user');
-        var userp=getCookie('userp');
-        if(typeof user == 'undefined' ||  user == null ||  user == '' ||
-           typeof userp == 'undefined' ||  userp == null ||  userp == ''){
-            $rootScope.AuthenticatedUser=null;     
-            if(next.templateUrl =="partials/user/profile.html" || 
-              next.templateUrl =="partials/user/seting.html"){
-                $location.path("/login/sign_in");
-            }
-            else{
-            }
-        }
-        else{
-            loginService.authetificationUser().save({
-                "username":user,
-                "password":userp
-            }, function(response){
-                loginService.getbyusername().get({
-                    username:response.username 
-                }, function(m){                
-                    $rootScope.AuthenticatedUser = {
-                        username:response.username,
-                        password:response.password,
-                        id:m._id    
-                    };
-                    var today = new Date();
-                    var expired = new Date(today);
-                    expired.setDate(today.getHours() + 2); //Set expired date to tomorrow
-                    setCookie('user',user,expired);
-                    setCookie('useri',m._id,expired);
-                    setCookie('userp',userp,expired);
-                }, function(e){
-                    console.log(e);
-                });
-                
-            }, function(e){
-                setCookie('user',null, null);
-                setCookie('userp',null, null);
+        var r = loginService.isLoged().get({}, function(){
+            if(r.status==false){
+                $rootScope.AuthenticatedUser=null;     
                 if(next.templateUrl =="partials/user/profile.html" || 
                   next.templateUrl =="partials/user/seting.html"){
                     $location.path("/login/sign_in");
                 }
-                else{
-                }
-                //$location.path("/login/sign_in");
             }
-            );
-        }
+            else{
+                $rootScope.AuthenticatedUser = {
+                        username:r.user.local.email,
+                        id:r.user._id,
+                        firstName:r.user.firstName,
+                        lastName:r.user.lastName
+                };  
+            }
+        });
+
 
       }
       
