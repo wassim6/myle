@@ -56,7 +56,7 @@ function getUserByUsername(req, res){
 
 function editInfo(req, res){
     var data = req.body;
-    Account.update(new Account(data), req.body.password
+    Account.update(new Account(data)
         , function(err, model) {
             if (err) res.status(400).send('error');
             else

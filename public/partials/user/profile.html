@@ -28,34 +28,36 @@
                 <div class="page-title">
                     <h1>Edit Profile</h1>
                 </div><!-- /.page-title -->
-
+<form>
                 <div class="background-white p20 mb30">
                     <h3 class="page-title">
                         Contact Information
-
-                        <a href="#" class="btn btn-primary btn-xs pull-right">Save</a>
+<button type="submit" class="btn btn-primary" style="margin-left:500px" ng-click="editProfile()" > Save </button>
+                        
                     </h3>
 
                     <div class="row">
                         <div class="form-group col-sm-6">
-                            <label>Name</label>
-                            <input type="text" class="form-control" value="John">
+                            <label>Nom</label>
+                            <input type="text" class="form-control" ng-model="data.firstName">
                         </div><!-- /.form-group -->
 
                         <div class="form-group col-sm-6">
-                            <label>Surname</label>
-                            <input type="text" class="form-control" value="Doe">
+                            <label>Prenom</label>
+                            <input type="text" class="form-control"  ng-model="data.lastName">
+                        </div><!-- /.form-group -->
+                        
+                        <div class="form-group col-sm-6">
+                            <label>Age</label>
+                            <input type="text" class="form-control"  ng-model="data.age" >
                         </div><!-- /.form-group -->
 
                         <div class="form-group col-sm-6">
-                            <label>E-mail</label>
-                            <input type="text" class="form-control" value="sample@example.com">
+                            <label>Telephone</label>
+                            <input type="text" class="form-control" ng-model="data.tel">
                         </div><!-- /.form-group -->
-
-                        <div class="form-group col-sm-6">
-                            <label>Phone</label>
-                            <input type="text" class="form-control" value="123-456-789">
-                        </div><!-- /.form-group -->
+                        
+                        
                     </div><!-- /.row -->
                 </div>
 
@@ -63,7 +65,7 @@
                     <h3 class="page-title">
                         Social Connections
 
-                        <a href="#" class="btn btn-primary btn-xs pull-right">Save</a>
+                       
                     </h3>
 
                     <div class="form-horizontal">
@@ -71,88 +73,53 @@
                             <label class="col-sm-2 control-label">Facebook</label>
 
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" value="http://facebook.com/">
+                                <input type="text" class="form-control" ng-model="data.facebook">
                             </div><!-- /.col-* -->
                         </div><!-- /.form-group -->
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Twitter</label>
+                            <label class="col-sm-2 control-label">Gmail</label>
 
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" value="http://twitter.com/">
+                                <input type="text" class="form-control" ng-model="data.google">
                             </div><!-- /.col-* -->
                         </div><!-- /.form-group -->
 
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Linkedin</label>
-
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" value="http://linkedin.com/">
-                            </div><!-- /.col-* -->
-                        </div><!-- /.form-group -->
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Dribbble</label>
-
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" value="http://dribbble.com/">
-                            </div><!-- /.col-* -->
-                        </div><!-- /.form-group -->
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Instagram</label>
-
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" value="http://instagram.com/">
-                            </div><!-- /.col-* -->
-                        </div><!-- /.form-group -->
+                      
                     </div><!-- /.form-inline -->
                 </div><!-- /.background-white -->
 
                 <div class="background-white p20 mb30">
                     <h3 class="page-title">
-                        Address
+                        Adresse
 
-                        <a href="#" class="btn btn-primary btn-xs pull-right">Save</a>
+                        
                     </h3>
 
                     <div class="row">
                         <div class="form-group col-sm-6">
-                            <label>State</label>
-                            <input type="text" class="form-control" value="New York">
+                            <label>gouvernerat</label>
+                            <input type="text" class="form-control" ng-model="data.gouvernera">
                         </div><!-- /.form-group -->
 
                         <div class="form-group col-sm-6">
-                            <label>City</label>
-                            <input type="text" class="form-control" value="New York City">
+                            <label>Délegation</label>
+                            <input type="text" class="form-control" ng-model="data.delegation">
                         </div><!-- /.form-group -->
 
                         <div class="form-group col-sm-6">
-                            <label>Street</label>
-                            <input type="text" class="form-control" value="Everton Eve">
+                            <label>Adresse</label>
+                            <input type="text" class="form-control" ng-model="data.adresse">
                         </div><!-- /.form-group -->
 
                         <div class="form-group col-sm-3">
-                            <label>House Number</label>
-                            <input type="text" class="form-control" value="123">
-                        </div><!-- /.form-group -->
-
-                        <div class="form-group col-sm-3">
-                            <label>ZIP</label>
-                            <input type="text" class="form-control" value="12345">
+                            <label>Code Postale</label>
+                            <input type="text" class="form-control" ng-model="data.codePostale">
                         </div><!-- /.form-group -->
                     </div><!-- /.row -->
                 </div>
 
-                <div class="background-white p20 mb30">
-                    <h3 class="page-title">
-                        Biography
-
-                        <a href="#" class="btn btn-primary btn-xs pull-right">Save</a>
-                    </h3>
-
-                    <textarea class="form-control" rows="7"></textarea>
-                </div>
+                </form>
 
             </div><!-- /.content -->
         </div><!-- /.col-* -->

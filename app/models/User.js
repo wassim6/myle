@@ -11,8 +11,11 @@ var UserSchema = new Schema({
   profileImage:{type:String, default:"default.png"},
   age:Number,
   score:Number,
-  facebook:Boolean,
+  facebook:String,
+  google:String,
+  adresse:String,
   tel:String,
+  codePostale:String,
   gouvernera:{type: mongoose.Schema.Types.ObjectId, ref: 'Gouvernera'},
   delegation:{type: mongoose.Schema.Types.ObjectId, ref: 'Delegation'},
   
