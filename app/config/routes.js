@@ -65,8 +65,7 @@ apiRouter.route('/admin/auth')
 apiRouter.route('/user/auth')
   .post(PassportController.authetificationUser);
 
-apiRouter.route('/user/edit')
-  .post(PassportController.editInfo);
+
 
 
 apiRouter.get('/user/show/:id', PassportController.showInfo);
