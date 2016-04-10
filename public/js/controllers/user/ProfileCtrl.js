@@ -1,6 +1,6 @@
 'use strict';
 
-myApp.controller('ProfileCtrl', function($rootScope, $scope, $window, profileService, $location) {
+myApp.controller('ProfileCtrl', function($rootScope, $scope, $window, profileService, $location, toaster) {
 
 	var Id=$rootScope.AuthenticatedUser.id;
 	var b=profileService.showInfo().get({
@@ -11,19 +11,13 @@ myApp.controller('ProfileCtrl', function($rootScope, $scope, $window, profileSer
     });
         
         $scope.editProfile = function(){
-    
+        
         profileService.editInfo().save({
                 "id":Id,
                 "firstName":$scope.data.firstName,
                 "lastName":$scope.data.lastName,
                 "age":$scope.data.age,
-                "tel":$scope.data.tel,
-                "facebook":$scope.data.facebook,
-                "google":$scope.data.google,
-                "gouvernera":$scope.data.gouvernera,
-                "delegation":$scope.data.delegation,
-                "adresse":$scope.data.adresse,
-                "codePostale":$scope.data.codePostale
+                "tel":$scope.data.tel
             }, function(){
                 toaster.success("success", "Information edited");
             }, function(e){

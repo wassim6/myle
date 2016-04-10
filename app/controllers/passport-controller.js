@@ -55,14 +55,27 @@ function getUserByUsername(req, res){
 };
 
 function editInfo(req, res){
-    var data = req.body;
-    Account.update(new Account(data)
+    var body = req.body;
+    Account.update({
+            "_id": req.body.id
+        }, {    
+            "firstName": req.body.firstName,
+            "lastName":body.lastName,
+            "age":body.age,
+            "tel":body.tel
+        }, function(err, model) {
+            if (err) res.status(400).send('error 66');
+            else
+                res.json({message: 'User successfully edited', code:0});
+        });
+
+/*    Account.update(new Account(data)
         , function(err, model) {
             if (err) res.status(400).send('error');
             else
                 res.json({message: 'account successfully edited', code:0});
                 
-        });
+        });*/
 };
 
 
