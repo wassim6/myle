@@ -4,11 +4,14 @@ myApp.controller("InfoCtrl" ,function ($rootScope, $scope, $routeParams, $locati
     BusinessService, uiGmapGoogleMapApi, toaster) {
 
     var businessId=$routeParams.id;
+    var userId='0';
+    if( typeof ($rootScope.AuthenticatedUser)!='undefined' && $rootScope.AuthenticatedUser!=null)
+        userId=$rootScope.AuthenticatedUser.id;
     $scope.myModel={};
     $scope.Math=Math;
 
     var b=BusinessService.getById().get({
-    	id:businessId
+        id:businessId
     }, function(){
         for(var i=0;i<b.openingTime.length;i++){
             if(b.openingTime[i].tested!=1){
@@ -73,8 +76,14 @@ myApp.controller("InfoCtrl" ,function ($rootScope, $scope, $routeParams, $locati
                 }
             }else{}
         }
+        b.isLiked=false;
+        for(var i=0;i<b.likes.length;i++){
+            if(b.likes[i]._id==userId){
+                b.isLiked=true;
+            }
+        }
         $scope.b=b;
-    	console.log($scope.b);
+        console.log($scope.b);
         $timeout(function() {
             $(".group3").colorbox({rel:"imgs", transition:"elastic"});
 
@@ -116,8 +125,8 @@ myApp.controller("InfoCtrl" ,function ($rootScope, $scope, $routeParams, $locati
     })
 
     $scope.writeReview = function(){
-    	$location.hash('writeReview');
-    	$anchorScroll();    	
+        $location.hash('writeReview');
+        $anchorScroll();        
     }
 
     $scope.viewReview = function(){
@@ -149,14 +158,50 @@ myApp.controller("InfoCtrl" ,function ($rootScope, $scope, $routeParams, $locati
           imgs:img
         }, function(){
             toaster.success("Succes", "Votre avis a été enregistré")
-            $scope.comments = BusinessService.findCommentsByBusiness().query({
+            var cc= BusinessService.findCommentsByBusiness().query({
                 bid:businessId
+            }, function(){
+                $scope.b.comments=cc;
             });
         }, function(e){
             toaster.error("Erreur", "Une erreur est survenu, veillez resseyez ultérierement");
             console.log(e);
         });
     };
+
+    $scope.like = function(){
+        if($rootScope.AuthenticatedUser==null){
+            toaster.warning("Erreur", "Vous devez vous connecter pour donner votre avis");
+            return;
+        }
+        BusinessService.addlike().save({
+          id:businessId,
+          userId:$rootScope.AuthenticatedUser.id,
+        }, function(){
+            toaster.success("Succes", "commercer ajouté au favoris")
+            $scope.b.isLiked=true;
+        }, function(e){
+            toaster.error("Erreur", "Une erreur est survenu, veillez resseyez ultérierement");
+            console.log(e);
+        });  
+    }
+
+    $scope.unlike = function(){
+        if($rootScope.AuthenticatedUser==null){
+            toaster.warning("Erreur", "Vous devez vous connecter pour donner votre avis");
+            return;
+        }
+        BusinessService.removelike().save({
+          id:businessId,
+          userId:$rootScope.AuthenticatedUser.id,
+        }, function(){
+            toaster.success("Succes", "commercer retirer des favoris")
+            $scope.b.isLiked=false;
+        }, function(e){
+            toaster.error("Erreur", "Une erreur est survenu, veillez resseyez ultérierement");
+            console.log(e);
+        });  
+    }
 
 
 })

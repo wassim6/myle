@@ -6,8 +6,13 @@ var myApp = angular.module('myApp', ['ngRoute', 'pretty-checkable', 'ngResource'
     'angular-media-preview',
     'naif.base64',
     "ngAnimate",
-    "toaster"                                     
+    "toaster",
+    "angularMoment"
 ]);
+
+myApp.run(function(amMoment) {
+    amMoment.changeLocale('fr');
+});
 
 myApp.value('AdressSearch',{});
 myApp.value('TagSearch',{});
@@ -56,10 +61,10 @@ myApp.run(function ($rootScope, $location, loginService) {
             }
             else{
                 $rootScope.AuthenticatedUser = {
-                        username:r.user.local.email,
                         id:r.user._id,
                         firstName:r.user.firstName,
-                        lastName:r.user.lastName
+                        lastName:r.user.lastName,
+                        profileImage:r.user.profileImage
                 };  
             }
         });

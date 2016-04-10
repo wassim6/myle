@@ -1,7 +1,7 @@
 'use strict';
 
 myApp.controller("HomeCtrl" ,function ($rootScope, $scope, TagService, $http, $location, $controller, 
-    $route, BusinessService, SearchParam, SearchResult
+    $route, BusinessService, SearchParam, SearchResult, toaster
 ) {    
     
     $scope.remoteUrlRequestFn = function(str) {
@@ -24,7 +24,6 @@ myApp.controller("HomeCtrl" ,function ($rootScope, $scope, TagService, $http, $l
     $scope.defaultTag={};
     if($rootScope.TagSearch!=null)
         $scope.defaultTag.name=$rootScope.TagSearch.name;
-    
     
     $scope.search = function(){
 //        console.log($scope.selectedTag);
@@ -92,16 +91,85 @@ myApp.controller("HomeCtrl" ,function ($rootScope, $scope, TagService, $http, $l
         
         //console.log(address);
         //console.log(tag);
-
         
     };
-    
-
+    $scope.limit=3;
+    var aId=getCookie('adressId');
+    $scope.aName=getCookie('adressName');
+    $scope.newsFeed=BusinessService.newsFeed().query({
+        id:aId
+    }, function(){
+        //console.log($scope.newsFeed);
+    } );
    
-    
+    $scope.plus = function(){
+        $scope.limit+=3;
+    }
+
+    $scope.newbusiness=BusinessService.newbusiness().query({
+        id:aId
+    }, function(){
+        if($rootScope.AuthenticatedUser!=null){
+            for(var i=0;i<$scope.newbusiness.length;i++){
+                var test=0;
+                for(var j=0;j<$scope.newbusiness[i].likes.length;j++){
+                    if($scope.newbusiness[i].likes[j]._id==$rootScope.AuthenticatedUser.id){
+                        $scope.newbusiness[i].isLiked=true;
+                        test=1;
+                    }
+                }
+                if(test==0)
+                    $scope.newbusiness[i].isLiked=false;
+            }
+        }
+    });
 
 
 
+    $scope.like = function(b){
+        if($rootScope.AuthenticatedUser==null){
+            toaster.warning("Erreur", "Vous devez vous connecter pour donner votre avis");
+            return;
+        }
+        BusinessService.addlike().save({
+          id:b._id,
+          userId:$rootScope.AuthenticatedUser.id,
+        }, function(){
+            toaster.success("Succes", "commercer ajouté au favoris")
+            b.isLiked=true;
+        }, function(e){
+            toaster.error("Erreur", "Une erreur est survenu, veillez resseyez ultérierement");
+            console.log(e);
+        });  
+    }
+
+    $scope.unlike = function(b){
+        if($rootScope.AuthenticatedUser==null){
+            toaster.warning("Erreur", "Vous devez vous connecter pour donner votre avis");
+            return;
+        }
+        BusinessService.removelike().save({
+          id:b._id,
+          userId:$rootScope.AuthenticatedUser.id,
+        }, function(){
+            toaster.success("Succes", "commercer retirer des favoris")
+            b.isLiked=false;
+        }, function(e){
+            toaster.error("Erreur", "Une erreur est survenu, veillez resseyez ultérierement");
+            console.log(e);
+        });  
+    }
+
+
+
+
+}).directive('colorbox', function() {
+  return {   
+    restrict: 'AC',    
+    link: function (scope, element, attrs) {        
+      $(element).colorbox(attrs.colorbox);     
+    }
+  };  
 });
 
 function init(){

@@ -11,7 +11,7 @@ var CommentSchema = new Schema({
   inutile:{type:Number, default:0},
   cool:{type:Number, default:0},
   businessId:{type: mongoose.Schema.Types.ObjectId, ref: 'Business'},
-  userId:{type: mongoose.Schema.Types.ObjectId, ref: 'Account'},
+  userId:{type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     
     commentImage:[ { uri:String } ],
     
