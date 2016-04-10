@@ -6,8 +6,13 @@ var myApp = angular.module('myApp', ['ngRoute', 'pretty-checkable', 'ngResource'
     'angular-media-preview',
     'naif.base64',
     "ngAnimate",
-    "toaster"                                     
+    "toaster",
+    "angularMoment"
 ]);
+
+myApp.run(function(amMoment) {
+    amMoment.changeLocale('fr');
+});
 
 myApp.value('AdressSearch',{});
 myApp.value('TagSearch',{});

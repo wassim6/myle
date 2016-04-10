@@ -21,10 +21,21 @@ function findByRegion(request, response){
                     cs.push(comment[i]);
             }
             response.json(cs);
-        }).populate("businessId").populate("userId");
+        }).sort({created_at: -1}).populate("businessId").populate("userId");
+};
+
+function findNewBusiness(request, response){
+    Business.find({gouvernera:request.params.id}, function(error, business) {
+            if (error){
+                console.error('Could not retrieve Combusinessment b/c:', business);
+                response.status(400).send('error');
+            }
+            response.json(business);
+        }).sort({created_at: -1}).limit(8);
 };
 
 
 module.exports = {
-    findByRegion:findByRegion
+    findByRegion:findByRegion,
+    findNewBusiness:findNewBusiness
 };

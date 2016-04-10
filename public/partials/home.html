@@ -69,16 +69,22 @@
                     <h1>Activité récente</h1>
                 </div>
                 <ul class="cbp_tmtimeline">
-                    <li ng-repeat="n in newsFeed" >
-                        <time class="cbp_tmtime" datetime="09:30"><span>30 minutes</span> <span>{{n.created_at | date:'dd mmm'}}</span></time>
+                    <li ng-repeat="n in newsFeed | limitTo:limit" >
+                        <time class="cbp_tmtime" datetime="09:30"><span am-time-ago="n.created_at"></span>
+                        <span>{{n.created_at | date:'hh:mm'}}</span></time>
                         <div class="cbp_tmicon"><i class="fa fa-edit"></i> </div>
                         <div class="cbp_tmlabel">
                             <div class="pull-right hidden-xs"><a href="#/user/detail/{{n.userId._id}}"><strong>{{n.userId.firstName}} {{n.userId.lastName}}</strong></a><img ng-src="../../img/user/{{n.userId.profileImage}}" alt="" class="img-circle speaker"></div>
                             <h2><span>a écrit un avis pour <a href="#/business/info/{{n.businessId._id}}">{{n.businessId.name}}</a></span>&nbsp;</h2>
-                            <p>{{n.content}}</p>
+                            <p>
+                                {{n.content}}<br/><br/>
+                                <a ng-repeat="im in n.commentImage" href="../../img/bimg/{{im.uri}}" colorbox="{rel:'group'}" class="group" >
+                                    <img  ng-src="../../img/bimg/{{im.uri}}" height="128" width="128"  />
+                                </a>
+                            </p>
                         </div>
                     </li>
-                    <li>
+<!--                    <li>
                         <time class="cbp_tmtime" datetime="09:22"><span>35 minutes</span> <span>09:30</span></time>
                         <div class="cbp_tmicon"><i class="fa fa-picture-o"></i> </div>
                         <div class="cbp_tmlabel">
@@ -90,300 +96,42 @@
                                 <img src="../../img/tmp/food/3.jpg" height="200" width="200" />
                             </p>
                         </div>
-                    </li>
+                    </li>-->
                 </ul>
                 <div class="center" >
-                    <button class="btn" >Voire l'actualité récente</button>
+                    <button class="btn" ng-click="plus()" >Voire l'actualité récente</button>
                 </div>
                 <br/><br/>
 
 
                 <div class="block background-white fullwidth">
                     <div class="page-header">
-                        <h1>Nouveaux commerces à Tunis</h1>
+                        <h1>Nouveaux commerces à {{aName}}</h1>
                     </div>
                     <!-- /.page-header -->
 
                     <div class="row">
-                        <div class="col-sm-6 col-md-3">
-                            <div class="card-simple" data-background-image="img/tmp/product-2.jpg">
+                        <div class="col-sm-6 col-md-3" ng-repeat="nb in newbusiness" >
+                            <div class="card-simple" ng-style="{'background-image':'url(../../img/bimg/'+nb.profileImage+')'}">
                                 <div class="card-simple-background">
                                     <div class="card-simple-content">
-                                        <h2><a href="#/business/info">Tasty Brazil Coffee</a></h2>
+                                        <h2><a href="#/business/info/{{nb._id}}">{{nb.name}}</a></h2>
                                         <div class="card-simple-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star" ng-repeat="s in [] | range:nb.rate" ></i><i class="fa fa-star-o" ng-repeat="s in [] | range:(5-(nb.rate))" ></i>
                                         </div>
-                                        <!-- /.card-rating -->
-
                                         <div class="card-simple-actions">
-                                            <a href="#/business/info" class="fa fa-bookmark-o"></a>
-                                            <a href="#/business/info" class="fa fa-search"></a>
-                                            <a href="#" class="fa fa-heart-o"></a>
+                                            <a href="#/business/info/{{nb._id}}" class="fa fa-search"></a>
+                                            <a ng-if="!nb.isLiked" href class="fa fa-heart" ng-click="like(nb)"></a>
+                                            <a ng-if="nb.isLiked" href style="color:red" class="fa fa-heart" ng-click="unlike(nb)" ></a>
                                         </div>
-                                        <!-- /.card-simple-actions -->
                                     </div>
-                                    <!-- /.card-simple-content -->
-
-                                    <div class="card-simple-label">Coffee</div>
-
+                                    <div class="card-simple-label">{{nb.category}}</div>
                                 </div>
-                                <!-- /.card-simple-background -->
                             </div>
-                            <!-- /.card-simple -->
                         </div>
-                        <!-- /.col-* -->
-
-
-
-                        <div class="col-sm-6 col-md-3">
-                            <div class="card-simple" data-background-image="img/tmp/product-3.jpg">
-                                <div class="card-simple-background">
-                                    <div class="card-simple-content">
-                                        <h2><a href="#/business/info">Healthy Breakfast</a></h2>
-                                        <div class="card-simple-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <!-- /.card-rating -->
-
-                                        <div class="card-simple-actions">
-                                            <a href="#/business/info" class="fa fa-bookmark-o"></a>
-                                            <a href="#/business/info" class="fa fa-search"></a>
-                                            <a href="#" class="fa fa-heart-o"></a>
-                                        </div>
-                                        <!-- /.card-simple-actions -->
-                                    </div>
-                                    <!-- /.card-simple-content -->
-
-                                    <div class="card-simple-label">Food</div>
-
-                                    <div class="card-simple-price">$12 / person</div>
-
-                                </div>
-                                <!-- /.card-simple-background -->
-                            </div>
-                            <!-- /.card-simple -->
-                        </div>
-                        <!-- /.col-* -->
-
-
-
-                        <div class="col-sm-6 col-md-3">
-                            <div class="card-simple" data-background-image="img/tmp/product-4.jpg">
-                                <div class="card-simple-background">
-                                    <div class="card-simple-content">
-                                        <h2><a href="#/business/info">Coffee &amp; Newspaper</a></h2>
-                                        <div class="card-simple-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <!-- /.card-rating -->
-
-                                        <div class="card-simple-actions">
-                                            <a href="#/business/info" class="fa fa-bookmark-o"></a>
-                                            <a href="#/business/info" class="fa fa-search"></a>
-                                            <a href="#" class="fa fa-heart-o"></a>
-                                        </div>
-                                        <!-- /.card-simple-actions -->
-                                    </div>
-                                    <!-- /.card-simple-content -->
-
-                                    <div class="card-simple-label">Restaurant</div>
-
-                                </div>
-                                <!-- /.card-simple-background -->
-                            </div>
-                            <!-- /.card-simple -->
-                        </div>
-                        <!-- /.col-* -->
-
-
-
-                        <div class="col-sm-6 col-md-3">
-                            <div class="card-simple" data-background-image="img/tmp/product-5.jpg">
-                                <div class="card-simple-background">
-                                    <div class="card-simple-content">
-                                        <h2><a href="#/business/info">Boat Trip</a></h2>
-                                        <div class="card-simple-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <!-- /.card-rating -->
-
-                                        <div class="card-simple-actions">
-                                            <a href="#/business/info" class="fa fa-bookmark-o"></a>
-                                            <a href="#/business/info" class="fa fa-search"></a>
-                                            <a href="#" class="fa fa-heart-o"></a>
-                                        </div>
-                                        <!-- /.card-simple-actions -->
-                                    </div>
-                                    <!-- /.card-simple-content -->
-
-                                    <div class="card-simple-label">Vacation</div>
-
-                                </div>
-                                <!-- /.card-simple-background -->
-                            </div>
-                            <!-- /.card-simple -->
-                        </div>
-                        <!-- /.col-* -->
-
-
-
-                        <div class="col-sm-6 col-md-3">
-                            <div class="card-simple" data-background-image="img/tmp/product-6.jpg">
-                                <div class="card-simple-background">
-                                    <div class="card-simple-content">
-                                        <h2><a href="#/business/info">Italian Restaurant</a></h2>
-                                        <div class="card-simple-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <!-- /.card-rating -->
-
-                                        <div class="card-simple-actions">
-                                            <a href="#/business/info" class="fa fa-bookmark-o"></a>
-                                            <a href="#/business/info" class="fa fa-search"></a>
-                                            <a href="#" class="fa fa-heart-o"></a>
-                                        </div>
-                                        <!-- /.card-simple-actions -->
-                                    </div>
-                                    <!-- /.card-simple-content -->
-
-                                    <div class="card-simple-label">Restaurant</div>
-
-                                    <div class="card-simple-price">$28 / person</div>
-
-                                </div>
-                                <!-- /.card-simple-background -->
-                            </div>
-                            <!-- /.card-simple -->
-                        </div>
-                        <!-- /.col-* -->
-
-
-
-                        <div class="col-sm-6 col-md-3">
-                            <div class="card-simple" data-background-image="img/tmp/product-7.jpg">
-                                <div class="card-simple-background">
-                                    <div class="card-simple-content">
-                                        <h2><a href="#/business/info">Best Brazil Coffee</a></h2>
-                                        <div class="card-simple-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <!-- /.card-rating -->
-
-                                        <div class="card-simple-actions">
-                                            <a href="#/business/info" class="fa fa-bookmark-o"></a>
-                                            <a href="#/business/info" class="fa fa-search"></a>
-                                            <a href="#" class="fa fa-heart-o"></a>
-                                        </div>
-                                        <!-- /.card-simple-actions -->
-                                    </div>
-                                    <!-- /.card-simple-content -->
-
-                                    <div class="card-simple-label">Pub</div>
-
-                                </div>
-                                <!-- /.card-simple-background -->
-                            </div>
-                            <!-- /.card-simple -->
-                        </div>
-                        <!-- /.col-* -->
-
-
-
-                        <div class="col-sm-6 col-md-3">
-                            <div class="card-simple" data-background-image="img/tmp/product-8.jpg">
-                                <div class="card-simple-background">
-                                    <div class="card-simple-content">
-                                        <h2><a href="#/business/info">Retro Shop</a></h2>
-                                        <div class="card-simple-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <!-- /.card-rating -->
-
-                                        <div class="card-simple-actions">
-                                            <a href="#/business/info" class="fa fa-bookmark-o"></a>
-                                            <a href="#/business/info" class="fa fa-search"></a>
-                                            <a href="#" class="fa fa-heart-o"></a>
-                                        </div>
-                                        <!-- /.card-simple-actions -->
-                                    </div>
-                                    <!-- /.card-simple-content -->
-
-                                    <div class="card-simple-label">Shop</div>
-
-                                    <div class="card-simple-price">$3 / cup</div>
-
-                                </div>
-                                <!-- /.card-simple-background -->
-                            </div>
-                            <!-- /.card-simple -->
-                        </div>
-                        <!-- /.col-* -->
-
-
-
-                        <div class="col-sm-6 col-md-3">
-                            <div class="card-simple" data-background-image="img/tmp/product-9.jpg">
-                                <div class="card-simple-background">
-                                    <div class="card-simple-content">
-                                        <h2><a href="#/business/info">Wine Tasting</a></h2>
-                                        <div class="card-simple-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <!-- /.card-rating -->
-
-                                        <div class="card-simple-actions">
-                                            <a href="#" class="fa fa-bookmark-o"></a>
-                                            <a href="listing-detail.html" class="fa fa-search"></a>
-                                            <a href="#" class="fa fa-heart-o"></a>
-                                        </div>
-                                        <!-- /.card-simple-actions -->
-                                    </div>
-                                    <!-- /.card-simple-content -->
-
-                                    <div class="card-simple-label">Event</div>
-
-                                    <div class="card-simple-price">$13 / ticket</div>
-
-                                </div>
-                                <!-- /.card-simple-background -->
-                            </div>
-                            <!-- /.card-simple -->
-                        </div>
-                        <!-- /.col-* -->
-
                     </div>
+
+
                     <div class="block background-white fullwidth pt0 pb0">
                         <div class="partners">
                             <a href="#">

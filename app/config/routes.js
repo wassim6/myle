@@ -119,6 +119,8 @@ apiRouter.get('/coupon/get/:id', CouponController.getById);
 
 
 apiRouter.get('/newsfeed/:id', CommentaireController.findByRegion);
+apiRouter.get('/newbusiness/:id', CommentaireController.findNewBusiness);
+
 
 
 apiRouter.get('/alimentation/list', ScrapeController.getAllAlimentation);

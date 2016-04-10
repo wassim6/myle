@@ -13,6 +13,7 @@ myApp.factory('BusinessService',function($resource, $http){
     service.addlike=addlike;
     service.removelike=removelike;
     service.newsFeed=newsFeed;
+    service.newbusiness=newbusiness;
 
    
     return service;
@@ -56,7 +57,11 @@ myApp.factory('BusinessService',function($resource, $http){
          return $resource('http://localhost\\:5000/api/newsfeed/:id',
                     {id:'@id'});   
     }
-    
+    function newbusiness(){
+         return $resource('http://localhost\\:5000/api/newbusiness/:id',
+                    {id:'@id'});   
+    }
+
 
 
     
