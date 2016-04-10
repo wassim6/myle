@@ -8,7 +8,7 @@ var Schema = mongoose.Schema; // allows us to create a constructor for our model
 var UserSchema = new Schema({
   firstName: String,
   lastName: String,
-  profileImage:String,
+  profileImage:{type:String, default:"default.png"},
   age:Number,
   score:Number,
   facebook:Boolean,

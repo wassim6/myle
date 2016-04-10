@@ -56,10 +56,10 @@ myApp.run(function ($rootScope, $location, loginService) {
             }
             else{
                 $rootScope.AuthenticatedUser = {
-                        username:r.user.local.email,
                         id:r.user._id,
                         firstName:r.user.firstName,
-                        lastName:r.user.lastName
+                        lastName:r.user.lastName,
+                        profileImage:r.user.profileImage
                 };  
             }
         });

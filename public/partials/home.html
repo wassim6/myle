@@ -69,19 +69,13 @@
                     <h1>Activité récente</h1>
                 </div>
                 <ul class="cbp_tmtimeline">
-                    <li>
-                        <time class="cbp_tmtime" datetime="09:30"><span>30 minutes</span> <span>09:30</span></time>
+                    <li ng-repeat="n in newsFeed" >
+                        <time class="cbp_tmtime" datetime="09:30"><span>30 minutes</span> <span>{{n.created_at | date:'dd mmm'}}</span></time>
                         <div class="cbp_tmicon"><i class="fa fa-edit"></i> </div>
                         <div class="cbp_tmlabel">
-                            <div class="pull-right hidden-xs"><a href=""><strong>Wassim Boussetta</strong></a><img src="../../img/tmp/agent-4.jpg" alt="" class="img-circle speaker"></div>
-                            <h2><span>a écrit un avis pour <a href="">Mama Shelter</a></span>&nbsp;</h2>
-                            <p>Très bon petit restaurant indien de quartier, Vinobah est un bon plan assuré. Il propose des plats que l'on retrouve dans la plupart des restaurants indiens, mais c'est très bien cuisiné, les produits semblent frais, les plats fait maisons, et ont beaucoup de goût ! 
-Les naans au fromage sont à tomber ! Miam ! 
-Pour ce qui est des prix, ils sont corrects ! 
-Il est possible de prendre des commandes à emporter, comme il est possible de manger sur place. 
-Dans les indiens en général, les portions m'ont toujours semblé généreuse, ce restaurant n'échappe pas à la règle. 
-Pour 15euros/ personne hors boisson, vous serez largement satisfait. 
-Tickets restaurants acceptés.</p>
+                            <div class="pull-right hidden-xs"><a href="#/user/detail/{{n.userId._id}}"><strong>{{n.userId.firstName}} {{n.userId.lastName}}</strong></a><img ng-src="../../img/user/{{n.userId.profileImage}}" alt="" class="img-circle speaker"></div>
+                            <h2><span>a écrit un avis pour <a href="#/business/info/{{n.businessId._id}}">{{n.businessId.name}}</a></span>&nbsp;</h2>
+                            <p>{{n.content}}</p>
                         </div>
                     </li>
                     <li>
@@ -94,20 +88,6 @@ Tickets restaurants acceptés.</p>
                                 <img src="../../img/tmp/food/1.jpg" height="200" width="200" />
                                 <img src="../../img/tmp/food/2.jpg" height="200" width="200" />
                                 <img src="../../img/tmp/food/3.jpg" height="200" width="200" />
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <time class="cbp_tmtime" datetime="09:22"><span>40 minutes</span> <span>09:30</span></time>
-                        <div class="cbp_tmicon"><i class="fa fa-picture-o"></i> </div>
-                        <div class="cbp_tmlabel">
-                            <div class="pull-right hidden-xs"><a href=""><strong>Thouraya Loukil</strong></a><img src="../../img/tmp/agent-3.jpg" alt="" class="img-circle speaker"></div>
-                            <h2><span>a ajouté une photo à <a href="">Noir et Blanc</a></span>&nbsp;</h2>
-                            <p>
-                                Excellent fricassé chez le dépôt à la charguia : le plus de ce fricassé pour moi c’est qu’il y a dedans des frites coupées à la place de la batata masmouta excellente pâte aussi le prix je ne sais plus vue que j’ai pris d’autres choses avec :)
-
-                                <img src="../../img/tmp/food/4.jpg" height="200" width="200" />
-                                <img src="../../img/tmp/food/5.jpg" height="200" width="200" />
                             </p>
                         </div>
                     </li>

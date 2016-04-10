@@ -22,10 +22,13 @@
                         <div class="detail-banner-btn" ng-click="writeReview()" >
                             <i class="fa fa-edit"></i>Écrire un avis
                         </div><!-- /.detail-claim -->
+                        <div ng-if="!b.isLiked" class="detail-banner-btn heart"  style="" ng-click="like()" >
+                            <i class="fa fa-heart"  ></i> <span data-toggle="J'aime">J'aime</span>
+                        </div>
+                        <div ng-if="b.isLiked" class="detail-banner-btn heart"  style="" ng-click="unlike()" >
+                            <i class="fa fa-heart" style="color:red"  ></i> <span data-toggle="J'aime">J'aime </span>
+                        </div>
 
-                        <div class="detail-banner-btn heart">
-                            <i class="fa fa-heart-o"></i> <span data-toggle="J'aime">J'aime</span>
-                        </div><!-- /.detail-claim -->
 
                     </div><!-- /.detail-banner-left -->
                 </div><!-- /.container -->
@@ -193,7 +196,7 @@ Merci de ne pas donner d'avis sur ce commerce si vous avez bénéficié de quelc
 
                     <div class="background-white p20">
                         <div class="detail-overview-hearts">
-                            <i class="fa fa-heart"></i> <strong>213 </strong>personnes aiment ça
+                            <i class="fa fa-heart"></i> <strong>{{b.likes.length}} </strong>personnes aiment ça
                         </div>
                         <div class="detail-overview-rating">
                             <i class="fa fa-star"></i> <strong>{{b.rate | number:1 }} / 5 </strong>basé sur <a href ng-click="viewReview()">{{b.nbrRate}} votes</a>

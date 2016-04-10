@@ -90,4 +90,10 @@ myApp.controller('SigninCtrl', function($rootScope, $scope, $window, loginServic
     };
 
 
+    $scope.createUserGoogle = function(){
+        $window.open('http://localhost:5000/auth/google',"nom_popup","menubar=no, status=no, scrollbars=no, menubar=no, width=800, height=600");
+        $window.location.reload();      
+    };
+
+
 });

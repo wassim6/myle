@@ -25,7 +25,6 @@ myApp.controller("HomeCtrl" ,function ($rootScope, $scope, TagService, $http, $l
     if($rootScope.TagSearch!=null)
         $scope.defaultTag.name=$rootScope.TagSearch.name;
     
-    
     $scope.search = function(){
 //        console.log($scope.selectedTag);
 //        console.log($scope.selectedAddress);
@@ -92,11 +91,15 @@ myApp.controller("HomeCtrl" ,function ($rootScope, $scope, TagService, $http, $l
         
         //console.log(address);
         //console.log(tag);
-
         
     };
     
-
+    var aId=getCookie('adressId');
+    $scope.newsFeed=BusinessService.newsFeed().query({
+        id:aId
+    }, function(){
+        console.log($scope.newsFeed);
+    } );
    
     
 

@@ -10,6 +10,10 @@ myApp.factory('BusinessService',function($resource, $http){
     service.getById=getById;
     service.addComment=addComment;
     service.findCommentsByBusiness=findCommentsByBusiness;
+    service.addlike=addlike;
+    service.removelike=removelike;
+    service.newsFeed=newsFeed;
+
    
     return service;
     
@@ -40,5 +44,20 @@ myApp.factory('BusinessService',function($resource, $http){
                     {bid:'@bid'});   
     }
     
+    function addlike(){
+         return $resource('http://localhost\\:5000/api/business/addlike/:id',
+                    {id:'@id'});   
+    }
+    function removelike(){
+         return $resource('http://localhost\\:5000/api/business/removelike/:id',
+                    {id:'@id'});   
+    }
+    function newsFeed(){
+         return $resource('http://localhost\\:5000/api/newsfeed/:id',
+                    {id:'@id'});   
+    }
+    
+
+
     
 });

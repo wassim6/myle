@@ -13,6 +13,7 @@ var BusinessSchema = new Schema({
   dateCreation:String,
   rate:{type:Number, default:0},
   nbrRate:{type:Number, default:0},
+  totalPoint:{type:Number, default:0},
   longitude:String,
   latitude:String,
   adress:String,
@@ -66,6 +67,8 @@ var BusinessSchema = new Schema({
     businessImage:[ { uri:String, created_at:{ type:Date, daufault:new Date() } } ],
     appointments:[ { userId:{type: mongoose.Schema.Types.ObjectId, ref: 'User'}, date:Date, created_at:{ type:Date, daufault:new Date() }} ],
     reservations:[ { userId:{type: mongoose.Schema.Types.ObjectId, ref: 'User'}, personNumber:Number,  date:Date, created_at:{ type:Date, daufault:new Date() }} ],
+
+   likes:[{userId:{type:mongoose.Schema.Types.ObjectId, ref:'User'}}],
     
   created_at: Date
 });

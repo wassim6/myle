@@ -13,6 +13,7 @@ myApp.factory('loginService',function($resource, $http){
     service.isLoged=isLoged;
     service.createUserLocal=createUserLocal;
     service.createUserFacebook=createUserFacebook;
+    service.createUserGoogle=createUserGoogle;
     service.logInLocal=logInLocal;
     service.logOut=logOut;
 
@@ -53,6 +54,10 @@ myApp.factory('loginService',function($resource, $http){
     }
     function logOut(){
         return $resource('http://localhost\\:5000/logout');
+    }
+
+    function createUserGoogle(){
+        return $resource('http://localhost\\:5000/auth/google');
     }
 
 });

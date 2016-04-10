@@ -5,6 +5,7 @@ var Delegation = require('../models/Delegation');
 var Gouvernera = require('../models/Gouvernera');
 var Tag = require('../models/Tag');
 var Comment = require('../models/Comment');
+var User = require('../models/User');
 var Schema = mongoose.Schema;
 
 
@@ -474,7 +475,8 @@ function addComment(request, response){
                 business.businessImage.push({uri:commentImage[j].uri});
             }
             business.nbrRate=business.nbrRate+1;
-            business.rate=((business.rate+parseInt(body.rate))/business.nbrRate);
+            business.totalPoint+=parseInt(body.rate);
+            business.rate=business.totalPoint/business.nbrRate;
             
             business.save(function(error) {
                 if (error) { 
@@ -513,6 +515,108 @@ function findCommentsByBusiness(request, response){
         response.json(comments);
       }).populate('userId');
 }
+
+function LikeBusiness(request, response){
+    var body=request.body;
+     Business.findOne({'_id':request.params.id},function(error, business) {
+            if (error){
+                console.error('Could not retrieve business b/c:', business);
+                response.status(400).send('error');
+            }
+            var test=0;
+            for(var i=0;i<business.likes.length;i++){
+                if(business.likes[i]._id==body.userId)
+                    test=1;
+            }
+            if(test==0){
+                business.likes.push(body.userId);
+                business.save(function(error) {
+                    if (error) { 
+                        console.error('Not able to add tag b/c:', error);
+                        response.status(400).send('error 68');
+                    }
+                    else{  
+                        addToFavorite(body.userId, request.params.id);
+                        response.json({message: 'like successfully added', code:0});
+                    }
+                  });
+            }
+            else{
+                response.status(400).send('error duplicate tag');
+            }
+
+
+        });
+};
+
+function addToFavorite(userId, id){
+     User.findOne({'_id':userId},function(error, business) {
+            if (error){
+                console.error('Could not retrieve business b/c:', business);
+            }
+            business.favorite.push(id);
+            business.save(function(error) {
+                if (error) { 
+                    console.error('Not able to add tag b/c:', error);
+                }
+
+        });
+        });
+};
+
+function RemoveFromFavorite(userId, id){
+    User.findById(userId,function(error, business) {
+            if (error){
+                console.error('Could not retrieve business b/c:', business);
+            }
+            else{
+                for(var i=0;i<business.favorite.length;i++){
+                    if(business.favorite[i]._id==id){
+                        business.favorite.splice(i, 1);
+                        i=business.favorite.length+1;
+                    }
+                }
+                business.save(function(error) {
+                    if (error) { 
+                        console.error('Not able to update business b/c:', error);
+                    }
+            });
+        }
+});
+};
+
+
+function UnlikeBusiness(request, response){
+    var body=request.body;
+
+    Business.findById(request.params.id,function(error, business) {
+            if (error){
+                console.error('Could not retrieve business b/c:', business);
+                response.status(400).send('error img');
+            }
+            else{
+                for(var i=0;i<business.likes.length;i++){
+                    if(business.likes[i]._id==body.userId){
+                        business.likes.splice(i, 1);
+                        i=business.likes.length+1;
+                    }
+                }
+                business.save(function(error) {
+                    if (error) { 
+                        console.error('Not able to update business b/c:', error);
+                        response.status(400).json('error');
+                    }
+                    else{
+                        RemoveFromFavorite(body.userId, request.params.id);
+                        response.json({message: 'Business successfully updated', code:business});
+                    }
+            });
+        }
+});
+
+
+
+};
 
 
 //###### Tools #####################
@@ -559,5 +663,7 @@ module.exports = {
     editOpeningHourToBusiness:editOpeningHourToBusiness,
     findAllByCat:findAllByCat,
     addComment:addComment,
-    findCommentsByBusiness:findCommentsByBusiness
+    findCommentsByBusiness:findCommentsByBusiness,
+    LikeBusiness:LikeBusiness,
+    UnlikeBusiness:UnlikeBusiness
 };

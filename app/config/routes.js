@@ -16,6 +16,7 @@ var GouverneraController = require('../controllers/gouvernera-controller');
 var BusinessSearchController = require('../controllers/businessSearch-controller');
 var BusinessController = require('../controllers/business-controller');
 var CouponController = require('../controllers/coupon-controller');
+var CommentaireController = require('../controllers/commentaire-controller');
 
 var PassportController = require('../controllers/passport-controller');
 
@@ -108,6 +109,8 @@ apiRouter.post('/business/findAllByCat', BusinessController.findAllByCat);
 apiRouter.post('/business/addComment', BusinessController.addComment);
 apiRouter.get('/business/findcommentsbybusiness/:bid', BusinessController.findCommentsByBusiness);
 
+apiRouter.post('/business/addlike/:id', BusinessController.LikeBusiness);
+apiRouter.post('/business/removelike/:id', BusinessController.UnlikeBusiness);
 
 
 apiRouter.post('/coupon/add', CouponController.add);
@@ -115,6 +118,8 @@ apiRouter.get('/coupon/listbybusiness/:id', CouponController.findByBusinessId);
 apiRouter.get('/coupon/remove/:id', CouponController.remove);
 apiRouter.get('/coupon/get/:id', CouponController.getById);
 
+
+apiRouter.get('/newsfeed/:id', CommentaireController.findByRegion);
 
 
 apiRouter.get('/alimentation/list', ScrapeController.getAllAlimentation);
