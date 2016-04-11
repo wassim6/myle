@@ -68,14 +68,35 @@ function editInfo(req, res){
             else
                 res.json({message: 'User successfully edited', code:0});
         });
-
-/*    Account.update(new Account(data)
-        , function(err, model) {
-            if (err) res.status(400).send('error');
+};
+function editInfo2(req, res){
+    var body = req.body;
+    Account.update({
+            "_id": req.body.id
+        }, {    
+            "facebook": req.body.facebook,
+            "google":body.google
+        }, function(err, model) {
+            if (err) res.status(400).send('error 66');
             else
-                res.json({message: 'account successfully edited', code:0});
-                
-        });*/
+                res.json({message: 'User successfully edited', code:0});
+        });
+};
+
+function editInfoAdresse(req, res){
+    var body = req.body;
+    Account.update({
+            "_id": req.body.id
+        }, {    
+            "gouvernera": body.gouvernera,
+            "delegation": body.delegation,
+            "adresse": body.adresse,
+            "codePostale": body.codePostale
+        }, function(err, model) {
+            if (err) res.status(400).send('error 66');
+            else
+                res.json({message: 'User successfully edited', code:0});
+        });
 };
 
 
@@ -85,5 +106,7 @@ module.exports = {
     authetificationUser:authetificationUser,
     showInfo:showInfo,
     editInfo:editInfo,
-    getUserByUsername:getUserByUsername
+    getUserByUsername:getUserByUsername,
+    editInfo2:editInfo2,
+    editInfoAdresse:editInfoAdresse
 };

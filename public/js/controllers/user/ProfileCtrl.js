@@ -24,5 +24,35 @@ myApp.controller('ProfileCtrl', function($rootScope, $scope, $window, profileSer
                 toaster.error("error", e);
             });
     }; 
+    
+     
+    
+    $scope.editProfile2 = function(){
+        
+        profileService.editInfo2().save({
+                "id":Id,
+                "facebook":$scope.data.facebook,
+                "google":$scope.data.google
+            }, function(){
+                toaster.success("success", "Information edited");
+            }, function(e){
+                toaster.error("error", e);
+            });
+    }; 
+    
+    $scope.editProfile3 = function(){
+        
+        profileService.editInfoAdresse().save({
+                "id":Id,
+                "gouvernera":$scope.data.gouvernera,
+                "delegation":$scope.data.delegation,
+                "adresse":$scope.data.adresse,
+                "codePostale":$scope.data.codePostale
+            }, function(){
+                toaster.success("success", "Information edited");
+            }, function(e){
+                toaster.error("error", e);
+            });
+    }; 
         
 });	

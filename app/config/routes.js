@@ -71,6 +71,8 @@ apiRouter.route('/user/auth')
 apiRouter.get('/user/show/:id', PassportController.showInfo);
 apiRouter.get('/user/getbyusername/:username', PassportController.getUserByUsername);
 apiRouter.post('/user/edit', PassportController.editInfo);
+apiRouter.post('/user/edit2', PassportController.editInfo2);
+apiRouter.post('/user/editInfoAdresse', PassportController.editInfoAdresse);
 
 apiRouter.route('/tag').get(TagController.getAll);
 apiRouter.get('/tag/search', TagController.search);

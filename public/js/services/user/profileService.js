@@ -9,6 +9,8 @@ myApp.factory('profileService',function($resource, $http){
     service.authetificationUser=authetificationUser;
     service.showInfo=showInfo;
     service.editInfo=editInfo;
+    service.editInfo2=editInfo2;
+    service.editInfo3=editInfo3;
    
     return service;
     
@@ -26,6 +28,14 @@ myApp.factory('profileService',function($resource, $http){
     
     function editInfo(){
         return $resource('http://localhost\\:5000/api/user/edit');
+    }
+    
+    function editInfo2(){
+        return $resource('http://localhost\\:5000/api/user/edit2');
+    }
+    
+    function editInfo3(){
+        return $resource('http://localhost\\:5000/api/user/editInfoAdresse');
     }
     
     

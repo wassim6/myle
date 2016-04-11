@@ -15,7 +15,7 @@ var UserSchema = new Schema({
   google:String,
   adresse:String,
   tel:String,
-  codePostale:String,
+  codePostale:Number,
   gouvernera:{type: mongoose.Schema.Types.ObjectId, ref: 'Gouvernera'},
   delegation:{type: mongoose.Schema.Types.ObjectId, ref: 'Delegation'},
   
