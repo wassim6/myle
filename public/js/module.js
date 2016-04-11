@@ -7,7 +7,10 @@ var myApp = angular.module('myApp', ['ngRoute', 'pretty-checkable', 'ngResource'
     'naif.base64',
     "ngAnimate",
     "toaster",
-    "angularMoment"
+    "angularMoment",
+    "ngSanitize",
+    "ui.select"
+                                     
 ]);
 
 myApp.run(function(amMoment) {

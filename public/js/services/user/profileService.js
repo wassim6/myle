@@ -11,6 +11,15 @@ myApp.factory('profileService',function($resource, $http){
     service.editInfo=editInfo;
     service.editInfo2=editInfo2;
     service.editInfo3=editInfo3;
+    
+    
+    service.GetAllGouvernera=GetAllGouvernera;
+    service.GetAllDelegation=GetAllDelegation;
+    service.GetAllDelegationName=GetAllDelegationName;
+    service.updateImg=updateImg;
+
+    
+    
    
     return service;
     
@@ -39,5 +48,23 @@ myApp.factory('profileService',function($resource, $http){
     }
     
     
+    
+    function GetAllGouvernera(){
+        return $resource('http://localhost\\:5000/api/address/gouvernera/list'
+        );
+    }
+    
+    function GetAllDelegation(){
+        return $resource('http://localhost\\:5000/api/address/delegation/list'
+        );
+    }
+    
+    function GetAllDelegationName(){
+        return $resource('http://localhost\\:5000/api/address/delegationname/list'
+        );
+    }
+    function updateImg(){
+        return $resource('http://localhost\\:5000/api/user/editProfileImage/');
+    }
     
 });

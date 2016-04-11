@@ -2,13 +2,25 @@
 
 myApp.controller('ProfileCtrl', function($rootScope, $scope, $window, profileService, $location, toaster) {
 
+        $scope.gouverneras=profileService.GetAllGouvernera().query();
+        $scope.delegations=profileService.GetAllDelegationName().query();
+        $scope.gouvernera={};
+        $scope.delegation={};
 	var Id=$rootScope.AuthenticatedUser.id;
 	var b=profileService.showInfo().get({
     	id:Id
     }, function(){
     	console.log(b);
+        
         $scope.data = b;
+        
+        console.log($scope.data.delegation);
+        $scope.delegation.selected=$scope.data.delegation;
+        $scope.gouvernera.selected=$scope.data.gouvernera;
+        
     });
+    
+    $scope.img={};
         
         $scope.editProfile = function(){
         
@@ -42,10 +54,10 @@ myApp.controller('ProfileCtrl', function($rootScope, $scope, $window, profileSer
     
     $scope.editProfile3 = function(){
         
-        profileService.editInfoAdresse().save({
+        profileService.editInfo3().save({
                 "id":Id,
-                "gouvernera":$scope.data.gouvernera,
-                "delegation":$scope.data.delegation,
+                "gouvernera":$scope.gouvernera.selected._id,
+                "delegation":$scope.delegation.selected._id,
                 "adresse":$scope.data.adresse,
                 "codePostale":$scope.data.codePostale
             }, function(){
@@ -54,5 +66,23 @@ myApp.controller('ProfileCtrl', function($rootScope, $scope, $window, profileSer
                 toaster.error("error", e);
             });
     }; 
+    
+    $scope.updateImage= function(img){
+      profileService.updateImg().save({
+          id:$rootScope.AuthenticatedUser.id,
+          img:img
+        }, function(){
+            toaster.success("Succes", "Votre image a été enregistré")
+            var b=profileService.showInfo().get({
+                id:Id
+            }, function(){
+                $scope.data = b;
+                $scope.delegation.selected=$scope.data.delegation;
+                $scope.gouvernera.selected=$scope.data.gouvernera;
+            });
+        }, function(e){
+            toaster.error("Erreur", "Une erreur est survenu, veillez resseyez ultérierement");
+        });  
+    };
         
 });	
