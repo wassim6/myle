@@ -18,13 +18,13 @@ function search(request, response){
         {
             response.json(business);
             response.end();
-        });
+        }).populate("gouvernera").populate("delegation");
     }
     else{
         Business.find({delegation:request.body.a._id, tag: request.body.t} , function(error, business){
             response.json(business);
             response.end();
-        });
+        }).populate("gouvernera").populate("delegation");
     }
 };
 

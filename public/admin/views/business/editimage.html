@@ -32,10 +32,6 @@ Business Edit <small></small>
                     </span>
                 </li>
                 <li class="">
-                    <a  href="#/business/editcat/{{businesId}}" >
-                    <i class="fa fa-cog"></i> Categories </a>
-                </li>
-                <li class="">
                     <a href="#/business/edittag/{{businesId}}" >
                     <i class="fa fa-cog"></i> Tags </a>
                 </li>
@@ -45,7 +41,7 @@ Business Edit <small></small>
                 </li>
                 <li class="">
                     <a href="#/business/editprofileimage/{{businesId}}" >
-                    <i class="fa fa-picture-o"></i> Profile Image </a>
+                    <i class="fa fa-picture-o"></i> Profile & Cover Image </a>
                 </li>
                 <li class="active">
                     <a href="#/business/editimage/{{businesId}}" >
@@ -59,33 +55,36 @@ Business Edit <small></small>
                     <a  href="#/business/editopeninghour/{{businesId}}" >
                     <i class="fa fa-cog"></i> Opening Hours </a>
                 </li>
+                <li >
+                    <a  href="#/business/coupon/{{businesId}}" >
+                    <i class="fa fa-cog"></i> Add Coupon </a>
+                </li>
             </ul>
         </div>
         <div class="col-md-9">
                 <div id="tab_1-1" class="tab-pane active">
-                    <form  role="form">
+                    <form name="form"  role="form">
                         <div class="form-group">
-                            <div class="fileinput fileinput-new" data-provides="fileinput">
-                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px; min-height:150px;">
+                            <div class="col-md-9">
+                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px; min-height:150px;">
+                                    </div>
+                                    <div>
+                                        <span class="btn default btn-file">
+                                            <span class="fileinput-new">Select image </span>
+                                            <input type="file" ng-model="img" base-sixty-four-input accept="image/*" maxsize="4000" required >
+                                        </span>
+                                        <a href="javascript:;" class="btn btn-danger fileinput-exists" data-dismiss="fileinput" ng-click="reset(img)" >
+                                        Remove </a>
+                                    </div>
                                 </div>
-                                <div>
-                                    <span class="btn default btn-file">
-                                        <span class="fileinput-new">Select image </span>
-                                        <input type="file" ng-model="img" base-sixty-four-input accept="image/*" maxsize="4000" >
-                                    </span>
-                                    <a href="javascript:;" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">
-                                    Remove </a>
-                                </div>
+                                <div class="margin-top-10">
+                                    <a  class="btn green" ng-click="addImage(img, form.$valid)" >Add</a>
+                                </div><br/><br/>
                             </div>
-                        </div>
-                        <div class="margin-top-10">
-                            <a  class="btn green" ng-click="addImage(img)" >Add</a>
                         </div>
                     </form>
 
-                    
-                    
-                    
                     <table class="table table-bordered table-hover" style="margin-top:20px;" >
                         <thead>
                         <tr role="row" class="heading">
@@ -97,15 +96,15 @@ Business Edit <small></small>
                         </tr>
 </thead>
                         <tbody>
-                        <tr ng-repeat="im in b.images" >
+                        <tr ng-repeat="im in b.businessImage" >
                             <td>
-                                <a href="http://localhost:4853{{im.uri}}" class="fancybox-button" data-rel="fancybox-button">
-                                <img class="img-responsive" ng-src="http://localhost:4853{{im.uri}}" alt="">
+                                <a href="http://localhost:5000/img/bimg/{{im.uri}}" class="fancybox-button" data-rel="fancybox-button">
+                                <img class="img-responsive" ng-src="http://localhost:5000/img/bimg/{{im.uri}}" alt="">
                                 </a>
                             </td>
                             <td>
-                                <button class="btn default btn-sm" ng-click="deleteImage(im)" >
-                                <i class="fa fa-times"></i> Remove </button>
+                                <button class="btn default btn-xs red" confirm-button="deleteImage(im);" message="Are you sure to remove this image ?" yes="Remove" no="Cancel" >
+                                <i class="fa fa-trash"></i> Remove </button>
                             </td>
                         </tr>
                         </tbody>

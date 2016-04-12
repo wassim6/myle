@@ -1,225 +1,194 @@
+<style>.angular-google-map-container { height: 300px; }</style>
 <div class="main-inner">
     <div class="content">
         <div class="mt-80 mb80">
-            <div class="detail-banner" style="background-image: url(../../img/tmp/detail-banner-1.jpg);">
+            <div class="detail-banner" ng-style="{'background-image':'url(../../img/bimg/'+b.coverImage+')'}" >
                 <div class="container">
                     <div class="detail-banner-left">
                         <div class="detail-banner-info">
-                            <div class="detail-label">Restaurant</div>
+                            <div class="detail-label">{{b.sousCategory}}</div>
                             <div class="detail-verified">Vérifier <i class="fa fa-check"></i> </div>
                         </div><!-- /.detail-banner-info -->
 
                         <h2 class="detail-title">
-                            NewTown lounge
+                            {{b.name}}
                         </h2>
-
                         <div class="detail-banner-address">
-                            <i class="fa fa-map-o"></i> 347/26 22nd Avenue, Ennasr 2, Ariana
+                            <i class="fa fa-map-o"></i> {{b.adress}}
                         </div>
-
                         <div class="detail-banner-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-half-o"></i>
-                        </div><!-- /.detail-banner-rating -->
-
-                        <div class="detail-banner-btn">
+                            <i class="fa fa-star" ng-repeat="s in [] | range:b.rate" ></i><i class="fa fa-star-o" ng-repeat="s in [] | range:(Math.round(5-(b.rate)))" ></i>
+                        </div>
+                        <div class="detail-banner-btn" ng-click="writeReview()" >
                             <i class="fa fa-edit"></i>Écrire un avis
                         </div><!-- /.detail-claim -->
+                        <div ng-if="!b.isLiked" class="detail-banner-btn heart"  style="" ng-click="like()" >
+                            <i class="fa fa-heart"  ></i> <span data-toggle="J'aime">J'aime</span>
+                        </div>
+                        <div ng-if="b.isLiked" class="detail-banner-btn heart"  style="" ng-click="unlike()" >
+                            <i class="fa fa-heart" style="color:red"  ></i> <span data-toggle="J'aime">J'aime </span>
+                        </div>
 
-                        <div class="detail-banner-btn heart">
-                            <i class="fa fa-heart-o"></i> <span data-toggle="J'aime">J'aime</span>
-                        </div><!-- /.detail-claim -->
 
                     </div><!-- /.detail-banner-left -->
                 </div><!-- /.container -->
             </div><!-- /.detail-banner -->
 
         </div>
-
         <div class="container">
             <div class="row detail-content">
                 <div class="col-sm-7">
+<!--                    <data-owl-carousel class="owl-carousel" data-options="{navigation: true, pagination: true, rewindNav : true}">
+                  <div owl-carousel-item="" ng-repeat="item in ::b.businessImage" class="item">
+                    <a colorbox="{rel:'group3'}" href="../../img/bimg/{{::item.uri}}" class="group3"  >
+                        <img ng-src="../../img/bimg/{{::item.uri}}" />
+                    </a>
+                  </div>
+                </data-owl-carousel>-->
+
+              
+
                     <div class="detail-gallery">
                         <div class="detail-gallery-preview">
-                            <a href="../../img/tmp/gallery-1.jpg">
-                                <img src="../../img/tmp/gallery-1.jpg" >
+                            <a colorbox="{rel:'group3'}" class="group3"  href="../../img/bimg/{{b.profileImage}}">
+                                <img ng-src="../../img/bimg/{{b.profileImage}}" >
                             </a>
                         </div>
-
                         <ul class="detail-gallery-index">
-                            <li class="detail-gallery-list-item active">
-                                <a data-target="../../img/tmp/gallery-1.jpg">
-                                    <img src="../../img/tmp/gallery-1.jpg">
-                                </a>
-                            </li>
-                            <li class="detail-gallery-list-item active">
-                                <a data-target="../../img/tmp/gallery-2.jpg">
-                                    <img src="../../img/tmp/gallery-2.jpg" alt="...">
-                                </a>
-                            </li>
-                            <li class="detail-gallery-list-item active">
-                                <a data-target="../../img/tmp/gallery-3.jpg">
-                                    <img src="../../img/tmp/gallery-3.jpg" alt="...">
-                                </a>
-                            </li>
-                            <li class="detail-gallery-list-item active">
-                                <a data-target="../../img/tmp/gallery-4.jpg">
-                                    <img src="../../img/tmp/gallery-4.jpg" alt="...">
-                                </a>
-                            </li>
-                            <li class="detail-gallery-list-item active">
-                                <a data-target="../../img/tmp/gallery-5.jpg">
-                                    <img src="../../img/tmp/gallery-5.jpg" alt="...">
-                                </a>
-                            </li>
-                            <li class="detail-gallery-list-item active">
-                                <a data-target="../../img/tmp/gallery-6.jpg">
-                                    <img src="../../img/tmp/gallery-6.jpg" alt="...">
-                                </a>
-                            </li>
-                            <li class="detail-gallery-list-item active">
-                                <a data-target="../../img/tmp/gallery-7.jpg">
-                                    <img src="../../img/tmp/gallery-7.jpg" alt="...">
-                                </a>
-                            </li>
-                            <li class="detail-gallery-list-item active">
-                                <a data-target="../../img/tmp/gallery-8.jpg">
-                                    <img src="../../img/tmp/gallery-8.jpg" alt="...">
+                            <li class="detail-gallery-list-item active" ng-repeat="img in b.businessImage" >
+                                <a data-target="../../img/bimg/{{img.uri}}"   >
+                                    <img ng-src="../../img/bimg/{{img.uri}}"  >
                                 </a>
                             </li>
                         </ul>
-                    </div><!-- /.detail-gallery -->
+                    </div>
+                    <div style="display:none">
+                        <li ng-repeat="img in b.businessImage" >
+                            <a class="group3"  href="../../img/bimg/{{img.uri}}"></a>
+                        </li>
+                        <a class="group3"  href="../../img/bimg/{{b.profileImage}}"></a>
+                    </div>
 
                     <h2>Où nous trouver</h2>
                     <div class="background-white p20">
-
-
-
-                        <!-- Tab panes -->
+                      <!-- Tab panes -->
                         <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane fade in active" id="simple-map-panel">
-
-
-                            </div>
-                            <div role="tabpanel" class="tab-pane fade" id="street-view-panel">
-
-                            </div>
+                            <div id="map_canvas" style="height:300px;" >
+                                    <ui-gmap-google-map center="map.center" zoom="map.zoom"  options="options">
+                                        <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
+                                        </ui-gmap-marker>
+                                    </ui-gmap-google-map>
+                                </div>
                         </div>
                     </div>
 
                     <div class="">
-                        <h2>Écrire un  avis</h2>
+                        <h2 id="writeReview" >Écrire un  avis</h2>
 
                         <form class="background-white p20 add-review" method="post" >
-                            <div class="row">
+                            <div class="row" >
                                 <div class="form-group input-rating col-sm-12">
 
                                     <div class="rating-title">Choisissez une note.</div>
 
-                                    <input type="radio" value="1" name="food" id="rating-food-1">
+                                    <input type="radio" value="1" ng-model="rate" name="food" id="rating-food-1">
                                     <label for="rating-food-1"></label>
-                                    <input type="radio" value="2" name="food" id="rating-food-2">
+                                    <input type="radio" value="2" ng-model="rate" name="food" id="rating-food-2">
                                     <label for="rating-food-2"></label>
-                                    <input type="radio" value="3" name="food" id="rating-food-3">
+                                    <input type="radio" value="3" ng-model="rate" name="food" id="rating-food-3">
                                     <label for="rating-food-3"></label>
-                                    <input type="radio" value="4" name="food" id="rating-food-4">
+                                    <input type="radio" value="4" ng-model="rate" name="food" id="rating-food-4">
                                     <label for="rating-food-4"></label>
-                                    <input type="radio" value="5" name="food" id="rating-food-5">
+                                    <input type="radio" value="5" ng-model="rate" name="food" id="rating-food-5">
                                     <label for="rating-food-5"></label>
 
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row"  >
+                                
+                                
+                                
                                 <div class="form-group">
-                                    <textarea class="form-control" rows="6"
+                                    <textarea class="form-control" rows="6" ng-model="content"
                                               placeholder="Votre avis permet à d'autres personnes de s'informer sur les meilleurs commerces locaux.
 
 Merci de ne pas donner d'avis sur ce commerce si vous avez bénéficié de quelconques avantages en échange de cet avis, ou si vous êtes connecté d'une façon ou d'une autre aux gérants ou aux employés du commerce en question."></textarea>
+                                    
                                 </div>
+                                
+              <div class="row">
+                <div id="mediaHere" class="custom-preview" style="width:100%; margin-left:20px;" ></div>
+              </div>
+              <span class="btn btn-lg">
+                <span>browse files</span>
+                <input type="file" multiple
+                  ng-model="myModel"
+                  preview-class="myImage"
+                  preview-container="mediaHere"
+                  media-preview 
+                  base-sixty-four-input 
+                  accept="image/*" 
+                  maxsize="4000"       
+                       />
+              </span>
+                                
                                 <div class="">
-                                    <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-star"></i>Publier avis</button>
+                                    <button class="btn btn-primary btn-block" type="submit" ng-click="addReview(myModel)" ><i class="fa fa-star"></i>Publier avis</button>
                                 </div><!-- /.col-sm-4 -->
                             </div><!-- /.row -->
                         </form>
                     </div>
 
                     <h2 id="reviews">Avis</h2>
-                    <div class="reviews">
-                        <div class="testimonial">
+                    <div class="reviews" id="viewReview">
+                        <div class="testimonial" ng-repeat="c in comments" >
                             <div class="testimonial-image">
-                                <img src="../../img/tmp/agent-1.jpg" alt="">
+                                <img ng-src="../../img/user/{{c.userId.profileImage}}" alt="">
                             </div>
-
                             <div class="testimonial-inner">
                                 <div class="testimonial-title">
-                                    <h2>Exactly What I Need</h2>
-
+                                    <h2>{{c.userId.firstName}} {{c.userId.lastName}}</h2>
                                     <div class="testimonial-rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div><!-- /.testimonial-rating -->
-                                </div><!-- /.testimonial-title -->
+                                        <i class="fa fa-star" ng-repeat="s in [] | range:c.rate" ></i><i class="fa fa-star-o" ng-repeat="s in [] | range:(5-(c.rate))" ></i>
+                                    </div>
+                                </div>
+                                {{c.content}}
+                                <div class="row">
+                                    <div class="custom-preview" style="width:100%; margin-left:20px;"  >
+                                        <a ng-repeat="im in c.commentImage" colorbox="{scalePhotos: true, maxHeight: '50%'}"   href="../../img/bimg/{{im.uri}}">
+                                            <img  ng-src="../../img/bimg/{{im.uri}}" style="width:128px" class="myImage" />
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="testimonial-sign"> 
 
-                                Quisque aliquet ornare nunc in viverra. Nullam ornare molestie ligula in luctus. Suspendisse ac cursus elit. Donec vel enim sit amet lorem vulputate condimentum.
-
-                                <div class="testimonial-sign">- Fiona Wilson</div><!-- /.testimonial-sign -->
-                            </div><!-- /.testimonial-inner -->
-                        </div>
-                        <div class="testimonial">
-                            <div class="testimonial-image">
-                                <img src="../../img/tmp/agent-1.jpg" alt="">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                            <a href ng-click="voteComment(c,1,$index)" >
+                                                <i class="fa fa-thumbs-o-up box-icon box-icon-left animate-icon-border-rise round" 
+   ng-class="{'box-icon-gray': c.positive.voted == true , 'box-icon-info': c.positive.voted == false}" > {{c.positive.number}} </i>
+                                            </a>
+                                            <p class="mt5 mb0">Utile</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <a href ng-click="voteComment(c,2,$index)">
+                                                <i class="fa fa-thumbs-o-down box-icon box-icon-left animate-icon-border-rise round" ng-class="{'box-icon-gray': c.negative.voted == true , 'box-icon-info': c.negative.voted == false}" > {{c.negative.number}} </i>   
+                                            </a>
+                                            <p class="mt5 mb0">Inutile</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <a href ng-click="voteComment(c,3,$index)">
+                                                <i class="fa fa-smile-o box-icon box-icon-left animate-icon-border-rise round"
+    ng-class="{'box-icon-gray': c.funny.voted == true, 'box-icon-info': c.funny.voted == false }"> {{c.funny.number}} </i>
+                                            </a>
+                                            <p class="mt5 mb0">Drôle</p>
+                                        </div>
+                                </div>
                             </div>
-
-                            <div class="testimonial-inner">
-                                <div class="testimonial-title">
-                                    <h2>Exactly What I Need</h2>
-
-                                    <div class="testimonial-rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div><!-- /.testimonial-rating -->
-                                </div><!-- /.testimonial-title -->
-
-                                Quisque aliquet ornare nunc in viverra. Nullam ornare molestie ligula in luctus. Suspendisse ac cursus elit. Donec vel enim sit amet lorem vulputate condimentum.
-
-                                <div class="testimonial-sign">- Fiona Wilson</div><!-- /.testimonial-sign -->
-                            </div><!-- /.testimonial-inner -->
                         </div>
-                        <div class="testimonial">
-                            <div class="testimonial-image">
-                                <img src="../../img/tmp/agent-1.jpg" alt="">
-                            </div>
-
-                            <div class="testimonial-inner">
-                                <div class="testimonial-title">
-                                    <h2>Exactly What I Need</h2>
-
-                                    <div class="testimonial-rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div><!-- /.testimonial-rating -->
-                                </div><!-- /.testimonial-title -->
-
-                                Quisque aliquet ornare nunc in viverra. Nullam ornare molestie ligula in luctus. Suspendisse ac cursus elit. Donec vel enim sit amet lorem vulputate condimentum.
-
-                                <div class="testimonial-sign">- Fiona Wilson</div><!-- /.testimonial-sign -->
-                            </div><!-- /.testimonial-inner -->
-                        </div>
-
-                    </div><!-- /.reviews -->
+                    </div>
 
                 </div><!-- /.col-sm-7 -->
 
@@ -227,16 +196,49 @@ Merci de ne pas donner d'avis sur ce commerce si vous avez bénéficié de quelc
 
                     <div class="background-white p20">
                         <div class="detail-overview-hearts">
-                            <i class="fa fa-heart"></i> <strong>213 </strong>personnes aiment ça
+                            <i class="fa fa-heart"></i> <strong>{{b.likes.length}} </strong>personnes aiment ça
                         </div>
                         <div class="detail-overview-rating">
-                            <i class="fa fa-star"></i> <strong>4.3 / 5 </strong>basé sur <a href="#reviews">316 avis</a>
+                            <i class="fa fa-star"></i> <strong>{{b.rate | number:1 }} / 5 </strong>basé sur <a href ng-click="viewReview()">{{b.nbrRate}} votes</a>
                         </div>
 
                         <div class="detail-actions row">
-                            <div class="col-sm-4">
-                                <div class="btn btn-primary btn-book"><i class="fa fa-shopping-cart"></i> Réserver</div>
-                            </div><!-- /.col-sm-4 -->
+
+                            <div ng-switch="b.category" >
+                                <div class="col-sm-4" ng-switch-when="Pharmacie" >
+                                    <div class="btn btn-primary btn-book" >
+                                        <i class="fa fa-shopping-cart"></i> Devis
+                                    </div>
+                                </div>
+                                <div class="col-sm-4" ng-switch-when="Medecin" >
+                                    <div class="btn btn-primary btn-book" >
+                                        <i class="fa fa-calendar-check-o"></i> Rendez-vous
+                                    </div>
+                                </div>
+                                <div class="col-sm-4" ng-switch-when="Beauté et bien être" >
+                                    <div class="btn btn-primary btn-book" >
+                                        <i class="fa fa-calendar-check-o"></i> Reservez
+                                    </div>
+                                </div>
+                                <div class="col-sm-4" ng-switch-when="Artisans" >
+                                    <div class="btn btn-primary btn-book" >
+                                        <i class="fa fa-calendar-check-o"></i> Reservez
+                                    </div>
+                                </div>
+                                <div class="col-sm-4" ng-switch-when="Sortie" >
+                                    <div class="btn btn-primary btn-book" >
+                                        <i class="fa fa-calendar-check-o"></i> Reservez
+                                    </div>
+                                </div>
+                                <div class="col-sm-4" ng-switch-when="Auto-Motos" >
+                                    <div class="btn btn-primary btn-book" >
+                                        <i class="fa fa-calendar-check-o"></i> Louer
+                                    </div>
+                                </div>
+                            </div>
+                                
+                            
+
                             <div class="col-sm-4">
                                 <div class="btn btn-secondary btn-share"><i class="fa fa-share-square-o"></i> Partager
                                     <div class="share-wrapper">
@@ -248,46 +250,48 @@ Merci de ne pas donner d'avis sur ce commerce si vous avez bénéficié de quelc
                                     </div>
                                 </div>
                             </div><!-- /.col-sm-4 -->
-                            <div class="col-sm-4">
+                            <div class="col-sm-4" ng-show="!b.claimed" >
                                 <div class="btn btn-secondary btn-claim"><i class="fa fa-hand-peace-o"></i>Revendiquez</div>
                             </div><!-- /.col-sm-4 -->
                         </div><!-- /.detail-actions -->
                     </div>
 
-                    <h2> <span class="text-secondary">NewTown lounge</span></h2>
+                    <h2> <span class="text-secondary">{{b.name}}</span></h2>
                     <div class="background-white p20">
                         <div class="detail-vcard">
                             <div class="detail-logo">
-                                <img src="../../img/tmp/product-11.jpg">
+                                <a colorbox="{rel:'group3'}" class="group3"  href="../../img/bimg/{{b.profileImage}}">
+                                    <img src="../../img/bimg/{{b.profileImage}}">
+                                </a>
                             </div><!-- /.detail-logo -->
 
                             <div class="detail-contact">
-                                <div class="detail-contact-email">
-                                    <i class="fa fa-envelope-o"></i> <a href="mailto:#">company@example.com</a>
+                                <div class="detail-contact-email" ng-show="b.email" >
+                                    <i class="fa fa-envelope-o"></i> <a href="mailto:{{b.email}}">{{b.email}}</a>
                                 </div>
-                                <div class="detail-contact-phone">
-                                    <i class="fa fa-mobile-phone"></i> <a href="tel:#">+01-23-456-789</a>
+                                <div class="detail-contact-phone" ng-show="b.tel" >
+                                    <i class="fa fa-mobile-phone"></i> <a href="tel:{{b.tel}}">{{b.tel}}</a>
                                 </div>
-                                <div class="detail-contact-website">
-                                    <i class="fa fa-globe"></i> <a href="#">www.superlist.com</a>
+                                <div class="detail-contact-website" ng-show="b.site" >
+                                    <i class="fa fa-globe"></i> <a href="{{b.site}}">&nbsp{{ b.site | limitTo: 25 }}{{b.site.length > 25 ? '...' : ''}}</a>
                                 </div>
                                 <div class="detail-contact-address">
                                     <i class="fa fa-map-o"></i>
-                                    347/26 22nd Avenue<br>
-                                    NYC AZ 85705, USA
+                                    {{b.adress}}
                                 </div>
                             </div><!-- /.detail-contact -->
                         </div><!-- /.detail-vcard -->
 
                         <div class="detail-description">
-                            <p>Resto-bar chic avec terrasse sur le toit, qui propose des mets variés, l'heure de l'apéro et de la danse.</p>
+                            <p>{{b.description}}</p>
                         </div>
 
                         <div class="detail-follow">
                             <h5>Retrouver nous sur:</h5>
                             <div class="follow-wrapper">
-                                <a class="follow-btn facebook" href="#"><i class="fa fa-facebook"></i></a>
-                                <a class="follow-btn twitter" href="#"><i class="fa fa-twitter"></i></a>
+                                <a class="follow-btn facebook" href="{{b.facebook}}"><i class="fa fa-facebook"></i></a>
+                                <a class="follow-btn google-plus" href="{{b.googleplus}}" ng-show="b.googleplus" >
+                                    <i class="fa fa-google-plus"></i></a>
                             </div><!-- /.follow-wrapper -->
                         </div><!-- /.detail-follow -->
                     </div>
@@ -297,33 +301,13 @@ Merci de ne pas donner d'avis sur ce commerce si vous avez bénéficié de quelc
 
                         <div class="p20 background-white">
                             <div class="working-hours">
-                                <div class="day clearfix">
-                                    <span class="name">Mon</span><span class="hours">07:00 AM - 07:00 PM</span>
-                                </div><!-- /.day -->
-
-                                <div class="day clearfix">
-                                    <span class="name">Tue</span><span class="hours">07:00 AM - 07:00 PM</span>
-                                </div><!-- /.day -->
-
-                                <div class="day clearfix">
-                                    <span class="name">Wed</span><span class="hours">07:00 AM - 07:00 PM</span>
-                                </div><!-- /.day -->
-
-                                <div class="day clearfix">
-                                    <span class="name">Thu</span><span class="hours">07:00 AM - 07:00 PM</span>
-                                </div><!-- /.day -->
-
-                                <div class="day clearfix">
-                                    <span class="name">Fri</span><span class="hours">07:00 AM - 07:00 PM</span>
-                                </div><!-- /.day -->
-
-                                <div class="day clearfix">
-                                    <span class="name">Sat</span><span class="hours">07:00 AM - 02:00 PM</span>
-                                </div><!-- /.day -->
-
-                                <div class="day clearfix">
-                                    <span class="name">Sun</span><span class="hours" style="color:red;">Closed</span>
-                                </div><!-- /.day -->
+                                <div class="day clearfix" ng-repeat="d in b.openingTime" >
+                                    <div ng-switch="d.open">
+                                    <span class="name"  >{{d.dayStr}}</span>
+                                    <span class="hours" ng-switch-when="1" >{{d.result}}</span>
+                                    <span class="hours" style="color:red" ng-switch-when="0" >{{d.result}}</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div><!-- /.widget -->
@@ -333,7 +317,52 @@ Merci de ne pas donner d'avis sur ce commerce si vous avez bénéficié de quelc
 
                     <div class="background-white p20">
                         <div class="row">
-                        <div class="col-sm-5">
+                        <div class="col-md-12">
+                            <ul class="detail-amenities col-md-12">
+                                <li class="yes" ng-show="b.cnam">conventioné avec la CNAM</li>
+                                <li class="yes" ng-show="b.appointment">Accepte les render-vous</li>
+                                <li class="yes" ng-show="b.clim">Air conditioner</li>
+                                <li class="yes" ng-show="b.creditCard">accepte les cartes de crédit</li>
+                                <li class="yes" ng-show="b.delivery">Livraison à domicile</li>
+                                <li class="yes" ng-show="b.reservation">Réservation</li>
+                                <li class="yes" ng-show="b.takeAway">à emporter</li>
+                                <li class="yes" ng-show="b.terrace">avec Terrace</li>
+                                <li class="yes" ng-show="b.ticketsRestau">accepte les tickets Restaux</li>
+                                <li class="yes" ng-show="b.fauteuilRoulant">Accessible aux personnes à mobilité réduite</li>
+                                <li class="yes" ng-show="b.adapteEnfants">Adapte aux Enfants</li>
+                                <li class="yes" ng-show="b.adapteGroupe">Adapte aux Groupe</li>
+                                <li class="yes" ng-show="b.television">Télevision</li>
+                                <li class="yes" ng-show="b.chiensAutorises">Chiens Autorisés</li>
+                                <li class="yes" ng-show="b.wifi">Wifi</li>
+                                <li class="yes" ng-show="b.alcool">Alcool</li>
+                                <li class="yes" ng-show="b.happyHour">Happy Hour</li>
+                                <li class="yes" ng-show="b.fumeur">Espace Fumeur</li>
+                                <li class="yes" ng-show="b.espaceNonFumeur">Espace Non Fumeur</li>
+                                <li class="yes" ng-show="b.serviceADomicile">Service à Domicile</li>
+                                <br/>
+                                <li class="no" ng-show="!b.cnam">conventioné avec la CNAM</li>
+                                <li class="no" ng-show="!b.appointment">Accepte les render-vous</li>
+                                <li class="no" ng-show="!b.clim">Air conditioner</li>
+                                <li class="no" ng-show="!b.creditCard">accepte les cartes de crédit</li>
+                                <li class="no" ng-show="!b.delivery">Livraison à domicile</li>
+                                <li class="no" ng-show="!b.reservation">Réservation</li>
+                                <li class="no" ng-show="!b.takeAway">à emporter</li>
+                                <li class="no" ng-show="!b.terrace">avec Terrace</li>
+                                <li class="no" ng-show="!b.ticketsRestau">accepte les tickets Restaux</li>
+                                <li class="no" ng-show="!b.fauteuilRoulant">Accessible aux personnes à mobilité réduite</li>
+                                <li class="no" ng-show="!b.adapteEnfants">Adapte aux Enfants</li>
+                                <li class="no" ng-show="!b.adapteGroupe">Adapte aux Groupe</li>
+                                <li class="no" ng-show="!b.television">Télevision</li>
+                                <li class="no" ng-show="!b.chiensAutorises">Chiens Autorisés</li>
+                                <li class="no" ng-show="!b.wifi">Wifi</li>
+                                <li class="no" ng-show="!b.alcool">Alcool</li>
+                                <li class="no" ng-show="!b.happyHour">Happy Hour</li>
+                                <li class="no" ng-show="!b.fumeur">Espace Fumeur</li>
+                                <li class="no" ng-show="!b.espaceNonFumeur">Espace Non Fumeur</li>
+                                <li class="no" ng-show="!b.serviceADomicile">Service à Domicile</li>
+                            </ul>
+                        </div>
+<!--                        <div class="col-sm-5">
                             <ul class="detail-amenities">
                                 <li class="yes">WiFi</li><br/>
                                 <li class="no">Parking</li>
@@ -347,7 +376,7 @@ Merci de ne pas donner d'avis sur ce commerce si vous avez bénéficié de quelc
                                 <li class="yes">Cartes de crédit acceptées</li>
                                 <li class="yes">Salle non fumeur</li>
                             </ul>
-                        </div>
+                        </div>-->
                         </div>
                     </div>
 
@@ -373,297 +402,7 @@ Merci de ne pas donner d'avis sur ce commerce si vous avez bénéficié de quelc
     </div><!-- /.content -->
 </div><!-- /.main-inner -->
 
-
-<script >
-    $(document).ready(function() {
-        'use strict';
-
-        /**
-         * Bootstrap Select
-         */
-        $('select').selectpicker();
-
-        /**
-         * Background image
-         */
-        $('*[data-background-image]').each(function() {
-            $(this).css({
-                'background-image': 'url(' + $(this).data('background-image') + ')'
-            });
-        });
-
-        /**
-         * Bootstrap Tooltip
-         */
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
-
-        /**
-         * Map
-         */
-        var map = $('#map');
-        var markers = new Array();
-        var icons = ['support', 'beer', 'plane', 'flag', 'wifi', 'tint', 'star', 'cutlery', 'music', 'recycle'];
-
-        function get_gps_ranges(center_lat, center_lng, range_level_lat, range_level_lng) {
-            var lat = center_lat + (Math.random() * (range_level_lat + range_level_lat) - range_level_lat);
-            var lng = center_lng + (Math.random() * (range_level_lng + range_level_lng) - range_level_lng);
-            return Array(lat, lng);
-        }
-
-        for (var i=0; i < 50; i++) {
-            var position = get_gps_ranges(40.761077, -73.983307, 0.08, 0.60);
-            var icon = icons[Math.floor(Math.random()*icons.length)];
-
-            markers.push({
-                latitude: position[0],
-                longitude: position[1],
-                marker_content: '<div class="marker"><div class="marker-inner"><i class="fa fa-' + icon + '"></div></div>',
-                content: '<div class="infobox"><div class="infobox-inner"><div class="infobox-content"><dl><dt>Address</dt><dd>Evenue Street 800</dd><dt>Phone</dt><dd>+1-123-456-789</dd> <dt>Web</dt><dd><a href="#">http://example.com</a></dd><dt>Rating</dt><dd class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></dd></dl></div><a href="#" class="close"><i class="fa fa-close"></i></a></div>'
-            });
-        }
-
-        var map_settings = {
-            infowindow: {
-                borderBottomSpacing: 0,
-                height: 195,
-                width: 165,
-                offsetX: 30,
-                offsetY: -120
-            },
-            cluster: {
-                height: 40,
-                width: 40,
-                gridSize: 60
-            },
-            zoom: 11,
-            transparentMarkerImage: map.data('transparent-marker-image'),
-            transparentClusterImage: map.data('transparent-marker-image'),
-            markers: markers,
-            styles: map.data('styles')
-        };
-
-        if (map.length) {
-            map.google_map(map_settings);
-        }
-
-        var map = $('#fullscreen-map');
-
-        var map_settings = {
-            infowindow: {
-                borderBottomSpacing: 0,
-                height: 195,
-                width: 165,
-                offsetX: 30,
-                offsetY: -120
-            },
-            cluster: {
-                height: 40,
-                width: 40,
-                gridSize: 60
-            },
-            zoom: 11,
-            transparentMarkerImage: map.data('transparent-marker-image'),
-            transparentClusterImage: map.data('transparent-marker-image'),
-            markers: markers,
-            styles: map.data('styles')
-        };
-
-        if (map.length) {
-            map.google_map(map_settings);
-        }
-
-        /**
-         * Colorbox
-         */
-        $('.detail-gallery-preview a').colorbox({rel:'group3', transition:"none", width:"90%", height:"90%"});
-
-        /**
-         * Detail gallery
-         */
-        if ($('.detail-gallery-index').length != 0) {
-            $('.detail-gallery-index').owlCarousel({
-                items: 5,
-                nav: true,
-                dots: true,
-                navText: ['<i class="fa fa-chevron-left"></i>', '<i class="fa fa-chevron-right"></i>']
-            });
-        }
-
-        $('.detail-gallery-list-item a').on('click', function(e) {
-            e.preventDefault();
-            var link = $(this).data('target');
-            $('.detail-gallery-preview img').attr('src', link);
-            $('.detail-gallery-preview a').attr('href', link);
-        });
-
-        /**
-         * Listing Detail Map
-         */
-        var listing_detail_map = $('#listing-detail-map');
-        if (listing_detail_map.length) {
-
-            listing_detail_map.google_map({
-                center: {
-                    latitude: listing_detail_map.data( 'latitude' ),
-                    longitude: listing_detail_map.data( 'longitude' )
-                },
-                zoom: listing_detail_map.data( 'zoom' ),
-                transparentMarkerImage: listing_detail_map.data('transparent-marker-image'),
-                transparentClusterImage: listing_detail_map.data('transparent-marker-image'),
-                infowindow: {
-                    borderBottomSpacing: 0,
-                    height: 195,
-                    width: 165,
-                    offsetX: 30,
-                    offsetY: -120
-                },
-                markers: [{
-                    latitude: listing_detail_map.data( 'latitude' ),
-                    longitude: listing_detail_map.data( 'longitude' ),
-                    marker_content: '<div class="marker"><div class="marker-inner"><i class="' + listing_detail_map.data( 'icon' ) + '"></div></div>'
-                }]
-            });
-        }
-
-        /**
-         * Listing Detail Street View
-         */
-        $('#listing-detail-location a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-            var target = $(this).attr('href');
-
-            if (target == '#street-view-panel') {
-
-                var street_view = $('#listing-detail-street-view');
-
-                new google.maps.StreetViewPanorama(document.getElementById('listing-detail-street-view'), {
-                            position: {
-                                lat: street_view.data( 'latitude' ),
-                                lng: street_view.data( 'longitude' )
-                            },
-                            pov: {
-                                heading: street_view.data( 'heading' ),
-                                pitch: street_view.data( 'pitch' )
-                            },
-                            zoom: street_view.data( 'zoom' ),
-                            linksControl: false,
-                            panControl: false,
-                            visible: true
-                        }
-                );
-            }
-        });
-
-        /**
-         * Listing Detail Bookmark & Like
-         */
-        $(".detail-banner-btn").click(function(){
-            $(this).toggleClass("marked");
-
-            var span = $(this).children("span");
-            var toggleText = span.data("toggle");
-            span.data("toggle", span.text());
-            span.text(toggleText);
-
-        });
-
-        /**
-         * Textarea resizer
-         */
-        $("textarea").after('<div class="textarea-resize"></div>');
-
-        /**
-         * Rating form
-         */
-        $(".input-rating label").hover(function(){
-            $(this).siblings("label").toggleClass("hovered");
-            $(this).toggleClass("filled");
-            $(this).prevAll("label").toggleClass("filled");
-        });
-
-        $(".input-rating input").change(function(){
-            $(this).siblings().removeClass("marked");
-            $(this).prevAll("label").addClass("marked");
-        });
-
-        /**
-         * Chart
-         */
-        if ($('#superlist-chart').length !== 0) {
-            var counter = 0;
-            var increase = Math.PI * 2 / 100;
-
-            var fun1 = [];
-            for ( i = 0; i <= 1; i += 0.015 ) {
-                var x = i;
-                var y = Math.sin( counter );
-                fun1.push([x, y]);
-                counter += increase;
-            }
-
-            var counter = 0;
-            var increase = Math.PI * 2 / 100;
-
-            var fun2 = [];
-            for ( i = 0; i <= 1; i += 0.015 ) {
-                var x = i;
-                var y = Math.cos( counter );
-                fun2.push([x, y]);
-                counter += increase;
-            }
-
-            var plot = $.plot($('#superlist-chart'),[
-                        {
-                            color: '#ceb65f',
-                            data: fun1
-                        },
-                        {
-                            color: '#009f8b',
-                            data: fun2
-                        }
-                    ],
-                    {
-                        series: {
-                            splines: {
-                                show: true,
-                                tension: 0.24,
-                                lineWidth: 3,
-                                fill: .40
-                            },
-                            lines: false,
-                            shadowSize: 0
-                        },
-                        points: { show: true },
-                        legend: false,
-                        grid: {
-                            borderColor: '#f1f1f1',
-                            borderWidth: 0
-                        },
-                        xaxis: {
-                            color: '#f1f1f1'
-                        },
-                        yaxis: {
-                            color: '#f1f1f1',
-                            min: -1,
-                            max: 1
-                        }
-                    });
-        }
-
-        /**
-         * Input file
-         */
-        $('#input-file').fileinput({
-            initialPreview: [
-                "<img src='assets/img/tmp/product-1.jpg' class='file-preview-image' alt='Listing 1' title='Listing 1'>",
-                "<img src='assets/img/tmp/product-2.jpg' class='file-preview-image' alt='Listing 2' title='Listing 2'>"
-            ],
-            overwriteInitial: true,
-            initialCaption: "Your Uploaded Images"
-        });
-    });
-
-
+<script type="text/javascript">
+    $('.group1').colorbox({rel:'group1'});
+    $('.group2').colorbox({rel:'group2'});
 </script>
- 

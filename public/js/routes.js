@@ -23,7 +23,7 @@ myApp.config(function($routeProvider, $locationProvider) {
             controller: 'ListCtrl',
             activetab: 'Home'
         }).when(
-        '/business/info',
+        '/business/info/:id',
         {
             templateUrl: 'partials/business/info.html',
             controller: 'InfoCtrl',
@@ -47,6 +47,12 @@ myApp.config(function($routeProvider, $locationProvider) {
             controller: 'SigninCtrl',
             activetab: 'Home'
         }).when(
+        '/login/sign_up2',
+        {
+            templateUrl: 'partials/login/signup2.html',
+            controller: 'SigninCtrl2',
+            activetab: 'Home'
+        }).when(
         '/login/sign_in',
         {
             templateUrl: 'partials/login/signin.html',
@@ -57,6 +63,12 @@ myApp.config(function($routeProvider, $locationProvider) {
         {
             templateUrl: 'partials/login/forgot_password.html',
             controller: 'ForgotPasswordCtrl',
+            activetab: 'Home'
+        }).when(
+        '/chat',
+        {
+            templateUrl: 'partials/chat/chat.html',
+            controller: 'ChatCtrl',
             activetab: 'Home'
         })
 

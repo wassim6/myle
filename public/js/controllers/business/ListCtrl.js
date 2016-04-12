@@ -1,8 +1,8 @@
 'use strict';
 
-myApp.controller("ListCtrl" ,function ($scope) {
-
-
+myApp.controller("ListCtrl" ,function ($scope, $http, SearchParam, SearchResult) {
+    
+    $scope.Math=Math;
     $(document).ready(function() {
         'use strict';
 
@@ -290,10 +290,35 @@ myApp.controller("ListCtrl" ,function ($scope) {
             overwriteInitial: true,
             initialCaption: "Your Uploaded Images"
         });
-
-
-
     });
+
+
+/*    $http.post('http://localhost:5000/api/business/search',{
+            t:{_id:"56e54c183ba5bc24265767ee", name:"Medecin"},
+            a:{_id:"56e54c193ba5bc24265767f2", name:"Bizerte", type:1}
+        }).success(function(m){
+            console.log(m);
+            var business=m;
+            for(var i=0;i<business.length;i++){
+                if(typeof business[i].budgetRange =='undefined')
+                    business[i].budgetRange=1;
+            }
+            $scope.business=business;
+
+        });*/
+
+    $scope.service = SearchResult;
+    var business=SearchResult.getData();
+    for(var i=0;i<business.length;i++){
+        if(typeof business[i].budgetRange =='undefined')
+            business[i].budgetRange=1;
+    }
+    $scope.business=business;
+
+    $scope.$watch('service.getData()', function(newVal) {
+        $scope.business = newVal;
+    });
+
 
 
 });

@@ -165,6 +165,25 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                         }]
                     }
                 })
+        .state('business/editprofileimage/:id', {
+                    url: "/business/editprofileimage/:id",
+                    templateUrl: "views/business/editprofileimage.html",
+                    data: {pageTitle: 'Business edit Image'},
+                    controller: "BusinessEditProfileImageCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load({
+                                name: 'MetronicApp',
+                                insertBefore: '#ng_load_plugins_before',
+                                files: [           
+                                    'js/services/tag/tagService.js',
+                                    'js/services/business/businessService.js',
+                                    'js/controllers/business/BusinessEditProfileImageCtrl.js'
+                                ]
+                            });
+                        }]
+                    }
+                })
         .state('business/editimage/:id', {
                     url: "/business/editimage/:id",
                     templateUrl: "views/business/editimage.html",
@@ -224,6 +243,79 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                     }]
                 }
             })
+        .state('business/editopeninghour/:id', {
+                    url: "/business/editopeninghour/:id",
+                    templateUrl: "views/business/editopeninghour.html",
+                    data: {pageTitle: 'Business edit opening hour'},
+                    controller: "BusinessEditOpeningHourCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load({
+                                name: 'MetronicApp',
+                                insertBefore: '#ng_load_plugins_before',
+                                files: [           
+                                    'js/services/business/businessService.js',
+                                    'js/controllers/business/BusinessEditOpeningHourCtrl.js'
+                                ]
+                            });
+                        }]
+                    }
+                })
+        .state('business/coupon/:id', {
+                    url: "/business/coupon/:id",
+                    templateUrl: "views/coupon/add.html",
+                    data: {pageTitle: 'Business add coupon'},
+                    controller: "CouponAddCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load({
+                                name: 'MetronicApp',
+                                insertBefore: '#ng_load_plugins_before',
+                                files: [           
+                                    'js/services/business/businessService.js',
+                                    'js/controllers/coupon/CouponAddCtrl.js'
+                                ]
+                            });
+                        }]
+                    }
+                })
+        .state('business/coupon/list/:id', {
+                    url: "/business/coupon/list/:id",
+                    templateUrl: "views/coupon/list.html",
+                    data: {pageTitle: 'Business list coupon'},
+                    controller: "CouponListCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load({
+                                name: 'MetronicApp',
+                                insertBefore: '#ng_load_plugins_before',
+                                files: [           
+                                    'js/services/business/businessService.js',
+                                    'js/controllers/coupon/CouponListCtrl.js'
+                                ]
+                            });
+                        }]
+                    }
+                })
+            .state('coupon/detail/:id', {
+                    url: "/coupon/detail/:id",
+                    templateUrl: "views/coupon/detail.html",
+                    data: {pageTitle: 'detail coupon'},
+                    controller: "CouponDetailCtrl",
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load({
+                                name: 'MetronicApp',
+                                insertBefore: '#ng_load_plugins_before',
+                                files: [           
+                                    'js/services/business/businessService.js',
+                                    'js/controllers/coupon/CouponDetailCtrl.js'
+                                ]
+                            });
+                        }]
+                    }
+                })
+
     
     
     
@@ -243,6 +335,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
 'assets/global/plugins/datatables/all.min.js',
 'js/scripts/table-advanced.js',
 
+'js/services/business/businessService.js',                                
 'js/services/sante/santeService.js',
 'js/controllers/sante/SanteListCtrl.js'
                                 

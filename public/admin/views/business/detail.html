@@ -29,16 +29,16 @@ Business Detail <small></small>
                 <div id="tab_1-1" class="tab-pane active">
                     <form role="form" >
                         <div class="form-group">
-                            <label class="control-label">Postal Code</label>
-                            <input type="text" class="form-control" ng-model="postalCode" readonly >
+                            <label class="control-label">Gouvernera</label>
+                            <input type="text" class="form-control" ng-model="b.gouvernera.name" readonly >
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Adresse</label>
-                            <input type="text" class="form-control" ng-model="address" readonly>
+                            <label class="control-label">Delegation</label>
+                            <input type="text" class="form-control" ng-model="b.delegation.name" readonly>
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Region</label>
-                            <input type="text" class="form-control" ng-model="region" readonly>    
+                            <label class="control-label">Adress</label>
+                            <input type="text" class="form-control" ng-model="b.adress" readonly>    
                         </div>
                         <div class="form-group">
                             <label class="control-label">Localisation</label>
@@ -62,15 +62,43 @@ Business Detail <small></small>
                     <form role="form" >
                         <div class="form-group">
                             <label class="control-label">Img profile</label>
-                            <img ng-src="http://localhost:4853{{b.imgURI}}" alt="img"  height="256"  />
+                            <img ng-src="http://localhost:5000/img/bimg/{{b.profileImage}}" alt="img"  height="256"  />
                         </div>
                         <div class="form-group">
                             <label class="control-label">Name</label>
                             <input type="text" class="form-control" ng-model="b.name" readonly >
                         </div>
                         <div class="form-group">
+                            <label class="control-label">Category</label>
+                            <input type="text" class="form-control" ng-model="b.category" readonly >
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Sub-Category</label>
+                            <input type="text" class="form-control" ng-model="b.sousCategory" readonly >
+                        </div>
+                        <div class="form-group">
                             <label class="control-label">Tel</label>
                             <input type="text" class="form-control" placeholder="" ng-model="b.tel" readonly >
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Fax</label>
+                            <input type="text" class="form-control" placeholder="" ng-model="b.fax" readonly >
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Email</label>
+                            <input type="text" class="form-control" ng-model="b.email" readonly >
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">WebSite</label>
+                            <input type="text" class="form-control" placeholder="" ng-model="b.site" readonly/>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Facebook Page</label>
+                            <input type="text" class="form-control" placeholder="" ng-model="b.facebook" readonly/>
+                        </div> 
+                        <div class="form-group">
+                            <label class="control-label">Google + Page</label>
+                            <input type="text" class="form-control" placeholder="" ng-model="b.googleplus" readonly/>
                         </div>
                         <div class="form-group">
                             <label class="control-label">Description</label>
@@ -79,54 +107,6 @@ Business Detail <small></small>
                         
                     </form>
                 </div>
-            </tab>
-            <tab heading="Categories">
-                <div class="row" style="margin-top:20px;" >
-                <div class="col-md-12">
-                    <div class="portlet box green-haze">
-                        <div class="portlet-title">
-                            <div class="caption">
-                                <i class="fa fa-globe"></i>Sub-category for {{b.name}}
-                            </div>
-                            <div class="tools">
-                                <a href="javascript:;" class="reload"></a>
-                            </div>
-                        </div>
-                        <div class="portlet-body">
-                            <table class="table table-striped table-bordered table-hover" datatable="ng" dt-options="dtOptions">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            id
-                                        </th>
-                                        <th>
-                                            name
-                                        </th>
-                                        <th>
-                                            category id
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="sb in b.subcategory" >
-                                        <td>
-                                            {{sb.Id}}
-                                        </td>
-                                        <td>
-                                            {{sb.name}}
-                                        </td>
-                                        <td>
-                                            {{sb.CategoryId}}
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
- 
             </tab>
             <tab heading="Tags">
                 <div class="row" style="margin-top:20px;" >
@@ -150,21 +130,15 @@ Business Detail <small></small>
                                         <th>
                                             name
                                         </th>
-                                        <th>
-                                            valid
-                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="t in b.tags" >
+                                    <tr ng-repeat="t in b.tag" >
                                         <td>
-                                            {{t.Id}}
+                                            {{t._id}}
                                         </td>
                                         <td>
                                             {{t.name}}
-                                        </td>
-                                        <td>
-                                            {{t.valid}
                                         </td>
                                     </tr>
                                 </tbody>
@@ -186,16 +160,12 @@ Business Detail <small></small>
                             <th width="30%">
                             </th>
                         </tr>
-</thead>
                         <tbody>
-                        <tr ng-repeat="im in b.images" >
-                            <td>
-                                <a href="http://localhost:4853{{im.uri}}" class="fancybox-button" data-rel="fancybox-button">
-                                <img class="img-responsive" ng-src="http://localhost:4853{{im.uri}}" alt="">
+                        <tr ng-repeat="im in b.businessImage" >
+                            <td  >
+                                <a href="http://localhost:5000/img/bimg/{{im.uri}}" class="fancybox-button" data-rel="fancybox-button">
+                                <img class="img-responsive" ng-src="http://localhost:5000/img/bimg/{{im.uri}}" alt="" width="128" >
                                 </a>
-                            </td>
-                            <td>
-                                
                             </td>
                         </tr>
                         </tbody>
@@ -209,105 +179,146 @@ Business Detail <small></small>
                             <div class="form-group">
                                 <label class="control-label col-md-3">CNAM</label>
                                 <div class="col-md-9">
-                                    <span ng-if="b.informations.CNAM" ><span class="label label-success">true </span></span>
-                            <span ng-if="!b.informations.CNAM" ><span class="label label-danger">false </span></span>
+                                    <span ng-if="b.cnam" ><span class="label label-success">true </span></span>
+                            <span ng-if="!b.cnam" ><span class="label label-danger">false </span></span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3">appointment</label>
                                 <div class="col-md-9">
-                                    <span ng-if="b.informations.appointment" ><span class="label label-success">true </span></span>
-                            <span ng-if="!b.informations.appointment" ><span class="label label-danger">false </span></span>
+                                    <span ng-if="b.appointment" ><span class="label label-success">true </span></span>
+                            <span ng-if="!b.appointment" ><span class="label label-danger">false </span></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3">check</label>
+                                <label class="control-label col-md-3">air-conditioner</label>
                                 <div class="col-md-9">
-                                    <span ng-if="b.informations.check" ><span class="label label-success">true </span></span>
-                            <span ng-if="!b.informations.check" ><span class="label label-danger">false </span></span>
+                                    <span ng-if="b.clim" ><span class="label label-success">true </span></span>
+                            <span ng-if="!b.clim" ><span class="label label-danger">false </span></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3">clim</label>
+                                <label class="control-label col-md-3">Accepts Credit Cards</label>
                                 <div class="col-md-9">
-                                    <span ng-if="b.informations.clim" ><span class="label label-success">true </span></span>
-                            <span ng-if="!b.informations.clim" ><span class="label label-danger">false </span></span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3">creditCard</label>
-                                <div class="col-md-9">
-                                    <span ng-if="b.informations.creditCard" ><span class="label label-success">true </span></span>
-                            <span ng-if="!b.informations.creditCard" ><span class="label label-danger">false </span></span>
+                                    <span ng-if="b.creditCard" ><span class="label label-success">true </span></span>
+                            <span ng-if="!b.creditCard" ><span class="label label-danger">false </span></span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3">delivery</label>
                                 <div class="col-md-9">
-                                    <span ng-if="b.informations.delivery" ><span class="label label-success">true </span></span>
-                            <span ng-if="!b.informations.delivery" ><span class="label label-danger">false </span></span>
+                                    <span ng-if="b.delivery" ><span class="label label-success">true </span></span>
+                            <span ng-if="!b.delivery" ><span class="label label-danger">false </span></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3">mixte</label>
+                                <label class="control-label col-md-3">take Away</label>
                                 <div class="col-md-9">
-                                    <span ng-if="b.informations.mixte" ><span class="label label-success">true </span></span>
-                            <span ng-if="!b.informations.mixte" ><span class="label label-danger">false </span></span>
+                                    <span ng-if="b.takeAway" ><span class="label label-success">true </span></span>
+                            <span ng-if="!b.takeAway" ><span class="label label-danger">false </span></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3">nonSmoking</label>
+                                <label class="control-label col-md-3">Outdoor Seating</label>
                                 <div class="col-md-9">
-                                    <span ng-if="b.informations.nonSmoking" ><span class="label label-success">true </span></span>
-                            <span ng-if="!b.informations.nonSmoking" ><span class="label label-danger">false </span></span>
+                                    <span ng-if="b.terrace" ><span class="label label-success">true </span></span>
+                            <span ng-if="!b.terrace" ><span class="label label-danger">false </span></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3">reservation</label>
+                                <label class="control-label col-md-3">Restaurant tickets</label>
                                 <div class="col-md-9">
-                                    <span ng-if="b.informations.reservation" ><span class="label label-success">true </span></span>
-                            <span ng-if="!b.informations.reservation" ><span class="label label-danger">false </span></span>
+                                    <span ng-if="b.ticketsRestau" ><span class="label label-success">true </span></span>
+                            <span ng-if="!b.ticketsRestau" ><span class="label label-danger">false </span></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3">takeAway</label>
+                                <label class="control-label col-md-3">Wheelchair Accessible</label>
                                 <div class="col-md-9">
-                                    <span ng-if="b.informations.takeAway" ><span class="label label-success">true </span></span>
-                            <span ng-if="!b.informations.takeAway" ><span class="label label-danger">false </span></span>
+                                    <span ng-if="b.fauteuilRoulant" ><span class="label label-success">true </span></span>
+                            <span ng-if="!b.fauteuilRoulant" ><span class="label label-danger">false </span></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3">tele</label>
+                                <label class="control-label col-md-3">Good for Kids</label>
                                 <div class="col-md-9">
-                                    <span ng-if="b.informations.tele" ><span class="label label-success">true </span></span>
-                            <span ng-if="!b.informations.tele" ><span class="label label-danger">false </span></span>
+                                    <span ng-if="b.adapteEnfants" ><span class="label label-success">true </span></span>
+                            <span ng-if="!b.adapteEnfants" ><span class="label label-danger">false </span></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3">terrace</label>
+                                <label class="control-label col-md-3">Good for Groups</label>
                                 <div class="col-md-9">
-                                    <span ng-if="b.informations.terrace" ><span class="label label-success">true </span></span>
-                            <span ng-if="!b.informations.terrace" ><span class="label label-danger">false </span></span>
+                                    <span ng-if="b.adapteGroupe" ><span class="label label-success">true </span></span>
+                            <span ng-if="!b.adapteGroupe" ><span class="label label-danger">false </span></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3">tickets</label>
+                                <label class="control-label col-md-3">Has TV</label>
                                 <div class="col-md-9">
-                                    <span ng-if="b.informations.tickets" ><span class="label label-success">true </span></span>
-                            <span ng-if="!b.informations.tickets" ><span class="label label-danger">false </span></span>
+                                    <span ng-if="b.television" ><span class="label label-success">true </span></span>
+                            <span ng-if="!b.television" ><span class="label label-danger">false </span></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3">wifi</label>
+                                <label class="control-label col-md-3">Dogs Allowed</label>
                                 <div class="col-md-9">
-                                    <span ng-if="b.informations.wifi" ><span class="label label-success">true </span></span>
-                            <span ng-if="!b.informations.wifi" ><span class="label label-danger">false </span></span>
+                                    <span ng-if="b.chiensAutorises" ><span class="label label-success">true </span></span>
+                            <span ng-if="!b.chiensAutorises" ><span class="label label-danger">false </span></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3">budget</label>
+                                <label class="control-label col-md-3">Wifi</label>
                                 <div class="col-md-9">
-                                    <input type="text" placeholder="budget" class="form-control" value="{{b.informations.budget}}" readonly>
+                                    <span ng-if="b.wifi" ><span class="label label-success">true </span></span>
+                            <span ng-if="!b.wifi" ><span class="label label-danger">false </span></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Alcool</label>
+                                <div class="col-md-9">
+                                    <span ng-if="b.alcool" ><span class="label label-success">true </span></span>
+                            <span ng-if="!b.alcool" ><span class="label label-danger">false </span></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">happy Hour</label>
+                                <div class="col-md-9">
+                                    <span ng-if="b.happyHour" ><span class="label label-success">true </span></span>
+                            <span ng-if="!b.happyHour" ><span class="label label-danger">false </span></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Smoking</label>
+                                <div class="col-md-9">
+                                    <span ng-if="b.fumeur" ><span class="label label-success">true </span></span>
+                            <span ng-if="!b.fumeur" ><span class="label label-danger">false </span></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Non-Smoking Area</label>
+                                <div class="col-md-9">
+                                    <span ng-if="b.espaceNonFumeur" ><span class="label label-success">true </span></span>
+                            <span ng-if="!b.espaceNonFumeur" ><span class="label label-danger">false </span></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Home service</label>
+                                <div class="col-md-9">
+                                    <span ng-if="b.serviceADomicile" ><span class="label label-success">true </span></span>
+                            <span ng-if="!b.serviceADomicile" ><span class="label label-danger">false </span></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Estimated Budget</label>
+                                <div class="col-md-9">
+                                    <input type="text" placeholder="" class="form-control" value="{{b.budget}}" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Budget Range</label>
+                                <div class="col-md-9">
+                                    {{b.budgetRange}}/4
                                 </div>
                             </div>
                             
@@ -426,12 +437,15 @@ Business Detail <small></small>
                                         <th>
                                             closing hour
                                         </th>
+                                        <th>
+                                            Open/Close
+                                        </th>
 
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="op in b.hours" >
-                                        <td ng-switch on="op.day" >
+                                    <tr ng-repeat="op in b.openingTime" >
+                                        <td ng-switch on="op.dayNumber" >
                                             <div ng-switch-when="0" >Monday</div>
                                             <div ng-switch-when="1" >Tuesday</div>
                                             <div ng-switch-when="2" >Wednesday</div>
@@ -448,6 +462,10 @@ Business Detail <small></small>
                                         <td>
                                             {{op.closeStr}}
                                         </td>
+                                        <td ng-switch on="op.open" >
+                                            <div ng-switch-when="1" >Open</div>
+                                            <div ng-switch-when="0" >Close</div>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -463,7 +481,7 @@ Business Detail <small></small>
         <div class="form-actions">
                 <div class="row">
                     <div class="col-md-offset-3 col-md-9">
-                        <a href="#/business/edit/{{b.id}}" class="btn green" ><i class="fa fa-pencil"></i> Edit</a>
+                        <a href="#/business/edit/{{b._id}}" class="btn green" ><i class="fa fa-pencil"></i> Edit</a>
                         <a href="#/business/list" class="btn default">Go back to list</a>
                     </div>
                 </div>

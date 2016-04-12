@@ -32,10 +32,6 @@ Business Edit <small></small>
                     </span>
                 </li>
                 <li class="">
-                    <a  href="#/business/editcat/{{businesId}}" >
-                    <i class="fa fa-cog"></i> Categories </a>
-                </li>
-                <li class="">
                     <a href="#/business/edittag/{{businesId}}" >
                     <i class="fa fa-cog"></i> Tags </a>
                 </li>
@@ -45,7 +41,7 @@ Business Edit <small></small>
                 </li>
                 <li class="">
                     <a href="#/business/editprofileimage/{{businesId}}" >
-                    <i class="fa fa-picture-o"></i> Profile Image </a>
+                    <i class="fa fa-picture-o"></i> Profile & Cover Image </a>
                 </li>
                 <li class="">
                     <a href="#/business/editimage/{{businesId}}" >
@@ -59,122 +55,310 @@ Business Edit <small></small>
                     <a  href="#/business/editopeninghour/{{businesId}}" >
                     <i class="fa fa-cog"></i> Opening Hours </a>
                 </li>
+                <li >
+                    <a  href="#/business/coupon/{{businesId}}" >
+                    <i class="fa fa-cog"></i> Add Coupon </a>
+                </li>
             </ul>
         </div>
         <div class="col-md-9">
                 <div id="tab_1-1" class="tab-pane active">
+
+
+         <tabset >
+            <tab heading="Contact information">
+                <div id="tab_1-1" class="tab-pane active">
+                    <form name="form" role="form" >
+                        <div class="form-group">
+                            <label class="control-label">Phone</label>
+                            <input type="text" class="form-control" ng-model="b.tel" required >
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Fax</label>
+                            <input type="text" class="form-control" ng-model="b.fax" >
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Email</label>
+                            <input type="text" class="form-control" ng-model="b.email" >
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">WebSite</label>
+                            <input type="text" class="form-control" placeholder="" ng-model="b.site" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Facebook Page</label>
+                            <input type="text" class="form-control" placeholder="" ng-model="b.facebook" />
+                        </div> 
+                        <div class="form-group">
+                            <label class="control-label">Google + Page</label>
+                            <input type="text" class="form-control" placeholder="" ng-model="b.googleplus" />
+                        </div> 
+                        <button type="submit" class="btn green" ng-click="editInfoView1(form.$valid)" ng-disabled="disable"><i class="fa fa-pencil"></i> Save  changes</button>
+                    </form>
+                </div>
+            </tab>
+            <tab heading="Additional Information">
+                <div id="tab_1-1" class="tab-pane active">
+                    <form action="#" class="form-horizontal form-bordered form-label-stripped">
+                        <div class="form-body">
+                            <div class="form-group">
+                                <label class="control-label col-md-3">CNAM</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" ng-model="b.cnam" >
+                                        <option value="true" ng-selected="b.cnam==true">True</option>
+                                        <option value="false" ng-selected="b.cnam==false">False</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">appointment</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" ng-model="b.appointment" >
+                                        <option value="true" ng-selected="b.appointment==true">True</option>
+                                        <option value="false" ng-selected="b.appointment==false">False</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">air-conditioner</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" ng-model="b.clim" >
+                                        <option value="true" ng-selected="b.clim==true">True</option>
+                                        <option value="false" ng-selected="b.clim==false">False</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Accepts Credit Cards</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" ng-model="b.creditCard" >
+                                        <option value="true" ng-selected="b.creditCard==true">True</option>
+                                        <option value="false" ng-selected="b.creditCard==false">False</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Delivery</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" ng-model="b.delivery" >
+                                        <option value="true" ng-selected="b.delivery==true">True</option>
+                                        <option value="false" ng-selected="b.delivery==false">False</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Takes Reservations</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" ng-model="b.reservation" >
+                                        <option value="true" ng-selected="b.reservation==true">True</option>
+                                        <option value="false" ng-selected="b.reservation==false">False</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">take Away</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" ng-model="b.takeAway" >
+                                        <option value="true" ng-selected="b.takeAway==true">True</option>
+                                        <option value="false" ng-selected="b.takeAway==false">False</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Outdoor Seating</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" ng-model="b.terrace" >
+                                        <option value="true" ng-selected="b.terrace==true">True</option>
+                                        <option value="false" ng-selected="b.terrace==false">False</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Restaurant tickets</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" ng-model="b.ticketsRestau" >
+                                        <option value="true" ng-selected="b.ticketsRestau==true">True</option>
+                                        <option value="false" ng-selected="b.ticketsRestau==false">False</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Wheelchair Accessible</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" ng-model="b.fauteuilRoulant" >
+                                        <option value="true" ng-selected="b.fauteuilRoulant==true">True</option>
+                                        <option value="false" ng-selected="b.fauteuilRoulant==false">False</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Good for Kids</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" ng-model="b.adapteEnfants" >
+                                        <option value="true" ng-selected="b.adapteEnfants==true">True</option>
+                                        <option value="false" ng-selected="b.adapteEnfants==false">False</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Good for Groups</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" ng-model="b.adapteGroupe" >
+                                        <option value="true" ng-selected="b.adapteGroupe==true">True</option>
+                                        <option value="false" ng-selected="b.adapteGroupe==false">False</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Has TV</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" ng-model="b.television" >
+                                        <option value="true" ng-selected="b.television==true">True</option>
+                                        <option value="false" ng-selected="b.television==false">False</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Dogs Allowed</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" ng-model="b.chiensAutorises" >
+                                        <option value="true" ng-selected="b.chiensAutorises==true">True</option>
+                                        <option value="false" ng-selected="b.chiensAutorises==false">False</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Wifi</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" ng-model="b.wifi" >
+                                        <option value="true" ng-selected="b.wifi==true">True</option>
+                                        <option value="false" ng-selected="b.wifi==false">False</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Alcool</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" ng-model="b.alcool" >
+                                        <option value="true" ng-selected="b.alcool==true">True</option>
+                                        <option value="false" ng-selected="b.alcool==false">False</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">happy Hour</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" ng-model="b.happyHour" >
+                                        <option value="true" ng-selected="b.happyHour==true">True</option>
+                                        <option value="false" ng-selected="b.happyHour==false">False</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Smoking</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" ng-model="b.fumeur" >
+                                        <option value="true" ng-selected="b.fumeur==true">True</option>
+                                        <option value="false" ng-selected="b.fumeur==false">False</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Non-Smoking Area</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" ng-model="b.espaceNonFumeur" >
+                                        <option value="true" ng-selected="b.espaceNonFumeur==true">True</option>
+                                        <option value="false" ng-selected="b.espaceNonFumeur==false">False</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Home service</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" ng-model="b.serviceADomicile" >
+                                        <option value="true" ng-selected="b.serviceADomicile==true">True</option>
+                                        <option value="false" ng-selected="b.serviceADomicile==false">False</option>
+                                    </select>
+                                </div>
+                            </div>                            
+                        </div>
+                        <button type="submit" class="btn green" ng-click="editInfoView2()" ng-disabled="disable"><i class="fa fa-pencil"></i> Save  changes</button>
+                    </form>
+                </div>
+            </tab>
+            <tab heading="Budget information">
+                <div id="tab_1-1" class="tab-pane active">
                     <form role="form" >
                         <div class="form-group">
-                            <label class="control-label">CNAM</label>
-                            <select class="form-control" ng-model="b.informations.CNAM" >
-                                <option value="true" ng-selected="b.informations.CNAM==true">True</option>
-                                <option value="false" ng-selected="b.informations.CNAM==false">False</option>
-                            </select>
+                            <label class="control-label">Estimated Budget</label>
+                            <input type="number" class="form-control" ng-model="b.budget" >
                         </div>
+
                         <div class="form-group">
-                            <label class="control-label">appointment</label>
-                            <select class="form-control" ng-model="b.informations.appointment" >
-                                <option value="true" ng-selected="b.informations.appointment==true">True</option>
-                                <option value="false" ng-selected="b.informations.appointment==false">False</option>
-                            </select>
+                            <label class="control-label">Budget Range</label>
+                            <div class="md-radio-inline">
+                                <div class="md-radio">
+                                    <input type="radio" id="radio6" value="1" ng-model="b.budgetRange" name="radio2" class="md-radiobtn">
+                                    <label for="radio6">
+                                    <span></span>
+                                    <span class="check"></span>
+                                    <span class="box"></span>
+                                    $</label>
+                                </div>
+                                <div class="md-radio">
+                                    <input type="radio" value="2" ng-model="b.budgetRange" id="radio7" name="radio2" class="md-radiobtn" checked>
+                                    <label for="radio7">
+                                    <span></span>
+                                    <span class="check"></span>
+                                    <span class="box"></span>
+                                    $$</label>
+                                </div>
+                                <div class="md-radio">
+                                    <input type="radio" value="3" ng-model="b.budgetRange" id="radio8" name="radio2" class="md-radiobtn">
+                                    <label for="radio8">
+                                    <span></span>
+                                    <span class="check"></span>
+                                    <span class="box"></span>
+                                    $$$</label>
+                                </div>
+                                <div class="md-radio">
+                                    <input type="radio" id="radio9" ng-model="b.budgetRange" value="4" name="radio2" class="md-radiobtn">
+                                    <label for="radio9">
+                                    <span class="inc"></span>
+                                    <span class="check"></span>
+                                    <span class="box"></span>
+                                    $$$$ <img src="../../../img/logo.png" /></label>
+                                </div>
+                               
+
+                            </div>
+
+<!--                            <select class="form-control" ng-model="b.budgetRange" >
+                                <option value="1">$</option>
+                                <option value="2">$$</option>
+                                <option value="3">$$$</option>
+                                <option value="4">$$$$</option>
+                            </select>-->
                         </div>
-                        <div class="form-group">
-                            <label class="control-label">check</label>
-                            <select class="form-control" ng-model="b.informations.check" >
-                                <option value="true" ng-selected="b.informations.check==true">True</option>
-                                <option value="false" ng-selected="b.informations.check==false">False</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">clim</label>
-                            <select class="form-control" ng-model="b.informations.clim" >
-                                <option value="true" ng-selected="b.informations.clim==true">True</option>
-                                <option value="false" ng-selected="b.informations.clim==false">False</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">credit Card</label>
-                            <select class="form-control" ng-model="b.informations.creditCard" >
-                                <option value="true" ng-selected="b.informations.creditCard==true">True</option>
-                                <option value="false" ng-selected="b.informations.creditCard==false">False</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">delivery</label>
-                            <select class="form-control" ng-model="b.informations.delivery" >
-                                <option value="true" ng-selected="b.informations.delivery==true">True</option>
-                                <option value="false" ng-selected="b.informations.delivery==false">False</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">mixte</label>
-                            <select class="form-control" ng-model="b.informations.mixte" >
-                                <option value="true" ng-selected="b.informations.mixte==true">True</option>
-                                <option value="false" ng-selected="b.informations.mixte==false">False</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">nonSmoking</label>
-                            <select class="form-control" ng-model="b.informations.nonSmoking" >
-                                <option value="true" ng-selected="b.informations.nonSmoking==true">True</option>
-                                <option value="false" ng-selected="b.informations.nonSmoking==false">False</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">reservation</label>
-                            <select class="form-control" ng-model="b.informations.reservation" >
-                                <option value="true" ng-selected="b.informations.reservation==true">True</option>
-                                <option value="false" ng-selected="b.informations.reservation==false">False</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">takeAway</label>
-                            <select class="form-control" ng-model="b.informations.takeAway" >
-                                <option value="true" ng-selected="b.informations.takeAway==true">True</option>
-                                <option value="false" ng-selected="b.informations.takeAway==false">False</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">tele</label>
-                            <select class="form-control" ng-model="b.informations.tele" >
-                                <option value="true" ng-selected="b.informations.tele==true">True</option>
-                                <option value="false" ng-selected="b.informations.tele==false">False</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">terrace</label>
-                            <select class="form-control" ng-model="b.informations.terrace" >
-                                <option value="true" ng-selected="b.informations.terrace==true">True</option>
-                                <option value="false" ng-selected="b.informations.terrace==false">False</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">tickets</label>
-                            <select class="form-control" ng-model="b.informations.tickets" >
-                                <option value="true" ng-selected="b.informations.tickets==true">True</option>
-                                <option value="false" ng-selected="b.informations.tickets==false">False</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">wifi</label>
-                            <select class="form-control" ng-model="b.informations.wifi" >
-                                <option value="true" ng-selected="b.informations.wifi==true">True</option>
-                                <option value="false" ng-selected="b.informations.wifi==false">False</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">budget</label>
-                            <input type="text" class="form-control" placeholder="" ng-model="b.informations.budget" >
-                        </div>
-                        
-                        
-                        <div class="margiv-top-10">
-                            <a href class="btn green" ng-click="editInfo()" >
-                            Save Changes </a>
-                            <a href="#/business/list"  class="btn default">
-                            Cancel </a>
-                        </div>
+                        <button type="submit" class="btn green" ng-click="editInfoView3()" ng-disabled="disable"><i class="fa fa-pencil"></i> Save  changes</button>
                     </form>
+                </div>
+
+                <!--
+                <div class="form-group form-md-line-input form-md-floating-label">
+                    <input type="text" class="form-control" >
+                    <label for="form_control_1">Regular input</label>
+                    <span class="help-block">Some help goes here...</span>
+                </div>-->
+
+
+
+            </tab>
+        </tabset>
+
+
+
+
                 </div>
         </div>
         <!--end col-md-9-->

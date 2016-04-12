@@ -11,17 +11,21 @@
                         <p>Nouveau sur Myle ? <a href="#/login/sign_up">S’inscrire</a> </p>
                     </div><!-- /.page-title -->
                     <div class="center">
-                        <a class="btn btn-primary" style="background-color: #3B5998; width: 50%;">
+                        <a class="btn btn-primary" style="background-color: #3B5998; width: 50%;" ng-click="createUserFacebook()" >
                             <span class="fa fa-facebook"></span> Connexion avec Facebook
                         </a><br/>
                         <h5>Ou</h5>
+                        <a class="btn btn-primary" style="background-color: #DD4B39; width: 50%;" href ng-click="createUserGoogle()">
+                        <span class="fa fa-google"></span> Inscivez-vous avec Google
+                        </a><br/>
+                        <p style="font-size: 10px;">Ne vous inquiétez pas, nous ne publions rien sans votre autorisation.</p>
                     </div>
 
                     <hr/>
                     <form>
                         <div class="form-group">
-                            <label for="login-form-email">Username</label>
-                            <input  class="form-control" name="username" ng-model="l.username">
+                            <label for="login-form-email">Adresse Email</label>
+                            <input  class="form-control" name="adresse email" ng-model="l.username" type="email" >
                         </div><!-- /.form-group -->
 
                         <div class="form-group">

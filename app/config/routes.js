@@ -15,10 +15,17 @@ var TagController = require('../controllers/tag-controller');
 var GouverneraController = require('../controllers/gouvernera-controller');
 var BusinessSearchController = require('../controllers/businessSearch-controller');
 var BusinessController = require('../controllers/business-controller');
+var CouponController = require('../controllers/coupon-controller');
+var CommentaireController = require('../controllers/commentaire-controller');
 
 var PassportController = require('../controllers/passport-controller');
 
 var ScrapeController = require('../controllers/scrape-controller');
+
+
+var HotelController = require('../controllers/hotel-controller');
+var ChallengeController = require('../controllers/challenge-controller');
+
 
 //var User=require('../models/User');
 
@@ -41,6 +48,9 @@ apiRouter.route('/articles/:article_id')
 
 */
 
+apiRouter.use('/hotel', require('../controllers/hotel-controller'));
+apiRouter.use('/challenge', require('../controllers/challenge-controller'));
+
 apiRouter.route('/sante/scrape').get(santeController.scrape);
 apiRouter.route('/sante/scrape2').get(santeController.scrape2);
 apiRouter.get('/sante/', santeController.getAll);
@@ -56,8 +66,16 @@ apiRouter.route('/user/auth')
   .post(PassportController.authetificationUser);
 
 
-apiRouter.route('/tag')
-    .get(TagController.getAll);
+
+
+apiRouter.get('/user/show/:id', PassportController.showInfo);
+apiRouter.get('/user/getbyusername/:username', PassportController.getUserByUsername);
+apiRouter.post('/user/edit', PassportController.editInfo);
+apiRouter.post('/user/edit2', PassportController.editInfo2);
+apiRouter.post('/user/editInfoAdresse', PassportController.editInfoAdresse);
+apiRouter.post('/user/editProfileImage', PassportController.editProfileImage);
+
+apiRouter.route('/tag').get(TagController.getAll);
 apiRouter.get('/tag/search', TagController.search);
 apiRouter.get('/tag/:id', TagController.show);
 apiRouter.post('/tag/add', TagController.add);
@@ -79,6 +97,35 @@ apiRouter.post('/business/editadress/:id', BusinessController.editAdress);
 apiRouter.post('/business/addtag/:id', BusinessController.addTagToBusiness);
 apiRouter.post('/business/removetag/:id', BusinessController.removeTagToBusiness);
 apiRouter.get('/business/remove/:id', BusinessController.remove);
+apiRouter.post('/business/editprofileimage/:id', BusinessController.editProfileImage);
+apiRouter.post('/business/editcoverimage/:id', BusinessController.editCoverImage);
+apiRouter.post('/business/addImage/:id', BusinessController.addImage);
+apiRouter.post('/business/removeImage/:id', BusinessController.removeImage);
+apiRouter.post('/business/editInfoview1/:id', BusinessController.editInfoView1);
+apiRouter.post('/business/editInfoview2/:id', BusinessController.editInfoView2);
+apiRouter.post('/business/editInfoView3/:id', BusinessController.editInfoView3);
+apiRouter.post('/business/addOpeningHourToBusiness/:id', BusinessController.addOpeningHourToBusiness);
+apiRouter.post('/business/removeOpeningHourBusiness/:id', BusinessController.removeOpeningHourBusiness);
+apiRouter.post('/business/editOpeningHourToBusiness/:id', BusinessController.editOpeningHourToBusiness);
+apiRouter.post('/business/findAllByCat', BusinessController.findAllByCat);
+apiRouter.post('/business/addComment', BusinessController.addComment);
+apiRouter.get('/business/findcommentsbybusiness/:bid', BusinessController.findCommentsByBusiness);
+
+apiRouter.post('/business/addlike/:id', BusinessController.LikeBusiness);
+apiRouter.post('/business/removelike/:id', BusinessController.UnlikeBusiness);
+
+
+apiRouter.post('/coupon/add', CouponController.add);
+apiRouter.get('/coupon/listbybusiness/:id', CouponController.findByBusinessId);
+apiRouter.get('/coupon/remove/:id', CouponController.remove);
+apiRouter.get('/coupon/get/:id', CouponController.getById);
+apiRouter.get('/coupon/getLast4', CouponController.getLast4);
+
+
+
+apiRouter.get('/newsfeed/:id', CommentaireController.findByRegion);
+apiRouter.get('/newbusiness/:id', CommentaireController.findNewBusiness);
+
 
 
 apiRouter.get('/alimentation/list', ScrapeController.getAllAlimentation);

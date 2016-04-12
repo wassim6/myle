@@ -1,19 +1,19 @@
 'use strict';
 
-MetronicApp.controller('BusinessDetailCtrl', function($rootScope, $scope, $http, $timeout, $stateParams,  BusinessService, CommentService, DTOptionsBuilder, DTColumnBuilder) {
+MetronicApp.controller('BusinessDetailCtrl', function($rootScope, $scope, $http, $timeout, $stateParams,  BusinessService, DTOptionsBuilder, DTColumnBuilder) {
     
     var businesId = $stateParams.id;
 
-    
+/*    
     var comments=CommentService.GetCommentByBusiness().get({ID:businesId, UID:0}, function(){
         //console.log(comments);
         $scope.comments=comments.comments;
         
-    });
+    });*/
     
     $scope.dtOptions = DTOptionsBuilder.newOptions().withOption('order', [1, 'asc']).withOption('lengthMenu', [50, 100, 150, 200]);
     
-     $scope.b=BusinessService.GetBusiness().get({ ID:businesId}, function() {
+     $scope.b=BusinessService.GetById().get({ id:businesId}, function() {
          //console.log($scope.b);
          
         $scope.latitude=$scope.b.latitude;
@@ -51,13 +51,21 @@ MetronicApp.controller('BusinessDetailCtrl', function($rootScope, $scope, $http,
           }
         };
          
-         for(var i=0;i<$scope.b.hours.length;i++){
-            var openHour=(Math.trunc($scope.b.hours[i].open*30/60));
-            var closeHour=(Math.trunc($scope.b.hours[i].close*30/60));
-            openHour=zeroPad(openHour);
-            closeHour=zeroPad(closeHour);
-            $scope.b.hours[i].openStr=openHour+'h:'+zeroPad($scope.b.hours[i].open*30%60);
-            $scope.b.hours[i].closeStr=closeHour+'h:'+zeroPad($scope.b.hours[i].close*30%60);
+        for(var i=0;i<$scope.b.openingTime.length;i++){
+            if($scope.b.openingTime[i].open==1){
+                var openHour=(Math.trunc($scope.b.openingTime[i].openingHour*30/60));
+                var closeHour=(Math.trunc($scope.b.openingTime[i].closingHour*30/60));
+                openHour=zeroPad(openHour);
+                closeHour=zeroPad(closeHour);
+                $scope.b.openingTime[i].openStr = openHour+'h:' + 
+                    zeroPad($scope.b.openingTime[i].openingHour*30%60);
+                    $scope.b.openingTime[i].closeStr = closeHour + 'h:'+ 
+                        zeroPad($scope.b.openingTime[i].closingHour*30%60);
+            }
+            else{
+                $scope.b.openingTime[i].openStr='-';
+                $scope.b.openingTime[i].closeStr='-';
+            }
         }
          
     });
