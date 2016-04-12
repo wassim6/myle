@@ -64,6 +64,12 @@ myApp.config(function($routeProvider, $locationProvider) {
             templateUrl: 'partials/login/forgot_password.html',
             controller: 'ForgotPasswordCtrl',
             activetab: 'Home'
+        }).when(
+        '/chat',
+        {
+            templateUrl: 'partials/chat/chat.html',
+            controller: 'ChatCtrl',
+            activetab: 'Home'
         })
 
 

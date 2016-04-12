@@ -7,7 +7,11 @@ var myApp = angular.module('myApp', ['ngRoute', 'pretty-checkable', 'ngResource'
     'naif.base64',
     "ngAnimate",
     "toaster",
-    "angularMoment"
+    "angularMoment",
+    "ngSanitize",
+    "ui.select",
+    "irontec.simpleChat"                                 
+                                     
 ]);
 
 myApp.run(function(amMoment) {

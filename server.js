@@ -4,7 +4,11 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var bodyParser = require('body-parser'); 
+var http = require('http');
+var io = require('socket.io');
 var apiRouter = require('./app/config/routes'); // bring in API routes
+
+
 
 
 
@@ -89,6 +93,32 @@ app.get('/admin', function(request, response) {
 
 // listen to port as defined or default 5000
 var port = process.env.PORT || 5000;
+
+
+var server = require('http').createServer(app),
+    io = require('socket.io').listen(server),
+    ent = require('ent');
+
+app.get('/c', function (req, res) {
+  res.sendfile(__dirname + '/index.html');
+});
+
+io.sockets.on('connection', function (socket, pseudo) {
+    socket.on('nouveau_client', function(pseudo) {
+        pseudo = ent.encode(pseudo);
+        socket.pseudo = pseudo;
+        socket.broadcast.emit('nouveau_client', pseudo);
+    });
+    socket.on('message', function (message) {
+        //message = ent.encode(message);
+        message = message;
+        socket.broadcast.emit('message', {pseudo: socket.pseudo, message: message});
+    }); 
+});
+
+server.listen(8080);
+
+
 
 app.listen(port);
 
