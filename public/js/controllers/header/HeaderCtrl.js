@@ -108,7 +108,22 @@ myApp.controller("HeaderCtrl" ,function ($rootScope, $scope, $window,  TagServic
         
     };    
     
-    
+    $scope.touverPosition = function(){
+        var options = {
+                enableHighAccuracy: true
+        };
+        navigator.geolocation.getCurrentPosition(function(pos) {
+            var position = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+            $scope.latitude=pos.coords.latitude;
+            $scope.longitude=pos.coords.longitude;
+            console.log($scope.latitude+"  "+$scope.longitude);
+            $scope.$apply();
+            
+        }, 
+            function(error) {                    
+                alert('Unable to get location: ' + error.message);
+        }, options);        
+    };
     
     
     $scope.logOut = function(){

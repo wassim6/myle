@@ -44,14 +44,19 @@
   match-class="highlight"
   auto-match="true"
   initial-value="defaultAdress"
+  id="16"
                                           >
-                                            </div>                                            
+                                            </div>   
+
                       <!--                      <input type="text" placeholder="A proximité de : Adresse, Ville, Département, Code postale" class="form-control">
                                             <span class="input-group-addon" style="background-color:white" data-toggle="tooltip" title="trouver ma position automatiquement"><i class="fa fa-map-marker"></i></span>-->
                                         </div>
                                     </div>
                                     <div class="col-sm-12 col-md-4">
                                         <div class="form-group">
+                                            <button class="btn btn-primary " type="submit" ng-click="touverPosition()" data-toggle="tooltip"  title="trouver ma position automatiquement" >
+                                                <i class="fa fa-map-marker" ></i>
+                                            </button>
                                             <button class="btn btn-primary" type="submit" ng-click="search()" >Lancer la recherche</button>
                                         </div>
                                     </div>
@@ -174,139 +179,147 @@
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <div class="card" data-background-image="../img/tmp/product-7.jpg" style="background-image: url('../img/tmp/product-7.jpg');">
+                                        <div class="card" data-background-image="../img/cimg/{{firstCoupon.image}}" style="background-image: url('./img/cimg/{{firstCoupon.image}}');">
                                             <div class="card-label">
-                                                <a href="listing-detail.html">Coffe</a>
-                                            </div><!-- /.card-label -->
-
+                                                <a href="listing-detail.html">{{firstCoupon.businessId.category}}</a>
+                                            </div>
                                             <div class="card-content">
-                                                <h2><a href="listing-detail.html">Brazilian Coffe Taste</a>
-                                                    <br/><span class="clock"></span>
+                                                <h2><a href="listing-detail.html">{{firstCoupon.businessId.name}}</a>
+                                                    <br/><span class="clock1"></span>
                                                 </h2>
-
                                                 <div class="card-meta">
-                                                    <i class="fa fa-map-o"></i> 347/26 22th Avenue, NYC USA<br/>
-
-                                                </div><!-- /.card-meta -->
-
+                                                    <i class="fa fa-map-o"></i> {{firstCoupon.businessId.adress}}<br/>
+                                                </div>
                                                 <div class="card-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div><!-- /.card-rating -->
+                                                    <i class="fa fa-star" ng-repeat="s in [] | range:firstCoupon.businessId.rate" ></i><i class="fa fa-star-o" ng-repeat="s in [] | range:(Math.round(5-(firstCoupon.businessId.rate)))" ></i>
+                                                </div>
+                                                <h2>
+                                                    {{firstCoupon.prix}}<sup>DT</sup>
+                                                    <samp style="text-decoration:line-through; font-size:14px" >
+                                                        {{firstCoupon.prixInitial}}<sup>DT</sup>
+                                                    </samp>
+                                                    {{firstCoupon.remise}}% de Réduction
+                                                </h2>
+                                                
 
                                                 <div class="card-actions">
-                                                    <a href="#" class="fa fa-bookmark-o"></a>
-                                                    <a href="listing-detail.html" class="fa fa-search"></a>
-                                                    <a href="#" class="fa fa-heart-o"></a>
+                                                    <a href="#/business/info/{{firstCoupon.businessId._id}}" class="fa fa-search"></a>
+                                                    <a ng-if="!firstCoupon.businessId.isLiked" href class="fa fa-heart" ng-click="like(firstCoupon.businessId)"></a>
+                                                    <a ng-if="firstCoupon.businessId.isLiked" href style="color:red" class="fa fa-heart" ng-click="unlike(firstCoupon.businessId)" ></a>
                                                 </div>
-
-                                            </div><!-- /.card-content -->
-                                        </div><!-- /.card -->
-                                    </div><!-- /.col-* -->
-                                </div><!-- /.row -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <div class="card" data-background-image="../img/tmp/product-4.jpg" style="background-image: url('../img/tmp/product-4.jpg');">
+                                        <div class="card" data-background-image="../img/cimg/{{secondCoupon.image}}" style="background-image: url('./img/cimg/{{secondCoupon.image}}');">
                                             <div class="card-label">
-                                                <a href="listing-detail.html">Restaurant</a>
-                                            </div><!-- /.card-label -->
-
+                                                <a href="listing-detail.html">{{secondCoupon.businessId.category}}</a>
+                                            </div>
                                             <div class="card-content">
-                                                <h2><a href="listing-detail.html">Coffee &amp; Newspaper</a>
-                                                    <br/><span class="clock"></span></h2>
-
+                                                <h2><a href="listing-detail.html">{{secondCoupon.businessId.name}}</a>
+                                                    <br/><span class="clock2"></span>
+                                                </h2>
                                                 <div class="card-meta">
-                                                    <i class="fa fa-map-o"></i> 347/26 22th Avenue, NYC USA
-                                                </div><!-- /.card-meta -->
-
+                                                    <i class="fa fa-map-o"></i> {{secondCoupon.businessId.adress}}<br/>
+                                                </div>
                                                 <div class="card-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div><!-- /.card-rating -->
+                                                    <i class="fa fa-star" ng-repeat="s in [] | range:secondCoupon.businessId.rate" ></i><i class="fa fa-star-o" ng-repeat="s in [] | range:(Math.round(5-(secondCoupon.businessId.rate)))" ></i>
+                                                </div>
+                                                <h2>
+                                                    {{secondCoupon.prix}}<sup>DT</sup>
+                                                    <samp style="text-decoration:line-through; font-size:14px" >
+                                                        {{secondCoupon.prixInitial}}<sup>DT</sup>
+                                                    </samp>
+                                                    {{secondCoupon.remise}}% de Réduction
+                                                </h2>
 
                                                 <div class="card-actions">
-                                                    <a href="#" class="fa fa-bookmark-o"></a>
-                                                    <a href="listing-detail.html" class="fa fa-search"></a>
-                                                    <a href="#" class="fa fa-heart-o"></a>
+                                                    <a href="#/business/info/{{secondCoupon.businessId._id}}" class="fa fa-search"></a>
+                                                    <a ng-if="!secondCoupon.businessId.isLiked" href class="fa fa-heart" ng-click="like(secondCoupon.businessId)"></a>
+                                                    <a ng-if="secondCoupon.businessId.isLiked" href style="color:red" class="fa fa-heart" ng-click="unlike(secondCoupon.businessId)" ></a>
                                                 </div>
-                                            </div><!-- /.card-content -->
-                                        </div><!-- /.card -->
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="col-sm-6">
-                                        <div class="card" data-background-image="../img/tmp/product-2.jpg" style="background-image: url('../img/tmp/product-2.jpg');">
+                                        <div class="card" data-background-image="../img/cimg/{{therdCoupon.image}}" style="background-image: url('./img/cimg/{{therdCoupon.image}}');">
                                             <div class="card-label">
-                                                <a href="listing-detail.html">Vacation</a>
-                                            </div><!-- /.card-label -->
-
+                                                <a href="listing-detail.html">{{therdCoupon.businessId.category}}</a>
+                                            </div>
                                             <div class="card-content">
-                                                <h2><a href="listing-detail.html">Homemade Coffee</a>
-                                                    <br/><span class="clock"></span></h2>
-
+                                                <h2><a href="listing-detail.html">{{therdCoupon.businessId.name}}</a>
+                                                    <br/><span class="clock3"></span>
+                                                </h2>
                                                 <div class="card-meta">
-                                                    <i class="fa fa-map-o"></i> 347/26 22th Avenue, NYC USA
-                                                </div><!-- /.card-meta -->
-
+                                                    <i class="fa fa-map-o"></i> {{therdCoupon.businessId.adress}}<br/>
+                                                </div>
                                                 <div class="card-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div><!-- /.card-rating -->
+                                                    <i class="fa fa-star" ng-repeat="s in [] | range:therdCoupon.businessId.rate" ></i><i class="fa fa-star-o" ng-repeat="s in [] | range:(Math.round(5-(therdCoupon.businessId.rate)))" ></i>
+                                                </div>
+                                                <h2>
+                                                    {{therdCoupon.prix}}<sup>DT</sup>
+                                                    <samp style="text-decoration:line-through; font-size:14px" >
+                                                        {{therdCoupon.prixInitial}}<sup>DT</sup>
+                                                    </samp>
+                                                    {{therdCoupon.remise}}% de Réduction
+                                                </h2>
 
                                                 <div class="card-actions">
-                                                    <a href="#" class="fa fa-bookmark-o marked"></a>
-                                                    <a href="listing-detail.html" class="fa fa-search"></a>
-                                                    <a href="#" class="fa fa-heart-o"></a>
+                                                    <a href="#/business/info/{{therdCoupon.businessId._id}}" class="fa fa-search"></a>
+                                                    <a ng-if="!therdCoupon.businessId.isLiked" href class="fa fa-heart" ng-click="like(therdCoupon.businessId)"></a>
+                                                    <a ng-if="therdCoupon.businessId.isLiked" href style="color:red" class="fa fa-heart" ng-click="unlike(therdCoupon.businessId)" ></a>
                                                 </div>
-                                            </div><!-- /.card-content -->
-                                        </div><!-- /.card -->
+                                            </div>
+                                        </div>
                                     </div><!-- /.col-* -->
                                 </div><!-- /.row -->
                             </div><!-- /.col-* -->
 
                             <div class="col-sm-4">
-                                <div class="card card-tall" data-background-image="../img/tmp/product-1.jpg" style="background-image: url('../img/tmp/product-1.jpg');">
+                                <div class="card card-tall" data-background-image="../img/cimg/{{fourCoupon.image}}" style="background-image: url('../img/cimg/{{fourCoupon.image}}');">
                                     <div class="card-label">
-                                        <a href="listing-detail.html">Vacation</a>
-                                    </div><!-- /.card-label -->
-
+                                        <a href="listing-detail.html">{{fourCoupon.businessId.category}}</a>
+                                    </div>
                                     <div class="card-content">
-                                        <h2><a href="listing-detail.html">Trip to Paris, France</a>
-                                            <br/><span class="clock"></span></h2>
-
+                                        <h2><a href="listing-detail.html">{{fourCoupon.businessId.name}}</a>
+                                            <br/><span class="clock4"></span></h2>
                                         <div class="card-meta">
-                                            <i class="fa fa-map-o"></i> 347/26 22th Avenue, NYC USA
-                                        </div><!-- /.card-meta -->
-
-                                        <div class="card-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div><!-- /.card-rating -->
-
-                                        <div class="card-actions">
-                                            <a href="#" class="fa fa-bookmark-o"></a>
-                                            <a href="listing-detail.html" class="fa fa-search"></a>
-                                            <a href="#" class="fa fa-heart-o marked"></a>
+                                            <i class="fa fa-map-o"></i> {{fourCoupon.businessId.adress}}
                                         </div>
-                                    </div><!-- /.card-content -->
-                                </div><!-- /.card -->
+                                        <div class="card-rating">
+                                            <i class="fa fa-star" ng-repeat="s in [] | range:fourCoupon.businessId.rate" ></i><i class="fa fa-star-o" ng-repeat="s in [] | range:(Math.round(5-(fourCoupon.businessId.rate)))" ></i>
+                                        </div>
+                                        <h2>
+                                            {{fourCoupon.prix}}<sup>DT</sup>
+                                            <samp style="text-decoration:line-through; font-size:14px" >
+                                                {{fourCoupon.prixInitial}}<sup>DT</sup>
+                                            </samp>
+                                            {{fourCoupon.remise}}% de Réduction
+                                        </h2>
+                                        <div class="card-actions">
+                                            <a href="#/business/info/{{fourCoupon.businessId._id}}" class="fa fa-search"></a>
+                                            <a ng-if="!fourCoupon.businessId.isLiked" href class="fa fa-heart" ng-click="like(fourCoupon.businessId)"></a>
+                                            <a ng-if="fourCoupon.businessId.isLiked" href style="color:red" class="fa fa-heart" ng-click="unlike(fourCoupon.businessId)" ></a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+
+
+
+
                             </div><!-- /.col-* -->
                         </div><!-- /.row -->
                     </div><!-- /.cards-wrapper -->
 
                 </div>
+
+
 
                 <div class="block background-white fullwidth mt80 mb-80">
                     <div class="categories">

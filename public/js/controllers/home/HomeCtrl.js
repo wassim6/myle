@@ -8,11 +8,9 @@ myApp.controller("HomeCtrl" ,function ($rootScope, $scope, TagService, $http, $l
         return {q: str};
     };
 
-    
+    $scope.Math=Math;
     init();
-    $('.clock').countdown('2016/03/14', function(event) {
-        $(this).html(event.strftime('%D days %H:%M:%S'));
-    });
+    
     
     
     $scope.selectedTag={};
@@ -124,6 +122,45 @@ myApp.controller("HomeCtrl" ,function ($rootScope, $scope, TagService, $http, $l
         }
     });
 
+    var coupons=BusinessService.getLast4().query({
+
+    }, function(){
+
+        if($rootScope.AuthenticatedUser!=null){
+            for(var i=0;i<coupons.length;i++){
+                var test=0;
+                for(var j=0;j<coupons[i].businessId.likes.length;j++){
+                    if(coupons[i].businessId.likes[j]._id==$rootScope.AuthenticatedUser.id){
+                        coupons[i].businessId.isLiked=true;
+                        test=1;
+                    }
+                }
+                if(test==0)
+                    coupons[i].businessId.isLiked=false;
+            }
+        }
+
+        $scope.firstCoupon=coupons[0];
+        $scope.secondCoupon=coupons[1];
+        $scope.therdCoupon=coupons[2];
+        $scope.fourCoupon=coupons[3];
+
+
+        $('.clock1').countdown(coupons[0].endDate.split('T')[0], function(event) {
+            $(this).html(event.strftime('%D jours %H:%M:%S'));
+        });
+        $('.clock2').countdown(coupons[1].endDate.split('T')[0], function(event) {
+            $(this).html(event.strftime('%D jours %H:%M:%S'));
+        });
+        $('.clock3').countdown(coupons[2].endDate.split('T')[0], function(event) {
+            $(this).html(event.strftime('%D jours %H:%M:%S'));
+        });
+        $('.clock4').countdown(coupons[3].endDate.split('T')[0], function(event) {
+            $(this).html(event.strftime('%D jours %H:%M:%S'));
+        });
+
+    });
+
 
 
     $scope.like = function(b){
@@ -159,6 +196,29 @@ myApp.controller("HomeCtrl" ,function ($rootScope, $scope, TagService, $http, $l
             console.log(e);
         });  
     }
+
+
+    
+    $scope.touverPosition = function(){
+        $scope.defaultAdress={name:'ss', _id:"qsd"};
+        $scope.$broadcast('angucomplete-alt:changeInput', '16', {name:'ss', _id:"qsd"});
+
+        var options = {
+                enableHighAccuracy: true
+        };
+        navigator.geolocation.getCurrentPosition(function(pos) {
+
+            $http.get("http://maps.googleapis.com/maps/api/geocode/json?latlng=36.8993195,10.1895961&sensor=true")
+            .success(function(s){
+                console.log(s.results[4].formatted_address);
+                $scope.defaultAdress.name=s.results[4].formatted_address;
+            })
+            
+        }, 
+            function(error) {                    
+                alert('Unable to get location: ' + error.message);
+        }, options);        
+    };
 
 
 

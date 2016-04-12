@@ -116,6 +116,8 @@ apiRouter.post('/coupon/add', CouponController.add);
 apiRouter.get('/coupon/listbybusiness/:id', CouponController.findByBusinessId);
 apiRouter.get('/coupon/remove/:id', CouponController.remove);
 apiRouter.get('/coupon/get/:id', CouponController.getById);
+apiRouter.get('/coupon/getLast4', CouponController.getLast4);
+
 
 
 apiRouter.get('/newsfeed/:id', CommentaireController.findByRegion);

@@ -19,7 +19,7 @@ function add(request, response){
     var body=request.body;
     
 
-    var remise=(100*body.prix)/body.prixInitial;
+    var remise=100-((100*body.prix)/body.prixInitial);
     var prinicpalImage=Math.round(+new Date()/1000)+'.'+body.image.filetype.split('/')[1];
     var bitmap = new Buffer(body.image.base64, 'base64');
             fs.writeFile('public/img/cimg/'+prinicpalImage, bitmap, function(err) {
@@ -83,6 +83,14 @@ function remove(request, response){
     });
 }
 
+function getLast4(request, response){
+    Coupon.find({'endDate':{$gte:new Date()}}, function(error, coupon){
+        if (error) response.status(400).send('error 11');
+        else
+            response.json(coupon);
+    }).populate('businessId').sort({created_at:-1}).limit(4);
+}
+
 // function to create file from base64 encoded string
 function base64_decode(base64str, file) {
     var bitmap = new Buffer(base64str, 'base64');
@@ -101,5 +109,6 @@ module.exports = {
     add:add,
     findByBusinessId:findByBusinessId,
     remove:remove,
-    getById:getById
+    getById:getById,
+    getLast4:getLast4
 };
