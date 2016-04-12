@@ -8,7 +8,7 @@ var Schema = mongoose.Schema; // allows us to create a constructor for our model
 function getAll(request, response){
     Restaurant.find({},function(error, restaurants) {
             if (error) console.error('Could not retrieve Restaurants b/c:', error);
-            response.json(restaurants);
+           response.json(restaurants);
         });
 };
 
