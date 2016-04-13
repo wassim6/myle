@@ -615,33 +615,16 @@ function UnlikeBusiness(request, response){
 });
 };
 
-<<<<<<< HEAD
 
-function addAppointment(request, response){
-    var body=request.body;
-     Business.findById(request.params.id,function(error, business) {
-=======
 function rdv(request, response){
     var body=request.body;
      Business.findOne({'_id':request.params.id},function(error, business) {
->>>>>>> c861562dd873743ec4ad74cdfbb28bcc5451cb96
             if (error){
                 console.error('Could not retrieve business b/c:', business);
                 response.status(400).send('error');
             }
             business.appointments.push({
                 userId:body.userId,
-<<<<<<< HEAD
-                date:body.date
-            });
-            business.save(function(error) {
-                if (error) { 
-                    console.error('Not able to add appointment hour b/c:', error);
-                    response.status(400).send('error 68');
-                }
-                else{  
-                    response.json(business);
-=======
                 date:body.date,
                 heure:body.heure
             });
@@ -652,7 +635,6 @@ function rdv(request, response){
                 }
                 else{  
                     response.json({message: 'appointments successfully added', code:0});
->>>>>>> c861562dd873743ec4ad74cdfbb28bcc5451cb96
                 }
               });
         });
