@@ -10,7 +10,8 @@ var myApp = angular.module('myApp', ['ngRoute', 'pretty-checkable', 'ngResource'
     "angularMoment",
     "ngSanitize",
     "ui.select",
-    "irontec.simpleChat"                                 
+    "irontec.simpleChat",
+    "ui.bootstrap"                               
                                      
 ]);
 

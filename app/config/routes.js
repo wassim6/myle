@@ -116,8 +116,12 @@ apiRouter.get('/business/findcommentsbybusiness/:bid', BusinessController.findCo
 apiRouter.post('/business/addlike/:id', BusinessController.LikeBusiness);
 apiRouter.post('/business/removelike/:id', BusinessController.UnlikeBusiness);
 
+<<<<<<< HEAD
 apiRouter.post('/business/addappointment/:id', BusinessController.addAppointment);
 
+=======
+apiRouter.post('/business/rdv/:id', BusinessController.rdv);
+>>>>>>> c861562dd873743ec4ad74cdfbb28bcc5451cb96
 
 
 apiRouter.post('/coupon/add', CouponController.add);
