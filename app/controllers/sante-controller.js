@@ -14,7 +14,7 @@ function scrape(request2, response2) {
     var max=700;*/
     var initial=1;
     var i=1;
-    var max=50;
+    var max=700;
 	var base = 'http://monguide-medical.com/detail-medical.php?id_medic=';
 	var typeEtNom, specialite, adresse, adresse2, tel, dateCreation;
 	var json = { typeEtNom : "", specialite : "", adresse : "", adresse2:"", tel:"", dateCreation:""};

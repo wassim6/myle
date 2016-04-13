@@ -88,6 +88,8 @@ apiRouter.get('/address/delegation/list', GouverneraController.getAllDelegation)
 apiRouter.get('/address/delegationname/list', GouverneraController.getAllDelegationSansCodePostal);
 
 apiRouter.post('/business/search', BusinessSearchController.search);
+apiRouter.post('/business/searchgeo', BusinessSearchController.searchByLatLong);
+
 
 
 apiRouter.get('/business/:id', BusinessController.findById);

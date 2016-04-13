@@ -12,7 +12,7 @@ var Schema = mongoose.Schema; // allows us to create a constructor for our model
 function scrapeAlimentation(request2, response2) {
     //max:874
     var debut=0;
-    var fin=26;
+    var fin=874;
     
     go();
     
@@ -68,7 +68,7 @@ function scrapeAlimentation(request2, response2) {
                     profileImage='default.png';
                 }
                 else{
-                    var uri = Math.round(+new Date()/1000);  
+                    var uri = Math.round(+new Date()/1000)+Math.floor((Math.random() * 10000) + 1);  
                     profileImage=uri+'.jpg';
                     request(current.photo, {encoding: 'binary'}, function(error, response, bodyImg) {
                       fs.writeFile('public/img/bimg/'+profileImage, bodyImg, 'binary', function (err) {});
@@ -427,7 +427,7 @@ function scrapeAnimaux(request2, response2) {
                     profileImage='default.png';
                 }
                 else{
-                    var uri = Math.round(+new Date()/1000);  
+                    var uri = Math.round(+new Date()/1000)+Math.floor((Math.random() * 10000) + 1);  
                     profileImage=uri+'.jpg';
                     request(current.photo, {encoding: 'binary'}, function(error, response, bodyImg) {
                       fs.writeFile('public/img/bimg/'+profileImage, bodyImg, 'binary', function (err) {});
@@ -785,7 +785,7 @@ function scrapeAutoMoto(request2, response2) {
                     profileImage='default.png';
                 }
                 else{
-                    var uri = Math.round(+new Date()/1000);  
+                    var uri = Math.round(+new Date()/1000)+Math.floor((Math.random() * 10000) + 1);  
                     profileImage=uri+'.jpg';
                     request(current.photo, {encoding: 'binary'}, function(error, response, bodyImg) {
                       fs.writeFile('public/img/bimg/'+profileImage, bodyImg, 'binary', function (err) {});
@@ -1144,7 +1144,7 @@ function scrapeArtisans(request2, response2) {
                     profileImage='default.png';
                 }
                 else{
-                    var uri = Math.round(+new Date()/1000);  
+                    var uri = Math.round(+new Date()/1000)+Math.floor((Math.random() * 10000) + 1);  
                     profileImage=uri+'.jpg';
                     request(current.photo, {encoding: 'binary'}, function(error, response, bodyImg) {
                       fs.writeFile('public/img/bimg/'+profileImage, bodyImg, 'binary', function (err) {});
@@ -1481,11 +1481,15 @@ function scrapeSport(request2, response2) {
                 var googleplus=current.googleplus;
                 var longitude=0,latitude=0;
                 if(typeof(current.marker!='undefined'))
-                {   latitude=current.marker[0];
-                    if(latitude!=0)
-                        longitude=current.marker[1];
-                    else
-                        longitude=0;
+                {
+                    if(typeof(current)!='undefined' && typeof(current.marker)!='undefined' &&
+                        typeof(current.marker[0])!='undefined'){
+                       latitude=current.marker[0];
+                        if(latitude!=0)
+                            longitude=current.marker[1];
+                        else
+                            longitude=0;
+                    }
                 }
 
                 var sousCategory=current.categorie;
@@ -1503,7 +1507,7 @@ function scrapeSport(request2, response2) {
                     profileImage='default.png';
                 }
                 else{
-                    var uri = Math.round(+new Date()/1000);  
+                    var uri = Math.round(+new Date()/1000)+Math.floor((Math.random() * 10000) + 1);  
                     profileImage=uri+'.jpg';
                     request(current.photo, {encoding: 'binary'}, function(error, response, bodyImg) {
                       fs.writeFile('public/img/bimg/'+profileImage, bodyImg, 'binary', function (err) {});
@@ -1840,11 +1844,15 @@ function scrapeBeaute(request2, response2) {
                 var googleplus=current.googleplus;
                 var longitude=0,latitude=0;
                 if(typeof(current.marker!='undefined'))
-                {   latitude=current.marker[0];
-                    if(latitude!=0)
-                        longitude=current.marker[1];
-                    else
-                        longitude=0;
+                {
+                    if(typeof(current)!='undefined' && typeof(current.marker)!='undefined' &&
+                        typeof(current.marker[0])!='undefined'){
+                       latitude=current.marker[0];
+                        if(latitude!=0)
+                            longitude=current.marker[1];
+                        else
+                            longitude=0;
+                    }
                 }
 
                 var sousCategory=current.categorie;
@@ -1862,7 +1870,7 @@ function scrapeBeaute(request2, response2) {
                     profileImage='default.png';
                 }
                 else{
-                    var uri = Math.round(+new Date()/1000);  
+                    var uri = Math.round(+new Date()/1000)+Math.floor((Math.random() * 10000) + 1);  
                     profileImage=uri+'.jpg';
                     request(current.photo, {encoding: 'binary'}, function(error, response, bodyImg) {
                       fs.writeFile('public/img/bimg/'+profileImage, bodyImg, 'binary', function (err) {});
@@ -2199,11 +2207,15 @@ function scrapeVoyageLoisirs(request2, response2) {
                 var googleplus=current.googleplus;
                 var longitude=0,latitude=0;
                 if(typeof(current.marker!='undefined'))
-                {   latitude=current.marker[0];
-                    if(latitude!=0)
-                        longitude=current.marker[1];
-                    else
-                        longitude=0;
+                {
+                    if(typeof(current)!='undefined' && typeof(current.marker)!='undefined' &&
+                        typeof(current.marker[0])!='undefined'){
+                       latitude=current.marker[0];
+                        if(latitude!=0)
+                            longitude=current.marker[1];
+                        else
+                            longitude=0;
+                    }
                 }
 
                 var sousCategory=current.categorie;
@@ -2221,7 +2233,7 @@ function scrapeVoyageLoisirs(request2, response2) {
                     profileImage='default.png';
                 }
                 else{
-                    var uri = Math.round(+new Date()/1000);  
+                    var uri = Math.round(+new Date()/1000)+Math.floor((Math.random() * 10000) + 1);  
                     profileImage=uri+'.jpg';
                     request(current.photo, {encoding: 'binary'}, function(error, response, bodyImg) {
                       fs.writeFile('public/img/bimg/'+profileImage, bodyImg, 'binary', function (err) {});
@@ -2558,11 +2570,15 @@ function scrapeHighTech(request2, response2) {
                 var googleplus=current.googleplus;
                 var longitude=0,latitude=0;
                 if(typeof(current.marker!='undefined'))
-                {   latitude=current.marker[0];
-                    if(latitude!=0)
-                        longitude=current.marker[1];
-                    else
-                        longitude=0;
+                {
+                    if(typeof(current)!='undefined' && typeof(current.marker)!='undefined' &&
+                        typeof(current.marker[0])!='undefined'){
+                       latitude=current.marker[0];
+                        if(latitude!=0)
+                            longitude=current.marker[1];
+                        else
+                            longitude=0;
+                    }
                 }
 
                 var sousCategory=current.categorie;
@@ -2580,7 +2596,7 @@ function scrapeHighTech(request2, response2) {
                     profileImage='default.png';
                 }
                 else{
-                    var uri = Math.round(+new Date()/1000);  
+                    var uri = Math.round(+new Date()/1000)+Math.floor((Math.random() * 10000) + 1);  
                     profileImage=uri+'.jpg';
                     request(current.photo, {encoding: 'binary'}, function(error, response, bodyImg) {
                       fs.writeFile('public/img/bimg/'+profileImage, bodyImg, 'binary', function (err) {});
@@ -2917,11 +2933,15 @@ function scrapeEnfantEducation(request2, response2) {
                 var googleplus=current.googleplus;
                 var longitude=0,latitude=0;
                 if(typeof(current.marker!='undefined'))
-                {   latitude=current.marker[0];
-                    if(latitude!=0)
-                        longitude=current.marker[1];
-                    else
-                        longitude=0;
+                {
+                    if(typeof(current)!='undefined' && typeof(current.marker)!='undefined' &&
+                        typeof(current.marker[0])!='undefined'){
+                       latitude=current.marker[0];
+                        if(latitude!=0)
+                            longitude=current.marker[1];
+                        else
+                            longitude=0;
+                    }
                 }
 
                 var sousCategory=current.categorie;
@@ -2939,7 +2959,7 @@ function scrapeEnfantEducation(request2, response2) {
                     profileImage='default.png';
                 }
                 else{
-                    var uri = Math.round(+new Date()/1000);  
+                    var uri = Math.round(+new Date()/1000)+Math.floor((Math.random() * 10000) + 1);  
                     profileImage=uri+'.jpg';
                     request(current.photo, {encoding: 'binary'}, function(error, response, bodyImg) {
                       fs.writeFile('public/img/bimg/'+profileImage, bodyImg, 'binary', function (err) {});
@@ -3276,11 +3296,15 @@ function scrapeModeHabillement(request2, response2) {
                 var googleplus=current.googleplus;
                 var longitude=0,latitude=0;
                 if(typeof(current.marker!='undefined'))
-                {   latitude=current.marker[0];
-                    if(latitude!=0)
-                        longitude=current.marker[1];
-                    else
-                        longitude=0;
+                {
+                    if(typeof(current)!='undefined' && typeof(current.marker)!='undefined' &&
+                        typeof(current.marker[0])!='undefined'){
+                       latitude=current.marker[0];
+                        if(latitude!=0)
+                            longitude=current.marker[1];
+                        else
+                            longitude=0;
+                    }
                 }
 
                 var sousCategory=current.categorie;
@@ -3298,7 +3322,7 @@ function scrapeModeHabillement(request2, response2) {
                     profileImage='default.png';
                 }
                 else{
-                    var uri = Math.round(+new Date()/1000);  
+                    var uri = Math.round(+new Date()/1000)+Math.floor((Math.random() * 10000) + 1);  
                     profileImage=uri+'.jpg';
                     request(current.photo, {encoding: 'binary'}, function(error, response, bodyImg) {
                       fs.writeFile('public/img/bimg/'+profileImage, bodyImg, 'binary', function (err) {});
@@ -3635,11 +3659,15 @@ function scrapeFournitureAdministratif(request2, response2) {
                 var googleplus=current.googleplus;
                 var longitude=0,latitude=0;
                 if(typeof(current.marker!='undefined'))
-                {   latitude=current.marker[0];
-                    if(latitude!=0)
-                        longitude=current.marker[1];
-                    else
-                        longitude=0;
+                {
+                    if(typeof(current)!='undefined' && typeof(current.marker)!='undefined' &&
+                        typeof(current.marker[0])!='undefined'){
+                       latitude=current.marker[0];
+                        if(latitude!=0)
+                            longitude=current.marker[1];
+                        else
+                            longitude=0;
+                    }
                 }
 
                 var sousCategory=current.categorie;
@@ -3657,7 +3685,7 @@ function scrapeFournitureAdministratif(request2, response2) {
                     profileImage='default.png';
                 }
                 else{
-                    var uri = Math.round(+new Date()/1000);  
+                    var uri = Math.round(+new Date()/1000)+Math.floor((Math.random() * 10000) + 1);  
                     profileImage=uri+'.jpg';
                     request(current.photo, {encoding: 'binary'}, function(error, response, bodyImg) {
                       fs.writeFile('public/img/bimg/'+profileImage, bodyImg, 'binary', function (err) {});
@@ -3994,11 +4022,15 @@ function scrapeMaisonDeco(request2, response2) {
                 var googleplus=current.googleplus;
                 var longitude=0,latitude=0;
                 if(typeof(current.marker!='undefined'))
-                {   latitude=current.marker[0];
-                    if(latitude!=0)
-                        longitude=current.marker[1];
-                    else
-                        longitude=0;
+                {
+                    if(typeof(current)!='undefined' && typeof(current.marker)!='undefined' &&
+                        typeof(current.marker[0])!='undefined'){
+                       latitude=current.marker[0];
+                        if(latitude!=0)
+                            longitude=current.marker[1];
+                        else
+                            longitude=0;
+                    }
                 }
 
                 var sousCategory=current.categorie;
@@ -4016,7 +4048,7 @@ function scrapeMaisonDeco(request2, response2) {
                     profileImage='default.png';
                 }
                 else{
-                    var uri = Math.round(+new Date()/1000);  
+                    var uri = Math.round(+new Date()/1000)+Math.floor((Math.random() * 10000) + 1);  
                     profileImage=uri+'.jpg';
                     request(current.photo, {encoding: 'binary'}, function(error, response, bodyImg) {
                       fs.writeFile('public/img/bimg/'+profileImage, bodyImg, 'binary', function (err) {});
@@ -4353,11 +4385,15 @@ function scrapeSortie(request2, response2) {
                 var googleplus=current.googleplus;
                 var longitude=0,latitude=0;
                 if(typeof(current.marker!='undefined'))
-                {   latitude=current.marker[0];
-                    if(latitude!=0)
-                        longitude=current.marker[1];
-                    else
-                        longitude=0;
+                {
+                    if(typeof(current)!='undefined' && typeof(current.marker)!='undefined' &&
+                        typeof(current.marker[0])!='undefined'){
+                       latitude=current.marker[0];
+                        if(latitude!=0)
+                            longitude=current.marker[1];
+                        else
+                            longitude=0;
+                    }
                 }
 
                 var sousCategory=current.categorie;
@@ -4375,7 +4411,7 @@ function scrapeSortie(request2, response2) {
                     profileImage='default.png';
                 }
                 else{
-                    var uri = Math.round(+new Date()/1000);  
+                    var uri = Math.round(+new Date()/1000)+Math.floor((Math.random() * 10000) + 1);  
                     profileImage=uri+'.jpg';
                     request(current.photo, {encoding: 'binary'}, function(error, response, bodyImg) {
                       fs.writeFile('public/img/bimg/'+profileImage, bodyImg, 'binary', function (err) {});
@@ -4712,11 +4748,15 @@ function scrapeService(request2, response2) {
                 var googleplus=current.googleplus;
                 var longitude=0,latitude=0;
                 if(typeof(current.marker!='undefined'))
-                {   latitude=current.marker[0];
-                    if(latitude!=0)
-                        longitude=current.marker[1];
-                    else
-                        longitude=0;
+                {
+                    if(typeof(current)!='undefined' && typeof(current.marker)!='undefined' &&
+                        typeof(current.marker[0])!='undefined'){
+                       latitude=current.marker[0];
+                        if(latitude!=0)
+                            longitude=current.marker[1];
+                        else
+                            longitude=0;
+                    }
                 }
 
                 var sousCategory=current.categorie;
@@ -4734,7 +4774,7 @@ function scrapeService(request2, response2) {
                     profileImage='default.png';
                 }
                 else{
-                    var uri = Math.round(+new Date()/1000);  
+                    var uri = Math.round(+new Date()/1000)+Math.floor((Math.random() * 10000) + 1);  
                     profileImage=uri+'.jpg';
                     request(current.photo, {encoding: 'binary'}, function(error, response, bodyImg) {
                       fs.writeFile('public/img/bimg/'+profileImage, bodyImg, 'binary', function (err) {});

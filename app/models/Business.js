@@ -56,7 +56,7 @@ var BusinessSchema = new Schema({
     
   facebook:String,
   googleplus:String,    
-  profileImage:String,
+  profileImage:{type:String, default:'default.png'},
   coverImage:{type:String, default:'cover.jpg'},
     
     claimed:{type:Boolean, default:false},

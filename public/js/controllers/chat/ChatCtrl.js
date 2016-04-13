@@ -32,13 +32,14 @@ myApp.controller("ChatCtrl" ,function ($rootScope, $scope, $routeParams, $locati
         insereMessage(data.pseudo, data.message)
     })
 
-    // Quand un nouveau client se connecte, on affiche l'information
+
     socket.on('nouveau_client', function(pseudo) {
-        $scope.messages.push({
-                'username': pseudo,
-                'content': '<em>a rejoint le Chat !</em>'
-            });
-        $('#zone_chat').prepend('<p><em>' + pseudo + ' a rejoint le Chat !</em></p>');
+        if(pseudo && pseudo!=''){
+          $scope.messages.push({
+                  'username': 'Systeme',
+                  'content': pseudo+' a rejoint le Chat !'
+              });
+        }
     })
 
 

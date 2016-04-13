@@ -62,3 +62,69 @@ services de proximité en Tunisie.</p>
     </div>
     <!-- /.container -->
 </div>
+
+<style>
+.chat-window {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    max-height: 600px;
+    height: auto;
+    width: 320px;
+    color: black;
+}
+
+
+.chat-window.minimized {
+    height: 40px;
+}
+
+.chat-top-bar {
+    height: 40px;
+}
+
+.chat-bottom-bar {
+    height: 60px;
+}
+
+.msg-container-base {
+    height: auto;
+    max-height: 500px;
+}
+
+.panel-body {
+    padding: 0;
+}
+    
+    
+.my-custom-chat-theme > .chat-window{
+  float: right;
+}
+
+
+.chat-container {
+    width: 400px;
+    height: 100%;
+    margin: 0 auto;
+    position: fixed;
+    z-index: 10;
+}
+
+</style>
+<div ng-controller="ChatCtrl" >
+<div class="chat-container"  >
+    <irontec-simple-chat
+        messages="messages"
+        username="username"
+        input-placeholder-text="You can write here"
+        submit-button-text="Send your message"
+        title="Myle chat"
+        theme="material"
+        submit-function="sendMessage"
+        visible="true"
+        expand-on-new="true"
+                         >
+    </irontec-simple-chat>
+    <!-- expand-on-new="false" -->
+  </div>
+</div>

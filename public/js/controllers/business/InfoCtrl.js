@@ -13,6 +13,10 @@ myApp.controller("InfoCtrl" ,function ($rootScope, $scope, $routeParams, $locati
     var b=BusinessService.getById().get({
         id:businessId
     }, function(){
+        if( typeof(b.profileImage)=='undefined')
+            b.profileImage='default.png';
+        if( typeof(b.sousCategory)=='undefined')
+            b.sousCategory='sante';
         for(var i=0;i<b.openingTime.length;i++){
             if(b.openingTime[i].tested!=1){
                 if(b.openingTime[i].dayNumber==0){

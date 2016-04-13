@@ -312,6 +312,10 @@ myApp.controller("ListCtrl" ,function ($scope, $http, SearchParam, SearchResult)
     for(var i=0;i<business.length;i++){
         if(typeof business[i].budgetRange =='undefined')
             business[i].budgetRange=1;
+        if( typeof(business[i].profileImage)=='undefined')
+            business[i].profileImage='default.png';
+        if( typeof(business[i].sousCategory)=='undefined')
+            business[i].sousCategory='sante';
     }
     $scope.business=business;
 

@@ -30,12 +30,14 @@ myApp.controller("HomeCtrl" ,function ($rootScope, $scope, TagService, $http, $l
         if($scope.selectedAddress==null || Object.getOwnPropertyNames($scope.selectedAddress).length <= 0 || 
            typeof($scope.selectedAddress.description)=='undefined'){
             address={name:'Tunis', type:1, _id:"56e54c183ba5bc24265767ec"};
+            address.change=0;
         }
         else{
             address={
                 name:$scope.selectedAddress.title, 
                 type:$scope.selectedAddress.description.type,
-                _id:$scope.selectedAddress.description._id
+                _id:$scope.selectedAddress.description._id,
+                change:1
             };
         }
         tag='';
@@ -57,33 +59,55 @@ myApp.controller("HomeCtrl" ,function ($rootScope, $scope, TagService, $http, $l
                 _id:getCookie('tagId')
             }
         }
-        setCookie('adressId', address._id ,7 );
-        setCookie('adressName',address.name,7 );
-        setCookie('adressType',address.type,7 );
-        $rootScope.AdressSearch={id:address._id, name:address.name, type:address.type};
+
         if(tag!=''){
             setCookie('tagId', tag._id, 7);
             setCookie('tagName', tag.name, 7);
             $rootScope.TagSearch={id:tag._id, name:tag.name};
         }
 
-        $http.post('http://localhost:5000/api/business/search',{
-            t:tag,
-            a:address
-        }).success(function(m){
-            //console.log(tag);
-            if(m.length>0){
-                SearchParam.setData({adress:address, tag:tag});
-                SearchResult.setData(m);
-                $controller('HeaderCtrl', {$scope: $scope});
-                
-                $location.path("/business/list");
-                //console.log(m); 
+        if ($scope.userLat && $scope.userLon && address.change==0 ){
+            console.log("cc");
+            $http.post('http://localhost:5000/api/business/searchgeo',{
+                t:tag,
+                lat:$scope.userLat,
+                lon:$scope.userLon
+            }).success(function(m){
+                if(m.length>0){
+                    SearchParam.setData({adress:address, tag:tag});
+                    SearchResult.setData(m);
+                    $location.path("/business/list");
+                }       
+                else{
+                    toaster.warning("Aucun commerce trouver");
+                }     
+            });
+        }
+        else{
+            setCookie('adressId', address._id ,7 );
+            setCookie('adressName',address.name,7 );
+            setCookie('adressType',address.type,7 );
+            $rootScope.AdressSearch={id:address._id, name:address.name, type:address.type};
+            
+            $http.post('http://localhost:5000/api/business/search',{
+                t:tag,
+                a:address
+            }).success(function(m){
+                //console.log(tag);
+                if(m.length>0){
+                    SearchParam.setData({adress:address, tag:tag});
+                    SearchResult.setData(m);
+                    $controller('HeaderCtrl', {$scope: $scope});
+                    
+                    $location.path("/business/list");
+                    //console.log(m); 
 
-            }
-
+                }
+                else
+                    toaster.warning("Aucun commerce trouver");
 
         });
+        }
         
 
         
@@ -200,18 +224,16 @@ myApp.controller("HomeCtrl" ,function ($rootScope, $scope, TagService, $http, $l
 
     
     $scope.touverPosition = function(){
-        $scope.defaultAdress={name:'ss', _id:"qsd"};
-        $scope.$broadcast('angucomplete-alt:changeInput', '16', {name:'ss', _id:"qsd"});
-
         var options = {
                 enableHighAccuracy: true
         };
         navigator.geolocation.getCurrentPosition(function(pos) {
-
-            $http.get("http://maps.googleapis.com/maps/api/geocode/json?latlng=36.8993195,10.1895961&sensor=true")
+            $http.get("http://maps.googleapis.com/maps/api/geocode/json?latlng="+pos.coords.latitude+","+pos.coords.longitude+"&sensor=true")
             .success(function(s){
-                console.log(s.results[4].formatted_address);
-                $scope.defaultAdress.name=s.results[4].formatted_address;
+                $scope.defaultAdress.name=s.results[1].formatted_address;
+                $scope.userLat=pos.coords.latitude;
+                $scope.userLon=pos.coords.longitude;
+                $scope.$broadcast('angucomplete-alt:changeInput', '16', $scope.defaultAdress);
             })
             
         }, 
