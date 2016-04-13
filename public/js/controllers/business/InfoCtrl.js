@@ -162,16 +162,28 @@ myApp.controller("InfoCtrl" ,function ($rootScope, $scope, $routeParams, $locati
           imgs:img
         }, function(){
             toaster.success("Succes", "Votre avis a été enregistré")
-            var cc= BusinessService.findCommentsByBusiness().query({
+            $scope.b.comments= BusinessService.findCommentsByBusiness().query({
                 bid:businessId
-            }, function(){
+            }, function(cc){
                 $scope.b.comments=cc;
+                $scope.applyif();
+                
             });
         }, function(e){
             toaster.error("Erreur", "Une erreur est survenu, veillez resseyez ultérierement");
             console.log(e);
         });
     };
+    
+    $scope.applyif=function()
+                {
+                    if(!$scope.$$phase) {
+                        $scope.$apply();
+                    }else
+                    {
+                        setTimeout(function(){$scope.applyif();},10);
+                    }
+                }
 
     $scope.like = function(){
         if($rootScope.AuthenticatedUser==null){

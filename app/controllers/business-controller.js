@@ -688,9 +688,5 @@ module.exports = {
     findCommentsByBusiness:findCommentsByBusiness,
     LikeBusiness:LikeBusiness,
     UnlikeBusiness:UnlikeBusiness,
-<<<<<<< HEAD
-    addAppointment:addAppointment
-=======
     rdv:rdv
->>>>>>> c861562dd873743ec4ad74cdfbb28bcc5451cb96
 };
