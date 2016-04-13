@@ -13,9 +13,8 @@ var apiRouter = require('./app/config/routes'); // bring in API routes
 
 
 
-/* socialLogin */
+/* socialLogin start */
 var flash    = require('connect-flash');
-
 var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var session      = require('express-session');
@@ -32,6 +31,7 @@ app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.urlencoded({ extended: true, limit:'50mb' }));
 app.use(bodyParser.json({limit: '50mb'}));
 
+
 app.set('view engine', 'ejs'); // set up ejs for templating
 
 // required for passport
@@ -43,10 +43,10 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 // routes ======================================================================
 require('./app/socialLogin/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
-// launch ======================================================================
-app.listen(port);
-console.log('The magic happens on port ' + port);
-/* socialLogin */
+// launch 
+//app.listen(port);
+
+/* socialLogin  end */
 
 
 
@@ -122,4 +122,5 @@ server.listen(8080);
 
 app.listen(port);
 
+console.log('social login is running on port', port);
 console.log('Server is running on port', port);
