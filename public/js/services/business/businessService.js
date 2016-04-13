@@ -15,6 +15,7 @@ myApp.factory('BusinessService',function($resource, $http){
     service.newsFeed=newsFeed;
     service.newbusiness=newbusiness;
     service.getLast4=getLast4;
+    service.rdv=rdv;
    
     return service;
     
@@ -63,6 +64,11 @@ myApp.factory('BusinessService',function($resource, $http){
     }
     function getLast4(){
         return $resource('http://localhost\\:5000/api/coupon/getLast4'); 
+    }
+
+    function rdv(){
+        return $resource('http://localhost\\:5000/api//business/rdv/:id',
+            {id:'@id'}); 
     }
 
 

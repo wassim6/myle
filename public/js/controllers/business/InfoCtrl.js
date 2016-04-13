@@ -1,7 +1,7 @@
 'use strict';
 
 myApp.controller("InfoCtrl" ,function ($rootScope, $scope, $routeParams, $location, $anchorScroll, $timeout, 
-    BusinessService, uiGmapGoogleMapApi, toaster) {
+    BusinessService, uiGmapGoogleMapApi, toaster, $uibModal) {
 
     var businessId=$routeParams.id;
     var userId='0';
@@ -208,6 +208,20 @@ myApp.controller("InfoCtrl" ,function ($rootScope, $scope, $routeParams, $locati
     }
 
 
+    $scope.appointment = function (op,size) {
+        var modalInstance = $uibModal.open({
+          templateUrl: 'myModalContent.html',
+          controller: 'ModalInstanceCtrl',
+          size: size,
+          resolve: {
+            items: function () {
+              return op;
+            }
+          }
+        });
+    };
+
+
 })
 
 .directive("owlCarousel", function() {
@@ -254,3 +268,78 @@ myApp.controller("InfoCtrl" ,function ($rootScope, $scope, $routeParams, $locati
 function zeroPad(n){
    return n < 10 ? '0'+n : n;
 }
+
+
+myApp.controller("ModalInstanceCtrl" ,function ($rootScope, $scope, $uibModalInstance, items, toaster, BusinessService) {
+
+  $scope.today = function() {
+    $scope.dt = new Date();
+  };
+  $scope.today();
+
+  $scope.clear = function() {
+    $scope.dt = null;
+  };
+
+  $scope.dateOptions = {
+    formatYear: 'yy',
+    maxDate: new Date(2020, 5, 22),
+    minDate: new Date(),
+    startingDay: 1
+  };
+
+  $scope.popup1 = {
+    opened: false
+  };
+  $scope.open1 = function() {
+    $scope.popup1.opened = true;
+  };
+
+
+
+  $scope.setDate = function(year, month, day) {
+    $scope.dt = new Date(year, month, day);
+  };
+
+  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+  $scope.format = $scope.formats[0];
+  
+    $scope.items = items;
+    //console.log(items);
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
+
+    $scope.rdv= function(form){
+        if(!form){
+            toaster.error("error", "Completer tout les champs");
+            return;
+        }
+        if($rootScope.AuthenticatedUser==null){
+            toaster.warning("Erreur", "Vous devez vous connecter pour reserver");
+            return;
+        }
+        BusinessService.rdv().save({
+            id:items._id,
+            userId:$rootScope.AuthenticatedUser.id,
+            date:$scope.dt,
+            heure:$scope.heure
+        }, function(){
+            toaster.success("Rdv effectuer avec succes ");
+        }, function(e){
+            console.log(e);
+            toaster.error("Erreur, !!");
+
+        });
+
+        console.log($scope.dt);
+        console.log($scope.heure);
+
+    }
+
+
+});
+
+
+
+

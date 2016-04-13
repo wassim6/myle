@@ -1,4 +1,47 @@
 <style>.angular-google-map-container { height: 300px; }</style>
+<script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">RDV</h3>
+        </div>
+        <div class="modal-body">
+            <form role="form" name="myForm" >
+                <div class="form-group">
+                    <label class="control-label">Date</label><br/>
+                    <p class="input-group">
+          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" required/>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+
+               </div> 
+                <div class="form-group">
+                       <label class="control-label">Heure</label> 
+                        <select ng-model="heure" required style="width:300px;" >
+                            <option value="8" >8h</option>
+                            <option value="9" >9h</option>
+                            <option value="10" >10h</option>
+                            <option value="11" >11h</option>
+                            <option value="14" >14h</option>
+                            <option value="15" >15h</option>
+                            <option value="16" >16h</option>
+                            <option value="17" >17h</option>
+                        </select>
+                   
+               </div>
+                <div class="margiv-top-10">
+                    <a href class="btn btn-primary btn-lg" ng-click="rdv(myForm.$valid)" >
+                    Rdv </a>
+                </div>
+            </form>
+
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" ng-click="cancel()">Annuler</button>
+        </div>
+</script>
+
+
 <div class="main-inner">
     <div class="content">
         <div class="mt-80 mb80">
@@ -211,7 +254,7 @@ Merci de ne pas donner d'avis sur ce commerce si vous avez bénéficié de quelc
                                     </div>
                                 </div>
                                 <div class="col-sm-4" ng-switch-when="Medecin" >
-                                    <div class="btn btn-primary btn-book" >
+                                    <div class="btn btn-primary btn-book" ng-click="appointment(b, 'lg')" >
                                         <i class="fa fa-calendar-check-o"></i> Rendez-vous
                                     </div>
                                 </div>
