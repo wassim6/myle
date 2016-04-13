@@ -122,5 +122,7 @@ server.listen(8080);
 
 app.listen(port);
 
+// social login port
 console.log('social login is running on port', port);
+
 console.log('Server is running on port', port);
