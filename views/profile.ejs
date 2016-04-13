@@ -13,10 +13,10 @@
         body         { padding-top:80px; word-wrap:break-word; }
     </style>
 </head>
-<body>
-<div class="container">
-    <h1 style="color: blue">Welcome To Myle.com !!</h1>
-    <h3 >You are now looged in </h3>
+<body style="background-image: url('http://paradigmpacific.com/wp-content/uploads/2013/10/hd-abstract-blue-background-blue-abstract-light-effect-e1384137997423.jpg')">
+<div class="container" style="background:white;">
+    <h3 style="color: lightblue">Welcome To Myle.com !!</h3>
+    <h4 >You are now looged in </h4>
  
     <div class="page-header text-center">
         <h1><span class="fa fa-anchor"></span> Profile Page</h1>
@@ -37,7 +37,7 @@
                         <strong>password</strong>: <%= user.local.password %>
                     </p>
                     
-                    <a href="/unlink/local" class="btn btn-default">Unlink</a>
+                    <a href="/unlink/local" class="btn btn-default">Logout</a>
                 <% } else { %>
                     <a href="/connect/local" class="btn btn-default">Connect Local</a>
                 <% } %>
@@ -57,7 +57,7 @@
                         <strong>name</strong>: <%= user.facebook.name %><br>
                     </p>
 
-                    <a href="/unlink/facebook" class="btn btn-primary">Unlink</a>
+                    <a href="/unlink/facebook" class="btn btn-primary">Logout from Facebook</a>
                 <% } else { %>
                     <a href="/connect/facebook" class="btn btn-primary">Connect Facebook</a>
                 <% } %>
@@ -79,7 +79,7 @@
                         <strong>username</strong>: <%= user.twitter.username %>
                     </p>
 
-                    <a href="/unlink/twitter" class="btn btn-info">Unlink</a>
+                    <a href="/unlink/twitter" class="btn btn-info">Logout from Twitter</a>
                 <% } else { %>
                     <a href="/connect/twitter" class="btn btn-info">Connect Twitter</a>
                 <% } %>
@@ -98,7 +98,7 @@
                         <strong>name</strong>: <%= user.google.name %>
                     </p>
 
-                    <a href="/unlink/google" class="btn btn-danger">Unlink</a>
+                    <a href="/unlink/google" class="btn btn-danger">Logout from Google</a>
                 <% } else { %>
                     <a href="/connect/google" class="btn btn-danger">Connect Google</a>
                 <% } %>
