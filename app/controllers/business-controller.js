@@ -613,9 +613,30 @@ function UnlikeBusiness(request, response){
             });
         }
 });
+};
 
 
-
+function addAppointment(request, response){
+    var body=request.body;
+     Business.findById(request.params.id,function(error, business) {
+            if (error){
+                console.error('Could not retrieve business b/c:', business);
+                response.status(400).send('error');
+            }
+            business.appointments.push({
+                userId:body.userId,
+                date:body.date
+            });
+            business.save(function(error) {
+                if (error) { 
+                    console.error('Not able to add appointment hour b/c:', error);
+                    response.status(400).send('error 68');
+                }
+                else{  
+                    response.json(business);
+                }
+              });
+        });
 };
 
 
@@ -665,5 +686,6 @@ module.exports = {
     addComment:addComment,
     findCommentsByBusiness:findCommentsByBusiness,
     LikeBusiness:LikeBusiness,
-    UnlikeBusiness:UnlikeBusiness
+    UnlikeBusiness:UnlikeBusiness,
+    addAppointment:addAppointment
 };

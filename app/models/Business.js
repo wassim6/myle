@@ -64,9 +64,9 @@ var BusinessSchema = new Schema({
     
     
     openingTime:[ { dayNumber:Number, openingHour:Number, closingHour:Number, open:Number } ],
-    businessImage:[ { uri:String, created_at:{ type:Date, daufault:new Date() } } ],
-    appointments:[ { userId:{type: mongoose.Schema.Types.ObjectId, ref: 'User'}, date:Date, created_at:{ type:Date, daufault:new Date() }} ],
-    reservations:[ { userId:{type: mongoose.Schema.Types.ObjectId, ref: 'User'}, personNumber:Number,  date:Date, created_at:{ type:Date, daufault:new Date() }} ],
+    businessImage:[ { uri:String, created_at:{ type:Date, default:new Date() } } ],
+    appointments:[ { userId:{type: mongoose.Schema.Types.ObjectId, ref: 'User'}, date:Date, created_at:{ type:Date, default:new Date() }} ],
+    reservations:[ { userId:{type: mongoose.Schema.Types.ObjectId, ref: 'User'}, personNumber:Number,  date:Date, created_at:{ type:Date, default:new Date() }} ],
 
    likes:[{userId:{type:mongoose.Schema.Types.ObjectId, ref:'User'}}],
     
