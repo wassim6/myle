@@ -15,12 +15,12 @@
 </head>
 <body style="background-image: url('http://paradigmpacific.com/wp-content/uploads/2013/10/hd-abstract-blue-background-blue-abstract-light-effect-e1384137997423.jpg')">
 <div class="container" style="background:white;">
-    <h3 style="color: lightblue">Welcome To Myle.com !!</h3>
-    <h4 >You are now looged in </h4>
+    
  
     <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
+        <h3 style="color: #0099e5;"><span class="fa fa-user"></span> Welcome To Your Profile Page</h3>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+        <br/>
     </div>
 
     <div class="row">
@@ -28,13 +28,13 @@
 
         <div class="col-sm-6">
             <div class="well">
-                <h3><span class="fa fa-user"></span> Local</h3>
+                <h3><span class="fa fa-user"></span> Login with Myle</h3>
 
                 <% if (user.local.email) { %>
                     <p>
                         <strong>id</strong>: <%= user._id %><br>
                         <strong>email</strong>: <%= user.local.email %><br>
-                        <strong>password</strong>: <%= user.local.password %>
+                <div hidden><strong>password</strong>: <%= user.local.password %></div>
                     </p>
                     
                     <a href="/unlink/local" class="btn btn-default">Logout</a>
