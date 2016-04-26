@@ -42,7 +42,7 @@ MetronicApp.controller('BusinessEditCtrl', function($rootScope, $scope, $http, $
                 "fax":$scope.fax,
                 "category":$scope.category.selected.name,
                 "sousCategory":$scope.sousCategory.selected.name
-            }, function(){
+            }, function(e){
                 toaster.success("success", "Information edited");
                 $scope.disable=false;
             }, function(e){

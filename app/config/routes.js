@@ -131,6 +131,10 @@ apiRouter.get('/coupon/getLast4', CouponController.getLast4);
 
 apiRouter.get('/newsfeed/:id', CommentaireController.findByRegion);
 apiRouter.get('/newbusiness/:id', CommentaireController.findNewBusiness);
+apiRouter.get('/comment/getall', CommentaireController.getAll);
+
+apiRouter.get('/user/userStats', CommentaireController.userStats);
+
 
 
 

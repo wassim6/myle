@@ -1,9 +1,52 @@
 'use strict';
 
-MetronicApp.controller('DashboardController', function($rootScope, $scope, $http, $timeout) {
+MetronicApp.controller('DashboardController', function($rootScope, $scope, $http, $timeout, BusinessService) {
 
     var dashboardMainChart=null;
-    if (Morris.EventEmitter) {
+    /*
+    var business=BusinessService.GetValidBusiness().get({}, function(){
+        var valid =business.business.length;
+        business=BusinessService.GetUnValidBusiness().get({}, function(){
+            var unvalid=business.business.length;
+            if (Morris.EventEmitter) {              
+                dashboardMainChart = Morris.Donut({
+                    element: 'business_statistics',
+                    data: [
+                            {label: "Valid", value: valid},
+                            {label: "Invalid", value: unvalid}
+                          ],
+                    colors:['#3980b5', '#b53942']
+                    });             
+                }
+        });
+    });*/
+    
+    var comment=BusinessService.getcommentall().query({ }, function() {
+        //console.log(comment);
+        $scope.comments=comment;
+        $scope.total=comment.length;
+        
+    });
+
+
+    var userStats=BusinessService.userstats().query({ }, function(){
+        for(var i=0;i<userStats.length;i++){
+            userStats[i].day=userStats[i].date.year.toString()+'-'+userStats[i].date.month.toString()+'-'+userStats[i].date.day.toString();
+        }
+        var dashboardMainChart=null;
+        if (Morris.EventEmitter) {              
+                dashboardMainChart = Morris.Line({
+                    element: 'user_stats',
+                    data: userStats,
+                    xkey: 'day',
+                    ykeys: ['count'],
+                    labels: ['Nbr Users'],
+                    xLabels:"day"
+                });             
+        }
+    });
+    
+    /*if (Morris.EventEmitter) {
                 // Use Morris.Area instead of Morris.Line
                 dashboardMainChart = Morris.Area({
                     element: 'sales_statistics',
@@ -60,8 +103,7 @@ MetronicApp.controller('DashboardController', function($rootScope, $scope, $http
 				  // Labels for the ykeys -- will be displayed when you hover over the
 				  // chart.
 				  labels: ['Value']
-                });
-
-				
+                });	
             }
+    */
 });

@@ -3,155 +3,143 @@
 	<ul class="page-breadcrumb">
 		<li>
 			<i class="fa fa-home"></i>
-			<a href="#/dashboard.html">Home</a>
+			<a href="#/dashboard.html">Accueil</a>
 			<i class="fa fa-angle-right"></i>
 		</li>
 		<li>
-			<a href="#">Dashboard</a>
+			<a href="#">Tableau de bord</a>
 		</li>
 	</ul>
 	<div class="page-toolbar">
 	</div>
 </div>
 <h3 class="page-title">
-	Dashboard
+	Tableau de bord
 </h3>
 <!-- END PAGE HEADER-->
 <!-- BEGIN MAIN CONTENT -->
 <div>
 
 	<div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div class="portlet light ">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-bubble font-red-sunglo"></i>
+                        <span class="caption-subject font-red-sunglo bold uppercase">Les derniers commentaires</span>
+                    </div>
+                    <div class="actions">
+                        <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;"></a>
+                    </div>
+                </div>
+                <div class="portlet-body" id="chats">
+                    <div class="scroller" style="height: 210px;" data-always-visible="1" data-rail-visible1="1">
+                        <ul class="chats">
+                            <li class="in" ng-repeat="c in comments ">
+                                <img class="avatar" alt="avatar" ng-src="http://localhost:5000/img/user/{{c.userId.profileImage}}"/>
+                                <div class="message">
+                                    <span class="arrow">
+                                    </span>
+                                    <a href="javascript:;" class="name">
+                                    {{c.userId.firstName}} </a>
+                                    <span class="datetime">
+                                    to <a href="#/business/detail/{{c.businessId._id}}">{{c.businessId.name}}</a> à {{c.created_at}} - {{c.rate}}/5</span>
+                                    <span class="body">
+                                    {{c.content}} </span>
+                                    <span class="body">
+                                    cool:{{c.cool}} - utile:{{c.utile}} - inutile:{{c.inutile}}</span>
+                                    
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="scroller-footer">
+                        <div class="btn-arrow-link pull-right">
+                            <a href="#/comment/list">See All Comments</a>
+                            <i class="icon-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 		<div class="col-md-6 col-sm-12">
 			<!-- BEGIN PORTLET-->
 			<div class="portlet light ">
 				<div class="portlet-title">
 					<div class="caption caption-md">
 						<i class="icon-bar-chart font-green-haze hide"></i>
-						<span class="caption-subject font-green-haze bold uppercase">Sales Summary</span>
-						<span class="caption-helper hide">weekly stats...</span>
+						<span class="caption-subject font-green-haze bold uppercase">Utilisateur</span>
 					</div>
-					<div class="actions">
-						<div class="btn-group btn-group-devided" data-toggle="buttons">
-							<label class="btn btn-transparent grey-salsa btn-circle btn-sm active">
-							<input type="radio" name="options" class="toggle" id="option1">Today</label>
-							<label class="btn btn-transparent grey-salsa btn-circle btn-sm">
-							<input type="radio" name="options" class="toggle" id="option2">Week</label>
-							<label class="btn btn-transparent grey-salsa btn-circle btn-sm">
-							<input type="radio" name="options" class="toggle" id="option2">Month</label>
-						</div>
+                    
+				</div>
+				<div class="portlet-body">                    
+                    <div id="user_stats" class="portlet-body-morris-fit morris-chart" style="height: 260px">
 					</div>
+				</div>
+			</div>
+			<!-- END PORTLET-->
+		</div>
+		<div class="col-md-6 col-sm-12">
+			<!-- BEGIN PORTLET-->
+			<div class="portlet light ">
+				<div class="portlet-title">
+					<div class="caption caption-md">
+						<i class="icon-bar-chart font-green-haze hide"></i>
+						<span class="caption-subject font-green-haze bold uppercase">Business Summary</span>
+                    </div>
 				</div>
 				<div class="portlet-body">
-					<div class="row list-separated">
-						<div class="col-md-3 col-sm-3 col-xs-6">
-							<div class="font-grey-mint font-sm">
-								Total Sales
-							</div>
-							<div class="uppercase font-hg font-red-flamingo">
-								13760 <span class="font-lg font-grey-mint">$</span>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-3 col-xs-6">
-							<div class="font-grey-mint font-sm">
-								Revenue
-							</div>
-							<div class="uppercase font-hg font-green-haze">
-								4760 <span class="font-lg font-grey-mint">$</span>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-3 col-xs-6">
-							<div class="font-grey-mint font-sm">
-								Expenses
-							</div>
-							<div class="uppercase font-hg font-purple">
-								1760 <span class="font-lg font-grey-mint">$</span>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-3 col-xs-6">
-							<div class="font-grey-mint font-sm">
-								Growth
-							</div>
-							<div class="uppercase font-hg font-blue-sharp">
-								9760 <span class="font-lg font-grey-mint">$</span>
-							</div>
-						</div>
-					</div>
-					<ul class="list-separated list-inline-xs hide">
-						<li>
-							<div class="font-grey-mint font-sm">
-								Total Sales
-							</div>
-							<div class="uppercase font-hg font-red-flamingo">
-								13760 <span class="font-lg font-grey-mint">$</span>
-							</div>
-						</li>
-						<li>
-						</li>
-						<li class="border">
-							<div class="font-grey-mint font-sm">
-								Revenue
-							</div>
-							<div class="uppercase font-hg font-green-haze">
-								4760 <span class="font-lg font-grey-mint">$</span>
-							</div>
-						</li>
-						<li class="divider">
-						</li>
-						<li>
-							<div class="font-grey-mint font-sm">
-								Expenses
-							</div>
-							<div class="uppercase font-hg font-purple">
-								1760 <span class="font-lg font-grey-mint">$</span>
-							</div>
-						</li>
-						<li class="divider">
-						</li>
-						<li>
-							<div class="font-grey-mint font-sm">
-								Growth
-							</div>
-							<div class="uppercase font-hg font-blue-sharp">
-								9760 <span class="font-lg font-grey-mint">$</span>
-							</div>
-						</li>
-					</ul>
-					<div id="sales_statistics" class="portlet-body-morris-fit morris-chart" style="height: 260px">
-					</div>
-                    
-                    <div id="sales_statistics2" class="portlet-body-morris-fit morris-chart" style="height: 260px">
-					</div>
-                    
-                    
-                    
+                    <div id="business_statistics" class="portlet-body-morris-fit morris-chart" style="height: 260px">
 				</div>
 			</div>
 			<!-- END PORTLET-->
-		</div>
-		<div class="col-md-6 col-sm-12">
-			<!-- BEGIN PORTLET-->
+		  </div>
+	   </div>
+        
+        <div class="col-md-6 col-sm-12">
 			<div class="portlet light ">
 				<div class="portlet-title">
 					<div class="caption caption-md">
 						<i class="icon-bar-chart font-green-haze hide"></i>
-						<span class="caption-subject font-green-haze bold uppercase">Member Activity</span>
-						<span class="caption-helper hide">weekly stats...</span>
-					</div>
-					<div class="actions">
-						<div class="btn-group btn-group-devided" data-toggle="buttons">
-							<label class="btn btn-transparent grey-salsa btn-circle btn-sm active">
-							<input type="radio" name="options" class="toggle" id="option1">Today</label>
-							<label class="btn btn-transparent grey-salsa btn-circle btn-sm">
-							<input type="radio" name="options" class="toggle" id="option2">Week</label>
-							<label class="btn btn-transparent grey-salsa btn-circle btn-sm">
-							<input type="radio" name="options" class="toggle" id="option2">Month</label>
-						</div>
-					</div>
+						<span class="caption-subject font-green-haze bold uppercase">Comment Summary</span>
+                    </div>
+				</div>
+				<div class="portlet-body">
+                    <div id="comment_stat" class="portlet-body-morris-fit morris-chart" style="height: 260px">
 				</div>
 			</div>
-			<!-- END PORTLET-->
-		</div>
-	</div>
+		  </div>
+	   </div>
+        <div class="col-md-6 col-sm-12">
+			<div class="portlet light ">
+				<div class="portlet-title">
+					<div class="caption caption-md">
+						<i class="icon-bar-chart font-green-haze hide"></i>
+						<span class="caption-subject font-green-haze bold uppercase">Comment Summary</span>
+                    </div>
+				</div>
+				<div class="portlet-body">
+                    <div id="comment_stat2" class="portlet-body-morris-fit morris-chart" style="height: 260px">
+				</div>
+			</div>
+		  </div>
+	   </div>
+        
+        <div class="col-md-6 col-sm-12">
+			<div class="portlet light ">
+				<div class="portlet-title">
+					<div class="caption caption-md">
+						<i class="icon-bar-chart font-green-haze hide"></i>
+						<span class="caption-subject font-green-haze bold uppercase">Comment Summary</span>
+                    </div>
+				</div>
+				<div class="portlet-body">
+                    <div id="comment_stat3" class="portlet-body-morris-fit morris-chart" style="height: 260px">
+				</div>
+			</div>
+		  </div>
+	   </div>
 
 </div>
 <!-- END MAIN CONTENT -->

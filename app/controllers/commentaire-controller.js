@@ -34,8 +34,59 @@ function findNewBusiness(request, response){
         }).sort({created_at: -1}).limit(8);
 };
 
+function getAll(request, response){
+    Comment.find({}, function(error, comment) {
+            if (error){
+                console.error('Could not retrieve Comment b/c:', comment);
+                response.status(400).send('error');
+            }
+            response.json(comment);
+        }).sort({created_at: -1}).populate("businessId").populate("userId");
+};
+
+function userStats(request, response){
+/*    User.aggregate([
+            {$group: {
+                _id: {
+                    date: {$date: "$created_at"}
+                },
+                count: {$sum: 1}
+            }},
+            {$project: {
+                date: "$_id", // so this is the shorter way
+                count: 1,
+                _id: 0
+            }},
+            {$sort: {"date": 1} } // and this will sort based on your date
+        ], function(error, users){
+            console.log(users);
+        });*/
+
+    User.aggregate([
+            {$group: {
+                _id: {
+                    year: {$year: "$created_at"},
+                    month: {$month: "$created_at"},
+                    day: {$dayOfMonth: "$created_at"}
+                },
+                count: {$sum: 1}
+            }},
+            {$project: {
+                date: "$_id", // so this is the shorter way
+                count: 1,
+                _id: 0
+            }},
+            {$sort: {"date": 1} } // and this will sort based on your date
+        ], function(error, users){
+            response.json(users);
+        });
+};
+
+
 
 module.exports = {
     findByRegion:findByRegion,
-    findNewBusiness:findNewBusiness
+    findNewBusiness:findNewBusiness,
+    getAll:getAll,
+    userStats:userStats
 };
