@@ -92,7 +92,7 @@ app.get('/admin', function(request, response) {
 });
 
 // listen to port as defined or default 5000
-var port = process.env.PORT || 5000;
+var port = 5000;
 
 
 var server = require('http').createServer(app),
