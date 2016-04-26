@@ -1,8 +1,8 @@
 {
-  "name": "mean-article-app",
+  "name": "myle-app",
   "version": "0.0.1",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "body-parser": "^1.14.1",
