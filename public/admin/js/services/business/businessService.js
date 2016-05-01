@@ -27,6 +27,10 @@ MetronicApp.factory('BusinessService',function($resource){
     service.ListCouponByBusiness=ListCouponByBusiness;
     service.RemoveCoupon=RemoveCoupon;
     service.GetCoupon=GetCoupon;
+
+    service.getcommentall=getcommentall;
+    service.userstats=userstats;
+    
     
 
     return service;
@@ -154,6 +158,13 @@ MetronicApp.factory('BusinessService',function($resource){
                         {id:'@id'}
          ); 
     }
+    function getcommentall(){
+        return $resource('http://localhost\\:5000/api/comment/getall');
+    }
+    function userstats(){
+         return $resource('http://localhost\\:5000/api/user/userStats');   
+    }
+
 
 
 });

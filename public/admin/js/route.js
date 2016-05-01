@@ -20,8 +20,8 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                             
 
                             'assets/admin/pages/scripts/index3.js',
-
-                             'js/controllers/DashboardController.js'
+                            'js/services/business/businessService.js',
+                            'js/controllers/DashboardController.js'
                         ] 
                     });
                 }]

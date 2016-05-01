@@ -92,7 +92,7 @@ app.get('/admin', function(request, response) {
 });
 
 // listen to port as defined or default 5000
-var port = process.env.PORT || 5000;
+var port = (process.env.PORT || 80);
 
 
 var server = require('http').createServer(app),
@@ -116,13 +116,13 @@ io.sockets.on('connection', function (socket, pseudo) {
     }); 
 });
 
-server.listen(8080);
+server.listen(port);
 
 
 
 app.listen(port);
 
 // social login port
-console.log('social login is running on port', port);
+//console.log('social login is running on port', port);
 
 console.log('Server is running on port', port);
