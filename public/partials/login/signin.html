@@ -8,7 +8,7 @@
                 <div class="col-sm-6 col-sm-offset-3">
                     <div class="page-title">
                         <h1>Connectez-vous à Myle</h1>
-                        <p>Nouveau sur Myle ? <a href="#/login/sign_up">S’inscrire</a> </p>
+                        <p>Nouveau sur Myle ? <a href="#/login/sign_up2">S’inscrire</a> </p>
                     </div><!-- /.page-title -->
                     <div class="center">
                         <a class="btn btn-primary" style="background-color: #3B5998; width: 50%;" ng-click="createUserFacebook()" >
@@ -37,10 +37,38 @@
                         <button type="submit" class="btn btn-primary" style="width: 50%;" ng-click="authetificationUser(l)">Connexion</button>
                     </form>
                     <hr/>
-                    <p style=" color: slategray; margin-top: 7px;">Nouveau sur Myle ? <a href="#/login/sign_up"> S’inscrire</a></p>
+                    <p style=" color: slategray; margin-top: 7px;">Nouveau sur Myle ? <a href="#/login/sign_up2"> S’inscrire</a></p>
                 </div><!-- /.col-sm-4 -->
             </div><!-- /.row -->
 
         </div><!-- /.content -->
     </div><!-- /.container -->
+</div>
+
+<div flex layout="row" layout-align="center center">
+    <div flex-sm="100" flex-gt-sm="90" flex-gt-md="70" flex-gt-lg="50" class="md-whiteframe-z2">
+        <md-content class="md-padding">
+            <div flex-sm="100" flex-gt-sm="80" layout-sm="column">
+                <form name="contactForm" data-ng-submit="sendMail()">
+                    <md-input-container>
+                        <label>Name:</label>
+                        <input ng-model="contactName" required>
+                    </md-input-container>
+                    <md-input-container flex>
+                        <label>Email:</label>
+                        <input type="email" ng-model="contactEmail" required>
+                    </md-input-container>
+ 
+                    <md-input-container>
+                        <label>Message:</label>
+                        <textarea ng-model="contactMsg" columns="1" md-maxlength="150" required></textarea>
+                    </md-input-container>
+ 
+                    <md-button type="submit" class="md-primary"
+                               ng-class="{'md-raised md-hue-1': (contactForm.$dirty && contactForm.$valid) }"
+                               aria-label="Save Project">Send</md-button>
+                </form>
+            </div>
+        </md-content>
+    </div>
 </div>

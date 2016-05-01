@@ -30,7 +30,7 @@ function add(request, response){
                 });
     var imgs=[];
     if(body.couponImage instanceof Array ){
-        for(var i=0;i<body.couponImage.length;i++){
+        for(var i=0;i<body.couponImage.length;i ++){
             var uri=Math.round(+new Date()/1000)+'-'+i+'.'+body.couponImage[i].filetype.split('/')[1];
             var bitmap = new Buffer(body.couponImage[i].base64, 'base64');
             fs.writeFile('public/img/cimg/'+uri, bitmap, function(err) {

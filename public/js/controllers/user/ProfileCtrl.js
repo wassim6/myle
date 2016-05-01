@@ -31,7 +31,7 @@ myApp.controller('ProfileCtrl', function($rootScope, $scope, $window, profileSer
                 "age":$scope.data.age,
                 "tel":$scope.data.tel
             }, function(){
-                toaster.success("success", "Information edited");
+                toaster.success("succès", "Information changée avec succès");
             }, function(e){
                 toaster.error("error", e);
             });
@@ -46,7 +46,7 @@ myApp.controller('ProfileCtrl', function($rootScope, $scope, $window, profileSer
                 "facebook":$scope.data.facebook,
                 "google":$scope.data.google
             }, function(){
-                toaster.success("success", "Information edited");
+                toaster.success("succès", "Information changée avec succès");
             }, function(e){
                 toaster.error("error", e);
             });
@@ -61,7 +61,23 @@ myApp.controller('ProfileCtrl', function($rootScope, $scope, $window, profileSer
                 "adresse":$scope.data.adresse,
                 "codePostale":$scope.data.codePostale
             }, function(){
-                toaster.success("success", "Information edited");
+                toaster.success("succès", "Information changée avec succès");
+            }, function(e){
+                toaster.error("error", e);
+            });
+    }; 
+    
+    $scope.editPassword = function(){
+        if (angular.equals($scope.data.password, $scope.data.RePassword) == 0)
+        {
+            toaster.error("erreur", "Password non identique");
+            return;
+        }
+        profileService.editPassword().save({
+                "id":Id,
+                "password":$scope.data.password
+            }, function(){
+                toaster.success("succès", "Mot de passe changé avec succès");
             }, function(e){
                 toaster.error("error", e);
             });
@@ -72,7 +88,7 @@ myApp.controller('ProfileCtrl', function($rootScope, $scope, $window, profileSer
           id:$rootScope.AuthenticatedUser.id,
           img:img
         }, function(){
-            toaster.success("Succes", "Votre image a été enregistré")
+            toaster.success("succès", "Votre image a été enregistré")
             var b=profileService.showInfo().get({
                 id:Id
             }, function(){
