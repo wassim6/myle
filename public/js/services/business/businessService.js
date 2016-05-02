@@ -72,6 +72,10 @@ myApp.factory('BusinessService',function($resource, $http){
     }
 
 
+function rdvRes(){
+        return $resource('http://localhost\\:5000/api//business/rdvRes/:id',
+            {id:'@id'}); 
+    }
 
     
 });

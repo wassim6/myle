@@ -121,6 +121,8 @@ apiRouter.post('/business/removelike/:id', BusinessController.UnlikeBusiness);
 
 apiRouter.post('/business/rdv/:id', BusinessController.rdv);
 
+apiRouter.post('/business/rdvRes/:id', BusinessController.rdvRes);
+
 
 
 apiRouter.post('/coupon/add', CouponController.add);
