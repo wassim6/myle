@@ -70,6 +70,22 @@ function editInfo(req, res){
                 res.json({message: 'User successfully edited', code:0});
         });
 };
+
+function editPassword(req, res){
+   
+    Account.find({"_id": req.body.id}, function(err, model) {
+        
+            if (err) {res.status(400).send('error 66');}
+                model[0].setPassword(req.body.password, function(err,user){
+                                    
+                              user.local.password = user.generateHash(req.body.password);
+                              user.save();
+                });
+                res.json({message: 'password successfully edited', code:0});
+        });
+       
+        
+};
 function editInfo2(req, res){
     var body = req.body;
     Account.update({
@@ -148,5 +164,6 @@ module.exports = {
     getUserByUsername:getUserByUsername,
     editInfo2:editInfo2,
     editInfoAdresse:editInfoAdresse,
-    editProfileImage:editProfileImage
+    editProfileImage:editProfileImage,
+    editPassword:editPassword
 };

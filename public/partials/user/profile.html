@@ -13,16 +13,6 @@
                         <button class="btn btn-primary" ng-click="updateImage(img)" >Ajouter/Modifier photo de profil</button>
                     </div>
                 </div>
-                <div class="widget">
-
-                    <ul class="menu-advanced">
-                        <li class="active"><a href="listing-submit.html"><i class="fa fa-pencil"></i> Aperçu du profil</a></li>
-                        <li><a href="#"><i class="fa fa-user"></i> Avis</a></li>
-                        <li><a href="#"><i class="fa fa-key"></i> Photo du commerce</a></li>
-                        <li><a href="#"><i class="fa fa-sign-out"></i> Paramètres du compte</a></li>
-                    </ul>
-                </div><!-- /.widget -->
-
             </div><!-- /.sidebar -->
         </div><!-- /.col-* -->
 
@@ -64,6 +54,27 @@
                     </div><!-- /.row -->
                 </div>
                 </form>
+                
+                <div class="background-white p20 mb30">
+                    <h3 class="page-title">
+                        Modifier votre mot de passe
+<button type="submit" class="btn btn-primary" style="margin-left:720px;margin-top:-60px" ng-click="editPassword()" > Save </button>
+                        
+                    </h3>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label>Nouveau mot de passe
+                                </label>
+                                <input type="password" class="form-control" ng-model="data.password" >
+                            </div><!-- /.form-group -->
+
+                            <div class="form-group col-sm-6">
+                                <label>Vérifier nouveau mot de passe</label>
+                                <input type="password" class="form-control" ng-model="data.RePassword">
+                            </div><!-- /.form-group -->
+                        </div><!-- /.row -->
+                    </div>
+                
                 <form>
                 <div class="background-white p20 mb30">
                     <h3 class="page-title">
@@ -97,7 +108,7 @@
                 <div class="background-white p20 mb30">
                     <h3 class="page-title">
                         Adresse
-<button type="submit" class="btn btn-primary" style="margin-left:500px" ng-click="editProfile3()" > Save </button>
+<button type="submit" class="btn btn-primary" style="margin-left:710px" ng-click="editProfile3()" > Save </button>
                         
                     </h3>
 
@@ -124,7 +135,7 @@
                     </div>
                         </div><!-- /.form-group--> 
 
-                        <div class="form-group col-sm-6">
+                        <div class="form-group col-sm-6" style="margin-left:30px">
                             <label>Adresse</label>
                             <input type="text" class="form-control" ng-model="data.adresse">
                         </div><!-- /.form-group-->

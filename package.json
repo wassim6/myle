@@ -5,9 +5,30 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "bcrypt-nodejs": "latest",
     "body-parser": "^1.14.1",
+    "cheerio": "latest",
+    "connect-flash": "~0.1.1",
+    "cookie-parser": "~1.4.1",
+    "ejs": "~2.4.1",
     "express": "^4.13.3",
     "express-session": "^1.10.1",
+<<<<<<< HEAD
+    "method-override": "~2.3.5",
+    "mongoose": "^4.4.13",
+    "morgan": "~1.7.0",
+    "nodemailer": "0.7.1",
+    "passport": "^0.3.2",
+    "passport-facebook": "~2.1.0",
+    "passport-google-oauth": "~1.0.0",
+    "passport-local": "^1.0.0",
+    "passport-local-authenticate": "^1.0.0",
+    "passport-local-mongoose": "^4.0.0",
+    "passport-twitter": "~1.0.2",
+    "request": "latest",
+    "xoauth2": "^1.1.0"
+  }
+=======
     "mongoose": "^4.1.12",
     "request": "latest",
     "passport": "^0.2.1",
@@ -64,4 +85,5 @@
     "url": "https://github.com/wassim6/myle/issues"
   },
   "homepage": "https://github.com/wassim6/myle#readme"
+>>>>>>> 5e967c4dcdc52296add2bdea5a35d157b8e49849
 }

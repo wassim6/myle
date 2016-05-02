@@ -17,6 +17,7 @@ var BusinessSearchController = require('../controllers/businessSearch-controller
 var BusinessController = require('../controllers/business-controller');
 var CouponController = require('../controllers/coupon-controller');
 var CommentaireController = require('../controllers/commentaire-controller');
+var ContactController = require('../controllers/contact-controller');
 
 var PassportController = require('../controllers/passport-controller');
 
@@ -72,6 +73,7 @@ apiRouter.get('/user/show/:id', PassportController.showInfo);
 apiRouter.get('/user/getbyusername/:username', PassportController.getUserByUsername);
 apiRouter.post('/user/edit', PassportController.editInfo);
 apiRouter.post('/user/edit2', PassportController.editInfo2);
+apiRouter.post('/user/editPassword', PassportController.editPassword);
 apiRouter.post('/user/editInfoAdresse', PassportController.editInfoAdresse);
 apiRouter.post('/user/editProfileImage', PassportController.editProfileImage);
 
@@ -136,7 +138,7 @@ apiRouter.get('/comment/getall', CommentaireController.getAll);
 apiRouter.get('/user/userStats', CommentaireController.userStats);
 
 
-
+apiRouter.post('/sendMail', ContactController.sendContact);
 
 apiRouter.get('/alimentation/list', ScrapeController.getAllAlimentation);
 apiRouter.get('/animaux/list', ScrapeController.getAllAnimaux);

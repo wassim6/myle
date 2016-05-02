@@ -11,6 +11,12 @@ myApp.config(function($routeProvider, $locationProvider) {
     		controller: 'HomeCtrl',
             activetab: 'Home'
     	}).when(
+        '/contact',
+        {
+    		templateUrl: 'partials/contact/contact.html', 
+    		controller: 'ContactCtrl',
+            activetab: 'Home'
+    	}).when(
         '/business/requestAdd',
         {
             templateUrl: 'partials/business/requestForAdd.html',
