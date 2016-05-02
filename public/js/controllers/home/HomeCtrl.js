@@ -163,6 +163,10 @@ myApp.controller("HomeCtrl" ,function ($rootScope, $scope, TagService, $http, $l
                     coupons[i].businessId.isLiked=false;
             }
         }
+		for(var i=0;i<coupons.length;i++){
+			coupons[i].remise=Math.round(coupons[i].remise);
+			//coupons[i].remise=20;
+		}
 
         $scope.firstCoupon=coupons[0];
         $scope.secondCoupon=coupons[1];

@@ -1,3 +1,4 @@
+<style>.angular-google-map-container { height: 400px; }</style>
 <div class="main-inner">
     <div class="container">
         <div class="row">
@@ -61,20 +62,25 @@
                         <div class="col-sm-12">
                             <div class="background-white p30 mb30">
                                 <h3 class="page-title">Position Géographique</h3>
-                                    <input id="pac-input" class="controls form-control mb30" type="text" placeholder="Ville">
-                                    <div id="map-canvas"></div>
+									<div id="map_canvas" style="height:400px;" >
+                                    <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options">
+                                        <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
+                                        </ui-gmap-marker>
+                                    </ui-gmap-google-map>
+                                </div>
                                     <div class="row">
+									<br/><br/>
                                         <div class="col-sm-6">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                                <input class="form-control" type="text" placeholder="Latitude" id="input-latitude" disabled="true">
+                                                <input class="form-control" type="text" placeholder="Latitude" id="input-latitude" ng-model="latitude" >
                                             </div><!-- /.form-group -->
                                         </div><!-- /.col-* -->
 
                                         <div class="col-sm-6">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                                <input class="form-control" type="text" placeholder="Lontgitude" id="input-longitude" disabled="true">
+                                                <input class="form-control" type="text" placeholder="Lontgitude" id="input-longitude" ng-model="longitude" >
                                             </div><!-- /.form-group -->
                                         </div><!-- /.col-* -->
                                     </div><!-- /.row -->
