@@ -641,6 +641,33 @@ function rdv(request, response){
 };
 
 
+function rdvRes(request, response){
+    var body=request.body;
+     Business.findOne({'_id':request.params.id},function(error, business) {
+            if (error){
+                console.error('Could not retrieve business b/c:', business);
+                response.status(400).send('error');
+            }
+            business.reservations.push({
+                userId:body.userId,
+                date:body.date,
+                heure:body.heure,
+                personNumber:body.personNumber,
+            });
+            business.save(function(error) {
+                if (error) { 
+                    console.error('Not able to add rendezvous b/c:', error);
+                    response.status(400).send('error 68');
+                }
+                else{  
+                    response.json({message: 'rendezvous successfully added', code:0});
+                }
+              });
+        });
+};
+
+
+
 //###### Tools #####################
 function decodeBase64Image(dataString) {
   var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
@@ -688,5 +715,6 @@ module.exports = {
     findCommentsByBusiness:findCommentsByBusiness,
     LikeBusiness:LikeBusiness,
     UnlikeBusiness:UnlikeBusiness,
-    rdv:rdv
+    rdv:rdv,
+    rdvRes :rdvRes
 };
