@@ -29,7 +29,7 @@ myApp.controller("ChatCtrl", function ($rootScope, $scope, $routeParams, $locati
     };
 
 
-    var socket = io.connect('http://localhost:8080');
+    var socket = io.connect('http://localhost:8081');
 
     socket.emit('nouveau_client', $scope.username);
     socket.on('message', function (data) {

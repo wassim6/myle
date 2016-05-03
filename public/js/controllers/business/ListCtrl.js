@@ -353,7 +353,7 @@ myApp.controller("ListCtrl", function ($scope, $http, SearchParam, SearchResult,
             $scope.myFilter = {};
         console.log($scope.business.length);
         $scope.markers = [];
-        var lat, lon;
+        var lat=0, lon=0;
         for (var i = 0; i < $scope.business.length; i++) {
             if ($scope.business[i].latitude != 0 && $scope.business[i].budgetRange==index) {
                 console.log("cc");
@@ -369,6 +369,7 @@ myApp.controller("ListCtrl", function ($scope, $http, SearchParam, SearchResult,
                 lon = $scope.business[i].longitude;
             }
         }
+        if(lat==0){ lat=36; lon=36; }
         $scope.map = {
             center: {
                 latitude: lat,
