@@ -10,6 +10,7 @@ myApp.factory('profileService',function($resource, $http){
     service.showInfo=showInfo;
     service.editInfo=editInfo;
     service.editPassword=editPassword;
+    service.editPasswordMail=editPasswordMail;
     service.editInfo2=editInfo2;
     service.editInfo3=editInfo3;
     
@@ -72,4 +73,7 @@ myApp.factory('profileService',function($resource, $http){
         return $resource('http://localhost\\:5000/api/user/editProfileImage/');
     }
     
+   function editPasswordMail(){
+        return $resource('http://localhost\\:5000/api/user/editPasswordMail/');
+    }
 });

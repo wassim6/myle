@@ -83,6 +83,18 @@ myApp.controller('ProfileCtrl', function($rootScope, $scope, $window, profileSer
             });
     }; 
     
+     $scope.editPasswordMail = function(){
+        
+        profileService.editPasswordMail().save({
+                "email":data.to,
+                "to":data.to
+            }, function(){
+                toaster.success("succès", "Mot de passe changé avec succès");
+            }, function(e){
+                toaster.error("error", e);
+            });
+    }; 
+    
     $scope.updateImage= function(img){
       profileService.updateImg().save({
           id:$rootScope.AuthenticatedUser.id,

@@ -97,7 +97,7 @@ UserSchema.methods.setPassword = function (password, cb) {
     });
 };
 
-
+                      
 UserSchema.plugin(passportLocalMongoose);
 module.exports = mongoose.model('User', UserSchema);
 

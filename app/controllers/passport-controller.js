@@ -3,6 +3,8 @@ var passport = require('passport');
 var fs = require('fs');
 var Account = require('../models/User');
 var router = express.Router();
+var nodemailer = require('nodemailer');
+var smtpTransport = require('nodemailer-smtp-transport');
 
 
 
@@ -79,6 +81,54 @@ function editPassword(req, res){
                 model[0].setPassword(req.body.password, function(err,user){
                                     
                               user.local.password = user.generateHash(req.body.password);
+                              user.save();
+                });
+                res.json({message: 'password successfully edited', code:0});
+        });
+       
+        
+};
+
+function editPasswordMail(req, res){
+    
+    var max = 1000;
+    var min= 100;
+    var Mdp = Math.round(Math.random()* (max - min) + min);
+    
+    
+    
+    var transporter = nodemailer.createTransport('smtp',{
+  service: 'Gmail',
+  auth: {
+	user: 'falloussaf@gmail.com',
+	pass: 'wassimboussettarim'
+  }
+}); 
+    
+    
+    var mailOptions = {
+    "from" : 'rim.aifa@esprit.tn', // sender address
+    "to" : req.body.to, // list of receivers
+    "subject" : 'Reset password' +'✔', // Subject line
+    "html": 'Votre mot de passe a été réinitialiser, votre nouveau mot de passe est:'+ Mdp+'.'
+};
+
+// send mail with defined transport object
+transporter.sendMail(mailOptions, function(error, info){
+    if(error){
+        return console.log(error);
+    }
+    console.log('Message sent: ' + info.response);
+});
+   
+    Account.find({"local.email": req.body.email}, function(err, model) {
+       
+            if (err) {res.status(400).send('error 66');}
+        
+        console.log(model[0]._id);      
+                model[0].setPassword(Mdp, function(err,user){
+                                    
+                              user.local.password = user.generateHash(Mdp);
                               user.save();
                 });
                 res.json({message: 'password successfully edited', code:0});
@@ -165,5 +215,6 @@ module.exports = {
     editInfo2:editInfo2,
     editInfoAdresse:editInfoAdresse,
     editProfileImage:editProfileImage,
-    editPassword:editPassword
+    editPassword:editPassword,
+    editPasswordMail:editPasswordMail
 };
