@@ -37,8 +37,9 @@ myApp.controller("RequestAddCtrl" ,function ($scope, uiGmapGoogleMapApi) {
     }
     
     
+    
     $scope.requestAdd = function (){
-        
+        if
     }
 
 });
