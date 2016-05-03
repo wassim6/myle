@@ -1,11 +1,13 @@
 // config/auth.js
 
+
+
 // expose our config directly to our application using module.exports
 module.exports = {
 
     'facebookAuth' : {
-        'clientID'        : '1399177093658469', // your App ID
-        'clientSecret'    : '5385e08f2bb833a9059a12d69276516d', // your App Secret
+        'clientID'        : '1399177093658469',  // your App ID
+        'clientSecret'    : '5385e08f2bb833a9059a12d69276516d',  // your App Secret
         'callbackURL'     : 'http://localhost:5000/auth/facebook/callback'
     },
 
