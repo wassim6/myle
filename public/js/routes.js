@@ -23,6 +23,12 @@ myApp.config(function($routeProvider, $locationProvider) {
             controller: 'RequestAddCtrl',
             activetab: 'Home'
         }).when(
+        '/TermCondition',
+        {
+            templateUrl: 'partials/contact/TermCondition.html',
+            controller: 'ContactCtrl',
+            activetab: 'Home'
+        }).when(
         '/business/list',
         {
             templateUrl: 'partials/business/list.html',

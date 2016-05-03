@@ -124,6 +124,8 @@ apiRouter.post('/business/requestadd', BusinessController.requestAdd);
 
 apiRouter.post('/business/rdv/:id', BusinessController.rdv);
 
+apiRouter.post('/business/rdvRes/:id', BusinessController.rdvRes);
+
 
 
 apiRouter.post('/coupon/add', CouponController.add);
