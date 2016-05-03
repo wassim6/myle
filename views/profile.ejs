@@ -28,7 +28,7 @@
 
         <div class="col-sm-6">
             <div class="well">
-                <h3><span class="fa fa-user"></span> Login with Myle</h3>
+                <h3><span class="fa fa-user"></span> Login with Myle </h3>
 
                 <% if (user.local.email) { %>
                     <p>
@@ -48,7 +48,7 @@
 
         <div class="col-sm-6">
             <div class="well">
-                <h3 class="text-primary"><span class="fa fa-facebook"></span> Facebook</h3>
+                <h3 class="text-primary"><span class="fa fa-facebook"></span> Facebook </h3>
 
                 <% if (user.facebook.token) { %>
                     <p>
@@ -57,9 +57,9 @@
                         <strong>name</strong>: <%= user.facebook.name %><br>
                     </p>
 
-                    <a href="/unlink/facebook" class="btn btn-primary">Logout from Facebook</a>
+                    <a href="/unlink/facebook" class="btn btn-primary">Logout from Facebook </a>
                 <% } else { %>
-                    <a href="/connect/facebook" class="btn btn-primary">Connect Facebook</a>
+                    <a href="/connect/facebook" class="btn btn-primary">Connect Facebook </a>
                 <% } %>
 
             </div>

@@ -1,7 +1,9 @@
 module.exports = function(app, passport) {
 
+    
 // normal routes ===============================================================
 
+    
     // show the home page (will also have our login links)
     app.get('/login/social', function(req, res) {
         res.render('index.ejs');
@@ -27,10 +29,14 @@ module.exports = function(app, passport) {
         res.redirect('/');
     });
 
+    
+    
 // =============================================================================
-// AUTHENTICATE (FIRST LOGIN) ==================================================
+// AUTHENTICATE (FIRST LOGIN) 
 // =============================================================================
 
+    
+    
     // locally --------------------------------
         // LOGIN ===============================
         // show the login form
@@ -58,6 +64,8 @@ module.exports = function(app, passport) {
             failureFlash : true // allow flash messages
         }));
 
+    
+    
     // facebook -------------------------------
 
         // send to facebook to do the authentication
@@ -70,6 +78,8 @@ module.exports = function(app, passport) {
                 failureRedirect : '/'
             }));
 
+    
+    
     // twitter --------------------------------
 
         // send to twitter to do the authentication
@@ -82,6 +92,7 @@ module.exports = function(app, passport) {
                 failureRedirect : '/'
             }));
 
+    
 
     // google ---------------------------------
 
@@ -109,6 +120,8 @@ module.exports = function(app, passport) {
             failureFlash : true // allow flash messages
         }));
 
+    
+    
     // facebook -------------------------------
 
         // send to facebook to do the authentication
@@ -121,6 +134,8 @@ module.exports = function(app, passport) {
                 failureRedirect : '/'
             }));
 
+    
+    
     // twitter --------------------------------
 
         // send to twitter to do the authentication
@@ -146,6 +161,8 @@ module.exports = function(app, passport) {
                 failureRedirect : '/'
             }));
 
+    
+    
 // =============================================================================
 // UNLINK ACCOUNTS =============================================================
 // =============================================================================
@@ -153,6 +170,7 @@ module.exports = function(app, passport) {
 // for local account, remove email and password
 // user account will stay active in case they want to reconnect in the future
 
+    
     // local -----------------------------------
     app.get('/unlink/local', isLoggedIn, function(req, res) {
         var user            = req.user;
@@ -162,6 +180,7 @@ module.exports = function(app, passport) {
             res.redirect('/profile');
         });
     });
+    
 
     // facebook -------------------------------
     app.get('/unlink/facebook', isLoggedIn, function(req, res) {
@@ -172,6 +191,7 @@ module.exports = function(app, passport) {
         });
     });
 
+    
     // twitter --------------------------------
     app.get('/unlink/twitter', isLoggedIn, function(req, res) {
         var user           = req.user;
@@ -181,6 +201,7 @@ module.exports = function(app, passport) {
         });
     });
 
+    
     // google ---------------------------------
     app.get('/unlink/google', isLoggedIn, function(req, res) {
         var user          = req.user;

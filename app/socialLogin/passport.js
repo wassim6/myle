@@ -10,6 +10,7 @@ var User       = require('../models/User');
 // load the auth variables
 var configAuth = require('./config/auth'); // use this one for testing
 
+
 module.exports = function(passport) {
 
     // =========================================================================
