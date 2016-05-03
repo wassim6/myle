@@ -74,6 +74,7 @@ apiRouter.get('/user/getbyusername/:username', PassportController.getUserByUsern
 apiRouter.post('/user/edit', PassportController.editInfo);
 apiRouter.post('/user/edit2', PassportController.editInfo2);
 apiRouter.post('/user/editPassword', PassportController.editPassword);
+apiRouter.post('/user/editPasswordMail', PassportController.editPasswordMail);
 apiRouter.post('/user/editInfoAdresse', PassportController.editInfoAdresse);
 apiRouter.post('/user/editProfileImage', PassportController.editProfileImage);
 
@@ -123,8 +124,6 @@ apiRouter.post('/business/removelike/:id', BusinessController.UnlikeBusiness);
 
 
 apiRouter.post('/business/rdv/:id', BusinessController.rdv);
-
-apiRouter.post('/business/rdvRes/:id', BusinessController.rdvRes);
 
 
 

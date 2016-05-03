@@ -74,7 +74,7 @@ myApp.config(function($routeProvider, $locationProvider) {
         '/login/forgot_password',
         {
             templateUrl: 'partials/login/forgot_password.html',
-            controller: 'ForgotPasswordCtrl',
+            controller: 'ProfileCtrl',
             activetab: 'Home'
         }).when(
         '/chat',
