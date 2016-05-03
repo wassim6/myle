@@ -1,9 +1,9 @@
 'use strict';
 
-myApp.controller("ListCtrl" ,function ($scope, $http, SearchParam, SearchResult) {
-    
-    $scope.Math=Math;
-    $(document).ready(function() {
+myApp.controller("ListCtrl", function ($scope, $http, SearchParam, SearchResult, $route) {
+
+    $scope.Math = Math;
+    $(document).ready(function () {
         'use strict';
 
         /**
@@ -14,7 +14,7 @@ myApp.controller("ListCtrl" ,function ($scope, $http, SearchParam, SearchResult)
         /**
          * Background image
          */
-        $('*[data-background-image]').each(function() {
+        $('*[data-background-image]').each(function () {
             $(this).css({
                 'background-image': 'url(' + $(this).data('background-image') + ')'
             });
@@ -40,9 +40,9 @@ myApp.controller("ListCtrl" ,function ($scope, $http, SearchParam, SearchResult)
             return Array(lat, lng);
         }
 
-        for (var i=0; i < 50; i++) {
+        for (var i = 0; i < 50; i++) {
             var position = get_gps_ranges(40.761077, -73.983307, 0.08, 0.60);
-            var icon = icons[Math.floor(Math.random()*icons.length)];
+            var icon = icons[Math.floor(Math.random() * icons.length)];
 
             markers.push({
                 latitude: position[0],
@@ -105,7 +105,7 @@ myApp.controller("ListCtrl" ,function ($scope, $http, SearchParam, SearchResult)
         /**
          * Colorbox
          */
-        $('.detail-gallery-preview a').colorbox({rel:'group3', transition:"none", width:"90%", height:"90%"});
+        $('.detail-gallery-preview a').colorbox({rel: 'group3', transition: "none", width: "90%", height: "90%"});
 
         /**
          * Detail gallery
@@ -119,7 +119,7 @@ myApp.controller("ListCtrl" ,function ($scope, $http, SearchParam, SearchResult)
             });
         }
 
-        $('.detail-gallery-list-item a').on('click', function(e) {
+        $('.detail-gallery-list-item a').on('click', function (e) {
             e.preventDefault();
             var link = $(this).data('target');
             $('.detail-gallery-preview img').attr('src', link);
@@ -134,10 +134,10 @@ myApp.controller("ListCtrl" ,function ($scope, $http, SearchParam, SearchResult)
 
             listing_detail_map.google_map({
                 center: {
-                    latitude: listing_detail_map.data( 'latitude' ),
-                    longitude: listing_detail_map.data( 'longitude' )
+                    latitude: listing_detail_map.data('latitude'),
+                    longitude: listing_detail_map.data('longitude')
                 },
-                zoom: listing_detail_map.data( 'zoom' ),
+                zoom: listing_detail_map.data('zoom'),
                 transparentMarkerImage: listing_detail_map.data('transparent-marker-image'),
                 transparentClusterImage: listing_detail_map.data('transparent-marker-image'),
                 infowindow: {
@@ -148,10 +148,10 @@ myApp.controller("ListCtrl" ,function ($scope, $http, SearchParam, SearchResult)
                     offsetY: -120
                 },
                 markers: [{
-                    latitude: listing_detail_map.data( 'latitude' ),
-                    longitude: listing_detail_map.data( 'longitude' ),
-                    marker_content: '<div class="marker"><div class="marker-inner"><i class="' + listing_detail_map.data( 'icon' ) + '"></div></div>'
-                }]
+                        latitude: listing_detail_map.data('latitude'),
+                        longitude: listing_detail_map.data('longitude'),
+                        marker_content: '<div class="marker"><div class="marker-inner"><i class="' + listing_detail_map.data('icon') + '"></div></div>'
+                    }]
             });
         }
 
@@ -166,19 +166,19 @@ myApp.controller("ListCtrl" ,function ($scope, $http, SearchParam, SearchResult)
                 var street_view = $('#listing-detail-street-view');
 
                 new google.maps.StreetViewPanorama(document.getElementById('listing-detail-street-view'), {
-                        position: {
-                            lat: street_view.data( 'latitude' ),
-                            lng: street_view.data( 'longitude' )
-                        },
-                        pov: {
-                            heading: street_view.data( 'heading' ),
-                            pitch: street_view.data( 'pitch' )
-                        },
-                        zoom: street_view.data( 'zoom' ),
-                        linksControl: false,
-                        panControl: false,
-                        visible: true
-                    }
+                    position: {
+                        lat: street_view.data('latitude'),
+                        lng: street_view.data('longitude')
+                    },
+                    pov: {
+                        heading: street_view.data('heading'),
+                        pitch: street_view.data('pitch')
+                    },
+                    zoom: street_view.data('zoom'),
+                    linksControl: false,
+                    panControl: false,
+                    visible: true
+                }
                 );
             }
         });
@@ -186,7 +186,7 @@ myApp.controller("ListCtrl" ,function ($scope, $http, SearchParam, SearchResult)
         /**
          * Listing Detail Bookmark & Like
          */
-        $(".detail-banner-btn").click(function(){
+        $(".detail-banner-btn").click(function () {
             $(this).toggleClass("marked");
 
             var span = $(this).children("span");
@@ -204,13 +204,13 @@ myApp.controller("ListCtrl" ,function ($scope, $http, SearchParam, SearchResult)
         /**
          * Rating form
          */
-        $(".input-rating label").hover(function(){
+        $(".input-rating label").hover(function () {
             $(this).siblings("label").toggleClass("hovered");
             $(this).toggleClass("filled");
             $(this).prevAll("label").toggleClass("filled");
         });
 
-        $(".input-rating input").change(function(){
+        $(".input-rating input").change(function () {
             $(this).siblings().removeClass("marked");
             $(this).prevAll("label").addClass("marked");
         });
@@ -223,9 +223,9 @@ myApp.controller("ListCtrl" ,function ($scope, $http, SearchParam, SearchResult)
             var increase = Math.PI * 2 / 100;
 
             var fun1 = [];
-            for ( i = 0; i <= 1; i += 0.015 ) {
+            for (i = 0; i <= 1; i += 0.015) {
                 var x = i;
-                var y = Math.sin( counter );
+                var y = Math.sin(counter);
                 fun1.push([x, y]);
                 counter += increase;
             }
@@ -234,49 +234,49 @@ myApp.controller("ListCtrl" ,function ($scope, $http, SearchParam, SearchResult)
             var increase = Math.PI * 2 / 100;
 
             var fun2 = [];
-            for ( i = 0; i <= 1; i += 0.015 ) {
+            for (i = 0; i <= 1; i += 0.015) {
                 var x = i;
-                var y = Math.cos( counter );
+                var y = Math.cos(counter);
                 fun2.push([x, y]);
                 counter += increase;
             }
 
-            var plot = $.plot($('#superlist-chart'),[
-                    {
-                        color: '#ceb65f',
-                        data: fun1
-                    },
-                    {
-                        color: '#009f8b',
-                        data: fun2
-                    }
-                ],
+            var plot = $.plot($('#superlist-chart'), [
                 {
-                    series: {
-                        splines: {
-                            show: true,
-                            tension: 0.24,
-                            lineWidth: 3,
-                            fill: .40
+                    color: '#ceb65f',
+                    data: fun1
+                },
+                {
+                    color: '#009f8b',
+                    data: fun2
+                }
+            ],
+                    {
+                        series: {
+                            splines: {
+                                show: true,
+                                tension: 0.24,
+                                lineWidth: 3,
+                                fill: .40
+                            },
+                            lines: false,
+                            shadowSize: 0
                         },
-                        lines: false,
-                        shadowSize: 0
-                    },
-                    points: { show: true },
-                    legend: false,
-                    grid: {
-                        borderColor: '#f1f1f1',
-                        borderWidth: 0
-                    },
-                    xaxis: {
-                        color: '#f1f1f1'
-                    },
-                    yaxis: {
-                        color: '#f1f1f1',
-                        min: -1,
-                        max: 1
-                    }
-                });
+                        points: {show: true},
+                        legend: false,
+                        grid: {
+                            borderColor: '#f1f1f1',
+                            borderWidth: 0
+                        },
+                        xaxis: {
+                            color: '#f1f1f1'
+                        },
+                        yaxis: {
+                            color: '#f1f1f1',
+                            min: -1,
+                            max: 1
+                        }
+                    });
         }
 
         /**
@@ -293,34 +293,139 @@ myApp.controller("ListCtrl" ,function ($scope, $http, SearchParam, SearchResult)
     });
 
 
-/*    $http.post('http://localhost:5000/api/business/search',{
-            t:{_id:"56e54c183ba5bc24265767ee", name:"Medecin"},
-            a:{_id:"56e54c193ba5bc24265767f2", name:"Bizerte", type:1}
-        }).success(function(m){
-            console.log(m);
-            var business=m;
-            for(var i=0;i<business.length;i++){
-                if(typeof business[i].budgetRange =='undefined')
-                    business[i].budgetRange=1;
-            }
-            $scope.business=business;
-
-        });*/
+    /*    $http.post('http://localhost:5000/api/business/search',{
+     t:{_id:"56e54c183ba5bc24265767ee", name:"Medecin"},
+     a:{_id:"56e54c193ba5bc24265767f2", name:"Bizerte", type:1}
+     }).success(function(m){
+     console.log(m);
+     var business=m;
+     for(var i=0;i<business.length;i++){
+     if(typeof business[i].budgetRange =='undefined')
+     business[i].budgetRange=1;
+     }
+     $scope.business=business;
+     
+     });*/
+    
+    $scope.isOpen=false;
+    $scope.price = [];
+    $scope.price[1] = false;
+    $scope.price[2] = false;
+    $scope.price[3] = false;
+    $scope.price[4] = false;
 
     $scope.service = SearchResult;
-    var business=SearchResult.getData();
-    for(var i=0;i<business.length;i++){
-        if(typeof business[i].budgetRange =='undefined')
-            business[i].budgetRange=1;
-        if( typeof(business[i].profileImage)=='undefined')
-            business[i].profileImage='default.png';
-        if( typeof(business[i].sousCategory)=='undefined')
-            business[i].sousCategory='sante';
+    var business = SearchResult.getData();
+    for (var i = 0; i < business.length; i++) {
+        if (typeof business[i].budgetRange == 'undefined')
+            business[i].budgetRange = 1;
+        if (typeof (business[i].profileImage) == 'undefined')
+            business[i].profileImage = 'default.png';
+        if (typeof (business[i].sousCategory) == 'undefined')
+            business[i].sousCategory = 'sante';
     }
-    $scope.business=business;
+    $scope.business = business;
+    
+    $scope.open = function(){
+        $scope.isOpen=!$scope.isOpen;
+        if($scope.isOpen){
+            var tmp=[];
+            for (var i = 0; i < $scope.business.length; i++) {
+                if(i%2==0){
+                    tmp.push($scope.business[i]);
+                }
+            }
+            $scope.business=tmp;
+        }
+    }
 
-    $scope.$watch('service.getData()', function(newVal) {
-        $scope.business = newVal;
+    $scope.filterPrice = function (index) {
+        $scope.myFilter = {budgetRange: index};
+        $scope.price[index] = !$scope.price[index];
+        var test = 1;
+        for (var i = 1; i < 5; i++) {
+            if (i != index)
+                $scope.price[i] = false;
+            if ($scope.price[i])
+                test = 0;
+        }
+        if (test)
+            $scope.myFilter = {};
+        console.log($scope.business.length);
+        $scope.markers = [];
+        var lat, lon;
+        for (var i = 0; i < $scope.business.length; i++) {
+            if ($scope.business[i].latitude != 0 && $scope.business[i].budgetRange==index) {
+                console.log("cc");
+                $scope.markers.push({
+                    coord: {
+                        latitude: $scope.business[i].latitude,
+                        longitude: $scope.business[i].longitude
+                    },
+                    email: $scope.business[i].name + ' - ' + $scope.business[i].adress,
+                    id: $scope.business[i]._id
+                });
+                lat = $scope.business[i].latitude;
+                lon = $scope.business[i].longitude;
+            }
+        }
+        $scope.map = {
+            center: {
+                latitude: lat,
+                longitude: lon
+            },
+            zoom: 9
+        };
+
+    }
+
+    $scope.$watch('service.getData()', function (newVal) {
+        var business = newVal;
+        for (var i = 0; i < business.length; i++) {
+            business[i].budgetRange = i % 5;
+            if (typeof (business[i].profileImage) == 'undefined')
+                business[i].profileImage = 'default.png';
+            if (typeof (business[i].sousCategory) == 'undefined')
+                business[i].sousCategory = 'sante';
+        }
+        $scope.business = business;
+        $scope.listOriginal = business;
+        $scope.myFilter = {};
+        for (var i = 1; i < 5; i++) {
+            $scope.price[i] = false;
+        }
+        if (typeof ($scope.business[0]) != 'undefined') {
+            $scope.markers = [];
+            var lat, lon;
+            for (var i = 0; i < business.length; i++) {
+                if (business[i].latitude != 0) {
+                    $scope.markers.push({
+                        coord: {
+                            latitude: business[i].latitude,
+                            longitude: business[i].longitude
+                        },
+                        email: business[i].name + ' - ' + business[i].adress,
+                        id: business[i]._id
+                    });
+                    lat = business[i].latitude;
+                    lon = business[i].longitude;
+                }
+            }
+            $scope.map = {
+                center: {
+                    latitude: lat,
+                    longitude: lon
+                },
+                zoom: 9 // de 0 à 19, 0 étant la valeur de zoom la plus forte
+            };
+
+
+        }
+        /*
+         $scope.clickMarker = function (marker) {
+         alert(marker); //Affichera l'email du point sur lequel on a cliqué
+         };*/
+
     });
 
 

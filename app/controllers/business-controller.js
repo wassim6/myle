@@ -46,6 +46,34 @@ function add(request, response){
   });
 };
 
+function requestAdd(request, response){
+    var body=request.body;
+    
+  var business = new Business({
+      name:body.name,
+      description:body.description,
+      tel:body.tel,
+      fax:body.fax,
+      longitude:body.longitude,
+      latitude:body.latitude,
+      adress:body.adress,
+      gouvernera:body.gouvernera,
+      delegation:body.delegation,
+      category:body.category,
+      sousCategory:body.sousCategory,
+      valid:false
+  });
+  business.save(function(error) {
+    if (error) { 
+        console.error('Not able to create business b/c:', error);
+        response.status(400).json('error');
+    }
+    else{  
+        response.json({message: 'Business successfully created', code:0}, business);
+    }
+  });
+};
+
 function editBasicInfo(request, response){
     var body=request.body;
     Business.update({
@@ -688,5 +716,6 @@ module.exports = {
     findCommentsByBusiness:findCommentsByBusiness,
     LikeBusiness:LikeBusiness,
     UnlikeBusiness:UnlikeBusiness,
-    rdv:rdv
+    rdv:rdv,
+    requestAdd:requestAdd
 };

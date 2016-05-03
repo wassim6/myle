@@ -116,6 +116,7 @@ myApp.controller("HeaderCtrl" ,function ($rootScope, $scope, $window,  TagServic
                     SearchParam.setData({adress:address, tag:tag});
                     SearchResult.setData(m);
                     $location.path("/business/list");
+                    //$route.reload();
                 }
                 else
                     toaster.warning("Aucun commerce trouver");

@@ -118,6 +118,9 @@ apiRouter.get('/business/findcommentsbybusiness/:bid', BusinessController.findCo
 apiRouter.post('/business/addlike/:id', BusinessController.LikeBusiness);
 apiRouter.post('/business/removelike/:id', BusinessController.UnlikeBusiness);
 
+apiRouter.post('/business/requestadd', BusinessController.requestAdd);
+
+
 
 apiRouter.post('/business/rdv/:id', BusinessController.rdv);
 

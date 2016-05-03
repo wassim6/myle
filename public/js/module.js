@@ -11,7 +11,10 @@ var myApp = angular.module('myApp', ['ngRoute', 'pretty-checkable', 'ngResource'
     "ngSanitize",
     "ui.select",
     "irontec.simpleChat",
-    "ui.bootstrap"                  
+    "ui.bootstrap",
+    "angular-loading-bar",
+    "720kb.socialshare",
+    "pascalprecht.translate"
 ]);
 
 myApp.run(function(amMoment) {
@@ -79,7 +82,33 @@ myApp.run(function ($rootScope, $location, loginService) {
   });
 })
 
-
+myApp.config(['$translateProvider', function ($translateProvider) {
+  $translateProvider.translations('en', {
+    'about': 'About',
+    'about-d': 'Myle is a community and participatory platform sharing opinions, experiences and information online which includes all shops and local services in Tunisia.',
+    'contact':'Contact us',
+    'stay':'Stay connected',
+    'langue':'Language',
+    
+    'right':'All rights reserved.',
+    'home':'Home',
+    'terms':'Terms & Conditions'
+  });
+ 
+  $translateProvider.translations('fr', {
+    'about': 'A propos',
+    'about-d': 'Myle est une plateforme communautaire et participative de partage d’avis, d’expériences et d’information en ligne qui regroupe tous les commerces et les services de proximité en Tunisie.',
+    'contact':'Contacter nous',
+    'stay':'Rester Connecter',
+    'langue':'Langue',
+    
+    'right':'Tout droit reservé.',
+    'home':'Accueil',
+    'terms':'Termes & Conditions'
+  });
+ 
+  $translateProvider.preferredLanguage('fr');
+}]);
 
 
 

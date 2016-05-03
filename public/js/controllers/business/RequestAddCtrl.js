@@ -3,7 +3,7 @@
 myApp.controller("RequestAddCtrl" ,function ($scope, uiGmapGoogleMapApi) {
 
     init();
-	
+    {
 	$scope.latitude=36.899575830680625;
 	$scope.longitude=10.1896390914917;
 	$scope.map= {center: {latitude: $scope.latitude, longitude: $scope.longitude }, zoom: 7 };
@@ -34,6 +34,9 @@ myApp.controller("RequestAddCtrl" ,function ($scope, uiGmapGoogleMapApi) {
             }
           }
         };
-
+    }
+    
+    
+    
 
 });
