@@ -1,4 +1,4 @@
-
+<style>.angular-google-map-container { height: 500px; }</style>
 <div class="main-inner">
     <div class="container">
         <div class="row">
@@ -7,13 +7,13 @@
 
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="btn-group" data-toggle="buttons-checkbox" >
-                                <button type="button" class="btn btn-secondary active" title="Ajouter un commerce" data-toggle="tooltip">€</button>
-                                <button type="button" class="btn btn-primary" title="Ajouter un commerce" data-toggle="tooltip">€€</button>
-                                <button type="button" class="btn btn-primary" title="Ajouter un commerce" data-toggle="tooltip">€€€</button>
-                                <button type="button" class="btn btn-primary" title="Ajouter un commerce" data-toggle="tooltip">€€€€</button>
+                            <div class="btn-group" data-toggle="buttons-checkbox" ><!-- secondary -->
+                                <button type="button" class="btn" ng-class="price[1] ? 'btn-secondary' : 'btn-primary'" title="Economique" data-toggle="tooltip" ng-click="filterPrice(1)" >€</button>
+                                <button type="button" class="btn" ng-class="price[2] ? 'btn-secondary' : 'btn-primary'" title="Modéré" data-toggle="tooltip" ng-click="filterPrice(2)" >€€</button>
+                                <button type="button" class="btn" ng-class="price[3] ? 'btn-secondary' : 'btn-primary'" title="Cher" data-toggle="tooltip" ng-click="filterPrice(3)" >€€€</button>
+                                <button type="button" class="btn" ng-class="price[4] ? 'btn-secondary' : 'btn-primary'" title="Très haut de gamme" data-toggle="tooltip" ng-click="filterPrice(4)" >€€€€</button>
                             </div>
-                            <button type="button" class="btn btn-primary"><i class="fa fa-clock-o"></i> Ouvert maintenant</button>
+                            <button type="button" class="btn" ng-class="isOpen ? 'btn-secondary' : 'btn-primary'" ng-click="open()"><i class="fa fa-clock-o"></i> Ouvert maintenant</button>
                             <button type="button" class="btn btn-primary"><i class="fa fa-wifi"></i> Wifi</button>
                             <button type="button" class="btn btn-primary">Terrasse</button>
                             <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-filter"></i> Plus de filtres</button>
@@ -43,11 +43,11 @@
                 </form>
             </div>
 
-            <div class="col-sm-8 col-lg-9">
+            <div class="col-sm-7 col-lg-8">
                 <div class="content">
                     <div class="cards-row">
 
-                        <div class="card-row" dir-paginate="b in business | itemsPerPage: 10">
+                        <div class="card-row" dir-paginate="b in business | filter:myFilter |  itemsPerPage: 10">
                             <div class="card-row-inner">
                                 <div class="card-row-image" ng-style="{'background-image':'url(../../img/bimg/{{b.profileImage}})'}">
                                     <div class="card-row-label"><a href="#/business/info/{{b._id}}">{{b.category}}</a></div>
@@ -60,42 +60,43 @@
                                 <div class="card-row-properties">
                                     <dl>
 
-                                        <dd>Prix </dd><dt> <samp ng-repeat="s in [] | range:b.budgetRange">$</samp></dt>
+                                        <dd>Prix </dd><dt> <samp ng-repeat="s in []| range:b.budgetRange">$</samp></dt>
                                         <dd>Categorie</dd><dt>{{b.sousCategory}}</dt>
                                         <dd>Adresse</dd><dt>{{b.gouvernera.name}} - {{b.delegation.name}}</dt>
                                         <dd>Étoile</dd>
                                         <dt>
-                                        <div class="card-row-rating">
-                                            <i class="fa fa-star" ng-repeat="s in [] | range:b.rate" ></i><i class="fa fa-star-o" ng-repeat="s in [] | range:(Math.round(5-(b.rate)))" ></i>
-                                        </div><!-- /.card-row-rating -->
+                                            <div class="card-row-rating">
+                                                <i class="fa fa-star" ng-repeat="s in []| range:b.rate" ></i><i class="fa fa-star-o" ng-repeat="s in []| range:(Math.round(5 - (b.rate)))" ></i>
+                                            </div>
                                         </dt>
                                     </dl>
-                                </div><!-- /.card-row-properties -->
-                            </div><!-- /.card-row-inner -->
-                        </div><!-- /.card-row -->
-
-                    </div><!-- /.cards-row -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div style="margin-left:30%;">
                         <dir-pagination-controls></dir-pagination-controls>
                     </div>
-
-
-                </div><!-- /.content -->
+                </div>
             </div>
 
-            <div class="col-sm-4 col-lg-3 " style="width: 220px;"  >
+            <div class="col-sm-5 col-lg-4 "  >
                 <div class="sidebar">
                     <div class="widget" >
                         <div class="" >
                             <div  class="p20 background-white" >
-                                <!--
-                                <div class="working-hours" >
-                                    <div class="day clearfix">
-                                        <span class="name">Mon</span><span class="hours">07:00 AM - 07:00 PM</span>
-                                    </div>
-                                </div>-->
-
+                                <div id="map_canvas" style="height:500px;" >
+                                    <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+                                        <ui-gmap-marker ng-repeat="marker in markers" idKey="marker.id" coords="marker.coord">
+                                            <ui-gmap-window show="marker.show" ng-cloak closeClick="!marker.show">
+                                                <div>
+                                                    <p>{{marker.email}}
+                                                </div>
+                                            </ui-gmap-window>
+                                            </ui-gmap-markers>
+                                    </ui-gmap-google-map>
+                                </div>
                             </div>
                         </div>
 

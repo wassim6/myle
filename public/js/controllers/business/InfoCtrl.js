@@ -86,8 +86,11 @@ myApp.controller("InfoCtrl" ,function ($rootScope, $scope, $routeParams, $locati
                 b.isLiked=true;
             }
         }
+        var mapS=false;
+        if(b.latitude!=0 && b.longitude!=0) mapS=true;
+        b.mapS=mapS;
         $scope.b=b;
-        console.log($scope.b);
+        //console.log($scope.b);
         $timeout(function() {
             $(".group3").colorbox({rel:"imgs", transition:"elastic"});
 
@@ -125,7 +128,7 @@ myApp.controller("InfoCtrl" ,function ($rootScope, $scope, $routeParams, $locati
     $scope.comments = BusinessService.findCommentsByBusiness().query({
         bid:businessId
     }, function(){
-        console.log($scope.comments);
+        //console.log($scope.comments);
     })
 
     $scope.writeReview = function(){

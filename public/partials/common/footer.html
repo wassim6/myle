@@ -1,27 +1,21 @@
-<div class="footer-top">
+<div class="footer-top"  ng-controller="ChatCtrl" >
     <div class="container">
         <div class="row">
             <div class="col-sm-4">
-                <h2>A propos</h2>
-
-                <p>Myle est une plateforme communautaire et participative de partage d’avis,
-d’expériences et d’information en ligne qui regroupe tous les commerces et les
-services de proximité en Tunisie.</p>
+                <h2>{{ 'about' | translate }}</h2>
+                <p>{{ 'about-d' | translate }}</p>
             </div>
-            <!-- /.col-* -->
 
             <div class="col-sm-4">
-                <h2>Contacter nous</h2>
-
+                <h2>{{ 'contact' | translate }}</h2>
                 <p>
                     ESPRIT - Chotrana II - 2083 Pôle Technologique - El Ghazala
                     <br> +216 52 255 732 
                 </p>
             </div>
-            <!-- /.col-* -->
 
             <div class="col-sm-4">
-                <h2>Rester Connecter</h2>
+                <h2>{{ 'stay' | translate }}</h2>
 
                 <ul class="social-links nav nav-pills">
                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -29,27 +23,33 @@ services de proximité en Tunisie.</p>
                     <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                     <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                 </ul>
-                <!-- /.header-nav-social -->
+                <h4>{{ 'langue' | translate }} : </h4>
+                <div class="form-group">
+                    <div class="radio" style="color:white" >
+                        <input id="male" type="radio" name="sex" value="fr" ng-model="lang" />
+                        <label for="male" style="color:white" >Français</label>
+                    </div>
+                    <div class="radio">
+                        <input id="female" type="radio" name="sex" value="en" ng-model="lang" />
+                        <label for="female" style="color:white" >English</label>
+                    </div>
+                </div>
             </div>
-            <!-- /.col-* -->
         </div>
-        <!-- /.row -->
     </div>
-    <!-- /.container -->
 </div>
-<!-- /.footer-top -->
 
 <div class="footer-bottom" >
     <div class="container" style="margin-bottom:50px">
         <div class="footer-bottom-left">
-            &copy; 2016 Tout droit reservé.
+            &copy; 2016 {{ 'right' | translate }}
         </div>
         <!-- /.footer-bottom-left -->
 
         <div class="footer-bottom-right">
             <ul class="nav nav-pills">
-                <li><a href="/#/home">Accueil</a></li>
-                <li><a href="terms-conditions.html">Termes &amp; Conditions</a></li>
+                <li><a href="/#/home">{{ 'home' | translate }}</a></li>
+                <li><a href="terms-conditions.html">{{ 'terms' | translate }}</a></li>
                 <li><a href="/#/contact">Contact</a></li>
             </ul>
             <!-- /.nav -->
@@ -60,54 +60,71 @@ services de proximité en Tunisie.</p>
 </div>
 
 <style>
-.chat-window {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    max-height: 600px;
-    height: auto;
-    width: 320px;
-    color: black;
-}
+    .chat-window {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        max-height: 600px;
+        height: auto;
+        width: 320px;
+        color: black;
+    }
 
 
-.chat-window.minimized {
-    height: 40px;
-}
+    .chat-window.minimized {
+        height: 40px;
+    }
 
-.chat-top-bar {
-    height: 40px;
-}
+    .chat-top-bar {
+        height: 40px;
+    }
 
-.chat-bottom-bar {
-    height: 60px;
-}
+    .chat-bottom-bar {
+        height: 60px;
+    }
 
-.msg-container-base {
-    height: auto;
-    max-height: 500px;
-}
+    .msg-container-base {
+        height: auto;
+        max-height: 500px;
+    }
 
-.panel-body {
-    padding: 0;
-}
-    
-    
-.my-custom-chat-theme > .chat-window{
-  float: right;
-}
+    .panel-body {
+        padding: 0;
+    }
 
 
-.chat-container {
-    width: 400px;
-    height: 100%;
-    margin: 0 auto;
-    position: fixed;
-    z-index: 10;
-}
+    .my-custom-chat-theme > .chat-window{
+        float: right;
+    }
+
+
+    .chat-container {
+        width: 400px;
+        height: 100%;
+        margin: 0 auto;
+        position: fixed;
+        z-index: 10;
+    }
 
 </style>
 <div ng-controller="ChatCtrl" >
+<<<<<<< HEAD
+    <div class="chat-container"  >
+        <irontec-simple-chat
+            messages="messages"
+            username="username"
+            input-placeholder-text="You can write here"
+            submit-button-text="Send your message"
+            title="Myle chat"
+            theme="material"
+            submit-function="sendMessage"
+            visible="true"
+            expand-on-new="true"
+            >
+        </irontec-simple-chat>
+        <!-- expand-on-new="false" -->
+    </div>
+=======
 <div class="chat-container"  >
     <irontec-simple-chat
         messages="messages"
@@ -123,4 +140,5 @@ services de proximité en Tunisie.</p>
     </irontec-simple-chat>
     <!-- expand-on-new="false" -->
   </div>
+>>>>>>> 63724926bb89184665ccb0c121602a8fd1202f8b
 </div>

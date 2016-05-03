@@ -21,6 +21,7 @@ var BusinessSchema = new Schema({
   site:String,
   urlScrape:String,
   
+  valid:{type:Boolean, default:true},    
   score:{type:Number, default:0},    
       
   gouvernera:{type: mongoose.Schema.Types.ObjectId, ref: 'Gouvernera'},

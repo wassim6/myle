@@ -1,44 +1,44 @@
 <style>.angular-google-map-container { height: 300px; }</style>
 <script type="text/ng-template" id="myModalContent.html">
-        <div class="modal-header">
-            <h3 class="modal-title">RDV</h3>
-        </div>
-        <div class="modal-body">
-            <form role="form" name="myForm" >
-                <div class="form-group">
-                    <label class="control-label">Date</label><br/>
-                    <p class="input-group">
-          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" required/>
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
-          </span>
-        </p>
+    <div class="modal-header">
+    <h3 class="modal-title">RDV</h3>
+    </div>
+    <div class="modal-body">
+    <form role="form" name="myForm" >
+    <div class="form-group">
+    <label class="control-label">Date</label><br/>
+    <p class="input-group">
+    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" required/>
+    <span class="input-group-btn">
+    <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+    </span>
+    </p>
 
-               </div> 
-                <div class="form-group">
-                       <label class="control-label">Heure</label> 
-                        <select ng-model="heure" required style="width:300px;" >
-                            <option value="8" >8h</option>
-                            <option value="9" >9h</option>
-                            <option value="10" >10h</option>
-                            <option value="11" >11h</option>
-                            <option value="14" >14h</option>
-                            <option value="15" >15h</option>
-                            <option value="16" >16h</option>
-                            <option value="17" >17h</option>
-                        </select>
-                   
-               </div>
-                <div class="margiv-top-10">
-                    <a href class="btn btn-primary btn-lg" ng-click="rdv(myForm.$valid)" >
-                    Rdv </a>
-                </div>
-            </form>
+    </div> 
+    <div class="form-group">
+    <label class="control-label">Heure</label> 
+    <select ng-model="heure" required style="width:300px;" >
+    <option value="8" >8h</option>
+    <option value="9" >9h</option>
+    <option value="10" >10h</option>
+    <option value="11" >11h</option>
+    <option value="14" >14h</option>
+    <option value="15" >15h</option>
+    <option value="16" >16h</option>
+    <option value="17" >17h</option>
+    </select>
 
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-warning" ng-click="cancel()">Annuler</button>
-        </div>
+    </div>
+    <div class="margiv-top-10">
+    <a href class="btn btn-primary btn-lg" ng-click="rdv(myForm.$valid)" >
+    Rdv </a>
+    </div>
+    </form>
+
+    </div>
+    <div class="modal-footer">
+    <button class="btn btn-warning" ng-click="cancel()">Annuler</button>
+    </div>
 </script>
 
 <script type="text/ng-template" id="myModalContentRes.html">
@@ -109,7 +109,7 @@
                             <i class="fa fa-map-o"></i> {{b.adress}}
                         </div>
                         <div class="detail-banner-rating">
-                            <i class="fa fa-star" ng-repeat="s in [] | range:b.rate" ></i><i class="fa fa-star-o" ng-repeat="s in [] | range:(Math.round(5-(b.rate)))" ></i>
+                            <i class="fa fa-star" ng-repeat="s in []| range:b.rate" ></i><i class="fa fa-star-o" ng-repeat="s in []| range:(Math.round(5 - (b.rate)))" ></i>
                         </div>
                         <div class="detail-banner-btn" ng-click="writeReview()" >
                             <i class="fa fa-edit"></i>Écrire un avis
@@ -130,15 +130,15 @@
         <div class="container">
             <div class="row detail-content">
                 <div class="col-sm-7">
-<!--                    <data-owl-carousel class="owl-carousel" data-options="{navigation: true, pagination: true, rewindNav : true}">
-                  <div owl-carousel-item="" ng-repeat="item in ::b.businessImage" class="item">
-                    <a colorbox="{rel:'group3'}" href="../../img/bimg/{{::item.uri}}" class="group3"  >
-                        <img ng-src="../../img/bimg/{{::item.uri}}" />
-                    </a>
-                  </div>
-                </data-owl-carousel>-->
+                    <!--                    <data-owl-carousel class="owl-carousel" data-options="{navigation: true, pagination: true, rewindNav : true}">
+                                      <div owl-carousel-item="" ng-repeat="item in ::b.businessImage" class="item">
+                                        <a colorbox="{rel:'group3'}" href="../../img/bimg/{{::item.uri}}" class="group3"  >
+                                            <img ng-src="../../img/bimg/{{::item.uri}}" />
+                                        </a>
+                                      </div>
+                                    </data-owl-carousel>-->
 
-              
+
 
                     <div class="detail-gallery">
                         <div class="detail-gallery-preview">
@@ -161,16 +161,16 @@
                         <a class="group3"  href="../../img/bimg/{{b.profileImage}}"></a>
                     </div>
 
-                    <h2>Où nous trouver</h2>
-                    <div class="background-white p20">
-                      <!-- Tab panes -->
+                    <h2 ng-show="b.mapS" >Où nous trouver</h2>
+                    <div class="background-white p20" ng-show="b.mapS" >
+                        <!-- Tab panes -->
                         <div class="tab-content">
                             <div id="map_canvas" style="height:300px;" >
-                                    <ui-gmap-google-map center="map.center" zoom="map.zoom"  options="options">
-                                        <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
-                                        </ui-gmap-marker>
-                                    </ui-gmap-google-map>
-                                </div>
+                                <ui-gmap-google-map center="map.center" zoom="map.zoom"  options="options">
+                                    <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
+                                    </ui-gmap-marker>
+                                </ui-gmap-google-map>
+                            </div>
                         </div>
                     </div>
 
@@ -198,33 +198,33 @@
                             </div>
 
                             <div class="row"  >
-                                
-                                
-                                
+
+
+
                                 <div class="form-group">
                                     <textarea class="form-control" rows="6" ng-model="content"
                                               placeholder="Votre avis permet à d'autres personnes de s'informer sur les meilleurs commerces locaux.
 
-Merci de ne pas donner d'avis sur ce commerce si vous avez bénéficié de quelconques avantages en échange de cet avis, ou si vous êtes connecté d'une façon ou d'une autre aux gérants ou aux employés du commerce en question."></textarea>
-                                    
+                                              Merci de ne pas donner d'avis sur ce commerce si vous avez bénéficié de quelconques avantages en échange de cet avis, ou si vous êtes connecté d'une façon ou d'une autre aux gérants ou aux employés du commerce en question."></textarea>
+
                                 </div>
-                                
-              <div class="row">
-                <div id="mediaHere" class="custom-preview" style="width:100%; margin-left:20px;" ></div>
-              </div>
-              <span class="btn btn-lg">
-                <span>browse files</span>
-                <input type="file" multiple
-                  ng-model="myModel"
-                  preview-class="myImage"
-                  preview-container="mediaHere"
-                  media-preview 
-                  base-sixty-four-input 
-                  accept="image/*" 
-                  maxsize="4000"       
-                       />
-              </span>
-                                
+
+                                <div class="row">
+                                    <div id="mediaHere" class="custom-preview" style="width:100%; margin-left:20px;" ></div>
+                                </div>
+                                <span class="btn btn-lg">
+                                    <span>browse files</span>
+                                    <input type="file" multiple
+                                           ng-model="myModel"
+                                           preview-class="myImage"
+                                           preview-container="mediaHere"
+                                           media-preview 
+                                           base-sixty-four-input 
+                                           accept="image/*" 
+                                           maxsize="4000"       
+                                           />
+                                </span>
+
                                 <div class="">
                                     <button class="btn btn-primary btn-block" type="submit" ng-click="addReview(myModel)" ><i class="fa fa-star"></i>Publier avis</button>
                                 </div><!-- /.col-sm-4 -->
@@ -242,7 +242,7 @@ Merci de ne pas donner d'avis sur ce commerce si vous avez bénéficié de quelc
                                 <div class="testimonial-title">
                                     <h2>{{c.userId.firstName}} {{c.userId.lastName}}</h2>
                                     <div class="testimonial-rating">
-                                        <i class="fa fa-star" ng-repeat="s in [] | range:c.rate" ></i><i class="fa fa-star-o" ng-repeat="s in [] | range:(5-(c.rate))" ></i>
+                                        <i class="fa fa-star" ng-repeat="s in []| range:c.rate" ></i><i class="fa fa-star-o" ng-repeat="s in []| range:(5 - (c.rate))" ></i>
                                     </div>
                                 </div>
                                 {{c.content}}
@@ -258,25 +258,25 @@ Merci de ne pas donner d'avis sur ce commerce si vous avez bénéficié de quelc
                                 </div>
                                 <div class="row">
                                     <div class="col-md-2">
-                                            <a href ng-click="voteComment(c,1,$index)" >
-                                                <i class="fa fa-thumbs-o-up box-icon box-icon-left animate-icon-border-rise round" 
-   ng-class="{'box-icon-gray': c.positive.voted == true , 'box-icon-info': c.positive.voted == false}" > {{c.positive.number}} </i>
-                                            </a>
-                                            <p class="mt5 mb0">Utile</p>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <a href ng-click="voteComment(c,2,$index)">
-                                                <i class="fa fa-thumbs-o-down box-icon box-icon-left animate-icon-border-rise round" ng-class="{'box-icon-gray': c.negative.voted == true , 'box-icon-info': c.negative.voted == false}" > {{c.negative.number}} </i>   
-                                            </a>
-                                            <p class="mt5 mb0">Inutile</p>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <a href ng-click="voteComment(c,3,$index)">
-                                                <i class="fa fa-smile-o box-icon box-icon-left animate-icon-border-rise round"
-    ng-class="{'box-icon-gray': c.funny.voted == true, 'box-icon-info': c.funny.voted == false }"> {{c.funny.number}} </i>
-                                            </a>
-                                            <p class="mt5 mb0">Drôle</p>
-                                        </div>
+                                        <a href ng-click="voteComment(c, 1, $index)" >
+                                            <i class="fa fa-thumbs-o-up box-icon-left animate-icon-border-rise round" 
+                                               ng-class="{'box-icon-gray': c.positive.voted == true , 'box-icon-info': c.positive.voted == false}" > {{c.positive.number}} </i>
+                                        </a>
+                                        <p class="mt5 mb0">Utile</p>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a href ng-click="voteComment(c, 2, $index)">
+                                            <i class="fa fa-thumbs-o-down box-icon-left animate-icon-border-rise round" ng-class="{'box-icon-gray': c.negative.voted == true , 'box-icon-info': c.negative.voted == false}" > {{c.negative.number}} </i>   
+                                        </a>
+                                        <p class="mt5 mb0">Inutile</p>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a href ng-click="voteComment(c, 3, $index)">
+                                            <i class="fa fa-smile-o box-icon-left animate-icon-border-rise round"
+                                               ng-class="{'box-icon-gray': c.funny.voted == true, 'box-icon-info': c.funny.voted == false }"> {{c.funny.number}} </i>
+                                        </a>
+                                        <p class="mt5 mb0">Drôle</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -291,7 +291,7 @@ Merci de ne pas donner d'avis sur ce commerce si vous avez bénéficié de quelc
                             <i class="fa fa-heart"></i> <strong>{{b.likes.length}} </strong>personnes aiment ça
                         </div>
                         <div class="detail-overview-rating">
-                            <i class="fa fa-star"></i> <strong>{{b.rate | number:1 }} / 5 </strong>basé sur <a href ng-click="viewReview()">{{b.nbrRate}} votes</a>
+                            <i class="fa fa-star"></i> <strong>{{b.rate| number:1 }} / 5 </strong>basé sur <a href ng-click="viewReview()">{{b.nbrRate}} votes</a>
                         </div>
 
                         <div class="detail-actions row">
@@ -328,16 +328,40 @@ Merci de ne pas donner d'avis sur ce commerce si vous avez bénéficié de quelc
                                     </div>
                                 </div>
                             </div>
-                                
-                            
+
+
 
                             <div class="col-sm-4">
                                 <div class="btn btn-secondary btn-share"><i class="fa fa-share-square-o"></i> Partager
                                     <div class="share-wrapper">
                                         <ul class="share">
-                                            <li><i class="fa fa-facebook"></i> Facebook</li>
-                                            <li><i class="fa fa-twitter"></i> Twitter</li>
-                                            <li><i class="fa fa-google-plus"></i> Google+</li>
+                                            <li><a href
+                                                   socialshare
+                                                   socialshare-provider="facebook"
+                                                   socialshare-text="b.name"
+                                                   socialshare-hashtags="b.name"
+                                                   socialshare-url="https://www.facebook.com/MyleCommunity/">
+                                                    <i class="fa fa-facebook"></i> Facebook
+                                                </a>
+                                            </li>
+                                            <li><a href
+                                                   socialshare
+                                                   socialshare-provider="twitter"
+                                                   socialshare-text="b.name"
+                                                   socialshare-hashtags="b.name"
+                                                   socialshare-url="https://www.facebook.com/MyleCommunity/">
+                                                    <i class="fa fa-twitter"></i> Twitter
+                                                </a>
+                                            </li>
+                                            <li><a href
+                                                   socialshare
+                                                   socialshare-provider="google"
+                                                   socialshare-text="b.name"
+                                                   socialshare-hashtags="b.name"
+                                                   socialshare-url="https://www.facebook.com/MyleCommunity/">
+                                                    <i class="fa fa-google-plus"></i> Google+
+                                                </a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -395,9 +419,9 @@ Merci de ne pas donner d'avis sur ce commerce si vous avez bénéficié de quelc
                             <div class="working-hours">
                                 <div class="day clearfix" ng-repeat="d in b.openingTime" >
                                     <div ng-switch="d.open">
-                                    <span class="name"  >{{d.dayStr}}</span>
-                                    <span class="hours" ng-switch-when="1" >{{d.result}}</span>
-                                    <span class="hours" style="color:red" ng-switch-when="0" >{{d.result}}</span>
+                                        <span class="name"  >{{d.dayStr}}</span>
+                                        <span class="hours" ng-switch-when="1" >{{d.result}}</span>
+                                        <span class="hours" style="color:red" ng-switch-when="0" >{{d.result}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -409,66 +433,66 @@ Merci de ne pas donner d'avis sur ce commerce si vous avez bénéficié de quelc
 
                     <div class="background-white p20">
                         <div class="row">
-                        <div class="col-md-12">
-                            <ul class="detail-amenities col-md-12">
-                                <li class="yes" ng-show="b.cnam">conventioné avec la CNAM</li>
-                                <li class="yes" ng-show="b.appointment">Accepte les render-vous</li>
-                                <li class="yes" ng-show="b.clim">Air conditioner</li>
-                                <li class="yes" ng-show="b.creditCard">accepte les cartes de crédit</li>
-                                <li class="yes" ng-show="b.delivery">Livraison à domicile</li>
-                                <li class="yes" ng-show="b.reservation">Réservation</li>
-                                <li class="yes" ng-show="b.takeAway">à emporter</li>
-                                <li class="yes" ng-show="b.terrace">avec Terrace</li>
-                                <li class="yes" ng-show="b.ticketsRestau">accepte les tickets Restaux</li>
-                                <li class="yes" ng-show="b.fauteuilRoulant">Accessible aux personnes à mobilité réduite</li>
-                                <li class="yes" ng-show="b.adapteEnfants">Adapte aux Enfants</li>
-                                <li class="yes" ng-show="b.adapteGroupe">Adapte aux Groupe</li>
-                                <li class="yes" ng-show="b.television">Télevision</li>
-                                <li class="yes" ng-show="b.chiensAutorises">Chiens Autorisés</li>
-                                <li class="yes" ng-show="b.wifi">Wifi</li>
-                                <li class="yes" ng-show="b.alcool">Alcool</li>
-                                <li class="yes" ng-show="b.happyHour">Happy Hour</li>
-                                <li class="yes" ng-show="b.fumeur">Espace Fumeur</li>
-                                <li class="yes" ng-show="b.espaceNonFumeur">Espace Non Fumeur</li>
-                                <li class="yes" ng-show="b.serviceADomicile">Service à Domicile</li>
-                                <br/>
-                                <li class="no" ng-show="!b.cnam">conventioné avec la CNAM</li>
-                                <li class="no" ng-show="!b.appointment">Accepte les render-vous</li>
-                                <li class="no" ng-show="!b.clim">Air conditioner</li>
-                                <li class="no" ng-show="!b.creditCard">accepte les cartes de crédit</li>
-                                <li class="no" ng-show="!b.delivery">Livraison à domicile</li>
-                                <li class="no" ng-show="!b.reservation">Réservation</li>
-                                <li class="no" ng-show="!b.takeAway">à emporter</li>
-                                <li class="no" ng-show="!b.terrace">avec Terrace</li>
-                                <li class="no" ng-show="!b.ticketsRestau">accepte les tickets Restaux</li>
-                                <li class="no" ng-show="!b.fauteuilRoulant">Accessible aux personnes à mobilité réduite</li>
-                                <li class="no" ng-show="!b.adapteEnfants">Adapte aux Enfants</li>
-                                <li class="no" ng-show="!b.adapteGroupe">Adapte aux Groupe</li>
-                                <li class="no" ng-show="!b.television">Télevision</li>
-                                <li class="no" ng-show="!b.chiensAutorises">Chiens Autorisés</li>
-                                <li class="no" ng-show="!b.wifi">Wifi</li>
-                                <li class="no" ng-show="!b.alcool">Alcool</li>
-                                <li class="no" ng-show="!b.happyHour">Happy Hour</li>
-                                <li class="no" ng-show="!b.fumeur">Espace Fumeur</li>
-                                <li class="no" ng-show="!b.espaceNonFumeur">Espace Non Fumeur</li>
-                                <li class="no" ng-show="!b.serviceADomicile">Service à Domicile</li>
-                            </ul>
-                        </div>
-<!--                        <div class="col-sm-5">
-                            <ul class="detail-amenities">
-                                <li class="yes">WiFi</li><br/>
-                                <li class="no">Parking</li>
-                                <li class="yes">Réservations</li>
-                            </ul>
-                        </div>
-                        <div class="col-sm-7">
-                            <ul class="detail-amenities">
-                                <li class="no">Livraison</li>
-                                <li class="yes">À emporter</li>
-                                <li class="yes">Cartes de crédit acceptées</li>
-                                <li class="yes">Salle non fumeur</li>
-                            </ul>
-                        </div>-->
+                            <div class="col-md-12">
+                                <ul class="detail-amenities col-md-12">
+                                    <li class="yes" ng-show="b.cnam">conventioné avec la CNAM</li>
+                                    <li class="yes" ng-show="b.appointment">Accepte les render-vous</li>
+                                    <li class="yes" ng-show="b.clim">Air conditioner</li>
+                                    <li class="yes" ng-show="b.creditCard">accepte les cartes de crédit</li>
+                                    <li class="yes" ng-show="b.delivery">Livraison à domicile</li>
+                                    <li class="yes" ng-show="b.reservation">Réservation</li>
+                                    <li class="yes" ng-show="b.takeAway">à emporter</li>
+                                    <li class="yes" ng-show="b.terrace">avec Terrace</li>
+                                    <li class="yes" ng-show="b.ticketsRestau">accepte les tickets Restaux</li>
+                                    <li class="yes" ng-show="b.fauteuilRoulant">Accessible aux personnes à mobilité réduite</li>
+                                    <li class="yes" ng-show="b.adapteEnfants">Adapte aux Enfants</li>
+                                    <li class="yes" ng-show="b.adapteGroupe">Adapte aux Groupe</li>
+                                    <li class="yes" ng-show="b.television">Télevision</li>
+                                    <li class="yes" ng-show="b.chiensAutorises">Chiens Autorisés</li>
+                                    <li class="yes" ng-show="b.wifi">Wifi</li>
+                                    <li class="yes" ng-show="b.alcool">Alcool</li>
+                                    <li class="yes" ng-show="b.happyHour">Happy Hour</li>
+                                    <li class="yes" ng-show="b.fumeur">Espace Fumeur</li>
+                                    <li class="yes" ng-show="b.espaceNonFumeur">Espace Non Fumeur</li>
+                                    <li class="yes" ng-show="b.serviceADomicile">Service à Domicile</li>
+                                    <br/>
+                                    <li class="no" ng-show="!b.cnam">conventioné avec la CNAM</li>
+                                    <li class="no" ng-show="!b.appointment">Accepte les render-vous</li>
+                                    <li class="no" ng-show="!b.clim">Air conditioner</li>
+                                    <li class="no" ng-show="!b.creditCard">accepte les cartes de crédit</li>
+                                    <li class="no" ng-show="!b.delivery">Livraison à domicile</li>
+                                    <li class="no" ng-show="!b.reservation">Réservation</li>
+                                    <li class="no" ng-show="!b.takeAway">à emporter</li>
+                                    <li class="no" ng-show="!b.terrace">avec Terrace</li>
+                                    <li class="no" ng-show="!b.ticketsRestau">accepte les tickets Restaux</li>
+                                    <li class="no" ng-show="!b.fauteuilRoulant">Accessible aux personnes à mobilité réduite</li>
+                                    <li class="no" ng-show="!b.adapteEnfants">Adapte aux Enfants</li>
+                                    <li class="no" ng-show="!b.adapteGroupe">Adapte aux Groupe</li>
+                                    <li class="no" ng-show="!b.television">Télevision</li>
+                                    <li class="no" ng-show="!b.chiensAutorises">Chiens Autorisés</li>
+                                    <li class="no" ng-show="!b.wifi">Wifi</li>
+                                    <li class="no" ng-show="!b.alcool">Alcool</li>
+                                    <li class="no" ng-show="!b.happyHour">Happy Hour</li>
+                                    <li class="no" ng-show="!b.fumeur">Espace Fumeur</li>
+                                    <li class="no" ng-show="!b.espaceNonFumeur">Espace Non Fumeur</li>
+                                    <li class="no" ng-show="!b.serviceADomicile">Service à Domicile</li>
+                                </ul>
+                            </div>
+                            <!--                        <div class="col-sm-5">
+                                                        <ul class="detail-amenities">
+                                                            <li class="yes">WiFi</li><br/>
+                                                            <li class="no">Parking</li>
+                                                            <li class="yes">Réservations</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-sm-7">
+                                                        <ul class="detail-amenities">
+                                                            <li class="no">Livraison</li>
+                                                            <li class="yes">À emporter</li>
+                                                            <li class="yes">Cartes de crédit acceptées</li>
+                                                            <li class="yes">Salle non fumeur</li>
+                                                        </ul>
+                                                    </div>-->
                         </div>
                     </div>
 
@@ -495,6 +519,6 @@ Merci de ne pas donner d'avis sur ce commerce si vous avez bénéficié de quelc
 </div><!-- /.main-inner -->
 
 <script type="text/javascript">
-    $('.group1').colorbox({rel:'group1'});
-    $('.group2').colorbox({rel:'group2'});
+            $('.group1').colorbox({rel: 'group1'});
+            $('.group2').colorbox({rel: 'group2'});
 </script>
