@@ -1,6 +1,6 @@
 'use strict';
 
-myApp.controller("RequestAddCtrl" ,function ($scope, uiGmapGoogleMapApi) {
+myApp.controller("RequestAddCtrl" ,function ($scope, uiGmapGoogleMapApi, toaster) {
 
     init();
     {
@@ -36,10 +36,20 @@ myApp.controller("RequestAddCtrl" ,function ($scope, uiGmapGoogleMapApi) {
         };
     }
     
-    
+    $scope.name=""; $scope.site="";
+    $scope.adress=""; $scope.description="";
+    $scope.tel="";
     
     $scope.requestAdd = function (){
-        if
+        if($scope.name.length<3 || $scope.site.length<3 || $scope.adress.length<3
+           || $scope.description.length<3 || $scope.tel.length<3 || $scope.latitude.length<3 || 
+           $scope.longitude.length<3){
+            toaster.error("Erreur", "Veuillez remplir tout les champs");
+            return;
+        }
+        else{
+            
+        }
     }
 
 });
